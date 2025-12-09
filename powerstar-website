@@ -1,23 +1,21 @@
 powerstar-website/
 │
-├─ index.html
-├─ about.html
-├─ products.html
-├─ careers.html
-├─ media.html
-├─ news.html
-├─ branches.html
-├─ contact.html
+├── assets/
+│   ├── logo.png
+│   ├── services/         ← images for Bakery, Deli, Electronics, etc.
+│   └── branches/         ← placeholder images for 11 branches
 │
-├─ css/
-│   └─ style.css
-│   └─ grid-modal.css
-├─ js/
-│   └─ script.js
-│   └─ map-modal.js
-└─ images/
-    ├─ me.jpg
-    ├─ branch1.jpg
-    ├─ branch2.jpg
-    ├─ product1.jpg
-    └─ ... (add more images as needed)
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+│
+├── index.html
+├── services.html
+├── branches.html
+├── careers.html
+├── news.html
+├── media.html
+├── contact.html
+├── loyalty.html
+├── admin.html
