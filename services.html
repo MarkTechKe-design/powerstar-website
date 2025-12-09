@@ -1,423 +1,188 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Products & Services — Powerstar Supermarkets</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products & Services | Powerstar Supermarkets</title>
 
-  <!-- If you already have a global stylesheet, this page's styles are scoped and safe.
-       You can remove the <style> block and use global css if preferred. -->
-  <style>
-    :root{
-      --primary-red:#D40000;
-      --primary-green:#037A2B;
-      --white:#ffffff;
-      --light-bg:#F7F7F7;
-      --text:#222222;
-      --card-shadow: 0 6px 20px rgba(0,0,0,0.08);
-      --radius:12px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--light-bg);color:var(--text);-webkit-font-smoothing:antialiased}
-    a{color:inherit}
-    .container{max-width:1200px;margin:0 auto;padding:18px}
+<link href="css/style.css" rel="stylesheet">
 
-    /* header */
-    .site-header{display:flex;align-items:center;justify-content:space-between;background:var(--primary-red);padding:14px 22px;color:var(--white)}
-    .site-header .brand{display:flex;align-items:center;gap:12px}
-    .site-header img.logo{height:56px}
-    .site-nav a{color:var(--white);margin-left:12px;font-weight:600;text-decoration:none}
-    .site-nav a:hover{opacity:.95;color:var(--primary-green)}
+<style>
+/* Powerstar Colours */
+:root {
+    --primary-red: #D40000;
+    --primary-green: #037A2B;
+    --text-dark: #222;
+    --text-light: #fff;
+    --bg-light: #F7F7F7;
+}
 
-    /* HERO SLIDER */
-    .hero{
-      margin-top:18px;
-      border-radius:var(--radius);
-      overflow:hidden;
-      position:relative;
-      box-shadow:var(--card-shadow);
-    }
-    .hero .slides{position:relative;height:52vh;min-height:300px;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden}
-    .hero .slide{position:absolute;inset:0;opacity:0;transform:scale(1);transition:opacity .5s ease, transform .6s ease}
-    .hero .slide.active{opacity:1;transform:scale(1)}
-    .hero .slide img{width:100%;height:100%;object-fit:cover;display:block}
+/* Page Layout */
+body {
+    margin: 0;
+    background: var(--bg-light);
+    font-family: "Inter", sans-serif;
+    color: var(--text-dark);
+}
 
-    .hero .overlay{
-      position:absolute;left:24px;bottom:24px;z-index:5;color:var(--white);
-      background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
-      padding:16px;border-radius:10px;max-width:70%;
-    }
-    .hero .overlay h1{margin:0;font-size:28px;letter-spacing:.3px}
-    .hero .overlay p{margin-top:6px;color:rgba(255,255,255,0.9)}
+/* Header Spacer */
+.page-header {
+    background: var(--primary-red);
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+}
+.page-header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+.page-header p {
+    margin-top: 10px;
+    font-size: 18px;
+}
 
-    /* hero controls */
-    .hero .nav-left, .hero .nav-right{
-      position:absolute;top:50%;transform:translateY(-50%);z-index:6;background:rgba(0,0,0,0.36);border:none;color:var(--white);width:44px;height:44px;border-radius:8px;cursor:pointer;
-      display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)
-    }
-    .hero .nav-left{left:12px}
-    .hero .nav-right{right:12px}
-    .hero .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;gap:8px;z-index:6}
-    .hero .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer}
-    .hero .dot.active{background:var(--primary-green);box-shadow:0 0 0 4px rgba(3,122,43,0.12)}
+/* Categories Section */
+.category-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
 
-    /* Page title */
-    .page-title{max-width:1200px;margin:22px auto 6px;padding:0 18px}
-    .page-title h2{color:var(--primary-red);margin:0;font-size:26px}
-    .page-title p{margin:8px 0 0;color:#444}
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
 
-    /* Category section */
-    .category{max-width:1200px;margin:26px auto;padding:0 18px}
-    .category-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-    .category-header h3{margin:0;color:var(--primary-red)}
-    .category-track{
-      position:relative;
-      display:flex;
-      gap:12px;
-      overflow:hidden;
-      scroll-behavior:smooth;
-      padding-bottom:6px;
-      margin-bottom:14px;
-    }
-    .category-track::-webkit-scrollbar{height:10px}
-    .category-card{min-width:260px;max-width:320px;background:var(--white);border-radius:12px;padding:8px;box-shadow:var(--card-shadow);flex:0 0 auto;transition:transform .18s}
-    .category-card:hover{transform:translateY(-6px)}
-    .category-card img{width:100%;height:170px;object-fit:cover;border-radius:10px}
-    .category-card .meta{padding:8px}
-    .category-card .meta h4{margin:6px 0;color:var(--primary-green)}
-    .category-card .meta p{margin:0;color:#666;font-size:14px}
+.category-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    border-top: 5px solid var(--primary-green);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    transition: transform .2s ease;
+}
 
-    /* track arrows */
-    .track-arrow{position:absolute;top:40%;transform:translateY(-50%);z-index:6;background:var(--white);border-radius:8px;border:none;width:36px;height:36px;box-shadow:0 6px 18px rgba(0,0,0,.08);cursor:pointer}
-    .track-arrow.left{left:6px}
-    .track-arrow.right{right:6px}
+.category-card:hover {
+    transform: translateY(-5px);
+}
 
-    /* small screens */
-    @media(max-width:900px){
-      .hero .overlay h1{font-size:20px}
-      .hero .overlay{max-width:90%}
-      .category-card{min-width:220px}
-    }
-    @media(max-width:520px){
-      .site-nav{display:none}
-      .hero{border-radius:0}
-      .hero .overlay{left:12px;right:12px;bottom:12px}
-    }
-  </style>
+.category-card img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.category-card h3 {
+    margin: 15px 0 8px;
+    color: var(--primary-red);
+}
+
+.category-card p {
+    font-size: 14px;
+    color: #444;
+}
+
+/* Buttons */
+.category-card a {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 16px;
+    font-size: 15px;
+    border-radius: 6px;
+    background: var(--primary-green);
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.category-card a:hover {
+    background: var(--primary-red);
+}
+</style>
+
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="brand">
-      <img src="assets/logo.png" alt="Powerstar logo" class="logo">
-      <div style="font-weight:700">Powerstar Supermarkets</div>
-    </div>
-    <nav class="site-nav">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products & Services</a>
-      <a href="branches.html">Branches</a>
-      <a href="careers.html">Careers</a>
-      <a href="news.html">News</a>
-      <a href="media.html">Media</a>
-      <a href="contact.html">Contact</a>
-      <a href="loyalty.html">Loyalty</a>
-    </nav>
-  </header>
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <h1>Products & Services</h1>
+    <p>Explore what Powerstar Supermarkets offers across all branches</p>
+</div>
 
-  <!-- HERO SLIDER -->
-  <div class="hero container" aria-roledescription="carousel" id="hero">
-    <div class="slides" id="heroSlides">
-      <!-- Add hero images in assets/heroX.jpg -->
-      <div class="slide active"><img src="assets/hero1.jpg" alt="Fresh offers at Powerstar"></div>
-      <div class="slide"><img src="assets/hero2.jpg" alt="Quality products"></div>
-      <div class="slide"><img src="assets/hero3.jpg" alt="Weekly promotions"></div>
-    </div>
+<!-- PRODUCT CATEGORIES -->
+<div class="category-section">
 
-    <div class="overlay">
-      <h1>Products & Services — Powerstar</h1>
-      <p>Quality, variety and value across bakery, deli, electronics, furniture, and more.</p>
-    </div>
+    <div class="category-grid">
 
-    <button class="nav-left" id="heroPrev" aria-label="Previous slide">◀</button>
-    <button class="nav-right" id="heroNext" aria-label="Next slide">▶</button>
-
-    <div class="dots" id="heroDots"></div>
-  </div>
-
-  <!-- Page Title & Intro -->
-  <div class="page-title">
-    <h2>Explore Our Categories</h2>
-    <p>Click any category to view featured items. Each category has an auto-scrolling gallery — add more images in <code>assets/&lt;category-folder&gt;/</code>.</p>
-  </div>
-
-  <!-- CATEGORIES: Bakery (repeat for each category) -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Bakery</h3>
-      <div style="font-size:14px;color:#666">Freshly baked everyday</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="bakery">‹</button>
-      <div class="category-track" id="bakery-track" data-autoscroll="true">
-        <!-- Add bakery images at assets/products/bakery/bakery1.jpg, bakery2.jpg ... -->
+        <!-- Bakery -->
         <div class="category-card">
-          <img src="assets/products/bakery/bakery1.jpg" alt="Bakery item 1">
-          <div class="meta"><h4>Fresh Bread</h4><p>Hot & soft loaves daily</p></div>
+            <img src="assets/bakery.jpg" alt="Bakery">
+            <h3>Bakery</h3>
+            <p>Freshly baked breads, cakes, pastries and more.</p>
         </div>
+
+        <!-- Deli -->
         <div class="category-card">
-          <img src="assets/products/bakery/bakery2.jpg" alt="Bakery item 2">
-          <div class="meta"><h4>Cakes & Pastries</h4><p>Made fresh every morning</p></div>
+            <img src="assets/deli.jpg" alt="Deli">
+            <h3>Deli</h3>
+            <p>Ready-to-eat meals, snacks, salads and fast service foods.</p>
         </div>
+
+        <!-- Electronics -->
         <div class="category-card">
-          <img src="assets/products/bakery/bakery3.jpg" alt="Bakery item 3">
-          <div class="meta"><h4>Artisan Bakes</h4><p>Specialty breads & treats</p></div>
+            <img src="assets/electronics.jpg" alt="Electronics">
+            <h3>Electronics</h3>
+            <p>Household electronics, appliances and entertainment devices.</p>
         </div>
-        <!-- add more bakery cards as needed -->
-      </div>
-      <button class="track-arrow right" data-track="bakery">›</button>
+
+        <!-- Furniture -->
+        <div class="category-card">
+            <img src="assets/furniture.jpg" alt="Furniture">
+            <h3>Furniture</h3>
+            <p>Quality household and office furniture collections.</p>
+        </div>
+
+        <!-- Mattresses -->
+        <div class="category-card">
+            <img src="assets/mattresses.jpg" alt="Mattresses">
+            <h3>Mattresses</h3>
+            <p>Comfortable, durable mattresses from top brands.</p>
+        </div>
+
+        <!-- Stationery -->
+        <div class="category-card">
+            <img src="assets/stationery.jpg" alt="Stationery">
+            <h3>Stationery</h3>
+            <p>School, office and professional stationery supplies.</p>
+        </div>
+
+        <!-- Clothing -->
+        <div class="category-card">
+            <img src="assets/clothing.jpg" alt="Clothing">
+            <h3>Clothing</h3>
+            <p>Men, women and children clothing and accessories.</p>
+        </div>
+
+        <!-- Personal Care -->
+        <div class="category-card">
+            <img src="assets/personalcare.jpg" alt="Personal Care">
+            <h3>Personal Care</h3>
+            <p>Health, beauty and grooming essentials.</p>
+        </div>
+
+        <!-- Foodstuffs -->
+        <div class="category-card">
+            <img src="assets/food.jpg" alt="Foodstuffs">
+            <h3>Foodstuffs</h3>
+            <p>Groceries, beverages, household staples and essentials.</p>
+        </div>
+
     </div>
-  </div>
+</div>
 
-  <!-- Category: Deli -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Deli</h3>
-      <div style="font-size:14px;color:#666">Ready-to-eat & fresh selections</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="deli">‹</button>
-      <div class="category-track" id="deli-track" data-autoscroll="true">
-        <div class="category-card"><img src="assets/products/deli/deli1.jpg" alt="Deli 1"><div class="meta"><h4>Sandwiches</h4><p>Fresh and tasty</p></div></div>
-        <div class="category-card"><img src="assets/products/deli/deli2.jpg" alt="Deli 2"><div class="meta"><h4>Salads</h4><p>Healthy options</p></div></div>
-        <div class="category-card"><img src="assets/products/deli/deli3.jpg" alt="Deli 3"><div class="meta"><h4>Platters</h4><p>Great for events</p></div></div>
-      </div>
-      <button class="track-arrow right" data-track="deli">›</button>
-    </div>
-  </div>
-
-  <!-- Category: Electronics -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Electronics</h3>
-      <div style="font-size:14px;color:#666">Appliances & gadgets</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="electronics">‹</button>
-      <div class="category-track" id="electronics-track" data-autoscroll="true">
-        <div class="category-card"><img src="assets/products/electronics/e1.jpg" alt=""><div class="meta"><h4>Small Appliances</h4><p>Kettles, toasters & more</p></div></div>
-        <div class="category-card"><img src="assets/products/electronics/e2.jpg" alt=""><div class="meta"><h4>Home Audio</h4><p>Speakers & radios</p></div></div>
-        <div class="category-card"><img src="assets/products/electronics/e3.jpg" alt=""><div class="meta"><h4>Accessories</h4><p>Cables, chargers & parts</p></div></div>
-      </div>
-      <button class="track-arrow right" data-track="electronics">›</button>
-    </div>
-  </div>
-
-  <!-- Category: Furniture -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Furniture</h3>
-      <div style="font-size:14px;color:#666">Home & office selections</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="furniture">‹</button>
-      <div class="category-track" id="furniture-track" data-autoscroll="true">
-        <div class="category-card"><img src="assets/products/furniture/f1.jpg" alt=""><div class="meta"><h4>Sofas</h4><p>Comfort & style</p></div></div>
-        <div class="category-card"><img src="assets/products/furniture/f2.jpg" alt=""><div class="meta"><h4>Dining Sets</h4><p>Quality finishes</p></div></div>
-        <div class="category-card"><img src="assets/products/furniture/f3.jpg" alt=""><div class="meta"><h4>Chairs</h4><p>Ergonomic & durable</p></div></div>
-      </div>
-      <button class="track-arrow right" data-track="furniture">›</button>
-    </div>
-  </div>
-
-  <!-- Category: Mattresses -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Mattresses</h3>
-      <div style="font-size:14px;color:#666">Comfort for better sleep</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="mattresses">‹</button>
-      <div class="category-track" id="mattresses-track" data-autoscroll="true">
-        <div class="category-card"><img src="assets/products/mattresses/m1.jpg" alt=""><div class="meta"><h4>Single</h4><p>Perfect for kids</p></div></div>
-        <div class="category-card"><img src="assets/products/mattresses/m2.jpg" alt=""><div class="meta"><h4>Double</h4><p>Comfort & support</p></div></div>
-        <div class="category-card"><img src="assets/products/mattresses/m3.jpg" alt=""><div class="meta"><h4>King</h4><p>Luxury sleepers</p></div></div>
-      </div>
-      <button class="track-arrow right" data-track="mattresses">›</button>
-    </div>
-  </div>
-
-  <!-- Category: Stationery -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Stationery</h3>
-      <div style="font-size:14px;color:#666">Office & school supplies</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="stationery">‹</button>
-      <div class="category-track" id="stationery-track" data-autoscroll="true">
-        <div class="category-card"><img src="assets/products/stationery/s1.jpg" alt=""><div class="meta"><h4>Notebooks</h4><p>Quality paper</p></div></div>
-        <div class="category-card"><img src="assets/products/stationery/s2.jpg" alt=""><div class="meta"><h4>Writing Tools</h4><p>Pens and pencils</p></div></div>
-        <div class="category-card"><img src="assets/products/stationery/s3.jpg" alt=""><div class="meta"><h4>Office Kits</h4><p>Staplers and clips</p></div></div>
-      </div>
-      <button class="track-arrow right" data-track="stationery">›</button>
-    </div>
-  </div>
-
-  <!-- Category: Clothing -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Clothing</h3>
-      <div style="font-size:14px;color:#666">Apparel for all ages</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="clothing">‹</button>
-      <div class="category-track" id="clothing-track" data-autoscroll="true">
-        <div class="category-card"><img src="assets/products/clothing/c1.jpg" alt=""><div class="meta"><h4>Men</h4><p>Casual & formal</p></div></div>
-        <div class="category-card"><img src="assets/products/clothing/c2.jpg" alt=""><div class="meta"><h4>Women</h4><p>Modern styles</p></div></div>
-        <div class="category-card"><img src="assets/products/clothing/c3.jpg" alt=""><div class="meta"><h4>Kids</h4><p>Comfortable wear</p></div></div>
-      </div>
-      <button class="track-arrow right" data-track="clothing">›</button>
-    </div>
-  </div>
-
-  <!-- Category: Personal Care -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Personal Care</h3>
-      <div style="font-size:14px;color:#666">Health & grooming essentials</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="personalcare">‹</button>
-      <div class="category-track" id="personalcare-track" data-autoscroll="true">
-        <div class="category-card"><img src="assets/products/personalcare/p1.jpg" alt=""><div class="meta"><h4>Skincare</h4><p>Trusted brands</p></div></div>
-        <div class="category-card"><img src="assets/products/personalcare/p2.jpg" alt=""><div class="meta"><h4>Haircare</h4><p>Shampoos & treatments</p></div></div>
-        <div class="category-card"><img src="assets/products/personalcare/p3.jpg" alt=""><div class="meta"><h4>Oral Care</h4><p>Toothpaste & brushes</p></div></div>
-      </div>
-      <button class="track-arrow right" data-track="personalcare">›</button>
-    </div>
-  </div>
-
-  <!-- Category: Foodstuffs -->
-  <div class="category">
-    <div class="category-header">
-      <h3>Foodstuffs</h3>
-      <div style="font-size:14px;color:#666">Groceries, staples & more</div>
-    </div>
-
-    <div style="position:relative">
-      <button class="track-arrow left" data-track="foodstuffs">‹</button>
-      <div class="category-track" id="foodstuffs-track" data-autoscroll="true">
-        <div class="category-card"><img src="assets/products/food/food1.jpg" alt=""><div class="meta"><h4>Groceries</h4><p>Everyday staples</p></div></div>
-        <div class="category-card"><img src="assets/products/food/food2.jpg" alt=""><div class="meta"><h4>Beverages</h4><p>Drinks & juices</p></div></div>
-        <div class="category-card"><img src="assets/products/food/food3.jpg" alt=""><div class="meta"><h4>Canned Goods</h4><p>Long-life pantry</p></div></div>
-      </div>
-      <button class="track-arrow right" data-track="foodstuffs">›</button>
-    </div>
-  </div>
-
-  <div style="height:60px"></div>
-
-  <footer style="background:var(--primary-red);color:#fff;padding:18px;text-align:center">
-    © 2025 Powerstar Supermarkets — All rights reserved
-  </footer>
-
-  <!-- SCRIPTS: hero slider + auto-scrolling category tracks + arrow/drag controls -->
-  <script>
-    /* HERO SLIDER */
-    (function(){
-      const slides = Array.from(document.querySelectorAll('#heroSlides .slide'));
-      const dotsContainer = document.getElementById('heroDots');
-      let current = 0, interval = 4000, timer;
-
-      function buildDots(){
-        slides.forEach((_,i)=>{
-          const d = document.createElement('div'); d.className='dot'; d.dataset.index = i;
-          d.addEventListener('click', ()=>{ goTo(i); resetTimer(); });
-          dotsContainer.appendChild(d);
-        });
-        dotsContainer.children[0].classList.add('active');
-      }
-      function update(){
-        slides.forEach((s, i)=> s.classList.toggle('active', i===current));
-        Array.from(dotsContainer.children).forEach((d,i)=> d.classList.toggle('active', i===current));
-      }
-      function next(){ current = (current+1) % slides.length; update(); }
-      function prev(){ current = (current-1 + slides.length) % slides.length; update(); }
-      function goTo(i){ current = i; update(); }
-      function resetTimer(){ clearInterval(timer); timer = setInterval(next, interval); }
-
-      document.getElementById('heroNext').addEventListener('click', ()=>{ next(); resetTimer(); });
-      document.getElementById('heroPrev').addEventListener('click', ()=>{ prev(); resetTimer(); });
-
-      buildDots();
-      timer = setInterval(next, interval);
-    })();
-
-    /* CATEGORY TRACK AUTO-SCROLL and CONTROLS */
-    (function(){
-      // setup function for a track
-      const tracks = document.querySelectorAll('.category-track');
-      tracks.forEach(track => {
-        // make track draggable
-        let isDown = false, startX, scrollLeft;
-        track.addEventListener('mousedown', (e) => {
-          isDown = true; track.classList.add('active'); startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft;
-        });
-        track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('active'); });
-        track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('active'); });
-        track.addEventListener('mousemove', (e) => {
-          if(!isDown) return;
-          e.preventDefault();
-          const x = e.pageX - track.offsetLeft;
-          const walk = (x - startX) * 1.5;
-          track.scrollLeft = scrollLeft - walk;
-        });
-
-        // touch support
-        let touchStartX = 0, touchStartScroll = 0;
-        track.addEventListener('touchstart', e => { touchStartX = e.touches[0].pageX; touchStartScroll = track.scrollLeft; });
-        track.addEventListener('touchmove', e => {
-          const x = e.touches[0].pageX;
-          const move = (touchStartX - x) * 1.2;
-          track.scrollLeft = touchStartScroll + move;
-        });
-
-        // auto-scroll if data-autoscroll="true"
-        if(track.dataset.autoscroll === 'true'){
-          let speed = 0.6; // px per tick
-          let direction = 1;
-          setInterval(()=>{
-            // reverse when near ends
-            if(track.scrollLeft + track.clientWidth >= track.scrollWidth - 2) direction = -1;
-            if(track.scrollLeft <= 0) direction = 1;
-            track.scrollLeft += speed * direction;
-          }, 20);
-        }
-      });
-
-      // arrow controls
-      const arrows = document.querySelectorAll('.track-arrow');
-      arrows.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const trackId = btn.dataset.track + '-track';
-          const track = document.getElementById(trackId);
-          if(!track) return;
-          const amount = track.clientWidth * 0.7;
-          if(btn.classList.contains('left')) track.scrollBy({left: -amount, behavior: 'smooth'});
-          else track.scrollBy({left: amount, behavior: 'smooth'});
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
