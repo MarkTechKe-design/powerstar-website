@@ -65,7 +65,101 @@ loyaltyForm.addEventListener('submit', async function(e){
   if(!phonePattern.test(phone)){
     status.textContent = "Phone number must be 10 digits.";
     status.style.color = "red";
+    return;<!-- Loyalty Card Section -->
+<section id="loyalty-card" style="background:#f7f7f7; padding:50px 0;">
+  <div style="max-width:600px; margin:0 auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
+    <h2 style="text-align:center; color:#006400; margin-bottom:20px;">Request Your Loyalty Card</h2>
+    <form id="loyaltyForm">
+      <div style="margin-bottom:15px;">
+        <input type="text" id="fullName" placeholder="Full Name" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
+      </div>
+      <div style="margin-bottom:15px;">
+        <input type="email" id="email" placeholder="Email" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
+      </div>
+      <div style="margin-bottom:15px;">
+        <input type="text" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
+      </div>
+      <div style="margin-bottom:15px;">
+        <input type="text" id="nationalId" placeholder="National ID Number" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
+      </div>
+      <div style="margin-bottom:15px;">
+        <input type="date" id="dob" placeholder="Date of Birth" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
+      </div>
+      <div style="margin-bottom:15px;">
+        <label>Select Branch</label>
+        <select id="branch" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
+          <option value="">-- Select Branch --</option>
+          <option value="Kasarani Branch">Kasarani</option>
+          <option value="Zimmerman Base Branch">Zimmerma Base</option>
+          <option value="Zimmerman Express Branch">Zimmerman Express</option>
+          <option value="Ruiru Mini Branch">Ruiru Mini</option>
+          <option value="Ruiru Jambo Branch">Ruiru Jambo</option>
+          <option value="Kangari Branch">Kangari</option>
+          <option value="Joska Branch">Joska</option>
+          <option value="Kinoo Branch">Kinoo</option>
+          <option value="Kikuyu Branch">Kikuyu</option>
+          <option value="Naivasha Branch">Naivasha</option>
+          <option value="Kitengela Branch">Kitengela</option>
+        </select>
+      </div>
+      <button type="submit" class="btn primary" style="width:100%; padding:12px; border:none; border-radius:8px; background:#006400; color:#fff; font-weight:600;">Submit Request</button>
+      <div id="loyaltyStatus" class="muted" style="font-size:14px; margin-top:10px;"></div>
+    </form>
+  </div>
+</section>
+
+<script>
+// Loyalty card form submission with front-end validation
+const loyaltyForm = document.getElementById('loyaltyForm');
+loyaltyForm.addEventListener('submit', async function(e){
+  e.preventDefault();
+
+  const fullName = document.getElementById('fullName').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const nationalId = document.getElementById('nationalId').value.trim();
+  const dob = document.getElementById('dob').value;
+  const branch = document.getElementById('branch').value;
+  const status = document.getElementById('loyaltyStatus');
+
+  // Front-end validation
+  if(!fullName || !email || !phone || !nationalId || !dob || !branch){
+    status.textContent = "All fields are required.";
+    status.style.color = "red";
     return;
+  }
+  const phonePattern = /^[0-9]{10}$/;
+  if(!phonePattern.test(phone)){
+    status.textContent = "Phone number must be 10 digits.";
+    status.style.color = "red";
+    return;
+  }
+
+  // Formspree endpoint
+  const FORM_ACTION = "https://formspree.io/f/mjkneeow";
+
+  try {
+    const res = await fetch(FORM_ACTION, {
+      method: "POST",
+      headers: { 'Content-Type':'application/json', 'Accept':'application/json' },
+      body: JSON.stringify({ fullName, email, phone, nationalId, dob, branch })
+    });
+
+    if(res.ok){
+      status.textContent = `Request sent! Your loyalty card will be active within 24hrs. Your phone number (${phone}) will serve as your card number.`;
+      status.style.color = "green";
+      loyaltyForm.reset();
+    } else {
+      status.textContent = "Failed to send. Try again later or contact the branch directly.";
+      status.style.color = "red";
+    }
+  } catch(err){
+    status.textContent = "Network error. Please try again later.";
+    status.style.color = "red";
+  }
+});
+</script>
+
   }
 
   // Formspree endpoint
