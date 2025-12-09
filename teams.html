@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Powerstar Supermarkets — Our Team</title>
+  <style>
+    /* Root Colors & Fonts */
+    :root {
+      --primary-color: #D92323; /* Red */
+      --secondary-color: #1E7B33; /* Green */
+      --bg-color: #ffffff;
+      --text-color: #1A1A1A;
+      --card-bg: #f9f9f9;
+      --card-shadow: rgba(0,0,0,0.1);
+      --radius: 12px;
+      --font: 'Inter', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { font-family: var(--font); background: var(--bg-color); color: var(--text-color); line-height:1.5; }
+
+    /* Container */
+    .container { max-width: 1200px; margin: 0 auto; padding: 28px; }
+
+    /* Page Title */
+    h1.page-title { text-align:center; margin-bottom:28px; color: var(--primary-color); }
+
+    /* Team Grid */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+
+    /* Team Card */
+    .team-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px var(--card-shadow);
+      text-align: center;
+      padding: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px var(--card-shadow);
+    }
+
+    /* Team Images */
+    .team-card img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 12px;
+      border: 3px solid var(--secondary-color);
+    }
+
+    /* Name & Role */
+    .team-card h3 { font-size: 18px; margin-bottom: 6px; color: var(--primary-color); }
+    .team-card p { font-size: 14px; color: var(--text-color); margin-bottom: 8px; }
+
+    /* Optional Email/Contact */
+    .team-card a { text-decoration: none; color: var(--secondary-color); font-weight:600; }
+    .team-card a:hover { color: var(--primary-color); }
+
+    /* Responsive adjustments */
+    @media(max-width: 520px){
+      .team-card img { width:120px; height:120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="page-title">Meet Our Team</h1>
+    <div class="team-grid">
+      
+      <!-- Example Team Member -->
+      <div class="team-card">
+        <img src="placeholder.jpg" alt="Branch Manager">
+        <h3>Kasarani Branch Manager</h3>
+        <p>Branch Manager</p>
+        <a href="mailto:kasarani@powerstar.co.ke">Email</a>
+      </div>
+
+      <div class="team-card">
+        <img src="placeholder.jpg" alt="Zimmerman Base Branch Manager">
+        <h3>Zimmerman Base Manager</h3>
+        <p>Branch Manager</p>
+        <a href="mailto:zimmermanbase@powerstar.co.ke">Email</a>
+      </div>
+
+      <div class="team-card">
+        <img src="placeholder.jpg" alt="Operations Manager">
+        <h3>Operations Manager</h3>
+        <p>Operations</p>
+        <a href="mailto:operations@powerstar.co.ke">Email</a>
+      </div>
+
+      <div class="team-card">
+        <img src="placeholder.jpg" alt="Director">
+        <h3>Director</h3>
+        <p>Management</p>
+        <a href="mailto:director@powerstar.co.ke">Email</a>
+      </div>
+
+      <div class="team-card">
+        <img src="placeholder.jpg" alt="Sales Manager">
+        <h3>Sales Manager</h3>
+        <p>Sales</p>
+        <a href="mailto:sales@powerstar.co.ke">Email</a>
+      </div>
+
+      <div class="team-card">
+        <img src="placeholder.jpg" alt="Social Media & Website Manager">
+        <h3>Social Media & Website Manager</h3>
+        <p>Marketing</p>
+        <a href="mailto:marketing@powerstar.co.ke">Email</a>
+      </div>
+
+      <div class="team-card">
+        <img src="placeholder.jpg" alt="General Manager">
+        <h3>General Manager</h3>
+        <p>Management</p>
+        <a href="mailto:gm@powerstar.co.ke">Email</a>
+      </div>
+
+      <div class="team-card">
+        <img src="placeholder.jpg" alt="General Inventory Manager">
+        <h3>General Inventory Manager</h3>
+        <p>Inventory</p>
+        <a href="mailto:inventory@powerstar.co.ke">Email</a>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>
