@@ -1,21 +1,23 @@
-powerstar-website/
+PowerstarWebsite/
 │
-├── assets/
-│   ├── logo.png
-│   ├── services/         ← images for Bakery, Deli, Electronics, etc.
-│   └── branches/         ← placeholder images for 11 branches
+├── index.html           ← Homepage
+├── about.html           ← About the company
+├── products.html        ← Products & Services (auto-scrolling sliders)
+├── careers.html         ← Careers & Job openings
+├── media.html           ← Media gallery / events
+├── news.html            ← News & updates
+├── branches.html        ← Branches directory
+├── contact.html         ← Contact & loyalty card request
 │
 ├── css/
-│   └── style.css
-├── js/
-│   └── main.js
+│   └── style.css        ← Global styles (optional separate file)
 │
-├── index.html
-├── services.html
-├── branches.html
-├── careers.html
-├── news.html
-├── media.html
-├── contact.html
-├── loyalty.html
-├── admin.html
+├── js/
+│   └── main.js          ← For sliders, form handling, maps, auto scroll
+│
+└── assets/
+    ├── logo.png
+    ├── branches/        ← Photos for each branch
+    ├── products/        ← Product photos
+    ├── media/           ← Event gallery
+    └── other images
