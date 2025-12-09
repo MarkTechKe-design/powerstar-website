@@ -1,50 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loyalty Card - Powerstar Supermarkets</title>
-<link rel="stylesheet" href="css/style.css">
-<script src="js/main.js" defer></script>
-</head>
-<body>
+<section class="loyalty">
+  <h2>Request a Loyalty Card</h2>
+  <p>Fill in the details below. Your request will be processed within 24 hours.</p>
 
-<header>
-    <img src="assets/logo.png" alt="Powerstar Logo" class="logo">
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="branches.html">Branches</a>
-        <a href="careers.html">Careers</a>
-        <a href="news.html">News</a>
-        <a href="media.html">Media</a>
-        <a href="contact.html">Contact</a>
-        <a href="loyalty.html">Loyalty</a>
-    </nav>
-</header>
+  <form id="loyaltyForm" action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
 
-<main>
-<section style="padding:40px; max-width:600px; margin:0 auto;">
-    <h2>Request a Loyalty Card</h2>
-    <form onsubmit="submitLoyaltyForm(event)">
-        <input type="text" name="fullname" placeholder="Full Name" required style="width:100%;margin-bottom:10px;padding:10px;">
-        <input type="text" name="idnumber" placeholder="National ID Number" required style="width:100%;margin-bottom:10px;padding:10px;">
-        <input type="text" name="phone" placeholder="Phone Number" required style="width:100%;margin-bottom:10px;padding:10px;">
-        <select name="branch" required style="width:100%;margin-bottom:10px;padding:10px;">
-            <option value="">Select Branch</option>
-            <option value="Kasarani">Kasarani</option>
-            <option value="Zimama">Zimama</option>
-            <option value="Base">Base</option>
-            <!-- Add remaining branches -->
-        </select>
-        <button type="submit" class="btn btn-primary">Submit Request</button>
-    </form>
+    <!-- SECURITY SETTINGS -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_subject" value="New Loyalty Card Request">
+
+    <label>Full Name</label>
+    <input type="text" name="Full Name" required>
+
+    <label>Phone Number (Registered with ID)</label>
+    <input type="tel" name="Phone Number" required>
+
+    <label>National ID Number</label>
+    <input type="text" name="National ID" required>
+
+    <label>Date of Birth</label>
+    <input type="date" name="Date of Birth" required>
+
+    <label>Select Branch</label>
+    <select name="Branch" required>
+      <option value="">-- Select Branch --</option>
+      <option value="Kasarani Branch">Kasarani</option>
+      <option value="Zimmerman Base Branch">Zimmerma Base</option>
+      <option value="Zimmerman Express Branch">Zimmerman Express</option>
+      <option value="Ruiru Mini Branch">Ruiru Mini</option>
+      <option value="Ruiru Jambo Branch">Ruiru Jambo</option>
+      <option value="Kangari Branch">Kangari</option>
+      <option value="Joska Branch">Joska</option>
+      <option value="Kinoo Branch">Kinoo</option>
+      <option value="Kikuyu Branch">Kikuyu</option>
+      <option value="Naivasha Branch">Naivasha</option>
+      <option value="Kitengela Branch">Kitengela</option>
+    </select>
+
+    <button type="submit">Submit Request</button>
+  </form>
+
+  <div id="successPopup" class="popup">
+    <p>✔ Your request has been sent! Your card will be active within 24 hours.  
+    Use your phone number as your loyalty number. Thank you!</p>
+  </div>
 </section>
-</main>
-
-<footer>
-    © 2025 Powerstar Supermarkets — All rights reserved
-</footer>
-
-</body>
-</html>
