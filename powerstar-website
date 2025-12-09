@@ -11,11 +11,13 @@ powerstar-website/
 │
 ├─ css/
 │   └─ style.css
+│   └─ grid-modal.css
 ├─ js/
 │   └─ script.js
+│   └─ map-modal.js
 └─ images/
     ├─ me.jpg
-    ├─ product1.jpg
-    ├─ product2.jpg
     ├─ branch1.jpg
-    └─ ... (you can add more images later)
+    ├─ branch2.jpg
+    ├─ product1.jpg
+    └─ ... (add more images as needed)
