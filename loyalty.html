@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loyalty Card - Powerstar Supermarkets</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/main.js" defer></script>
+</head>
+<body>
+
+<header>
+    <img src="assets/logo.png" alt="Powerstar Logo" class="logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="branches.html">Branches</a>
+        <a href="careers.html">Careers</a>
+        <a href="news.html">News</a>
+        <a href="media.html">Media</a>
+        <a href="contact.html">Contact</a>
+        <a href="loyalty.html">Loyalty</a>
+    </nav>
+</header>
+
+<main>
+<section style="padding:40px; max-width:600px; margin:0 auto;">
+    <h2>Request a Loyalty Card</h2>
+    <form onsubmit="submitLoyaltyForm(event)">
+        <input type="text" name="fullname" placeholder="Full Name" required style="width:100%;margin-bottom:10px;padding:10px;">
+        <input type="text" name="idnumber" placeholder="National ID Number" required style="width:100%;margin-bottom:10px;padding:10px;">
+        <input type="text" name="phone" placeholder="Phone Number" required style="width:100%;margin-bottom:10px;padding:10px;">
+        <select name="branch" required style="width:100%;margin-bottom:10px;padding:10px;">
+            <option value="">Select Branch</option>
+            <option value="Kasarani">Kasarani</option>
+            <option value="Zimama">Zimama</option>
+            <option value="Base">Base</option>
+            <!-- Add remaining branches -->
+        </select>
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+    </form>
+</section>
+</main>
+
+<footer>
+    © 2025 Powerstar Supermarkets — All rights reserved
+</footer>
+
+</body>
+</html>
