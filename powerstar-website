@@ -1,0 +1,21 @@
+powerstar-website/
+│
+├─ index.html
+├─ about.html
+├─ products.html
+├─ careers.html
+├─ media.html
+├─ news.html
+├─ branches.html
+├─ contact.html
+│
+├─ css/
+│   └─ style.css
+├─ js/
+│   └─ script.js
+└─ images/
+    ├─ me.jpg
+    ├─ product1.jpg
+    ├─ product2.jpg
+    ├─ branch1.jpg
+    └─ ... (you can add more images later)
