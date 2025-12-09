@@ -1,10 +1,42 @@
-<section class="card">
-  <h3>Contact Us</h3>
-  <form id="contactForm">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" placeholder="Message" required></textarea>
-    <button class="btn primary" type="submit">Send</button>
-    <div id="formStatus" class="muted" style="margin-top:12px;">Messages will be sent via Formspree.</div>
-  </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Powerstar Supermarkets</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <img src="assets/logo.png" alt="Powerstar Logo" class="logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="branches.html">Branches</a>
+        <a href="careers.html">Careers</a>
+        <a href="news.html">News</a>
+        <a href="media.html">Media</a>
+        <a href="contact.html">Contact</a>
+        <a href="loyalty.html">Loyalty</a>
+    </nav>
+</header>
+
+<main>
+<section style="padding:40px; max-width:600px; margin:0 auto;">
+    <h2>Contact Us</h2>
+    <form action="https://formspree.io/f/mjkneeow" method="POST">
+        <input type="text" name="name" placeholder="Your Full Name" required style="width:100%;margin-bottom:10px;padding:10px;">
+        <input type="email" name="_replyto" placeholder="Email" required style="width:100%;margin-bottom:10px;padding:10px;">
+        <textarea name="message" placeholder="Your Message" required style="width:100%;margin-bottom:10px;padding:10px;"></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
 </section>
+</main>
+
+<footer>
+    © 2025 Powerstar Supermarkets — All rights reserved
+</footer>
+
+</body>
+</html>
