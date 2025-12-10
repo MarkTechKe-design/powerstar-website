@@ -5,6 +5,79 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
+
+<style>
+    /* Layout Container */
+    .contact-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .form-column {
+        flex: 1;
+        min-width: 300px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Headings */
+    h2.section-title {
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .customer-title { color: #008000; /* Powerstar Green */ border-bottom: 2px solid #008000; padding-bottom: 10px; }
+    .vendor-title { color: #cc0000; /* Powerstar Red */ border-bottom: 2px solid #cc0000; padding-bottom: 10px; }
+
+    /* Inputs */
+    label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9em; color: #333; }
+    
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; /* Ensures padding doesn't break width */
+        font-family: inherit;
+    }
+
+    textarea { height: 100px; resize: vertical; }
+
+    /* Buttons */
+    .btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: opacity 0.3s;
+    }
+    
+    .btn:hover { opacity: 0.9; }
+    
+    .btn-customer { background-color: #008000; }
+    .btn-vendor { background-color: #cc0000; }
+
+    /* Radio Group for Complaints */
+    .radio-group { margin-bottom: 15px; }
+    .radio-group label { display: inline-block; margin-right: 15px; font-weight: normal; cursor: pointer;}
+    .radio-group input { margin-right: 5px; }
+
+</style>
 </head>
 <body>
 
@@ -23,18 +96,96 @@
 </header>
 
 <main>
-<section style="padding:40px; max-width:600px; margin:0 auto;">
-    <h2>Contact Us</h2>
-    <form action="https://formspree.io/f/mjkneeow" method="POST">
-        <input type="text" name="name" placeholder="Your Full Name" required style="width:100%;margin-bottom:10px;padding:10px;">
-        <input type="email" name="_replyto" placeholder="Email" required style="width:100%;margin-bottom:10px;padding:10px;">
-        <textarea name="message" placeholder="Your Message" required style="width:100%;margin-bottom:10px;padding:10px;"></textarea>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-    </form>
-</section>
+
+    <section style="text-align: center; padding: 40px 20px 0;">
+        <h1>Get in Touch</h1>
+        <p>How can we help you today? Please choose the relevant section below.</p>
+    </section>
+
+    <div class="contact-container">
+        
+        <div class="form-column">
+            <h2 class="section-title customer-title">Customer Feedback</h2>
+            <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">Have a compliment or a complaint? Let us know about your shopping experience.</p>
+            
+            <form action="https://formspree.io/f/mjkneeow" method="POST">
+                <input type="hidden" name="_subject" value="New Customer Feedback Submission">
+
+                <label>Your Name</label>
+                <input type="text" name="customer_name" placeholder="Full Name" required>
+
+                <label>Phone Number</label>
+                <input type="tel" name="customer_phone" placeholder="07XX XXX XXX" required>
+
+                <label>Select Branch</label>
+                <select name="branch_location" required>
+                    <option value="" disabled selected>-- Select the Branch --</option>
+                    <option value="Kasarani HQ">Kasarani HQ</option>
+                    <option value="Joska">Joska</option>
+                    <option value="Kangari">Kangari</option>
+                    <option value="Naivasha">Naivasha</option>
+                    <option value="Kitengela">Kitengela</option>
+                    <option value="Kikuyu">Kikuyu</option>
+                    <option value="Kinoo">Kinoo</option>
+                    <option value="Ruiru Mini">Ruiru Mini</option>
+                    <option value="Ruiru Jambo">Ruiru Jambo</option>
+                    <option value="Zimmerman Base">Zimmerman Base</option>
+                    <option value="Zimmerman Express">Zimmerman Express</option>
+                    <option value="Other">Other / General Inquiry</option>
+                </select>
+
+                <label>Feedback Type</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="feedback_type" value="Compliment" required> Compliment</label>
+                    <label><input type="radio" name="feedback_type" value="Complaint"> Complaint</label>
+                    <label><input type="radio" name="feedback_type" value="Suggestion"> Suggestion</label>
+                </div>
+
+                <label>Your Message</label>
+                <textarea name="message" placeholder="Tell us about your experience..." required></textarea>
+
+                <button type="submit" class="btn btn-customer">Submit Feedback</button>
+            </form>
+        </div>
+
+        <div class="form-column">
+            <h2 class="section-title vendor-title">Suppliers & Partners</h2>
+            <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">For new product listings, supplier inquiries, or corporate partnerships. (Direct to Sales Team)</p>
+
+            <form action="https://formspree.io/f/mjkneeow" method="POST">
+                <input type="hidden" name="_subject" value="New Supplier/Vendor Inquiry">
+
+                <label>Company / Business Name</label>
+                <input type="text" name="company_name" placeholder="e.g. Fresh Farm Supplies Ltd" required>
+
+                <label>Contact Person</label>
+                <input type="text" name="contact_person" placeholder="Name of Representative" required>
+
+                <label>Email Address</label>
+                <input type="email" name="_replyto" placeholder="business@email.com" required>
+
+                <label>Phone Number</label>
+                <input type="tel" name="vendor_phone" placeholder="07XX XXX XXX" required>
+
+                <label>Inquiry Type</label>
+                <select name="inquiry_type" required>
+                    <option value="New Product Listing">New Product Listing Proposal</option>
+                    <option value="Supplier Inquiry">General Supplier Inquiry</option>
+                    <option value="Corporate Partnership">Corporate Partnership</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <label>Proposal / Message</label>
+                <textarea name="proposal_details" placeholder="Briefly describe your products or inquiry..." required></textarea>
+
+                <button type="submit" class="btn btn-vendor">Contact Sales Team</button>
+            </form>
+        </div>
+
+    </div>
 </main>
 
-<footer>
+<footer style="text-align: center; padding: 20px;">
     © 2025 Powerstar Supermarkets — All rights reserved
 </footer>
 
