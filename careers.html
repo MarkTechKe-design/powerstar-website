@@ -26,14 +26,14 @@
 
 <div class="hero" style="height: 35vh; background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 104, 56, 0.8));">
     <h1>Join Our Team</h1>
-    <p>Build your career with a growing, family-oriented retail brand.</p>
+    <p>Grow your career with Kenya's fastest-growing retail family.</p>
 </div>
 
 <main class="container">
 
     <div class="careers-intro">
         <h2>Current Opportunities</h2>
-        <p>We are always looking for passionate, honest, and hardworking individuals. Check below for our latest open positions.</p>
+        <p>We are looking for dedicated professionals to join our team. See open positions below.</p>
     </div>
 
     <div id="open-positions" class="jobs-container">
@@ -42,12 +42,12 @@
             <h3 class="job-role">Store Manager</h3>
             <span class="job-location"><i class="fas fa-map-marker-alt"></i> Kasarani HQ</span>
             
-            <div class="requirements-title">Requirements:</div>
-            <ul class="requirements-list">
-                <li>Minimum 3 years of retail management experience.</li>
-                <li>Strong leadership and team-building skills.</li>
-                <li>Proficiency in inventory management software.</li>
-                <li>Diploma/Degree in Business Management or related field.</li>
+            <div class="req-title">Key Requirements</div>
+            <ul class="req-list">
+                <li>Minimum 3 years retail management experience.</li>
+                <li>Proven leadership and team-building skills.</li>
+                <li>Proficiency in inventory systems.</li>
+                <li>Degree/Diploma in Business Management.</li>
             </ul>
 
             <a href="mailto:careers@powerstarsupermarkets.co.ke?subject=Application for Store Manager - Kasarani" class="btn btn-primary">
@@ -59,12 +59,12 @@
             <h3 class="job-role">Supermarket Cashier</h3>
             <span class="job-location"><i class="fas fa-map-marker-alt"></i> Zimmerman Base</span>
             
-            <div class="requirements-title">Requirements:</div>
-            <ul class="requirements-list">
-                <li>KCSE Certificate (Minimum C Plain).</li>
-                <li>High integrity and honesty (Certificate of Good Conduct).</li>
+            <div class="req-title">Key Requirements</div>
+            <ul class="req-list">
+                <li>KCSE Certificate (Min C Plain).</li>
+                <li>Certificate of Good Conduct.</li>
                 <li>Basic computer literacy.</li>
-                <li>Excellent customer service and communication skills.</li>
+                <li>Strong communication skills.</li>
             </ul>
 
             <a href="mailto:careers@powerstarsupermarkets.co.ke?subject=Application for Cashier - Zimmerman" class="btn btn-primary">
@@ -76,12 +76,12 @@
             <h3 class="job-role">Bakery Assistant</h3>
             <span class="job-location"><i class="fas fa-map-marker-alt"></i> Naivasha Branch</span>
             
-            <div class="requirements-title">Requirements:</div>
-            <ul class="requirements-list">
-                <li>Experience in commercial baking (bread/cakes).</li>
+            <div class="req-title">Key Requirements</div>
+            <ul class="req-list">
+                <li>Experience in commercial baking.</li>
                 <li>Valid Food Handling Certificate.</li>
-                <li>Ability to work in shifts (Morning/Evening).</li>
-                <li>Clean, organized, and detail-oriented.</li>
+                <li>Ability to work flexible shifts.</li>
+                <li>Attention to hygiene and detail.</li>
             </ul>
 
             <a href="mailto:careers@powerstarsupermarkets.co.ke?subject=Application for Bakery Assistant - Naivasha" class="btn btn-primary">
@@ -90,14 +90,13 @@
         </div>
 
     </div>
-
     <div id="no-vacancies" class="no-vacancies-banner">
-        <i class="fas fa-briefcase no-vacancies-icon"></i>
-        <h3 style="color:#666; margin-bottom:10px;">No Current Openings</h3>
-        <p style="color:#888; max-width:500px; margin:0 auto 20px;">
-            We are currently not hiring for any specific roles. However, we are always happy to receive CVs from talented individuals for future consideration.
+        <i class="fas fa-folder-open nv-icon"></i>
+        <h3 style="color:#555; margin-bottom:10px;">No Current Openings</h3>
+        <p class="nv-text">
+            We are currently not hiring for specific roles. However, we are always happy to receive CVs from talented individuals for our database.
         </p>
-        <a href="mailto:careers@powerstarsupermarkets.co.ke?subject=General Job Application - CV Submission" class="btn btn-secondary" style="background:#888; border:none; display:inline-block; width:auto;">
+        <a href="mailto:careers@powerstarsupermarkets.co.ke?subject=General Job Application - CV Submission" class="btn btn-secondary" style="background:#999; border:none; color:white; display:inline-block; width:auto; padding: 12px 25px;">
             Submit General CV
         </a>
     </div>
@@ -109,32 +108,32 @@
 </footer>
 
 <script>
+    // This event listener ensures the code ONLY runs after the page is fully drawn.
+    // This fixes the "disappearing section" bug.
     document.addEventListener("DOMContentLoaded", function() {
-        // ==========================================
-        // MANAGEMENT CONTROL PANEL
-        // Set to 'true' to show jobs, 'false' to hide them
-        // ==========================================
+        
+        // ------------------------------------
+        // SETTING: Are we hiring right now?
+        // Change to 'false' to hide jobs.
+        // Change to 'true' to show jobs.
+        // ------------------------------------
         const WE_ARE_HIRING = true; 
-        // ==========================================
+        // ------------------------------------
 
         const jobsDiv = document.getElementById('open-positions');
         const noJobsDiv = document.getElementById('no-vacancies');
 
-        if (jobsDiv && noJobsDiv) { // Safety check to make sure elements exist
-            if (WE_ARE_HIRING) {
-                jobsDiv.style.display = 'grid'; // Show Jobs
-                noJobsDiv.style.display = 'none'; // Hide "No Vacancies"
-            } else {
-                jobsDiv.style.display = 'none'; // Hide Jobs
-                noJobsDiv.style.display = 'block'; // Show "No Vacancies"
-            }
+        if (WE_ARE_HIRING) {
+            // Show Jobs, Hide Banner
+            if(jobsDiv) jobsDiv.style.display = 'grid';
+            if(noJobsDiv) noJobsDiv.style.display = 'none';
         } else {
-            console.error("Error: Could not find job sections in the HTML.");
+            // Hide Jobs, Show Banner
+            if(jobsDiv) jobsDiv.style.display = 'none';
+            if(noJobsDiv) noJobsDiv.style.display = 'block';
         }
     });
 </script>
-</body>
-</html>
 
 </body>
 </html>
