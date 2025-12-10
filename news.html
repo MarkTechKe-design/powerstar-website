@@ -3,42 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>News - Powerstar Supermarkets</title>
+<title>News & Updates - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header>
-    <img src="assets/logo.png" alt="Powerstar Logo" class="logo">
+    <a href="index.html"><img src="assets/logo.png" alt="Powerstar Logo"></a>
     <nav>
         <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
+        <a href="about.html">About Us</a>
+        <a href="products.html">Products</a>
         <a href="branches.html">Branches</a>
-        <a href="careers.html">Careers</a>
-        <a href="news.html">News</a>
         <a href="media.html">Media</a>
+        <a href="news.html" class="active">News</a>
         <a href="contact.html">Contact</a>
-        <a href="loyalty.html">Loyalty</a>
     </nav>
 </header>
 
-<main>
-<section class="grid" style="grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); padding:40px;">
-    <div class="card">
-        <img src="assets/news/news1.jpg" alt="News Event">
-        <h3>Grand Opening of Zimama Branch</h3>
-        <p>Powerstar Zimama was inaugurated on 1st July 2025 with amazing promotions for customers.</p>
+<div class="hero" style="height: 40vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/news-bg.jpg');">
+    <h1>News & Updates</h1>
+    <p>Stay updated with the latest offers, branch openings, and community events.</p>
+</div>
+
+<div class="container">
+    
+    <div class="news-grid">
+
+        <article class="news-card">
+            <div class="news-image" style="background-image: url('assets/christmas-promo.jpg');"></div>
+            <div class="news-content">
+                <span class="news-date">December 10, 2025</span>
+                <h3 class="news-title">Big Christmas Savings are Here!</h3>
+                <p>Get ready for the festive season with huge discounts on flour, sugar, and cooking oil across all branches.</p>
+                <a href="#" class="read-more">Read Full Story &rarr;</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image" style="background-image: url('assets/new-branch.jpg');"></div>
+            <div class="news-content">
+                <span class="news-date">November 25, 2025</span>
+                <h3 class="news-title">Opening Soon: Powerstar Naivasha</h3>
+                <p>We are expanding! Our newest branch in Naivasha will be opening its doors next month. Come celebrate with us.</p>
+                <a href="#" class="read-more">Read Full Story &rarr;</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image" style="background-image: url('assets/community.jpg');"></div>
+            <div class="news-content">
+                <span class="news-date">October 15, 2025</span>
+                <h3 class="news-title">Giving Back to the Community</h3>
+                <p>The Powerstar team visited the local children's home to donate food and spend the day with the kids.</p>
+                <a href="#" class="read-more">Read Full Story &rarr;</a>
+            </div>
+        </article>
+
     </div>
-    <div class="card">
-        <img src="assets/news/news2.jpg" alt="News Event">
-        <h3>Bakery Section Upgrade</h3>
-        <p>Our bakery now offers freshly baked goods daily across all branches.</p>
-    </div>
-</section>
-</main>
+
+</div>
 
 <footer>
-    © 2025 Powerstar Supermarkets — All rights reserved
+    © 2025 Powerstar Supermarkets. All Rights Reserved.
 </footer>
 
 </body>
