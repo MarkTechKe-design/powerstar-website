@@ -26,69 +26,56 @@
 
 <section class="loyalty-section">
     <div class="loyalty-card">
-        <h2 class="loyalty-title">Join the Family</h2>
-        <p class="loyalty-subtitle">Sign up for the Powerstar Loyalty Card via WhatsApp and earn points every time you shop.</p>
+        <h2 style="text-align: center; color: #006838; margin-bottom: 10px;">Join the Family</h2>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Sign up for the Powerstar Loyalty Card via WhatsApp.</p>
         
         <form id="loyaltyForm">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="fullName" class="form-input" placeholder="e.g. John Kamau" required>
-            </div>
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Full Name</label>
+            <input type="text" id="fullName" placeholder="e.g. John Kamau" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
 
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="email" class="form-input" placeholder="john@email.com" required>
-            </div>
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Email Address</label>
+            <input type="email" id="email" placeholder="john@email.com" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
 
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input type="tel" id="phone" class="form-input" placeholder="07XX XXX XXX" pattern="[0-9]{10}" required>
-                <small style="color:#666; font-size:0.8em;">This will serve as your Card Number.</small>
-            </div>
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Phone Number</label>
+            <input type="tel" id="phone" placeholder="07XX XXX XXX" pattern="[0-9]{10}" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
 
-            <div class="form-group">
-                <label>National ID Number</label>
-                <input type="text" id="nationalId" class="form-input" placeholder="ID Number" required>
-            </div>
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">National ID</label>
+            <input type="text" id="nationalId" placeholder="ID Number" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
 
-            <div class="form-group">
-                <label>Date of Birth</label>
-                <input type="date" id="dob" class="form-input" required>
-            </div>
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Date of Birth</label>
+            <input type="date" id="dob" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
 
-            <div class="form-group">
-                <label>Preferred Branch (Required)</label>
-                <select id="branch" class="form-input" required>
-                    <option value="" disabled selected>-- Select Your Branch --</option>
-                    <option value="Kasarani HQ">Kasarani HQ</option>
-                    <option value="Joska">Joska Branch</option>
-                    <option value="Kangari">Kangari Branch</option>
-                    <option value="Naivasha">Naivasha Branch</option>
-                    <option value="Kitengela">Kitengela Branch</option>
-                    <option value="Kikuyu">Kikuyu Branch</option>
-                    <option value="Kinoo">Kinoo Branch</option>
-                    <option value="Ruiru Mini">Ruiru Mini Branch</option>
-                    <option value="Ruiru Jambo">Ruiru Jambo Branch</option>
-                    <option value="Zimmerman Base">Zimmerman Base Branch</option>
-                    <option value="Zimmerman Express">Zimmerman Express Branch</option>
-                </select>
-            </div>
+            <label style="font-weight: bold; display: block; margin-bottom: 5px;">Preferred Branch</label>
+            <select id="branch" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px;">
+                <option value="" disabled selected>-- Select Your Branch --</option>
+                <option value="Kasarani HQ">Kasarani HQ</option>
+                <option value="Joska">Joska</option>
+                <option value="Kangari">Kangari</option>
+                <option value="Naivasha">Naivasha</option>
+                <option value="Kitengela">Kitengela</option>
+                <option value="Kikuyu">Kikuyu</option>
+                <option value="Kinoo">Kinoo</option>
+                <option value="Ruiru Mini">Ruiru Mini</option>
+                <option value="Ruiru Jambo">Ruiru Jambo</option>
+                <option value="Zimmerman Base">Zimmerman Base</option>
+                <option value="Zimmerman Express">Zimmerman Express</option>
+            </select>
 
             <button type="submit" class="btn-loyalty">
                 <i class="fab fa-whatsapp"></i> Request Card via WhatsApp
             </button>
-            
-            <div id="loyaltyStatus"></div>
+            <div id="loyaltyStatus" style="text-align: center; margin-top: 15px; font-weight: bold;"></div>
         </form>
     </div>
 </section>
 
 <footer>
-    © 2025 Powerstar Supermarkets. All Rights Reserved.
+    <div style="text-align: center; padding: 20px; background: #DA291C; color: white;">
+        © 2025 Powerstar Supermarkets. All Rights Reserved.
+    </div>
 </footer>
 
 <script>
-    // 1. CONFIGURATION: Branch WhatsApp Numbers
     const branchContacts = {
         "Kasarani HQ": "254790680038",
         "Joska": "254791047850",
@@ -103,68 +90,26 @@
         "Zimmerman Express": "254701231370"
     };
 
-    const loyaltyForm = document.getElementById('loyaltyForm');
-    
-    loyaltyForm.addEventListener('submit', function(e){
+    document.getElementById('loyaltyForm').addEventListener('submit', function(e){
         e.preventDefault();
-
-        // Get Values
-        const fullName = document.getElementById('fullName').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const nationalId = document.getElementById('nationalId').value.trim();
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const nationalId = document.getElementById('nationalId').value;
         const dob = document.getElementById('dob').value;
         const branchKey = document.getElementById('branch').value;
         const status = document.getElementById('loyaltyStatus');
 
-        // Validation
-        if(!fullName || !email || !phone || !nationalId || !dob || !branchKey){
-            status.textContent = "Please fill in all fields.";
-            status.style.color = "red";
-            return;
-        }
+        let targetNumber = branchContacts[branchKey] || "254790680038"; // Default to HQ if logic fails
 
-        // Phone Validation (10 digits)
-        const phonePattern = /^[0-9]{10}$/;
-        if(!phonePattern.test(phone)){
-            status.textContent = "Phone number must be exactly 10 digits (e.g., 0712345678).";
-            status.style.color = "red";
-            return;
-        }
-
-        // 2. Find the correct number for the selected branch
-        let targetNumber = branchContacts[branchKey];
-
-        // Fallback safety (if number not found, default to HQ)
-        if (!targetNumber) {
-            targetNumber = branchContacts["Kasarani HQ"]; 
-        }
-
-        // 3. Create the WhatsApp Message
-        const whatsappMessage = 
-            `*New Loyalty Card Request*\n` +
-            `------------------------\n` +
-            `*Branch:* ${branchKey}\n\n` +
-            `*Applicant Details:*\n` +
-            `Name: ${fullName}\n` +
-            `Phone: ${phone}\n` +
-            `ID Number: ${nationalId}\n` +
-            `Email: ${email}\n` +
-            `DOB: ${dob}\n\n` +
-            `Please process my loyalty card application.`;
-
-        // 4. Open WhatsApp
-        const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+        const msg = `*New Loyalty Card Request*\nBranch: ${branchKey}\nName: ${fullName}\nPhone: ${phone}\nID: ${nationalId}\nEmail: ${email}\nDOB: ${dob}`;
         
-        // Show success message on screen
-        status.textContent = `Redirecting to WhatsApp (${branchKey})...`;
+        const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
+        
+        status.innerText = "Redirecting to WhatsApp...";
         status.style.color = "green";
-        status.style.fontWeight = "bold";
-
-        // Open in new tab
-        setTimeout(() => {
-            window.open(url, '_blank');
-        }, 1000);
+        
+        setTimeout(() => { window.open(url, '_blank'); }, 1000);
     });
 </script>
 
