@@ -41,14 +41,21 @@
     /* Inputs */
     label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9em; color: #333; }
     
-    input[type="text"], input[type="email"], input[type="tel"], select, textarea {
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea, input[type="file"] {
         width: 100%;
         padding: 12px;
         margin-bottom: 15px;
         border: 1px solid #ccc;
         border-radius: 4px;
-        box-sizing: border-box; /* Ensures padding doesn't break width */
+        box-sizing: border-box;
         font-family: inherit;
+    }
+
+    /* Style for file input to look a bit cleaner */
+    input[type="file"] {
+        background: #f9f9f9;
+        padding: 10px;
+        font-size: 0.9em;
     }
 
     textarea { height: 100px; resize: vertical; }
@@ -108,7 +115,7 @@
             <h2 class="section-title customer-title">Customer Feedback</h2>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">Have a compliment or a complaint? Let us know about your shopping experience.</p>
             
-            <form action="https://formspree.io/f/mjkneeow" method="POST">
+            <form action="https://formspree.io/f/mjkneeow" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_subject" value="New Customer Feedback Submission">
 
                 <label>Your Name</label>
@@ -144,6 +151,10 @@
                 <label>Your Message</label>
                 <textarea name="message" placeholder="Tell us about your experience..." required></textarea>
 
+                <label>Attach Photo/Receipt (Optional)</label>
+                <input type="file" name="attachment" accept="image/*,.pdf,.doc,.docx">
+                <p style="font-size: 0.8em; color: #888; margin-top: -10px; margin-bottom: 15px;">Supported: Images, PDF, Word</p>
+
                 <button type="submit" class="btn btn-customer">Submit Feedback</button>
             </form>
         </div>
@@ -152,7 +163,7 @@
             <h2 class="section-title vendor-title">Suppliers & Partners</h2>
             <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">For new product listings, supplier inquiries, or corporate partnerships. (Direct to Sales Team)</p>
 
-            <form action="https://formspree.io/f/mjkneeow" method="POST">
+            <form action="https://formspree.io/f/mjkneeow" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="_subject" value="New Supplier/Vendor Inquiry">
 
                 <label>Company / Business Name</label>
@@ -177,6 +188,10 @@
 
                 <label>Proposal / Message</label>
                 <textarea name="proposal_details" placeholder="Briefly describe your products or inquiry..." required></textarea>
+
+                <label>Attach Proposal/Catalog (Optional)</label>
+                <input type="file" name="attachment" accept="image/*,.pdf,.doc,.docx">
+                <p style="font-size: 0.8em; color: #888; margin-top: -10px; margin-bottom: 15px;">Supported: Images, PDF, Word</p>
 
                 <button type="submit" class="btn btn-vendor">Contact Sales Team</button>
             </form>
