@@ -3,110 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Media Gallery - Powerstar Supermarkets</title>
+<title>Media & Gallery - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
 <header>
     <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="assets/logo.png" alt="Powerstar Supermarkets" style="height: 90px; width: auto; object-fit: contain;">
+        <img src="assets/logo.png" alt="Powerstar Supermarkets">
     </a>
-
     <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="services.html">Products & Services</a> <a href="branches.html">Branches</a>
-    <a href="media.html">Media</a>
-    <a href="loyalty.html">Loyalty</a>
-    <a href="contact.html">Contact</a>
-</nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Products & Services</a>
+        <a href="branches.html">Branches</a>
+        <a href="media.html" class="active">Media</a>
+        <a href="loyalty.html">Loyalty</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 </header>
 
-<div class="hero" style="height: 50vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/gallery-bg.jpg');">
-    <h1>Our Gallery</h1>
-    <p>Explore our departments, meet our winners, and see the variety at Powerstar.</p>
+<div class="hero" style="height: 35vh;">
+    <h1>Gallery & Moments</h1>
+    <p>Capturing the excitement and freshness at Powerstar.</p>
 </div>
 
-<div class="container">
+<main class="container">
 
     <div class="gallery-section">
-        <h2 class="gallery-title">Trolley Dash Highlights</h2>
-        <p style="text-align:center; max-width:600px; margin:0 auto 30px;">See our happy customers walking away with free shopping worth KSH 5,000!</p>
-        
+        <div class="careers-intro">
+            <h2>Campaign Highlights</h2>
+            <p>Recent events, winners, and promotions.</p>
+        </div>
         <div class="photo-grid">
             <div class="photo-item">
-                <img src="assets/winner1.jpg" alt="Winner Joska Branch">
-                <div class="photo-caption">Joska Branch Winner</div>
+                <img src="assets/winner1.jpg" alt="Trolley Dash Winner">
+                <div class="photo-caption">Trolley Dash Winner (Joska)</div>
             </div>
             <div class="photo-item">
-                <img src="assets/winner2.jpg" alt="Winner Kangari Branch">
-                <div class="photo-caption">Kangari Branch Winner</div>
+                <img src="assets/winner2.jpg" alt="Trolley Dash Winner">
+                <div class="photo-caption">Trolley Dash Winner (Kangari)</div>
             </div>
             <div class="photo-item">
-                <img src="assets/winner3.jpg" alt="Trolley Dash Action">
-                <div class="photo-caption">5,000/= Free Shopping!</div>
-            </div>
-            <div class="photo-item">
-                <img src="assets/winner4.jpg" alt="Happy Customer">
-                <div class="photo-caption">Join us next Thursday!</div>
+                <img src="assets/promo1.jpg" alt="Christmas Promo">
+                <div class="photo-caption">Christmas Savings</div>
             </div>
         </div>
     </div>
 
-    <div class="gallery-section">
-        <h2 class="gallery-title">Our Departments</h2>
-        <p style="text-align:center; margin-bottom: 20px;">Everything you need under one roof.</p>
-        
+    <div class="gallery-section" style="margin-top: 60px;">
+        <div class="careers-intro">
+            <h2>The Store Experience</h2>
+            <p>A look inside our clean, modern aisles.</p>
+        </div>
         <div class="photo-grid">
-            
             <div class="photo-item">
-                <img src="assets/bakery.jpg" alt="Fresh Bakery and Deli">
-                <div class="photo-caption">Fresh Bakery & Deli</div>
+                <img src="assets/store-interior.jpg" alt="Wide Aisles">
+                <div class="photo-caption">Spacious Shopping Aisles</div>
             </div>
-
             <div class="photo-item">
-                <img src="assets/cereals.jpg" alt="Flour and Cereals">
-                <div class="photo-caption">Pantry Staples & Grains</div>
+                <img src="assets/bakery-staff.jpg" alt="Bakery Team">
+                <div class="photo-caption">Our Expert Bakers</div>
             </div>
-
             <div class="photo-item">
-                <img src="assets/drinks.jpg" alt="Drinks and Beverages">
-                <div class="photo-caption">Beverage Corner</div>
+                <img src="assets/fresh-veg.jpg" alt="Fresh Produce">
+                <div class="photo-caption">Farm Fresh Section</div>
             </div>
-
-            <div class="photo-item">
-                <img src="assets/electronics.jpg" alt="Electronics">
-                <div class="photo-caption">Electronics & Gadgets</div>
-            </div>
-
-            <div class="photo-item">
-                <img src="assets/furniture.jpg" alt="Furniture">
-                <div class="photo-caption">Furniture & Living</div>
-            </div>
-
-            <div class="photo-item">
-                <img src="assets/crockery.jpg" alt="Plastics and Crockery">
-                <div class="photo-caption">Homeware & Kitchen</div>
-            </div>
-
-            <div class="photo-item">
-                <img src="assets/stationery.jpg" alt="Stationery">
-                <div class="photo-caption">Stationery & School</div>
-            </div>
-
-            <div class="photo-item">
-                <img src="assets/clothing.jpg" alt="Clothing">
-                <div class="photo-caption">Fashion & Apparel</div>
-            </div>
-
         </div>
     </div>
 
-</div>
+</main>
 
 <footer>
-    © 2025 Powerstar Supermarkets. All Rights Reserved.
+    <div style="text-align: center; padding: 20px; background: #DA291C; color: white;">
+        © 2025 Powerstar Supermarkets. All Rights Reserved.
+    </div>
 </footer>
 
 </body>
