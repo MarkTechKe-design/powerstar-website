@@ -1,188 +1,159 @@
-<!-- Loyalty Card Section -->
-<section id="loyalty-card" style="background:#f7f7f7; padding:50px 0;">
-  <div style="max-width:600px; margin:0 auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-    <h2 style="text-align:center; color:#006400; margin-bottom:20px;">Request Your Loyalty Card</h2>
-    <form id="loyaltyForm">
-      <div style="margin-bottom:15px;">
-        <input type="text" id="fullName" placeholder="Full Name" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <input type="email" id="email" placeholder="Email" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <input type="text" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <input type="text" id="nationalId" placeholder="National ID Number" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <input type="date" id="dob" placeholder="Date of Birth" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <label>Select Branch</label>
-        <select id="branch" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-          <option value="">-- Select Branch --</option>
-          <option value="Kasarani Branch">Kasarani</option>
-          <option value="Zimmerman Base Branch">Zimmerma Base</option>
-          <option value="Zimmerman Express Branch">Zimmerman Express</option>
-          <option value="Ruiru Mini Branch">Ruiru Mini</option>
-          <option value="Ruiru Jambo Branch">Ruiru Jambo</option>
-          <option value="Kangari Branch">Kangari</option>
-          <option value="Joska Branch">Joska</option>
-          <option value="Kinoo Branch">Kinoo</option>
-          <option value="Kikuyu Branch">Kikuyu</option>
-          <option value="Naivasha Branch">Naivasha</option>
-          <option value="Kitengela Branch">Kitengela</option>
-        </select>
-      </div>
-      <button type="submit" class="btn primary" style="width:100%; padding:12px; border:none; border-radius:8px; background:#006400; color:#fff; font-weight:600;">Submit Request</button>
-      <div id="loyaltyStatus" class="muted" style="font-size:14px; margin-top:10px;"></div>
-    </form>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loyalty Card - Powerstar Supermarkets</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+    <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="assets/logo.png" alt="Powerstar Supermarkets" style="height: 90px; width: auto; object-fit: contain;">
+    </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="products.html">Products</a>
+        <a href="branches.html">Branches</a>
+        <a href="media.html">Media</a>
+        <a href="loyalty.html" class="active">Loyalty</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="loyalty-section">
+    <div class="loyalty-card">
+        <h2 class="loyalty-title">Join the Family</h2>
+        <p class="loyalty-subtitle">Sign up for the Powerstar Loyalty Card and earn points every time you shop.</p>
+        
+        <form id="loyaltyForm">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" class="form-input" placeholder="e.g. John Kamau" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" class="form-input" placeholder="john@email.com" required>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="phone" class="form-input" placeholder="07XX XXX XXX" pattern="[0-9]{10}" required>
+                <small style="color:#666; font-size:0.8em;">This will serve as your Card Number.</small>
+            </div>
+
+            <div class="form-group">
+                <label>National ID Number</label>
+                <input type="text" id="nationalId" class="form-input" placeholder="ID Number" required>
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Branch</label>
+                <select id="branch" class="form-input" required>
+                    <option value="">-- Select Your Branch --</option>
+                    <option value="Kasarani HQ">Kasarani HQ</option>
+                    <option value="Joska">Joska</option>
+                    <option value="Kangari">Kangari</option>
+                    <option value="Naivasha">Naivasha</option>
+                    <option value="Kitengela">Kitengela</option>
+                    <option value="Kikuyu">Kikuyu</option>
+                    <option value="Kinoo">Kinoo</option>
+                    <option value="Ruiru Mini">Ruiru Mini</option>
+                    <option value="Ruiru Jambo">Ruiru Jambo</option>
+                    <option value="Zimmerman Base">Zimmerman Base</option>
+                    <option value="Zimmerman Express">Zimmerman Express</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-loyalty">Request Card</button>
+            
+            <div id="loyaltyStatus"></div>
+        </form>
+    </div>
 </section>
 
-<script>
-// Loyalty card form submission with front-end validation
-const loyaltyForm = document.getElementById('loyaltyForm');
-loyaltyForm.addEventListener('submit', async function(e){
-  e.preventDefault();
-
-  const fullName = document.getElementById('fullName').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const nationalId = document.getElementById('nationalId').value.trim();
-  const dob = document.getElementById('dob').value;
-  const branch = document.getElementById('branch').value;
-  const status = document.getElementById('loyaltyStatus');
-
-  // Front-end validation
-  if(!fullName || !email || !phone || !nationalId || !dob || !branch){
-    status.textContent = "All fields are required.";
-    status.style.color = "red";
-    return;
-  }
-  const phonePattern = /^[0-9]{10}$/;
-  if(!phonePattern.test(phone)){
-    status.textContent = "Phone number must be 10 digits.";
-    status.style.color = "red";
-    return;<!-- Loyalty Card Section -->
-<section id="loyalty-card" style="background:#f7f7f7; padding:50px 0;">
-  <div style="max-width:600px; margin:0 auto; background:#fff; padding:30px; border-radius:12px; box-shadow:0 6px 20px rgba(0,0,0,0.08);">
-    <h2 style="text-align:center; color:#006400; margin-bottom:20px;">Request Your Loyalty Card</h2>
-    <form id="loyaltyForm">
-      <div style="margin-bottom:15px;">
-        <input type="text" id="fullName" placeholder="Full Name" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <input type="email" id="email" placeholder="Email" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <input type="text" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <input type="text" id="nationalId" placeholder="National ID Number" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <input type="date" id="dob" placeholder="Date of Birth" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-      </div>
-      <div style="margin-bottom:15px;">
-        <label>Select Branch</label>
-        <select id="branch" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ccc;">
-          <option value="">-- Select Branch --</option>
-          <option value="Kasarani Branch">Kasarani</option>
-          <option value="Zimmerman Base Branch">Zimmerma Base</option>
-          <option value="Zimmerman Express Branch">Zimmerman Express</option>
-          <option value="Ruiru Mini Branch">Ruiru Mini</option>
-          <option value="Ruiru Jambo Branch">Ruiru Jambo</option>
-          <option value="Kangari Branch">Kangari</option>
-          <option value="Joska Branch">Joska</option>
-          <option value="Kinoo Branch">Kinoo</option>
-          <option value="Kikuyu Branch">Kikuyu</option>
-          <option value="Naivasha Branch">Naivasha</option>
-          <option value="Kitengela Branch">Kitengela</option>
-        </select>
-      </div>
-      <button type="submit" class="btn primary" style="width:100%; padding:12px; border:none; border-radius:8px; background:#006400; color:#fff; font-weight:600;">Submit Request</button>
-      <div id="loyaltyStatus" class="muted" style="font-size:14px; margin-top:10px;"></div>
-    </form>
-  </div>
-</section>
+<footer>
+    © 2025 Powerstar Supermarkets. All Rights Reserved.
+</footer>
 
 <script>
-// Loyalty card form submission with front-end validation
-const loyaltyForm = document.getElementById('loyaltyForm');
-loyaltyForm.addEventListener('submit', async function(e){
-  e.preventDefault();
+    const loyaltyForm = document.getElementById('loyaltyForm');
+    
+    loyaltyForm.addEventListener('submit', async function(e){
+        e.preventDefault();
 
-  const fullName = document.getElementById('fullName').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const nationalId = document.getElementById('nationalId').value.trim();
-  const dob = document.getElementById('dob').value;
-  const branch = document.getElementById('branch').value;
-  const status = document.getElementById('loyaltyStatus');
+        // Get Values
+        const fullName = document.getElementById('fullName').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const nationalId = document.getElementById('nationalId').value.trim();
+        const dob = document.getElementById('dob').value;
+        const branch = document.getElementById('branch').value;
+        const status = document.getElementById('loyaltyStatus');
 
-  // Front-end validation
-  if(!fullName || !email || !phone || !nationalId || !dob || !branch){
-    status.textContent = "All fields are required.";
-    status.style.color = "red";
-    return;
-  }
-  const phonePattern = /^[0-9]{10}$/;
-  if(!phonePattern.test(phone)){
-    status.textContent = "Phone number must be 10 digits.";
-    status.style.color = "red";
-    return;
-  }
+        // Reset Status
+        status.textContent = "Sending request...";
+        status.style.backgroundColor = "#fff3cd"; // Yellow warning color
+        status.style.color = "#856404";
 
-  // Formspree endpoint
-  const FORM_ACTION = "https://formspree.io/f/mjkneeow";
+        // Validation
+        if(!fullName || !email || !phone || !nationalId || !dob || !branch){
+            status.textContent = "Please fill in all fields.";
+            status.style.color = "red";
+            status.style.backgroundColor = "#f8d7da";
+            return;
+        }
 
-  try {
-    const res = await fetch(FORM_ACTION, {
-      method: "POST",
-      headers: { 'Content-Type':'application/json', 'Accept':'application/json' },
-      body: JSON.stringify({ fullName, email, phone, nationalId, dob, branch })
+        // Phone Validation (10 digits)
+        const phonePattern = /^[0-9]{10}$/;
+        if(!phonePattern.test(phone)){
+            status.textContent = "Phone number must be exactly 10 digits (e.g., 0712345678).";
+            status.style.color = "red";
+            status.style.backgroundColor = "#f8d7da";
+            return;
+        }
+
+        // Send to Formspree
+        const FORM_ACTION = "https://formspree.io/f/mjkneeow";
+
+        try {
+            const res = await fetch(FORM_ACTION, {
+                method: "POST",
+                headers: { 'Content-Type':'application/json', 'Accept':'application/json' },
+                body: JSON.stringify({ 
+                    subject: "New Loyalty Card Request", // Helps you identify email
+                    fullName, email, phone, nationalId, dob, branch 
+                })
+            });
+
+            if(res.ok){
+                // Success
+                status.textContent = `Request Successful! Your phone number (${phone}) will be active as your loyalty card within 24 hours.`;
+                status.style.backgroundColor = "#d4edda"; // Light green background
+                status.style.color = "#155724"; // Dark green text
+                loyaltyForm.reset();
+            } else {
+                // Error from Server
+                status.textContent = "Failed to send. Please try again later.";
+                status.style.backgroundColor = "#f8d7da";
+                status.style.color = "#721c24";
+            }
+        } catch(err){
+            // Network Error
+            status.textContent = "Network error. Please check your internet connection.";
+            status.style.backgroundColor = "#f8d7da";
+            status.style.color = "#721c24";
+        }
     });
-
-    if(res.ok){
-      status.textContent = `Request sent! Your loyalty card will be active within 24hrs. Your phone number (${phone}) will serve as your card number.`;
-      status.style.color = "green";
-      loyaltyForm.reset();
-    } else {
-      status.textContent = "Failed to send. Try again later or contact the branch directly.";
-      status.style.color = "red";
-    }
-  } catch(err){
-    status.textContent = "Network error. Please try again later.";
-    status.style.color = "red";
-  }
-});
 </script>
 
-  }
-
-  // Formspree endpoint
-  const FORM_ACTION = "https://formspree.io/f/mjkneeow";
-
-  try {
-    const res = await fetch(FORM_ACTION, {
-      method: "POST",
-      headers: { 'Content-Type':'application/json', 'Accept':'application/json' },
-      body: JSON.stringify({ fullName, email, phone, nationalId, dob, branch })
-    });
-
-    if(res.ok){
-      status.textContent = `Request sent! Your loyalty card will be active within 24hrs. Your phone number (${phone}) will serve as your card number.`;
-      status.style.color = "green";
-      loyaltyForm.reset();
-    } else {
-      status.textContent = "Failed to send. Try again later or contact the branch directly.";
-      status.style.color = "red";
-    }
-  } catch(err){
-    status.textContent = "Network error. Please try again later.";
-    status.style.color = "red";
-  }
-});
-</script>
+</body>
+</html>
