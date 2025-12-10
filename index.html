@@ -5,48 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
 <header>
     <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="assets/logo.png" alt="Powerstar Supermarkets" style="height: 90px; width: auto; object-fit: contain;">
+        <img src="assets/logo.png" alt="Powerstar Supermarkets">
     </a>
-
     <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="services.html">Products & Services</a> <a href="branches.html">Branches</a>
-    <a href="media.html">Media</a>
-    <a href="loyalty.html">Loyalty</a>
-    <a href="contact.html">Contact</a>
-</nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Products & Services</a>
+        <a href="branches.html">Branches</a>
+        <a href="media.html">Media</a>
+        <a href="loyalty.html">Loyalty</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 </header>
 
 <div class="hero">
     <h1>Welcome to Powerstar</h1>
-    <p>Quality products, exceptional service, and huge savings across 11 branches.</p>
-    
+    <p>Your trusted neighborhood partner for quality, freshness, and huge savings.</p>
     <div class="btn-group">
-        <a href="services.html" class="button btn-primary">View Products</a>
-        
-        <a href="contact.html" class="button btn-secondary">Contact Us</a>
-    </div>
-</div>
-<div id="welcomePopup">
-    <div class="popup-content">
-        <h2>Welcome to Powerstar!</h2>
-        <p>Your favorite neighborhood supermarket. Experience fresh products and great savings today.</p>
-        <button id="closePopup">Enter Site</button>
+        <a href="services.html" class="button btn-primary">Explore Departments</a>
+        <a href="branches.html" class="button btn-secondary">Find a Branch</a>
     </div>
 </div>
 
-<script>
-    // Close popup script
-    document.getElementById('closePopup').addEventListener('click', function() {
-        document.getElementById('welcomePopup').style.display = 'none';
-    });
-</script>
+<main class="container features-section">
+    <div class="careers-intro">
+        <h2>The Powerstar Difference</h2>
+        <p>Serving over 11 communities with integrity and excellence.</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-item">
+            <i class="fas fa-leaf feature-icon"></i>
+            <h3 class="feature-title">Farm Fresh</h3>
+            <p class="feature-text">We source our produce directly from local farmers to ensure you get the freshest vegetables and fruits every single day.</p>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-tags feature-icon"></i>
+            <h3 class="feature-title">Unbeatable Value</h3>
+            <p class="feature-text">We are committed to helping you save every day with competitive pricing on all household essentials and pantry staples.</p>
+        </div>
+        <div class="feature-item">
+            <i class="fas fa-users feature-icon"></i>
+            <h3 class="feature-title">Community First</h3>
+            <p class="feature-text">With 11 branches and growing, we are proud to create jobs and support the neighborhoods we call home.</p>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div style="text-align: center; padding: 20px; background: #DA291C; color: white;">
+        © 2025 Powerstar Supermarkets. All Rights Reserved.
+    </div>
+</footer>
+
+<div id="welcomePopup" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; z-index: 2000;">
+    <div class="popup-content">
+        <h2>Welcome to Powerstar!</h2>
+        <p>Experience fresh products and great savings today.</p>
+        <button onclick="document.getElementById('welcomePopup').style.display='none'">Enter Site</button>
+    </div>
+</div>
 
 </body>
 </html>
