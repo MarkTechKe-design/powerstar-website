@@ -3,37 +3,212 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Branches - Powerstar Supermarkets</title>
+<title>Our Branches - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    /* Specific Styles for the Branch Cards (No Images) */
+    .branch-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 40px 0;
+    }
+
+    .branch-card {
+        background: var(--white);
+        border: 1px solid #eee;
+        border-top: 4px solid var(--powerstar-green); /* Brand Accent */
+        border-radius: 8px;
+        padding: 30px 20px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        transition: transform 0.3s;
+    }
+
+    .branch-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 104, 56, 0.1);
+    }
+
+    .branch-name {
+        color: var(--powerstar-green);
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+    }
+
+    .branch-phone {
+        color: var(--dark-text);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    /* Action Buttons Container */
+    .branch-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .action-btn {
+        padding: 8px 15px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: bold;
+        transition: 0.2s;
+    }
+
+    .btn-call {
+        background: var(--off-white);
+        color: var(--dark-text);
+        border: 1px solid #ccc;
+    }
+    .btn-call:hover { background: #e0e0e0; }
+
+    .btn-chat {
+        background: #25D366; /* WhatsApp Green */
+        color: white;
+        border: none;
+    }
+    .btn-chat:hover { background: #1ebc57; }
+</style>
 </head>
 <body>
 
 <header>
-    <img src="assets/logo.png" alt="Powerstar Logo" class="logo">
+    <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+        <img src="assets/logo.png" alt="Powerstar Supermarkets" style="height: 90px; width: auto; object-fit: contain;">
+    </a>
     <nav>
         <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="branches.html">Branches</a>
-        <a href="careers.html">Careers</a>
-        <a href="news.html">News</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Products & Services</a>
+        <a href="branches.html" class="active">Branches</a>
         <a href="media.html">Media</a>
-        <a href="contact.html">Contact</a>
         <a href="loyalty.html">Loyalty</a>
+        <a href="contact.html">Contact</a>
     </nav>
 </header>
 
-<main>
-<section class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); padding:40px;">
-    <div class="card"><img src="assets/branches/kasarani.jpg" alt="Kasarani Branch"><h3>Powerstar Kasarani</h3><p>Contact: 0712345678 | Email: kasarani@powerstar.co.ke</p></div>
-    <div class="card"><img src="assets/branches/zimama.jpg" alt="Zimama Branch"><h3>Powerstar Zimama</h3><p>Contact: 0712345679 | Email: zimama@powerstar.co.ke</p></div>
-    <div class="card"><img src="assets/branches/base.jpg" alt="Base Branch"><h3>Powerstar Base</h3><p>Contact: 0712345680 | Email: base@powerstar.co.ke</p></div>
-    <!-- Add placeholders for remaining branches -->
-    <div class="card"><img src="assets/branches/branch-placeholder.jpg" alt="Branch Placeholder"><h3>Branch Name</h3><p>Contact: 07XXXXXXX | Email: branch@powerstar.co.ke</p></div>
-</section>
-</main>
+<div class="hero" style="height: 30vh; background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 104, 56, 0.8));">
+    <h1>Our Locations</h1>
+    <p>Visit us or contact your nearest branch directly.</p>
+</div>
+
+<div class="container">
+    
+    <div class="branch-grid">
+
+        <div class="branch-card">
+            <h3 class="branch-name">Kasarani HQ</h3>
+            <span class="branch-phone">0790 680 038</span>
+            <div class="branch-actions">
+                <a href="tel:0790680038" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254790680038" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Joska Branch</h3>
+            <span class="branch-phone">0791 047 850</span>
+            <div class="branch-actions">
+                <a href="tel:0791047850" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254791047850" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Kangari Branch</h3>
+            <span class="branch-phone">0710 976 254</span>
+            <div class="branch-actions">
+                <a href="tel:0710976254" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254710976254" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Naivasha Branch</h3>
+            <span class="branch-phone">0768 016 429</span>
+            <div class="branch-actions">
+                <a href="tel:0768016429" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254768016429" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Kitengela Branch</h3>
+            <span class="branch-phone">0704 121 122</span>
+            <div class="branch-actions">
+                <a href="tel:0704121122" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254704121122" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Kikuyu Branch</h3>
+            <span class="branch-phone">0741 251 973</span>
+            <div class="branch-actions">
+                <a href="tel:0741251973" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254741251973" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Kinoo Branch</h3>
+            <span class="branch-phone">0795 459 026</span>
+            <div class="branch-actions">
+                <a href="tel:0795459026" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254795459026" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Ruiru Mini</h3>
+            <span class="branch-phone">0724 588 900</span>
+            <div class="branch-actions">
+                <a href="tel:0724588900" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254724588900" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Ruiru Jambo</h3>
+            <span class="branch-phone">0728 020 018</span>
+            <div class="branch-actions">
+                <a href="tel:0728020018" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254728020018" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Zimmerman Base</h3>
+            <span class="branch-phone">0707 881 200</span>
+            <div class="branch-actions">
+                <a href="tel:0707881200" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254707881200" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+        <div class="branch-card">
+            <h3 class="branch-name">Zimmerman Express</h3>
+            <span class="branch-phone">0701 231 370</span>
+            <div class="branch-actions">
+                <a href="tel:0701231370" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254701231370" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <footer>
-    © 2025 Powerstar Supermarkets — All rights reserved
+    © 2025 Powerstar Supermarkets. All Rights Reserved.
 </footer>
 
 </body>
