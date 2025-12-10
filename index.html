@@ -3,133 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Powerstar Supermarkets</title>
-<style>
-  :root {
-    --red: #c40000;
-    --green: #028a0f;
-    --white: #ffffff;
-    --light-bg: #f4f4f4;
-    --dark-text: #222;
-    --radius: 8px;
-    --max-width: 1200px;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
-  body { background: var(--white); color: var(--dark-text); }
-
-  header { display: flex; align-items: center; justify-content: space-between; padding: 20px; background: var(--red); color: var(--white); }
-  header img { height: 60px; }
-
-  nav a {
-    color: var(--white);
-    margin-left: 15px;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: var(--radius);
-    transition: 0.2s;
-  }
-  nav a:hover { background: var(--green); }
-
-  .hero {
-    background: linear-gradient(135deg, var(--red), var(--green));
-    color: var(--white);
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-  }
-
-  .hero h1 { font-size: 3rem; margin-bottom: 10px; }
-  .hero p { font-size: 1.2rem; margin-bottom: 20px; }
-
-  .button {
-    background: var(--white);
-    color: var(--red);
-    padding: 12px 20px;
-    border-radius: var(--radius);
-    font-weight: 600;
-    margin: 5px;
-    text-decoration: none;
-    transition: 0.2s;
-  }
-  .button:hover { background: var(--green); color: var(--white); }
-
-  /* Welcome popup */
-  #welcomePopup {
-    position: fixed;
-    top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.5);
-    display: flex; justify-content:center; align-items:center;
-    z-index: 1000;
-  }
-  #welcomePopup .popup-content {
-    background: var(--white);
-    padding: 30px;
-    border-radius: var(--radius);
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-  }
-  #welcomePopup .popup-content h2 { color: var(--red); margin-bottom: 15px; }
-  #welcomePopup .popup-content button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    border:none;
-    border-radius: var(--radius);
-    background: var(--green);
-    color: var(--white);
-    font-weight: 600;
-    cursor: pointer;
-  }
-  #welcomePopup .popup-content button:hover { background: var(--red); }
-</style>
+<title>Home - Powerstar Supermarkets</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- Header -->
 <header>
-  <img src="assets/logo.png" alt="Powerstar Logo">
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="products.html">Products & Services</a>
-    <a href="branches.html">Branches</a>
-    <a href="careers.html">Careers</a>
-    <a href="contact.html">Contact</a>
-    <a href="teams.html">Teams</a>
-    <a href="javascript:window.history.back()" style="background: var(--white); color: var(--red);">Return</a>
-  </nav>
+    <a href="index.html">
+        <img src="assets/logo.png" alt="Powerstar Logo">
+    </a>
+    
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="products.html">Products</a>
+        <a href="branches.html">Branches</a>
+        <a href="contact.html">Contact</a>
+        <a href="careers.html">Careers</a>
+    </nav>
 </header>
 
-<!-- Hero Section -->
 <div class="hero">
-  <h1>Welcome to Powerstar Supermarkets</h1>
-  <p>Quality products and exceptional service across 11 branches</p>
-  <div>
-    <a href="products.html" class="button">View Products</a>
-    <a href="contact.html" class="button">Contact Us</a>
-  </div>
+    <h1>Welcome to Powerstar</h1>
+    <p>Quality products, exceptional service, and huge savings across 11 branches.</p>
+    
+    <div class="btn-group">
+        <a href="products.html" class="button btn-primary">View Products</a>
+        <a href="contact.html" class="button btn-secondary">Contact Us</a>
+    </div>
 </div>
 
-<!-- Welcome Popup -->
 <div id="welcomePopup">
-  <div class="popup-content">
-    <h2>Welcome to Powerstar Supermarkets</h2>
-    <p>Experience the best products, services, and customer care across all our branches.</p>
-    <button id="closePopup">Enter Site</button>
-  </div>
+    <div class="popup-content">
+        <h2>Welcome to Powerstar!</h2>
+        <p>Your favorite neighborhood supermarket. Experience fresh products and great savings today.</p>
+        <button id="closePopup">Start Shopping</button>
+    </div>
 </div>
 
 <script>
-  // Close popup
-  document.getElementById('closePopup').addEventListener('click', function() {
-    document.getElementById('welcomePopup').style.display = 'none';
-  });
+    // Close popup script
+    document.getElementById('closePopup').addEventListener('click', function() {
+        document.getElementById('welcomePopup').style.display = 'none';
+    });
 </script>
 
 </body>
