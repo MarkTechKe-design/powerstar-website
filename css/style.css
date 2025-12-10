@@ -99,3 +99,35 @@ input, select, textarea { width: 100%; padding: 12px; margin-bottom: 15px; borde
     nav { flex-wrap: wrap; justify-content: center; margin-top: 15px; }
     .contact-container { flex-direction: column; }
 }
+/* --- CORPORATE PILLARS (Home Page Features) --- */
+.features-section {
+    padding: 60px 20px;
+    background: white;
+    text-align: center;
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+}
+.feature-item {
+    padding: 20px;
+}
+.feature-icon {
+    font-size: 3rem;
+    color: var(--powerstar-red);
+    margin-bottom: 20px;
+}
+.feature-title {
+    color: var(--powerstar-green);
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+.feature-text {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
