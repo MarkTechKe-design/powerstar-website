@@ -5,18 +5,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Us - Powerstar</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+    /* Force full-width header */
+    header {
+        width: 100%;
+        background: #d32027; /* Powerstar Red */
+        color: white;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    header img {
+        height: 50px;
+        margin-right: 10px;
+    }
+
+    header .brand {
+        display: flex;
+        align-items: center;
+        font-size: 22px;
+        font-weight: bold;
+        color: white;
+    }
+
+    header nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        font-weight: 600;
+    }
+
+    header nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* Section spacing because header is not fixed */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Full-width footer */
+    footer {
+        width: 100%;
+        background: #0b8f3d; /* Powerstar Green */
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 40px;
+        font-weight: bold;
+        box-sizing: border-box;
+    }
+
+    /* Content wrapper (does NOT limit width, only aligns content) */
+    .content-wrapper {
+        padding: 40px 20px;
+    }
+</style>
 </head>
 <body>
-<div class="container">
-  <header>
-    <div class="brand"><img src="images/branch1.jpg" width="60" alt="Logo">Powerstar Supermarkets</div>
-    <nav>
-      <a href="index.html">Home</a><a href="about.html">About</a><a href="products.html">Products</a><a href="careers.html">Careers</a><a href="media.html">Media</a><a href="news.html">News</a><a href="branches.html">Branches</a><a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section id="about" style="padding: 40px 20px; background: #ffffff; font-family: Arial, sans-serif; line-height: 1.7;">
-    
+<header>
+    <div class="brand">
+        <img src="images/logo.png" alt="Powerstar Logo">
+        Powerstar Supermarkets
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="careers.html">Careers</a>
+        <a href="media.html">Media</a>
+        <a href="news.html">News</a>
+        <a href="branches.html">Branches</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+
+<div class="content-wrapper">
+
+<section id="about" style="background: #ffffff; line-height: 1.7;">
+
     <h2 style="color: #0b8f3d; font-weight: 700; margin-bottom: 10px;">About Powerstar Supermarkets</h2>
     <p style="font-size: 16px; color: #333;">
         Powerstar Supermarkets is an independent, innovative, and honest sustainable retail outlet dedicated 
@@ -24,7 +99,8 @@
         with a wide range of goods while saving them time and money every day. We strive to deliver an 
         exceptional shopping experience by offering the best service, value, quality, and the freshest products.
         Beyond retail, we are committed to being responsible stewards of our environment and giving back to the 
-        communities we serve. <strong style="color: #d32027;">Powerstar...save everyday!</strong>
+        communities we serve. 
+        <strong style="color: #d32027;">Powerstar...save everyday!</strong>
     </p>
 
     <h3 style="color: #0b8f3d; margin-top: 30px;">Our Mission</h3>
@@ -51,8 +127,11 @@
 
 </section>
 
-
-  <footer>© 2025 Powerstar Supermarkets</footer>
 </div>
+
+<footer>
+    © 2025 Powerstar Supermarkets
+</footer>
+
 </body>
 </html>
