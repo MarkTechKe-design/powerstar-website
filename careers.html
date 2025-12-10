@@ -6,6 +6,92 @@
 <title>Careers - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    /* Force the Main Container to be visible */
+    main.container {
+        display: block !important;
+        min-height: 500px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Intro Text */
+    .careers-intro {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 50px auto;
+    }
+    .careers-intro h2 {
+        color: #006838; /* Powerstar Green */
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        font-weight: 800;
+    }
+
+    /* The Job Grid */
+    .jobs-container {
+        display: grid !important; /* Force Grid */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        width: 100%;
+    }
+
+    /* The Job Card */
+    .job-card {
+        background: white;
+        border: 1px solid #ddd;
+        border-left: 6px solid #DA291C; /* Powerstar Red */
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .job-role {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #006838;
+        margin-bottom: 5px;
+    }
+
+    .job-location {
+        font-size: 0.9rem;
+        color: #666;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    .req-list {
+        margin-bottom: 20px;
+        padding-left: 20px;
+    }
+    .req-list li {
+        margin-bottom: 5px;
+        color: #444;
+    }
+
+    /* Buttons */
+    .btn-apply {
+        margin-top: auto;
+        display: inline-block;
+        background-color: #DA291C;
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .btn-apply:hover {
+        background-color: #b30000;
+    }
+</style>
 </head>
 <body>
 
@@ -24,7 +110,7 @@
     </nav>
 </header>
 
-<div class="hero" style="height: 35vh; background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 104, 56, 0.8));">
+<div class="hero" style="height: 35vh; background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 104, 56, 0.8)); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;">
     <h1>Join Our Team</h1>
     <p>Grow your career with Kenya's fastest-growing retail family.</p>
 </div>
@@ -33,60 +119,52 @@
 
     <div class="careers-intro">
         <h2>Current Opportunities</h2>
-        <p>We are looking for dedicated professionals to join our team. See open positions below.</p>
+        <p>We are looking for dedicated professionals to join our team.</p>
     </div>
 
-    " at the end)
-    ======================================================== 
-    -->
-    <div class="jobs-container" style="display: grid;"> <div class="job-card">
+    <div class="jobs-container">
+        
+        <div class="job-card">
             <h3 class="job-role">Store Manager</h3>
             <span class="job-location"><i class="fas fa-map-marker-alt"></i> Kasarani HQ</span>
-            <div class="req-title">Key Requirements</div>
             <ul class="req-list">
                 <li>Minimum 3 years retail management experience.</li>
-                <li>Proven leadership and team-building skills.</li>
+                <li>Proven leadership skills.</li>
                 <li>Proficiency in inventory systems.</li>
             </ul>
-            <a href="mailto:careers@powerstarsupermarkets.co.ke" class="btn btn-primary">Apply Now</a>
+            <a href="mailto:careers@powerstarsupermarkets.co.ke" class="btn-apply">Apply Now</a>
         </div>
 
         <div class="job-card">
-            <h3 class="job-role">Supermarket Cashier</h3>
+            <h3 class="job-role">Cashier</h3>
             <span class="job-location"><i class="fas fa-map-marker-alt"></i> Zimmerman Base</span>
-            <div class="req-title">Key Requirements</div>
             <ul class="req-list">
                 <li>KCSE Certificate (Min C Plain).</li>
                 <li>Certificate of Good Conduct.</li>
-                <li>Basic computer literacy.</li>
+                <li>Computer literacy.</li>
             </ul>
-            <a href="mailto:careers@powerstarsupermarkets.co.ke" class="btn btn-primary">Apply Now</a>
+            <a href="mailto:careers@powerstarsupermarkets.co.ke" class="btn-apply">Apply Now</a>
         </div>
 
         <div class="job-card">
             <h3 class="job-role">Bakery Assistant</h3>
             <span class="job-location"><i class="fas fa-map-marker-alt"></i> Naivasha Branch</span>
-            <div class="req-title">Key Requirements</div>
             <ul class="req-list">
                 <li>Experience in commercial baking.</li>
                 <li>Valid Food Handling Certificate.</li>
-                <li>Ability to work flexible shifts.</li>
+                <li>Flexible availability.</li>
             </ul>
-            <a href="mailto:careers@powerstarsupermarkets.co.ke" class="btn btn-primary">Apply Now</a>
+            <a href="mailto:careers@powerstarsupermarkets.co.ke" class="btn-apply">Apply Now</a>
         </div>
 
-    </div>
-    <div id="no-vacancies" class="no-vacancies-banner" style="display: none;">
-        <i class="fas fa-folder-open nv-icon"></i>
-        <h3>No Current Openings</h3>
-        <p class="nv-text">We are currently not hiring for specific roles. However, we are always happy to receive CVs.</p>
-        <a href="mailto:careers@powerstarsupermarkets.co.ke" class="btn btn-secondary" style="background:#999; color:white;">Submit General CV</a>
     </div>
 
 </main>
 
 <footer>
-    © 2025 Powerstar Supermarkets. All Rights Reserved.
+    <div style="text-align: center; padding: 20px; background: #DA291C; color: white;">
+        © 2025 Powerstar Supermarkets. All Rights Reserved.
+    </div>
 </footer>
 
 </body>
