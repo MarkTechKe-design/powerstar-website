@@ -24,91 +24,48 @@
     </nav>
 </header>
 
-<main>
-
-    <div class="container" style="text-align: center; padding-bottom: 0;">
-        <h1 style="color: var(--powerstar-green);">Get in Touch</h1>
+<main class="container">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="color: #006838;">Get in Touch</h1>
         <p>Chat with your local branch directly on WhatsApp.</p>
     </div>
 
     <div class="contact-container">
         
         <div class="form-column">
-            <h2 class="section-title customer-title">
-                <i class="fab fa-whatsapp"></i> Customer Care
-            </h2>
-            <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
-                Select your branch to chat directly with the branch manager or support team.
-            </p>
-            
+            <h2 class="customer-title"><i class="fab fa-whatsapp"></i> Customer Care</h2>
+            <p style="font-size: 0.9em; margin-bottom: 20px;">Chat with your branch manager.</p>
             <form id="customerForm">
-                <label>Your Name</label>
-                <input type="text" id="custName" placeholder="Full Name" required>
-
-                <label>Select Branch (Required)</label>
+                <input type="text" id="custName" placeholder="Your Name" required>
                 <select id="custBranch" required>
-                    <option value="" disabled selected>-- Select Your Branch --</option>
+                    <option value="" disabled selected>-- Select Branch --</option>
                     <option value="Kasarani HQ">Kasarani HQ</option>
-                    <option value="Joska">Joska Branch</option>
-                    <option value="Kangari">Kangari Branch</option>
-                    <option value="Naivasha">Naivasha Branch</option>
-                    <option value="Kitengela">Kitengela Branch</option>
-                    <option value="Kikuyu">Kikuyu Branch</option>
-                    <option value="Kinoo">Kinoo Branch</option>
+                    <option value="Joska">Joska</option>
+                    <option value="Kangari">Kangari</option>
+                    <option value="Naivasha">Naivasha</option>
+                    <option value="Kitengela">Kitengela</option>
+                    <option value="Kikuyu">Kikuyu</option>
+                    <option value="Kinoo">Kinoo</option>
                     <option value="Ruiru Mini">Ruiru Mini</option>
                     <option value="Ruiru Jambo">Ruiru Jambo</option>
                     <option value="Zimmerman Base">Zimmerman Base</option>
                     <option value="Zimmerman Express">Zimmerman Express</option>
                 </select>
-
-                <label>Feedback Type</label>
-                <select id="custType" required>
-                    <option value="Compliment">Compliment</option>
-                    <option value="Complaint">Complaint</option>
-                    <option value="Inquiry">General Inquiry</option>
-                </select>
-
-                <label>Your Message</label>
-                <textarea id="custMessage" placeholder="Tell us about your experience..." required></textarea>
-
-                <p style="font-size:0.8rem; color:#888; margin-bottom:15px;">
-                    * You can attach photos/receipts in the WhatsApp chat after clicking submit.
-                </p>
-
-                <button type="submit" class="btn btn-customer">
-                    <i class="fab fa-whatsapp"></i> Chat with Branch
-                </button>
+                <select id="custType"><option>Compliment</option><option>Complaint</option><option>Inquiry</option></select>
+                <textarea id="custMessage" placeholder="Message..." required></textarea>
+                <button type="submit" class="btn-customer">Chat with Branch</button>
             </form>
         </div>
 
         <div class="form-column">
-            <h2 class="section-title vendor-title">
-                <i class="fab fa-whatsapp"></i> Suppliers & Partners
-            </h2>
-            <p style="font-size: 0.9em; color: #666; margin-bottom: 20px;">
-                For new product listings or partnerships. Direct to Head Office Sales Team.
-            </p>
-
+            <h2 class="vendor-title"><i class="fab fa-whatsapp"></i> Suppliers</h2>
+            <p style="font-size: 0.9em; margin-bottom: 20px;">Direct to HQ Sales Team.</p>
             <form id="vendorForm">
-                <label>Company / Business Name</label>
-                <input type="text" id="vendCompany" placeholder="e.g. Fresh Farm Supplies Ltd" required>
-
-                <label>Contact Person</label>
-                <input type="text" id="vendPerson" placeholder="Name of Representative" required>
-
-                <label>Inquiry Type</label>
-                <select id="vendType" required>
-                    <option value="New Product Listing">New Product Listing Proposal</option>
-                    <option value="Supplier Inquiry">General Supplier Inquiry</option>
-                    <option value="Corporate Partnership">Corporate Partnership</option>
-                </select>
-
-                <label>Proposal / Message</label>
-                <textarea id="vendMessage" placeholder="Briefly describe your products or inquiry..." required></textarea>
-
-                <button type="submit" class="btn btn-vendor">
-                    <i class="fab fa-whatsapp"></i> Chat with Sales Team
-                </button>
+                <input type="text" id="vendCompany" placeholder="Company Name" required>
+                <input type="text" id="vendPerson" placeholder="Contact Person" required>
+                <select id="vendType"><option>New Product</option><option>General Inquiry</option></select>
+                <textarea id="vendMessage" placeholder="Proposal..." required></textarea>
+                <button type="submit" class="btn-vendor">Chat with Sales</button>
             </form>
         </div>
 
@@ -116,79 +73,32 @@
 </main>
 
 <footer>
-    © 2025 Powerstar Supermarkets. All Rights Reserved.
+    <div style="text-align: center; padding: 20px; background: #DA291C; color: white;">
+        © 2025 Powerstar Supermarkets. All Rights Reserved.
+    </div>
 </footer>
 
 <script>
-    // --- 1. BRANCH PHONE NUMBERS CONFIGURATION ---
-    // PLEASE UPDATE THESE NUMBERS WITH THE REAL ONES!
     const branchNumbers = {
-        "Kasarani HQ": "254790680038",
-        "Joska": "254791047850",
-        "Kangari": "254710976254",
-        "Naivasha": "254768016429",
-        "Kitengela": "254704121122",
-        "Kikuyu": "254741251973",
-        "Kinoo": "254795459026",
-        "Ruiru Mini": "254724588900",
-        "Ruiru Jambo": "254728020018",
-        "Zimmerman Base": "254707881200",
-        "Zimmerman Express": "254701231370"
+        "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
+        "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
+        "Kinoo": "254795459026", "Ruiru Mini": "254724588900", "Ruiru Jambo": "254728020018",
+        "Zimmerman Base": "254707881200", "Zimmerman Express": "254701231370"
     };
+    const SALES_TEAM = "254712345678";
 
-    // --- 2. SALES TEAM NUMBER (For Suppliers) ---
-    const SALES_TEAM_NUMBER = "254706246939"; 
-
-
-    // --- LOGIC: HANDLE CUSTOMER FORM ---
     document.getElementById('customerForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Get Values
-        const name = document.getElementById('custName').value;
-        const branchKey = document.getElementById('custBranch').value; // Get the selected branch name
-        const type = document.getElementById('custType').value;
-        const message = document.getElementById('custMessage').value;
-
-        // 1. FIND THE CORRECT NUMBER
-        // We look inside our 'branchNumbers' list using the name they selected
-        let targetNumber = branchNumbers[branchKey];
-
-        // If something goes wrong and we can't find a number, fallback to HQ (Safety check)
-        if (!targetNumber) {
-            targetNumber = branchNumbers["Kasarani HQ"]; 
-        }
-
-        // 2. CREATE MESSAGE
-        const whatsappMessage = 
-            `*Hello Powerstar ${branchKey},*\n\n` +
-            `My Name: ${name}\n` +
-            `Feedback Type: ${type}\n\n` +
-            `*Message:*\n${message}`;
-
-        // 3. OPEN WHATSAPP
-        const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(url, '_blank');
+        const branch = document.getElementById('custBranch').value;
+        const msg = `*Customer Feedback*\nBranch: ${branch}\nName: ${document.getElementById('custName').value}\nMsg: ${document.getElementById('custMessage').value}`;
+        const num = branchNumbers[branch] || "254790680038";
+        window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
     });
 
-    // --- LOGIC: HANDLE VENDOR FORM ---
     document.getElementById('vendorForm').addEventListener('submit', function(e) {
         e.preventDefault();
-
-        const company = document.getElementById('vendCompany').value;
-        const person = document.getElementById('vendPerson').value;
-        const type = document.getElementById('vendType').value;
-        const message = document.getElementById('vendMessage').value;
-
-        const whatsappMessage = 
-            `*Hello Powerstar HQ Sales Team,*\n\n` +
-            `I am contacting you regarding: *${type}*\n\n` +
-            `Company: ${company}\n` +
-            `Contact Person: ${person}\n\n` +
-            `*Details:*\n${message}`;
-
-        const url = `https://wa.me/${SALES_TEAM_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(url, '_blank');
+        const msg = `*Supplier Inquiry*\nCompany: ${document.getElementById('vendCompany').value}\nMsg: ${document.getElementById('vendMessage').value}`;
+        window.open(`https://wa.me/${SALES_TEAM}?text=${encodeURIComponent(msg)}`, '_blank');
     });
 </script>
 
