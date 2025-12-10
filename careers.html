@@ -109,26 +109,32 @@
 </footer>
 
 <script>
-    // ==========================================
-    // MANAGEMENT CONTROL PANEL
-    // Change this to 'false' to hide jobs!
-    // ==========================================
-    const WE_ARE_HIRING = true; 
-    // ==========================================
+    document.addEventListener("DOMContentLoaded", function() {
+        // ==========================================
+        // MANAGEMENT CONTROL PANEL
+        // Set to 'true' to show jobs, 'false' to hide them
+        // ==========================================
+        const WE_ARE_HIRING = true; 
+        // ==========================================
 
+        const jobsDiv = document.getElementById('open-positions');
+        const noJobsDiv = document.getElementById('no-vacancies');
 
-    // Logic to Show/Hide sections
-    const jobsDiv = document.getElementById('open-positions');
-    const noJobsDiv = document.getElementById('no-vacancies');
-
-    if (WE_ARE_HIRING) {
-        jobsDiv.style.display = 'grid'; // Show Jobs
-        noJobsDiv.style.display = 'none'; // Hide "No Vacancies"
-    } else {
-        jobsDiv.style.display = 'none'; // Hide Jobs
-        noJobsDiv.style.display = 'block'; // Show "No Vacancies"
-    }
+        if (jobsDiv && noJobsDiv) { // Safety check to make sure elements exist
+            if (WE_ARE_HIRING) {
+                jobsDiv.style.display = 'grid'; // Show Jobs
+                noJobsDiv.style.display = 'none'; // Hide "No Vacancies"
+            } else {
+                jobsDiv.style.display = 'none'; // Hide Jobs
+                noJobsDiv.style.display = 'block'; // Show "No Vacancies"
+            }
+        } else {
+            console.error("Error: Could not find job sections in the HTML.");
+        }
+    });
 </script>
+</body>
+</html>
 
 </body>
 </html>
