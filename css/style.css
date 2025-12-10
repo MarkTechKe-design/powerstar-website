@@ -233,39 +233,52 @@ textarea { height: 100px; resize: vertical; }
     background: var(--off-white);
     transform: scale(1.05);
 }
-/* --- CAREERS PAGE STYLES --- */
+/* =========================================
+   CAREERS PAGE STYLES (FRESH START)
+   ========================================= */
+
+/* 1. The Intro Text */
 .careers-intro {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto 40px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-/* The Job Grid */
+.careers-intro h2 {
+    color: var(--powerstar-green);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* 2. The Grid Container (Holds the Job Cards) */
 .jobs-container {
-    display: grid;
+    display: grid; /* Default display */
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-bottom: 50px;
+    gap: 30px;
+    padding-bottom: 60px;
 }
 
-/* Professional Job Card */
+/* 3. The Job Card Design */
 .job-card {
     background: white;
-    border: 1px solid #e0e0e0;
-    border-left: 5px solid var(--powerstar-red); /* Red accent for "Urgency" */
+    border: 1px solid #eee;
+    border-left: 6px solid var(--powerstar-red); /* Red Accent Line */
     border-radius: 8px;
     padding: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
 .job-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 30px rgba(0, 104, 56, 0.15); /* Green shadow on hover */
 }
 
+/* Job Titles & Details */
 .job-role {
     font-size: 1.4rem;
     font-weight: 800;
@@ -274,58 +287,76 @@ textarea { height: 100px; resize: vertical; }
 }
 
 .job-location {
-    font-size: 0.95rem;
-    color: var(--light-text);
+    font-size: 0.9rem;
+    color: #666;
     font-weight: bold;
-    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.requirements-title {
-    font-size: 0.9rem;
-    font-weight: bold;
+    margin-bottom: 20px;
     text-transform: uppercase;
-    color: var(--dark-text);
-    margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
-.requirements-list {
+/* Requirements List */
+.req-title {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.req-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 25px;
+    margin: 0 0 25px 0;
     flex-grow: 1; /* Pushes button to bottom */
 }
 
-.requirements-list li {
+.req-list li {
     font-size: 0.95rem;
     color: #555;
     margin-bottom: 8px;
-    padding-left: 20px;
+    padding-left: 15px;
     position: relative;
+    line-height: 1.5;
 }
 
-.requirements-list li::before {
-    content: "•";
+.req-list li::before {
+    content: "›"; /* Clean bullet point */
     color: var(--powerstar-red);
     font-weight: bold;
+    font-size: 1.2rem;
     position: absolute;
     left: 0;
+    top: -2px;
 }
 
-/* "Not Hiring" Banner */
+/* 4. The "No Vacancies" Banner (Hidden by default in CSS) */
 .no-vacancies-banner {
-    background-color: #f8f9fa;
+    display: none; /* JS will toggle this */
+    background-color: #fcfcfc;
     border: 2px dashed #ccc;
     border-radius: 12px;
-    padding: 60px;
+    padding: 60px 20px;
     text-align: center;
-    display: none; /* Hidden by default */
+    margin-top: 20px;
+    margin-bottom: 60px;
 }
 
-.no-vacancies-icon {
+.nv-icon {
     font-size: 3rem;
     color: #ccc;
     margin-bottom: 20px;
+    display: block;
+}
+
+.nv-text {
+    font-size: 1.1rem;
+    color: #777;
+    max-width: 500px;
+    margin: 0 auto 20px auto;
 }
