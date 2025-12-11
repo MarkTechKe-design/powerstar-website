@@ -440,4 +440,35 @@ header {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+/* =========================================
+   FINAL LOGO SIZE FIX (Paste at the bottom)
+   ========================================= */
+
+/* 1. Desktop View */
+.logo img {
+    height: 110px !important;  /* Force it to be tall */
+    
+    /* THE TRICK: Zoom in by 35% to hide empty borders */
+    transform: scale(1.35); 
+    transform-origin: left center; /* Grow to the right */
+    
+    /* Pull it slightly left if needed */
+    margin-left: 0;
+}
+
+/* 2. Mobile View */
+@media (max-width: 768px) {
+    .logo img {
+        height: 85px !important; /* Much bigger on phone */
+        transform: scale(1.25);  /* Slightly less zoom on mobile */
+        transform-origin: left center;
+    }
+    
+    /* Ensure the header has room for this big logo */
+    .header-inner {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        overflow: hidden; /* Prevents overlap */
+    }
+}
 
