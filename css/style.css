@@ -339,4 +339,105 @@ footer {
     .contact-container { flex-direction: column; }
     .hero-btns { flex-direction: column; width: 100%; max-width: 320px; }
     .button { width: 100%; }
+}/* =========================================
+   RESPONSIVE HEADER FIX (Corporate Standard)
+   ========================================= */
+
+/* 1. Header Container Layout */
+header {
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 4px solid var(--powerstar-red);
+    padding: 10px 0; /* Reduced padding for cleaner look */
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: block; /* Reset display to block so container handles layout */
 }
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 2. Logo Sizing */
+.logo img {
+    height: 70px; /* Bigger Logo */
+    width: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* 3. Desktop Navigation (Default) */
+.nav-menu {
+    display: flex;
+    gap: 20px;
+}
+
+.mobile-toggle {
+    display: none; /* Hidden on Desktop */
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--powerstar-green);
+    cursor: pointer;
+}
+
+/* =========================================
+   MOBILE VIEW (Phones & Tablets)
+   ========================================= */
+@media (max-width: 768px) {
+    
+    /* Logo Adjustment for Mobile */
+    .logo img {
+        height: 60px; /* Slightly smaller on phone but still big */
+    }
+
+    /* Show the Hamburger Button */
+    .mobile-toggle {
+        display: block;
+    }
+
+    /* Hide the Menu by default */
+    .nav-menu {
+        display: none; /* Hidden until clicked */
+        position: absolute;
+        top: 100%; /* Push it below the header */
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column; /* Stack links vertically */
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
+        gap: 0; /* Remove gap, handle with padding */
+    }
+
+    /* The "Active" class makes it appear (JS will add this) */
+    .nav-menu.active {
+        display: flex;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    /* Style the Mobile Links */
+    .nav-menu a {
+        display: block;
+        padding: 15px;
+        border-bottom: 1px solid #f0f0f0;
+        text-align: center;
+        width: 100%;
+        font-size: 1.1rem;
+    }
+
+    .nav-menu a:last-child {
+        border-bottom: none;
+    }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
