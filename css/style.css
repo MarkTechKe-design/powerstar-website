@@ -617,5 +617,79 @@ footer {
     font-size: 0.85rem;
     opacity: 0.8;
     margin: 0;
+}/* =========================================
+   CONTACT FORM SCALING FIX (Corporate Standard)
+   ========================================= */
+.contact-column form {
+    display: flex;
+    flex-direction: column;
 }
+
+.contact-column label {
+    display: block !important;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.contact-column input, 
+.contact-column select, 
+.contact-column textarea {
+    width: 100% !important; /* Forces full width */
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-size: 1rem; /* Readable font size */
+    font-family: inherit;
+}
+
+/* Fix Focus State */
+.contact-column input:focus, 
+.contact-column select:focus, 
+.contact-column textarea:focus {
+    outline: none;
+    border-color: #006838;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(0, 104, 56, 0.1);
+}
+
+/* =========================================
+   FOOTER STYLES (Paste at Bottom)
+   ========================================= */
+footer {
+    background: #DA291C !important;
+    color: white !important;
+    padding: 50px 20px 30px;
+    text-align: center;
+    border-top: 5px solid #b30000;
+    width: 100%;
+}
+
+.icons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.icons-container a {
+    display: flex; align-items: center; justify-content: center;
+    width: 50px; height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.icons-container a:hover {
+    background: white;
+    color: #006838;
+    transform: translateY(-5px);
+}
+
 
