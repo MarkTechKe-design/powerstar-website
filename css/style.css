@@ -490,4 +490,62 @@ header {
         overflow: hidden; /* Prevents overlap */
     }
 }
+/* =========================================
+   SOCIAL MEDIA FOOTER STYLES
+   ========================================= */
+
+footer {
+    background: #DA291C !important; /* Force Powerstar Red */
+    color: white !important;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 5px solid #b30000; /* Darker red accent on top */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Icons Grid */
+.icons-container {
+    display: flex;
+    gap: 25px; /* Space between icons */
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Individual Icon Styles */
+.icons-container a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.15); /* Glass effect background */
+    border-radius: 50%; /* Perfect Circle */
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+}
+
+/* Hover Effect: Turns Green and floats up */
+.icons-container a:hover {
+    background: white;
+    color: #006838; /* Powerstar Green */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.copyright p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    margin: 0;
+}
 
