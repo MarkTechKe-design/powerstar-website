@@ -312,15 +312,34 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 20px 40px rgba(218, 41, 28, 0.2);
 }
 
-/* --- 14. FOOTER --- */
+/* --- 14. /* =========================================
+   FOOTER FIX (Edge-to-Edge Corporate Look)
+   ========================================= */
+
 footer {
-    background: #1a1a1a; /* Darker footer for premium feel */
-    border-top: 5px solid var(--powerstar-red);
-    color: rgba(255,255,255,0.7);
-    text-align: center; padding: 40px 20px;
-    margin-top: 80px;
+    /* 1. Reset any container constraints */
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    
+    /* 2. The Corporate Red Background */
+    background-color: #DA291C !important; /* Powerstar Red */
+    color: white !important;
+    
+    /* 3. Spacing */
+    padding: 30px 20px;
+    text-align: center;
+    border-top: 5px solid #b30000; /* Darker red accent line on top */
 }
 
+/* Ensure the text inside doesn't have its own background */
+footer p, footer div {
+    background: transparent !important;
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
 /* --- 15. ANIMATIONS --- */
 @keyframes slideUp {
     from { opacity: 0; transform: translateY(40px); }
