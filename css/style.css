@@ -1,3 +1,73 @@
+/* =========================================
+   1. CONTACT FORM FIX (Prevents Squashing)
+   ========================================= */
+.contact-column label {
+    display: block !important; /* Forces label to its own line */
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    width: 100%;
+}
+
+.contact-column input, 
+.contact-column select, 
+.contact-column textarea {
+    width: 100% !important; /* Forces input to be full width */
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #f9f9f9;
+}
+
+/* =========================================
+   2. SOCIAL MEDIA FOOTER STYLES
+   ========================================= */
+footer {
+    background: #DA291C !important; /* Force Powerstar Red */
+    color: white !important;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 5px solid #b30000;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.icons-container {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.icons-container a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+}
+
+.icons-container a:hover {
+    background: white;
+    color: #006838; /* Green on hover */
+    transform: translateY(-5px);
+}
 /* =======================================================
    POWERSTAR SUPERMARKETS - ENTERPRISE THEME (2025)
    ======================================================= */
