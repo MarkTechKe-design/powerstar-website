@@ -92,6 +92,29 @@
         © 2025 Powerstar Supermarkets. All Rights Reserved.
     </div>
 </footer>
+<script>
+    // --- MOBILE MENU TOGGLE SCRIPT ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
 
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', function() {
+                // Toggle the .active class
+                navMenu.classList.toggle('active');
+                
+                // Optional: Change icon from Bars to X
+                const icon = menuBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
