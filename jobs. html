@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers - Powerstar Supermarkets</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    /* Force Container to Show */
+    .jobs-container {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+        gap: 30px !important;
+        width: 100% !important;
+        margin-top: 30px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Force Cards to Look Right */
+    .job-card {
+        background: white !important;
+        padding: 30px !important;
+        border-radius: 12px !important;
+        border: 1px solid #eee !important;
+        border-left: 6px solid #DA291C !important; /* Red Accent */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08) !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .job-role {
+        color: #006838 !important; /* Powerstar Green */
+        font-size: 1.4rem !important;
+        font-weight: 800 !important;
+        margin-bottom: 10px !important;
+    }
+
+    .req-list li {
+        color: #555 !important;
+        margin-bottom: 8px !important;
+        list-style: disc !important;
+        margin-left: 20px !important;
+    }
+
+    /* General App Box Style */
+    .general-app-box {
+        background: #f9f9f9 !important;
+        padding: 40px !important;
+        border-radius: 12px !important;
+        border-left: 6px solid #006838 !important;
+        margin-top: 50px !important;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="Powerstar">
+        </a>
+        <button class="mobile-toggle" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
+            <a href="branches.html">Branches</a>
+            <a href="media.html">Media</a>
+            <a href="loyalty.html">Loyalty</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<div class="hero" style="height: 40vh;">
+    <h1>Join the Family</h1>
+    <p>Build your future with Kenya's fastest-growing retail brand.</p>
+</div>
+
+<main class="container">
+
+    <div class="section-intro">
+        <h2>Professional Opportunities</h2>
+        <p>Current openings for Management, Finance, and Specialized roles.</p>
+    </div>
+
+    <div class="jobs-container">
+        
+        <div class="job-card">
+            <h3 class="job-role">Branch Manager</h3>
+            <span style="color:#666; font-weight:600; margin-bottom:15px; display:block;">
+                <i class="fas fa-map-marker-alt"></i> Naivasha Branch
+            </span>
+            <ul class="req-list">
+                <li>Degree in Business Administration.</li>
+                <li>5+ years Retail Management experience.</li>
+                <li>Strong leadership skills.</li>
+            </ul>
+            <a href="mailto:hr@powerstar.co.ke" class="btn-primary" style="margin-top:15px; width:fit-content;">Apply Now</a>
+        </div>
+
+        <div class="job-card">
+            <h3 class="job-role">Senior Accountant</h3>
+            <span style="color:#666; font-weight:600; margin-bottom:15px; display:block;">
+                <i class="fas fa-map-marker-alt"></i> Kasarani HQ
+            </span>
+            <ul class="req-list">
+                <li>CPA(K) Finalist.</li>
+                <li>Experience with ERP systems.</li>
+                <li>High integrity and attention to detail.</li>
+            </ul>
+            <a href="mailto:hr@powerstar.co.ke" class="btn-primary" style="margin-top:15px; width:fit-content;">Apply Now</a>
+        </div>
+
+    </div>
+
+    <div class="general-app-box">
+        <h2 style="color: #006838; margin-bottom: 15px;">General Retail Applications</h2>
+        <p style="margin-bottom: 20px;"><strong>Shelf Attendants • Cashiers • Merchandisers</strong></p>
+        
+        <p style="color: #DA291C; font-weight: bold; margin-bottom: 20px;">
+            <i class="fas fa-exclamation-circle"></i> Please Note: We do not accept physical CVs at branches.
+        </p>
+        
+        <div style="background: white; padding: 20px; border-radius: 8px; border: 1px solid #ddd; text-align: center;">
+            <i class="fas fa-envelope-open-text" style="font-size: 2.5rem; color: #006838; margin-bottom: 15px;"></i>
+            <h3 style="margin-bottom: 10px;">Submit CV to Database</h3>
+            <a href="mailto:careers@powerstar.co.ke?subject=General Application" class="btn-primary">Email CV Now</a>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="social-links">
+            <h4 style="margin-bottom: 15px; text-transform: uppercase;">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="copyright"><p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p></div>
+    </div>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                navMenu.classList.toggle('active');
+                const icon = menuBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                }
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
