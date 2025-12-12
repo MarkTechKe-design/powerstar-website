@@ -167,8 +167,30 @@
     });
 </script>
 <script>
-    document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-        document.getElementById('nav-menu').classList.toggle('active');
+    // --- MOBILE MENU TOGGLE ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        // Only run if the button exists on this page
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                
+                // 1. Open/Close the menu
+                navMenu.classList.toggle('active');
+
+                // 2. Change the Icon (Bars <-> X)
+                const icon = menuBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        }
     });
 </script>
 </body>
