@@ -301,3 +301,41 @@ footer {
     text-align: center;
     padding: 40px 20px;
 }
+/* =========================================
+   CAREERS VISIBILITY FIX (The "Nuclear" Option)
+   ========================================= */
+
+/* 1. Force the Container to be Visible */
+.jobs-container {
+    display: grid !important; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+    gap: 30px !important;
+    width: 100% !important;
+    opacity: 1 !important; /* Ensure it's not transparent */
+    visibility: visible !important; /* Ensure it's not hidden */
+    margin-top: 30px;
+}
+
+/* 2. Force the Cards to have Background & Size */
+.job-card {
+    display: flex !important;
+    flex-direction: column !important;
+    background: white !important;
+    padding: 35px !important;
+    border: 1px solid #ddd !important;
+    border-left: 6px solid #DA291C !important; /* Red Accent */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
+    min-height: 200px; /* Force it to have height */
+}
+
+/* 3. Ensure Text is Visible (Not White-on-White) */
+.job-role {
+    color: #006838 !important; /* Green */
+    font-size: 1.4rem !important;
+    display: block !important;
+}
+
+.req-list li {
+    color: #333 !important; /* Dark Grey */
+    display: list-item !important;
+}
