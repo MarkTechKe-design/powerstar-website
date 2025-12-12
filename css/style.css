@@ -711,5 +711,67 @@ footer {
     text-align: center;
     padding: 40px 20px;
 }
+/* =========================================
+   CONTACT PAGE & FOOTER STYLES (Paste at Bottom)
+   ========================================= */
+
+/* 1. Prevent Form Squashing */
+.contact-column form {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-column label {
+    display: block !important;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.contact-column input, 
+.contact-column select, 
+.contact-column textarea {
+    width: 100% !important;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
+
+/* 2. Footer Styles */
+footer {
+    background: #DA291C !important;
+    color: white !important;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 5px solid #b30000;
+    width: 100%;
+}
+
+.icons-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.icons-container a {
+    display: flex; align-items: center; justify-content: center;
+    width: 45px; height: 45px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.icons-container a:hover {
+    background: white;
+    color: #006838;
+    transform: translateY(-5px);
+}
 
 
