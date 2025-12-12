@@ -1,75 +1,5 @@
-/* =========================================
-   1. CONTACT FORM FIX (Prevents Squashing)
-   ========================================= */
-.contact-column label {
-    display: block !important; /* Forces label to its own line */
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-    width: 100%;
-}
-
-.contact-column input, 
-.contact-column select, 
-.contact-column textarea {
-    width: 100% !important; /* Forces input to be full width */
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    background: #f9f9f9;
-}
-
-/* =========================================
-   2. SOCIAL MEDIA FOOTER STYLES
-   ========================================= */
-footer {
-    background: #DA291C !important; /* Force Powerstar Red */
-    color: white !important;
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 5px solid #b30000;
-    width: 100%;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.icons-container {
-    display: flex;
-    gap: 25px;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.icons-container a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    color: white;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-decoration: none;
-}
-
-.icons-container a:hover {
-    background: white;
-    color: #006838; /* Green on hover */
-    transform: translateY(-5px);
-}
 /* =======================================================
-   POWERSTAR SUPERMARKETS - ENTERPRISE THEME (2025)
+   POWERSTAR SUPERMARKETS - GOLDEN MASTER THEME (2025)
    ======================================================= */
 
 /* --- 1. IMPORTS & TYPOGRAPHY --- */
@@ -101,9 +31,7 @@ footer {
 
 /* --- 2. GLOBAL RESET --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 html { scroll-behavior: smooth; }
-
 body { 
     background-color: var(--slate-50); 
     color: var(--text-dark); 
@@ -116,662 +44,186 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; letter-spacing: 
 a { text-decoration: none; transition: var(--transition); }
 ul { list-style: none; }
 
-/* --- 3. MODERN GLASS HEADER --- */
-header {
-    background: rgba(255, 255, 255, 0.95); /* Semi-transparent */
-    backdrop-filter: blur(10px); /* Frosted Glass Effect */
-    border-bottom: 3px solid var(--powerstar-red);
-    padding: 15px 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky; top: 0; z-index: 1000;
-    box-shadow: var(--shadow-sm);
-}
-
-header img { height: 70px; width: auto; transition: var(--transition); }
-header img:hover { transform: scale(1.02); }
-
-nav { display: flex; gap: 10px; }
-nav a { 
-    color: var(--text-dark); 
-    font-weight: 600; 
-    font-size: 0.9rem; 
-    padding: 10px 16px; 
-    text-transform: uppercase; 
-    border-radius: var(--radius-sm);
-    position: relative;
-}
-
-/* Hover Indicator */
-nav a::after {
-    content: ''; position: absolute; bottom: 5px; left: 50%; width: 0; height: 2px;
-    background: var(--powerstar-red); transition: var(--transition); transform: translateX(-50%);
-}
-nav a:hover::after, nav a.active::after { width: 60%; }
-nav a:hover, nav a.active { color: var(--powerstar-red); background: rgba(218, 41, 28, 0.03); }
-
-/* --- 4. HERO SECTION (Parallax & Depth) --- */
-.hero {
-    position: relative;
-    /* Premium Gradient Overlay */
-    background: linear-gradient(145deg, rgba(0, 104, 56, 0.92), rgba(0, 70, 35, 0.85)), url('../assets/supermarket-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Parallax effect */
-    height: 85vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: var(--white);
-    padding: 0 20px;
-    
-    /* Modern Curve */
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
-    margin-bottom: 50px;
-}
-
-.hero h1 {
-    font-size: 4rem;
-    font-weight: 800;
-    margin-bottom: 20px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    animation: slideUp 0.8s ease-out forwards;
-}
-
-.hero p {
-    font-size: 1.35rem;
-    max-width: 700px;
-    font-weight: 300;
-    margin-bottom: 40px;
-    opacity: 0.9;
-    animation: slideUp 0.8s ease-out 0.2s forwards;
-    opacity: 0; /* Starts hidden */
-}
-
-/* --- 5. COMPONENT: BUTTONS --- */
-.button, .btn-primary, .btn-secondary, .btn-white, .btn-apply {
-    padding: 16px 32px;
-    border-radius: var(--radius-pill);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    cursor: pointer; border: none;
-    transition: var(--transition);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.btn-primary { 
-    background: linear-gradient(135deg, var(--powerstar-green), var(--powerstar-dark-green));
-    color: white; 
-}
-.btn-primary:hover { 
-    transform: translateY(-3px); 
-    box-shadow: 0 10px 25px rgba(0, 104, 56, 0.3);
-}
-
-.btn-secondary { 
-    background: rgba(255,255,255,0.15); 
-    backdrop-filter: blur(5px);
-    color: white; 
-    border: 1px solid rgba(255,255,255,0.4);
-}
-.btn-secondary:hover { 
-    background: white; color: var(--powerstar-green); 
-    transform: translateY(-3px);
-}
-
-.btn-white { background: white; color: var(--powerstar-red); }
-
-/* --- 6. SECTIONS & CONTAINERS --- */
-.container { max-width: 1240px; margin: 0 auto; padding: 60px 20px; }
-
-.section-intro, .careers-intro {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 60px;
-}
-.section-intro h2, .careers-intro h2 {
-    color: var(--powerstar-green);
-    font-size: 2.25rem;
-    margin-bottom: 15px;
-    position: relative;
-    display: inline-block;
-}
-/* Small underline under headings */
-.section-intro h2::after, .careers-intro h2::after {
-    content: ''; display: block; width: 60px; height: 4px;
-    background: var(--powerstar-red); margin: 10px auto 0;
-    border-radius: 2px;
-}
-.section-intro p, .careers-intro p { font-size: 1.1rem; color: var(--text-gray); }
-
-/* --- 7. CARDS (Departments & Branches) --- */
-.department-grid, #branch-list, .photo-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 30px;
-}
-
-.dept-card, .branch-card, .job-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.03);
-    display: flex; flex-direction: column;
-}
-
-.dept-card:hover, .branch-card:hover, .job-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-}
-
-/* Image Handling */
-.dept-image, .branch-img-wrapper {
-    height: 260px; overflow: hidden; position: relative;
-}
-.dept-image img { 
-    width: 100%; height: 100%; object-fit: cover; 
-    transition: transform 0.6s ease;
-}
-.dept-card:hover .dept-image img { transform: scale(1.1); }
-
-/* Content Handling */
-.dept-content, .branch-details { padding: 30px; }
-.dept-title { color: var(--powerstar-green); font-size: 1.5rem; margin-bottom: 10px; }
-.dept-desc { color: var(--text-gray); font-size: 0.95rem; }
-
-/* --- 8. BRANCH SPECIFIC STYLES --- */
-.branch-card { border-top: 5px solid var(--powerstar-green); }
-.branch-actions { 
-    padding: 20px; background: var(--off-white); 
-    display: flex; gap: 15px; border-top: 1px solid #eee; 
-}
-.branch-btn-call { flex: 1; text-align: center; background: #e2e8f0; color: var(--text-dark); padding: 12px; border-radius: var(--radius-sm); font-weight: 600; }
-.branch-btn-chat { flex: 1; text-align: center; background: #25D366; color: white; padding: 12px; border-radius: var(--radius-sm); font-weight: 600; }
-.branch-btn-chat:hover { background: #1ebc57; }
-
-/* --- 9. CONTACT PAGE (Split Layout) --- */
-.contact-container {
-    display: flex !important;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 40px;
-    justify-content: center;
-}
-.contact-column {
-    flex: 1; min-width: 380px;
-    background: white; padding: 50px;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    position: relative;
-    overflow: hidden;
-}
-/* Subtle accent borders */
-.contact-column:first-child { border-top: 6px solid var(--powerstar-green); }
-.contact-column:last-child { border-top: 6px solid var(--powerstar-red); }
-
-input, select, textarea {
-    width: 100%; padding: 15px; margin-bottom: 20px;
-    border: 1px solid #e2e8f0; border-radius: var(--radius-sm);
-    font-family: 'Inter', sans-serif; font-size: 1rem;
-    transition: var(--transition); background: var(--off-white);
-}
-input:focus, select:focus, textarea:focus {
-    outline: none; border-color: var(--powerstar-green);
-    background: white; box-shadow: 0 0 0 3px rgba(0, 104, 56, 0.1);
-}
-
-/* --- 10. CAREERS (Corporate Listing) --- */
-.jobs-container {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px; width: 100%;
-}
-.job-card {
-    padding: 35px;
-    border-left: 6px solid var(--powerstar-red);
-}
-.job-role { font-size: 1.4rem; color: var(--powerstar-green); margin-bottom: 5px; }
-.req-list { margin: 20px 0 30px; padding-left: 20px; }
-.req-list li { margin-bottom: 8px; color: var(--text-gray); }
-
-/* --- 11. MEDIA PAGE (Gallery) --- */
-.photo-grid { gap: 20px; }
-.photo-item {
-    position: relative; border-radius: var(--radius-lg);
-    overflow: hidden; height: 300px; cursor: pointer;
-    box-shadow: var(--shadow-sm);
-}
-.photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-.photo-item:hover img { transform: scale(1.1); }
-.photo-caption {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    color: white; padding: 20px; transform: translateY(100%);
-    transition: var(--transition);
-}
-.photo-item:hover .photo-caption { transform: translateY(0); }
-
-/* --- 12. CORPORATE FEATURES (Home Page) --- */
-.features-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px; text-align: center;
-}
-.feature-item {
-    padding: 30px; background: white; border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-sm); transition: var(--transition);
-}
-.feature-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.feature-icon { font-size: 3rem; color: var(--powerstar-red); margin-bottom: 20px; }
-
-/* --- 13. LOYALTY BANNER --- */
-.loyalty-banner {
-    background: linear-gradient(135deg, var(--powerstar-red), #991b1b);
-    color: white; padding: 50px; border-radius: 20px;
-    text-align: center; margin-top: 60px;
-    box-shadow: 0 20px 40px rgba(218, 41, 28, 0.2);
-}
-
-/* --- 14. /* =========================================
-   FOOTER FIX (Edge-to-Edge Corporate Look)
-   ========================================= */
-
-footer {
-    /* 1. Reset any container constraints */
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    
-    /* 2. The Corporate Red Background */
-    background-color: #DA291C !important; /* Powerstar Red */
-    color: white !important;
-    
-    /* 3. Spacing */
-    padding: 30px 20px;
-    text-align: center;
-    border-top: 5px solid #b30000; /* Darker red accent line on top */
-}
-
-/* Ensure the text inside doesn't have its own background */
-footer p, footer div {
-    background: transparent !important;
-    margin: 0;
-    font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.5px;
-}
-/* --- 15. ANIMATIONS --- */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- 16. MOBILE OPTIMIZATION --- */
-@media (max-width: 768px) {
-    header { flex-direction: column; padding: 15px; }
-    nav { flex-wrap: wrap; justify-content: center; gap: 5px; margin-top: 15px; }
-    nav a { font-size: 0.8rem; padding: 8px 12px; }
-    
-    .hero { height: 75vh; border-radius: 0 0 30px 30px; }
-    .hero h1 { font-size: 2.5rem; }
-    
-    .contact-container { flex-direction: column; }
-    .hero-btns { flex-direction: column; width: 100%; max-width: 320px; }
-    .button { width: 100%; }
-}/* =========================================
-   RESPONSIVE HEADER FIX (Corporate Standard)
-   ========================================= */
-
-/* 1. Header Container Layout */
+/* --- 3. HEADER & NAVIGATION --- */
 header {
     background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
     border-bottom: 4px solid var(--powerstar-red);
-    padding: 10px 0; /* Reduced padding for cleaner look */
+    padding: 10px 0;
     position: sticky; top: 0; z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    display: block; /* Reset display to block so container handles layout */
+    box-shadow: var(--shadow-sm);
 }
 
-.header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header-inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 20px;
+    display: flex; justify-content: space-between; align-items: center;
 }
 
-/* 2. Logo Sizing */
+/* LOGO (Includes the "Zoom Fix" by default) */
 .logo img {
-    height: 70px; /* Bigger Logo */
-    width: auto;
+    height: 110px; 
+    width: auto; 
     object-fit: contain;
     display: block;
-}
-
-/* 3. Desktop Navigation (Default) */
-.nav-menu {
-    display: flex;
-    gap: 20px;
-}
-
-.mobile-toggle {
-    display: none; /* Hidden on Desktop */
-    background: none;
-    border: none;
-    font-size: 1.8rem;
-    color: var(--powerstar-green);
-    cursor: pointer;
-}
-
-/* =========================================
-   MOBILE VIEW (Phones & Tablets)
-   ========================================= */
-@media (max-width: 768px) {
-    
-    /* Logo Adjustment for Mobile */
-    .logo img {
-        height: 60px; /* Slightly smaller on phone but still big */
-    }
-
-    /* Show the Hamburger Button */
-    .mobile-toggle {
-        display: block;
-    }
-
-    /* Hide the Menu by default */
-    .nav-menu {
-        display: none; /* Hidden until clicked */
-        position: absolute;
-        top: 100%; /* Push it below the header */
-        left: 0;
-        width: 100%;
-        background: white;
-        flex-direction: column; /* Stack links vertically */
-        padding: 20px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        border-top: 1px solid #eee;
-        gap: 0; /* Remove gap, handle with padding */
-    }
-
-    /* The "Active" class makes it appear (JS will add this) */
-    .nav-menu.active {
-        display: flex;
-        animation: slideDown 0.3s ease-out;
-    }
-
-    /* Style the Mobile Links */
-    .nav-menu a {
-        display: block;
-        padding: 15px;
-        border-bottom: 1px solid #f0f0f0;
-        text-align: center;
-        width: 100%;
-        font-size: 1.1rem;
-    }
-
-    .nav-menu a:last-child {
-        border-bottom: none;
-    }
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-/* =========================================
-   FINAL LOGO SIZE FIX (Paste at the bottom)
-   ========================================= */
-
-/* 1. Desktop View */
-.logo img {
-    height: 110px !important;  /* Force it to be tall */
-    
-    /* THE TRICK: Zoom in by 35% to hide empty borders */
-    transform: scale(1.35); 
-    transform-origin: left center; /* Grow to the right */
-    
-    /* Pull it slightly left if needed */
+    transform: scale(1.35); /* Zoom to remove whitespace */
+    transform-origin: left center;
     margin-left: 0;
 }
 
-/* 2. Mobile View */
-@media (max-width: 768px) {
-    .logo img {
-        height: 85px !important; /* Much bigger on phone */
-        transform: scale(1.25);  /* Slightly less zoom on mobile */
-        transform-origin: left center;
-    }
-    
-    /* Ensure the header has room for this big logo */
-    .header-inner {
-        padding-top: 15px;
-        padding-bottom: 15px;
-        overflow: hidden; /* Prevents overlap */
-    }
+/* Desktop Nav */
+nav { display: flex; gap: 10px; }
+nav a { 
+    color: var(--text-dark); font-weight: 600; font-size: 0.9rem; 
+    padding: 10px 16px; text-transform: uppercase; border-radius: var(--radius-sm);
+    position: relative;
 }
-/* =========================================
-   SOCIAL MEDIA FOOTER STYLES
-   ========================================= */
+nav a:hover, nav a.active { color: var(--powerstar-red); background: rgba(218, 41, 28, 0.05); }
 
-footer {
-    background: #DA291C !important; /* Force Powerstar Red */
-    color: white !important;
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 5px solid #b30000; /* Darker red accent on top */
+/* Hamburger Button (Hidden on Desktop) */
+.mobile-toggle { display: none; }
+
+/* --- 4. HERO SECTION --- */
+.hero {
+    position: relative;
+    /* Correct path for CSS file */
+    background: linear-gradient(145deg, rgba(0, 104, 56, 0.92), rgba(0, 70, 35, 0.85)), url('../assets/supermarket-bg.jpg');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    height: 85vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; color: var(--white); padding: 0 20px;
+    border-bottom-left-radius: 40px; border-bottom-right-radius: 40px;
+    box-shadow: var(--shadow-lg); overflow: hidden; margin-bottom: 50px;
 }
 
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
+.hero h1 {
+    font-size: 4rem; font-weight: 800; margin-bottom: 20px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: slideUp 0.8s ease-out forwards; color: #fff;
+}
+.hero p {
+    font-size: 1.35rem; max-width: 700px; font-weight: 300; margin-bottom: 40px;
+    color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    opacity: 0; animation: slideUp 0.8s ease-out 0.2s forwards;
 }
 
-/* Icons Grid */
-.icons-container {
-    display: flex;
-    gap: 25px; /* Space between icons */
-    justify-content: center;
-    margin-bottom: 20px;
+/* --- 5. BUTTONS --- */
+.button, .btn-primary, .btn-secondary, .btn-white, .btn-apply, .btn-customer, .btn-vendor, .btn-loyalty {
+    padding: 16px 32px; border-radius: var(--radius-pill);
+    font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
+    letter-spacing: 0.5px; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    cursor: pointer; border: none; transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: auto;
 }
 
-/* Individual Icon Styles */
-.icons-container a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.15); /* Glass effect background */
-    border-radius: 50%; /* Perfect Circle */
-    color: white;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-decoration: none;
+.btn-primary, .btn-customer, .btn-vendor, .btn-loyalty { 
+    background: linear-gradient(135deg, var(--powerstar-green), var(--powerstar-dark-green));
+    color: white; 
+}
+.btn-primary:hover, .btn-customer:hover, .btn-vendor:hover { 
+    transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 104, 56, 0.3); 
+}
+.btn-secondary { 
+    background: rgba(255,255,255,0.15); backdrop-filter: blur(5px);
+    color: white; border: 1px solid rgba(255,255,255,0.4);
+}
+.btn-secondary:hover { background: white; color: var(--powerstar-green); transform: translateY(-3px); }
+
+/* --- 6. LAYOUT & CARDS --- */
+.container { max-width: 1240px; margin: 0 auto; padding: 60px 20px; }
+.section-intro { text-align: center; max-width: 800px; margin: 0 auto 60px; }
+.section-intro h2 { color: var(--powerstar-green); font-size: 2.25rem; margin-bottom: 15px; }
+
+/* Grids */
+.department-grid, #branch-list, .photo-grid, .features-grid, .jobs-container {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; width: 100%;
 }
 
-/* Hover Effect: Turns Green and floats up */
-.icons-container a:hover {
-    background: white;
-    color: #006838; /* Powerstar Green */
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+/* Cards */
+.dept-card, .branch-card, .job-card, .feature-item, .photo-item {
+    background: white; border-radius: var(--radius-lg); overflow: hidden;
+    box-shadow: var(--shadow-sm); transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column;
 }
+.dept-card:hover, .branch-card:hover, .job-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
 
-.copyright p {
-    font-size: 0.85rem;
-    opacity: 0.8;
-    margin: 0;
-}/* =========================================
-   CONTACT FORM SCALING FIX (Corporate Standard)
-   ========================================= */
-.contact-column form {
-    display: flex;
-    flex-direction: column;
+/* Card Specifics */
+.branch-card { border-top: 5px solid var(--powerstar-green); padding: 25px; }
+.job-card { padding: 35px; border-left: 6px solid var(--powerstar-red); }
+.feature-item { padding: 30px; text-align: center; }
+.feature-icon { font-size: 3rem; color: var(--powerstar-red); margin-bottom: 20px; }
+.dept-image { height: 260px; overflow: hidden; }
+.dept-image img, .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.dept-card:hover img, .photo-item:hover img { transform: scale(1.1); }
+.dept-content { padding: 30px; text-align: center; }
+.dept-title { color: var(--powerstar-green); font-size: 1.5rem; }
+
+/* --- 7. FORMS (Unified "Squash" Fix) --- */
+.contact-container { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
+.contact-column, .loyalty-card {
+    flex: 1; min-width: 380px; background: white; padding: 50px;
+    border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+    border-top: 6px solid var(--powerstar-green);
 }
+.contact-column:last-child { border-top: 6px solid var(--powerstar-red); }
 
-.contact-column label {
-    display: block !important;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-    font-size: 0.95rem;
+/* The Critical Form Logic */
+form { display: flex; flex-direction: column; }
+label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-dark); width: 100%; }
+input, select, textarea {
+    width: 100%; padding: 14px; margin-bottom: 20px;
+    border: 1px solid #e2e8f0; border-radius: var(--radius-sm);
+    background: var(--off-white); font-size: 1rem; font-family: inherit;
 }
-
-.contact-column input, 
-.contact-column select, 
-.contact-column textarea {
-    width: 100% !important; /* Forces full width */
-    padding: 14px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #f9f9f9;
-    font-size: 1rem; /* Readable font size */
-    font-family: inherit;
-}
-
-/* Fix Focus State */
-.contact-column input:focus, 
-.contact-column select:focus, 
-.contact-column textarea:focus {
-    outline: none;
-    border-color: #006838;
-    background: white;
+input:focus, select:focus, textarea:focus {
+    outline: none; border-color: var(--powerstar-green); background: white;
     box-shadow: 0 0 0 3px rgba(0, 104, 56, 0.1);
 }
 
-/* =========================================
-   FOOTER STYLES (Paste at Bottom)
-   ========================================= */
+/* --- 8. FOOTER (Corporate Edge-to-Edge) --- */
 footer {
-    background: #DA291C !important;
-    color: white !important;
-    padding: 50px 20px 30px;
-    text-align: center;
+    width: 100%; margin: 0;
+    background: var(--powerstar-red); color: white;
+    padding: 50px 20px 30px; text-align: center;
     border-top: 5px solid #b30000;
-    width: 100%;
 }
-
-.icons-container {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 25px;
-}
-
+.footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.icons-container { display: flex; gap: 20px; justify-content: center; margin-bottom: 25px; }
 .icons-container a {
     display: flex; align-items: center; justify-content: center;
-    width: 50px; height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    color: white;
-    font-size: 1.3rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 50px; height: 50px; background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%; color: white; font-size: 1.3rem;
+    transition: var(--transition); border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.icons-container a:hover { background: white; color: var(--powerstar-green); transform: translateY(-5px); }
+
+/* --- 9. MOBILE RESPONSIVENESS (The Logic) --- */
+@media (max-width: 768px) {
+    /* Header & Nav */
+    .header-inner { padding: 10px 20px; }
+    .logo img { height: 85px; transform: scale(1.25); }
+    
+    .mobile-toggle { 
+        display: block; font-size: 1.8rem; background: none; border: none; 
+        color: var(--powerstar-green); cursor: pointer; 
+    }
+    nav {
+        display: none; position: absolute; top: 100%; left: 0; width: 100%;
+        background: white; flex-direction: column; padding: 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1); border-top: 1px solid #eee;
+    }
+    nav.active { display: flex; animation: slideDown 0.3s ease-out; }
+    nav a { 
+        display: block; padding: 15px 20px; border-bottom: 1px solid #f0f0f0; 
+        text-align: left; width: 100%; border-radius: 0;
+    }
+
+    /* Layout Adjustments */
+    .hero { height: 75vh; border-radius: 0 0 30px 30px; }
+    .hero h1 { font-size: 2.5rem; }
+    .contact-container, .hero-btns { flex-direction: column; }
+    .contact-column, .loyalty-card { min-width: 100%; padding: 30px; }
+    .button, .btn-primary { width: 100%; }
 }
 
-.icons-container a:hover {
-    background: white;
-    color: #006838;
-    transform: translateY(-5px);
-}
-/* =========================================
-   HERO & FOOTER POLISH
-   ========================================= */
-
-/* Make Hero Text White & Readable */
-.hero h1, .hero p {
-    color: #ffffff !important;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Adds shadow so it pops against background */
-}
-
-/* Make Footer Full Width */
-footer {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    background: #DA291C !important;
-    color: white;
-    text-align: center;
-    padding: 40px 20px;
-}
-/* =========================================
-   CONTACT PAGE & FOOTER STYLES (Paste at Bottom)
-   ========================================= */
-
-/* 1. Prevent Form Squashing */
-.contact-column form {
-    display: flex;
-    flex-direction: column;
-}
-
-.contact-column label {
-    display: block !important;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #333;
-    font-size: 0.9rem;
-}
-
-.contact-column input, 
-.contact-column select, 
-.contact-column textarea {
-    width: 100% !important;
-    padding: 12px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #f9f9f9;
-}
-
-/* 2. Footer Styles */
-footer {
-    background: #DA291C !important;
-    color: white !important;
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 5px solid #b30000;
-    width: 100%;
-}
-
-.icons-container {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.icons-container a {
-    display: flex; align-items: center; justify-content: center;
-    width: 45px; height: 45px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 50%;
-    color: white;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.icons-container a:hover {
-    background: white;
-    color: #006838;
-    transform: translateY(-5px);
-}
-
-
+@keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
