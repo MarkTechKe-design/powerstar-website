@@ -227,3 +227,57 @@ footer {
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+/* =========================================
+   MOBILE HEADER FIX (Corporate Standard)
+   ========================================= */
+
+/* 1. Reset Header Layout */
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px 20px;
+}
+
+/* 2. Hide Hamburger on Desktop */
+.mobile-toggle { display: none; }
+
+/* 3. MOBILE VIEW STYLES */
+@media (max-width: 768px) {
+    /* Show the Hamburger Button */
+    .mobile-toggle {
+        display: block;
+        font-size: 1.8rem;
+        background: none;
+        border: none;
+        color: var(--powerstar-green); /* Green Icon */
+        cursor: pointer;
+    }
+
+    /* Hide the Text Links by default */
+    nav {
+        display: none; /* Hidden */
+        position: absolute;
+        top: 100%; left: 0; width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
+        z-index: 9999;
+    }
+
+    /* When active, show them in a vertical column */
+    nav.active { display: flex; }
+
+    nav a {
+        display: block;
+        padding: 15px 20px;
+        border-bottom: 1px solid #f0f0f0;
+        text-align: left;
+        width: 100%;
+        font-size: 1rem;
+        color: #333;
+    }
+}
