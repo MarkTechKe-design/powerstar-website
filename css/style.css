@@ -691,5 +691,25 @@ footer {
     color: #006838;
     transform: translateY(-5px);
 }
+/* =========================================
+   HERO & FOOTER POLISH
+   ========================================= */
+
+/* Make Hero Text White & Readable */
+.hero h1, .hero p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Adds shadow so it pops against background */
+}
+
+/* Make Footer Full Width */
+footer {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    background: #DA291C !important;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
 
 
