@@ -10,18 +10,25 @@
 <body>
 
 <header>
-    <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="assets/logo.png" alt="Powerstar Supermarkets">
-    </a>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Products & Services</a>
-        <a href="branches.html">Branches</a>
-        <a href="media.html">Media</a>
-        <a href="loyalty.html">Loyalty</a>
-        <a href="contact.html">Contact</a>
-    </nav>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="Powerstar" style="height: 70px;">
+        </a>
+        
+        <button class="mobile-toggle" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
+            <a href="branches.html">Branches</a>
+            <a href="media.html">Media</a>
+            <a href="loyalty.html">Loyalty</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
 </header>
 
 <div class="hero" style="height: 50vh;">
