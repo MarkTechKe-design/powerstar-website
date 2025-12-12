@@ -10,33 +10,44 @@
 <body>
 
 <header>
-    <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
-        <img src="assets/logo.png" alt="Powerstar Supermarkets" style="height: 90px; width: auto; object-fit: contain;">
-    </a>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Products & Services</a>
-        <a href="branches.html">Branches</a>
-        <a href="media.html">Media</a>
-        <a href="loyalty.html">Loyalty</a>
-        <a href="contact.html" class="active">Contact</a>
-    </nav>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="Powerstar Supermarkets">
+        </a>
+        
+        <button class="mobile-toggle" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <nav id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
+            <a href="branches.html">Branches</a>
+            <a href="media.html">Media</a>
+            <a href="loyalty.html">Loyalty</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </div>
 </header>
 
 <main class="container">
-    <div style="text-align: center; margin-bottom: 20px;">
-        <h1 style="color: #006838;">Get in Touch</h1>
+    <div class="section-intro">
+        <h2>Get in Touch</h2>
         <p>Chat with your local branch directly on WhatsApp.</p>
     </div>
 
     <div class="contact-container">
-        
-        <div class="form-column">
-            <h2 class="customer-title"><i class="fab fa-whatsapp"></i> Customer Care</h2>
-            <p style="font-size: 0.9em; margin-bottom: 20px;">Chat with your branch manager.</p>
+
+        <div class="contact-column">
+            <h3 style="color: #006838; margin-bottom: 15px;"><i class="fab fa-whatsapp"></i> Customer Care</h3>
+            <p style="margin-bottom: 25px; color: #666;">Chat with your branch manager.</p>
+            
             <form id="customerForm">
-                <input type="text" id="custName" placeholder="Your Name" required>
+                <label>Your Name</label>
+                <input type="text" id="custName" placeholder="e.g. John Doe" required>
+                
+                <label>Select Branch</label>
                 <select id="custBranch" required>
                     <option value="" disabled selected>-- Select Branch --</option>
                     <option value="Kasarani HQ">Kasarani HQ</option>
@@ -51,20 +62,41 @@
                     <option value="Zimmerman Base">Zimmerman Base</option>
                     <option value="Zimmerman Express">Zimmerman Express</option>
                 </select>
-                <select id="custType"><option>Compliment</option><option>Complaint</option><option>Inquiry</option></select>
-                <textarea id="custMessage" placeholder="Message..." required></textarea>
+                
+                <label>Topic</label>
+                <select id="custType">
+                    <option>Compliment</option>
+                    <option>Complaint</option>
+                    <option>Inquiry</option>
+                </select>
+                
+                <label>Message</label>
+                <textarea id="custMessage" placeholder="Type your message..." required></textarea>
+                
                 <button type="submit" class="btn-customer">Chat with Branch</button>
             </form>
         </div>
 
-        <div class="form-column">
-            <h2 class="vendor-title"><i class="fab fa-whatsapp"></i> Suppliers</h2>
-            <p style="font-size: 0.9em; margin-bottom: 20px;">Direct to HQ Sales Team.</p>
+        <div class="contact-column">
+            <h3 style="color: #DA291C; margin-bottom: 15px;"><i class="fas fa-truck"></i> Sales & Marketing</h3>
+            <p style="margin-bottom: 25px; color: #666;">Direct to HQ Sales Team.</p>
+            
             <form id="vendorForm">
+                <label>Company Name</label>
                 <input type="text" id="vendCompany" placeholder="Company Name" required>
+                
+                <label>Contact Person</label>
                 <input type="text" id="vendPerson" placeholder="Contact Person" required>
-                <select id="vendType"><option>New Product</option><option>General Inquiry</option></select>
-                <textarea id="vendMessage" placeholder="Proposal..." required></textarea>
+                
+                <label>Inquiry Type</label>
+                <select id="vendType">
+                    <option>New Product Listing</option>
+                    <option>General Inquiry</option>
+                </select>
+                
+                <label>Proposal</label>
+                <textarea id="vendMessage" placeholder="Brief proposal..." required></textarea>
+                
                 <button type="submit" class="btn-vendor">Chat with Sales</button>
             </form>
         </div>
@@ -72,67 +104,26 @@
     </div>
 </main>
 
-/* =========================================
-   SOCIAL MEDIA FOOTER STYLES
-   ========================================= */
-
-footer {
-    background: #DA291C !important; /* Force Powerstar Red */
-    color: white !important;
-    padding: 40px 20px;
-    text-align: center;
-    border-top: 5px solid #b30000; /* Darker red accent on top */
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-/* Icons Grid */
-.icons-container {
-    display: flex;
-    gap: 25px; /* Space between icons */
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-/* Individual Icon Styles */
-.icons-container a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background: rgba(255, 255, 255, 0.15); /* Glass effect background */
-    border-radius: 50%; /* Perfect Circle */
-    color: white;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    text-decoration: none;
-}
-
-/* Hover Effect: Turns Green and floats up */
-.icons-container a:hover {
-    background: white;
-    color: #006838; /* Powerstar Green */
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.copyright p {
-    font-size: 0.85rem;
-    opacity: 0.8;
-    margin: 0;
-}
-
+<footer>
+    <div class="footer-content">
+        <div class="social-links">
+            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
 
 <script>
+    // WhatsApp Logic
     const branchNumbers = {
         "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
         "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
@@ -154,19 +145,15 @@ footer {
         const msg = `*Supplier Inquiry*\nCompany: ${document.getElementById('vendCompany').value}\nMsg: ${document.getElementById('vendMessage').value}`;
         window.open(`https://wa.me/${SALES_TEAM}?text=${encodeURIComponent(msg)}`, '_blank');
     });
-</script>
-<script>
-    // --- MOBILE MENU TOGGLE SCRIPT ---
+
+    // Mobile Menu Toggle Script
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
 
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', function() {
-                // Toggle the .active class
                 navMenu.classList.toggle('active');
-                
-                // Optional: Change icon from Bars to X
                 const icon = menuBtn.querySelector('i');
                 if (navMenu.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
@@ -179,5 +166,6 @@ footer {
         }
     });
 </script>
+
 </body>
 </html>
