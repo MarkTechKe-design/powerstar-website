@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- 1. GLOBAL VARIABLES & RESET --- */
+    /* --- 1. GLOBAL VARIABLES --- */
     :root {
         --ps-red: #DA291C;
         --ps-green: #006838;
@@ -21,11 +21,11 @@
     }
 
     * { box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* --- 2. HEADER & NAVIGATION (Restored) --- */
+    /* --- 2. HEADER & NAVIGATION --- */
     header {
         background: white;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -36,31 +36,29 @@
         display: flex; justify-content: space-between; align-items: center;
         height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto;
     }
-    .logo img { height: 45px; width: auto; } /* Ensure you have logo.png in assets */
+    .logo img { height: 45px; width: auto; }
     
-    /* Desktop Nav */
     .nav-menu { display: flex; gap: 25px; }
     .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
     .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
     .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
 
-    /* Mobile Toggle */
     .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
 
-    /* --- 3. HERO SECTION (Modern Clip-Path) --- */
+    /* --- 3. HERO SECTION --- */
     .hero {
         background: linear-gradient(135deg, var(--ps-red) 0%, #b31b1b 100%);
         color: white;
         text-align: center;
-        padding: 60px 20px 120px 20px; /* Extra bottom padding for overlap */
+        padding: 60px 20px 120px 20px;
         clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
     .hero h1 { font-size: 2.5rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
     .hero p { font-size: 1.1rem; opacity: 0.95; font-weight: 300; margin: 0; }
 
-    /* --- 4. STEPS SECTION (Floating Cards) --- */
+    /* --- 4. STEPS SECTION --- */
     .steps-container {
-        margin-top: -80px; /* Overlaps the red hero */
+        margin-top: -80px;
         position: relative;
         z-index: 10;
         margin-bottom: 60px;
@@ -107,7 +105,7 @@
     .step-card h3 { font-size: 1.1rem; margin: 0 0 8px 0; color: var(--ps-dark); }
     .step-card p { font-size: 0.9rem; color: #666; margin: 0; line-height: 1.5; }
 
-    /* --- 5. BRANCH GRID (From your code) --- */
+    /* --- 5. BRANCH GRID --- */
     .list-header { text-align: center; margin-bottom: 30px; border-top: 1px solid #eee; padding-top: 40px; }
     .list-header h2 { color: var(--ps-red); font-size: 1.8rem; margin: 0; }
     
@@ -147,11 +145,40 @@
     }
     .whatsapp-btn:hover { background: var(--ps-whatsapp); color: white; }
 
-    /* --- 6. FOOTER --- */
-    footer { background: #222; color: #aaa; padding: 40px 20px; text-align: center; margin-top: auto; }
-    .social-links { margin-bottom: 20px; }
-    .social-links a { display: inline-block; width: 40px; height: 40px; background: #333; color: white; border-radius: 50%; line-height: 40px; margin: 0 5px; transition: background 0.3s; }
-    .social-links a:hover { background: var(--ps-red); }
+    /* --- 6. FOOTER (UPDATED TO BRAND COLORS) --- */
+    footer { 
+        background-color: var(--ps-green); /* Brand Green Background */
+        color: white; 
+        padding: 50px 20px; 
+        text-align: center; 
+        margin-top: auto; 
+        border-top: 6px solid var(--ps-red); /* Brand Red Top Border */
+    }
+    
+    .footer-content h4 {
+        text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;
+    }
+
+    .social-links { margin-bottom: 30px; }
+    
+    .social-links a { 
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 45px; height: 45px; 
+        background: rgba(255,255,255,0.1); /* Subtle transparent white */
+        color: white; 
+        border-radius: 50%; 
+        margin: 0 8px; 
+        transition: all 0.3s;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .social-links a:hover { 
+        background: var(--ps-red); /* Turns Red on Hover */
+        border-color: var(--ps-red);
+        transform: translateY(-3px);
+    }
+    
+    .copyright { font-size: 0.9rem; opacity: 0.7; }
 
     /* Mobile Responsiveness */
     @media (max-width: 768px) {
@@ -229,12 +256,17 @@
 
 <footer>
     <div class="footer-content">
+        <h4>Follow Us</h4>
         <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+        <div class="copyright">
+            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+        </div>
     </div>
 </footer>
 
@@ -255,7 +287,7 @@
         });
     }
 
-    // 2. BRANCH DATA (Your specific list with locations)
+    // 2. BRANCH DATA
     const branches = [
         { name: "Kasarani HQ",      phone: "0790 680 038", location: "Kasarani-Mwiki Road" },
         { name: "Naivasha Branch",  phone: "0768 016 429", location: "Naivasha Town" },
