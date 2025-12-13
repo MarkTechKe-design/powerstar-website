@@ -26,172 +26,122 @@
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
     /* --- 2. HEADER & NAVIGATION --- */
-    header {
-        background: white;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        position: relative;
-        z-index: 100;
-    }
-    .header-inner {
-        display: flex; justify-content: space-between; align-items: center;
-        height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto;
-    }
-    .logo img { height: 90px; width: auto; }
+    header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
+    .logo img { height: 45px; width: auto; } /* Adjusted height for better fit */
     
     .nav-menu { display: flex; gap: 25px; }
     .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
     .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
     .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
-
     .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
 
     /* --- 3. HERO SECTION --- */
     .hero {
         background: linear-gradient(135deg, var(--ps-red) 0%, #b31b1b 100%);
-        color: white;
-        text-align: center;
+        color: white; text-align: center;
         padding: 60px 20px 120px 20px;
         clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
     .hero h1 { font-size: 2.5rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
     .hero p { font-size: 1.1rem; opacity: 0.95; font-weight: 300; margin: 0; }
 
-    /* --- 4. STEPS SECTION (GRID FIX) --- */
+    /* --- 4. STEPS SECTION (How To Order) --- */
     .steps-container {
-        margin-top: -80px;
-        position: relative;
-        z-index: 10;
+        margin-top: -80px; /* Overlaps Hero */
+        position: relative; z-index: 10;
         margin-bottom: 60px;
     }
-    .section-title {
-        text-align: center; margin-bottom: 30px; color: var(--ps-green); 
-        text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
-    }
+    .section-title { text-align: center; margin-bottom: 30px; color: var(--ps-green); text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; }
     
-    /* Responsive Grid for Steps */
-    .steps-grid {
-        display: grid;
-        grid-template-columns: 1fr; /* Mobile Default: 1 column */
-        gap: 20px;
-    }
-    
+    .steps-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
     .step-card {
-        background: white;
-        padding: 30px 20px;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: var(--shadow-card);
-        border-bottom: 4px solid transparent;
-        transition: transform 0.3s ease;
+        background: white; padding: 30px 20px; border-radius: 12px; text-align: center;
+        box-shadow: var(--shadow-card); border-bottom: 4px solid transparent; transition: transform 0.3s ease;
     }
-    .step-card:hover {
-        transform: translateY(-5px);
-        border-bottom-color: var(--ps-green);
-        box-shadow: var(--shadow-hover);
-    }
+    .step-card:hover { transform: translateY(-5px); border-bottom-color: var(--ps-green); box-shadow: var(--shadow-hover); }
+    
     .step-icon-wrapper {
-        width: 60px; height: 60px;
-        background: rgba(0, 104, 56, 0.08);
-        color: var(--ps-green);
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
+        width: 60px; height: 60px; background: rgba(0, 104, 56, 0.08); color: var(--ps-green);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
         font-size: 1.5rem; margin: 0 auto 15px auto; position: relative;
     }
     .step-badge {
-        position: absolute; top: -2px; right: -2px;
-        background: var(--ps-red); color: white;
-        width: 22px; height: 22px; border-radius: 50%;
-        font-size: 0.75rem; font-weight: bold;
-        display: flex; align-items: center; justify-content: center;
-        border: 2px solid white;
+        position: absolute; top: -2px; right: -2px; background: var(--ps-red); color: white;
+        width: 22px; height: 22px; border-radius: 50%; font-size: 0.75rem; font-weight: bold;
+        display: flex; align-items: center; justify-content: center; border: 2px solid white;
     }
     .step-card h3 { font-size: 1.1rem; margin: 0 0 8px 0; color: var(--ps-dark); }
     .step-card p { font-size: 0.9rem; color: #666; margin: 0; line-height: 1.5; }
 
-    /* --- 5. BRANCH GRID (FIXED SIDE BY SIDE) --- */
+    /* --- 5. VALUES SECTION (Trust Signals - ADDED CORRECTLY) --- */
+    .values-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px; margin-bottom: 60px;
+    }
+    .value-card {
+        background: white; padding: 30px; border-radius: 12px;
+        text-align: center; border: 1px solid #eee; display: flex; align-items: center; gap: 20px;
+        text-align: left; /* Horizontal Layout for neatness */
+        transition: transform 0.3s;
+    }
+    .value-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: transparent; }
+
+    .icon-circle {
+        min-width: 60px; height: 60px; background: rgba(218, 41, 28, 0.1); color: var(--ps-red);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    }
+    .value-text h3 { margin: 0 0 5px 0; font-size: 1.1rem; color: var(--ps-dark); }
+    .value-text p { margin: 0; font-size: 0.85rem; color: #666; line-height: 1.5; }
+
+    /* --- 6. BRANCH GRID --- */
     .list-header { text-align: center; margin-bottom: 30px; border-top: 1px solid #eee; padding-top: 40px; }
     .list-header h2 { color: var(--ps-red); font-size: 1.8rem; margin: 0; }
     
-    /* THE FIX: Explicit Grid Columns */
-    .department-grid {
-        display: grid;
-        grid-template-columns: 1fr; /* Mobile: 1 Column */
-        gap: 20px;
-        padding-bottom: 60px;
-    }
+    .department-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 60px; }
 
-    /* Tablet: 2 Columns */
+    /* Responsive Logic */
     @media (min-width: 768px) {
         .steps-grid { grid-template-columns: repeat(2, 1fr); }
         .department-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
-    /* Desktop: 3 Columns (Strict Side-by-Side) */
     @media (min-width: 1024px) {
-        .steps-grid { grid-template-columns: repeat(4, 1fr); } /* 4 Steps side by side */
-        .department-grid { grid-template-columns: repeat(3, 1fr); } /* 3 Branches side by side */
+        .steps-grid { grid-template-columns: repeat(4, 1fr); }
+        .department-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
     .branch-card {
-        background: white;
-        border: 1px solid #eee;
-        border-left: 5px solid var(--ps-red);
-        border-radius: 8px;
-        padding: 20px; /* Reduced padding slightly to save space */
-        transition: all 0.3s ease;
+        background: white; border: 1px solid #eee; border-left: 5px solid var(--ps-red);
+        border-radius: 8px; padding: 20px; transition: all 0.3s ease;
         display: flex; flex-direction: column; justify-content: space-between;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
-    .branch-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-        border-left-color: var(--ps-green);
-    }
+    .branch-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-left-color: var(--ps-green); }
+    
     .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
     .branch-name { margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--ps-dark); }
-    .branch-details { margin-bottom: 20px; }
     .detail-row { display: flex; align-items: flex-start; gap: 10px; color: #555; font-size: 0.9rem; margin-bottom: 8px; }
     .detail-row i { color: var(--ps-red); width: 18px; margin-top: 3px; }
 
     .whatsapp-btn {
-        background: white; color: var(--ps-green);
-        text-decoration: none; padding: 12px; border-radius: 6px;
-        font-weight: 600; text-align: center;
-        border: 1px solid var(--ps-whatsapp);
+        background: white; color: var(--ps-green); text-decoration: none; padding: 12px; border-radius: 6px;
+        font-weight: 600; text-align: center; border: 1px solid var(--ps-whatsapp);
         transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
     }
     .whatsapp-btn:hover { background: var(--ps-whatsapp); color: white; }
 
-    /* --- 6. FOOTER (BRANDED) --- */
-    footer { 
-        background-color: var(--ps-green); 
-        color: white; 
-        padding: 50px 20px; 
-        text-align: center; 
-        margin-top: auto; 
-        border-top: 6px solid var(--ps-red);
-    }
-    
-    .footer-content h4 { text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8; }
+    /* --- 7. FOOTER --- */
+    footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; margin-top: auto; border-top: 6px solid var(--ps-red); }
     .social-links { margin-bottom: 30px; }
     .social-links a { 
-        display: inline-flex; align-items: center; justify-content: center;
-        width: 45px; height: 45px; 
-        background: rgba(255,255,255,0.1); color: white; 
-        border-radius: 50%; margin: 0 8px; transition: all 0.3s;
-        border: 1px solid rgba(255,255,255,0.2);
+        display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; 
+        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
     }
     .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
     .copyright { font-size: 0.9rem; opacity: 0.7; }
 
-    /* Mobile Menu Logic */
     @media (max-width: 768px) {
         .mobile-toggle { display: block; }
-        .nav-menu {
-            display: none; flex-direction: column;
-            position: absolute; top: 70px; left: 0; width: 100%;
-            background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .nav-menu.active { display: flex; }
         .hero h1 { font-size: 1.8rem; }
         .steps-container { margin-top: -40px; }
@@ -207,6 +157,7 @@
         <nav class="nav-menu" id="nav-menu">
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
             <a href="order.html" class="active">Order Online</a>
             <a href="contact.html">Contact</a>
@@ -219,32 +170,7 @@
         <h1><i class="fab fa-whatsapp"></i> Shop on WhatsApp</h1>
         <p>Skip the line. Order ahead and pick up at your convenience.</p>
     </div>
-</div><div class="hero">...</div> 
-
-<main class="container">
-
-    <div class="values-grid">
-        
-        <div class="value-card">
-            <div class="icon-circle"><i class="fas fa-leaf"></i></div>
-            <h3>Farm Fresh</h3>
-            <p>Sourced directly from local farmers to ensure maximum freshness and support our community.</p>
-        </div>
-
-        <div class="value-card">
-            <div class="icon-circle"><i class="fas fa-hand-holding-usd"></i></div>
-            <h3>Fair Pricing</h3>
-            <p>We promise competitive prices on all household essentials and premium brands, every day.</p>
-        </div>
-
-        <div class="value-card">
-            <div class="icon-circle"><i class="fas fa-shield-alt"></i></div>
-            <h3>Quality Assured</h3>
-            <p>We strictly inspect all stock to meet our high safety standards before it reaches your basket.</p>
-        </div>
-
-    </div>
-    <div class="catalog-header">...</div>
+</div>
 
 <main class="container">
 
@@ -270,6 +196,30 @@
                 <div class="step-icon-wrapper"><i class="fas fa-shopping-bag"></i><div class="step-badge">4</div></div>
                 <h3>Pick Up</h3>
                 <p>Pass by the <b>"Weka Mzigo"</b> counter and collect your goods.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="icon-circle"><i class="fas fa-leaf"></i></div>
+            <div class="value-text">
+                <h3>Farm Fresh</h3>
+                <p>Sourced directly from local farmers for maximum freshness.</p>
+            </div>
+        </div>
+        <div class="value-card">
+            <div class="icon-circle"><i class="fas fa-hand-holding-usd"></i></div>
+            <div class="value-text">
+                <h3>Fair Pricing</h3>
+                <p>Competitive prices on essentials and premium brands.</p>
+            </div>
+        </div>
+        <div class="value-card">
+            <div class="icon-circle"><i class="fas fa-shield-alt"></i></div>
+            <div class="value-text">
+                <h3>Quality Assured</h3>
+                <p>Strictly inspected stock to meet high safety standards.</p>
             </div>
         </div>
     </div>
@@ -300,7 +250,7 @@
 </footer>
 
 <script>
-    // 1. MOBILE MENU TOGGLE
+    // 1. MOBILE MENU
     const menuBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
     
