@@ -328,3 +328,61 @@ footer {
 @media (max-width: 768px) {
     .contact-split-wrapper { grid-template-columns: 1fr; }
 }
+/* --- UPGRADED VALUE PROPOSITION (Trust Signals) --- */
+    .values-grid {
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px; 
+        /* This negative margin pulls the box UP into the Hero image */
+        margin-top: -60px; 
+        margin-bottom: 80px;
+        position: relative; 
+        z-index: 10;
+        padding: 0 10px;
+    }
+
+    .value-card {
+        background: white; 
+        padding: 40px 30px; 
+        border-radius: 12px;
+        text-align: center; 
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1); /* Deep corporate shadow */
+        border-bottom: 4px solid transparent;
+        transition: all 0.3s ease;
+    }
+
+    /* Interactive Hover Effect */
+    .value-card:hover {
+        transform: translateY(-10px); /* Lifts up */
+        border-bottom-color: var(--ps-red); /* Reveals brand color */
+    }
+
+    .icon-circle {
+        width: 80px; height: 80px;
+        background: rgba(0, 104, 56, 0.08); /* Very light green bg */
+        color: var(--ps-green);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 2rem;
+        margin: 0 auto 20px auto;
+        transition: all 0.3s;
+    }
+
+    .value-card:hover .icon-circle {
+        background: var(--ps-green);
+        color: white;
+    }
+
+    .value-card h3 { 
+        margin: 0 0 10px 0; 
+        font-size: 1.25rem; 
+        font-weight: 700;
+        color: var(--ps-dark); 
+    }
+
+    .value-card p { 
+        margin: 0; 
+        font-size: 0.95rem; 
+        color: #666; 
+        line-height: 1.6; 
+    }
