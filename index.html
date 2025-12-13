@@ -4,8 +4,134 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Home - Powerstar Supermarkets</title>
-<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    /* --- 1. DESIGN SYSTEM --- */
+    :root {
+        --ps-red: #DA291C;
+        --ps-green: #006838;
+        --ps-dark: #1a1a1a;
+        --bg-light: #f8f9fa;
+        --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+        --shadow-deep: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* --- 2. HEADER --- */
+    header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
+    .logo img { height: 45px; width: auto; }
+    
+    .nav-menu { display: flex; gap: 25px; }
+    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+    .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
+
+    /* --- 3. HERO SECTION (Parallax & Clip Path) --- */
+    .hero {
+        background: linear-gradient(rgba(0, 104, 56, 0.85), rgba(0, 50, 20, 0.9)), url('assets/hero-pattern.png'); 
+        background-attachment: fixed;
+        background-size: cover; background-position: center;
+        height: 70vh; /* Tall and impressive */
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: white; text-align: center;
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        padding-bottom: 50px;
+    }
+    .hero-eyebrow { background: rgba(255,255,255,0.15); padding: 5px 15px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.2); }
+    .hero h1 { font-size: 3.5rem; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+    .hero p { font-size: 1.2rem; opacity: 0.95; max-width: 600px; margin-bottom: 30px; font-weight: 300; }
+
+    .hero-btns { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+    .btn { padding: 12px 30px; border-radius: 50px; font-weight: 700; font-size: 1rem; transition: transform 0.3s ease; }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { background: var(--ps-red); color: white; box-shadow: 0 5px 15px rgba(218, 41, 28, 0.4); }
+    .btn-secondary { background: white; color: var(--ps-green); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+    /* --- 4. FLOATING FEATURES (Trust Signals) --- */
+    .features-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px; margin-top: -80px; position: relative; z-index: 10; margin-bottom: 80px;
+    }
+    .feature-item {
+        background: white; padding: 40px 30px; border-radius: 12px;
+        text-align: center; box-shadow: var(--shadow-deep);
+        border-bottom: 4px solid transparent; transition: all 0.3s ease;
+    }
+    .feature-item:hover { transform: translateY(-10px); border-bottom-color: var(--ps-green); }
+    
+    .feature-icon {
+        width: 70px; height: 70px; background: rgba(218, 41, 28, 0.08); color: var(--ps-red);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 2rem; margin: 0 auto 20px auto; transition: 0.3s;
+    }
+    .feature-item:hover .feature-icon { background: var(--ps-red); color: white; }
+    
+    .feature-title { font-size: 1.25rem; font-weight: 700; color: var(--ps-dark); margin-bottom: 10px; }
+    .feature-text { color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+
+    /* --- 5. CATEGORY TEASERS --- */
+    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-header h2 { color: var(--ps-dark); font-size: 2rem; margin-bottom: 10px; }
+    .section-header p { color: #777; max-width: 600px; margin: 0 auto; }
+
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 80px; }
+    .cat-card {
+        position: relative; height: 250px; border-radius: 12px; overflow: hidden;
+        cursor: pointer; box-shadow: var(--shadow-soft);
+    }
+    .cat-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .cat-overlay {
+        position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        display: flex; align-items: flex-end; padding: 20px;
+    }
+    .cat-title { color: white; font-weight: 700; font-size: 1.2rem; transform: translateY(0); transition: 0.3s; }
+    .cat-card:hover img { transform: scale(1.1); }
+    .cat-card:hover .cat-title { transform: translateY(-5px); color: var(--ps-red); }
+
+    /* --- 6. LOYALTY BANNER --- */
+    .loyalty-banner {
+        background: var(--ps-dark); color: white;
+        border-radius: 16px; padding: 50px; margin-bottom: 60px;
+        display: flex; align-items: center; justify-content: space-between;
+        flex-wrap: wrap; gap: 30px;
+        background-image: url('assets/pattern-overlay.png');
+    }
+    .loyalty-text h3 { color: var(--ps-red); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+    .loyalty-text h2 { font-size: 2.2rem; margin: 0 0 10px 0; }
+    .loyalty-text p { font-size: 1.1rem; opacity: 0.8; }
+    .btn-loyalty { background: white; color: var(--ps-dark); padding: 15px 35px; border-radius: 50px; font-weight: 700; transition: 0.3s; }
+    .btn-loyalty:hover { background: var(--ps-red); color: white; }
+
+    /* --- 7. FOOTER --- */
+    footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; margin-top: auto; border-top: 6px solid var(--ps-red); }
+    .social-links { margin-bottom: 30px; }
+    .social-links a { 
+        display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; 
+        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
+    .copyright { font-size: 0.9rem; opacity: 0.7; }
+
+    @media (max-width: 768px) {
+        .mobile-toggle { display: block; }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .nav-menu.active { display: flex; }
+        .hero h1 { font-size: 2.5rem; }
+        .features-grid { margin-top: -40px; }
+        .loyalty-banner { text-align: center; justify-content: center; }
+    }
+</style>
 </head>
 <body>
 
@@ -13,111 +139,119 @@
     <div class="header-inner">
         <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        <nav id="nav-menu">
-            <a href="index.html">Home</a>
-            <a href="about.html" class="active">About Us</a> <a href="services.html">Products</a>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a> <a href="loyalty.html">Loyalty</a>
-            <a href="careers.html">Careers</a>
+            <a href="order.html">Order Online</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
+
 <div class="hero">
-    <h1>Welcome to Powerstar</h1>
-    <p>Your trusted neighborhood partner for quality, freshness, and huge savings.</p>
+    <div class="hero-eyebrow">Welcome to Powerstar</div>
+    <h1>Your Neighborhood Partner</h1>
+    <p>Experience quality, freshness, and huge savings at any of our 11 branches across Kenya.</p>
     
     <div class="hero-btns">
-        <a href="services.html" class="button btn-primary">Explore Departments</a>
-        <a href="branches.html" class="button btn-secondary">Find a Branch</a>
+        <a href="services.html" class="btn btn-primary">Explore Departments</a>
+        <a href="branches.html" class="btn btn-secondary">Find a Branch</a>
     </div>
 </div>
 
-<main class="container features-section">
-    <div class="careers-intro">
-        <h2>The Powerstar Difference</h2>
-        <p>Serving over 11 communities with integrity and excellence.</p>
-    </div>
+<main class="container">
 
     <div class="features-grid">
         <div class="feature-item">
-            <i class="fas fa-leaf feature-icon"></i>
+            <div class="feature-icon"><i class="fas fa-leaf"></i></div>
             <h3 class="feature-title">Farm Fresh</h3>
-            <p class="feature-text">We source our produce directly from local farmers to ensure you get the freshest vegetables and fruits every single day.</p>
+            <p class="feature-text">We source produce directly from local farmers to ensure you get the freshest quality every single day.</p>
         </div>
         <div class="feature-item">
-            <i class="fas fa-tags feature-icon"></i>
+            <div class="feature-icon"><i class="fas fa-tags"></i></div>
             <h3 class="feature-title">Unbeatable Value</h3>
             <p class="feature-text">We are committed to helping you save every day with competitive pricing on all household essentials.</p>
         </div>
         <div class="feature-item">
-            <i class="fas fa-users feature-icon"></i>
+            <div class="feature-icon"><i class="fas fa-users"></i></div>
             <h3 class="feature-title">Community First</h3>
-            <p class="feature-text">With 11 branches and growing, we are proud to create jobs and support the neighborhoods we call home.</p>
+            <p class="feature-text">With 10+ branches, we are proud to create jobs and support the neighborhoods we call home.</p>
         </div>
     </div>
+
+    <div class="section-header">
+        <h2>Shop Essentials</h2>
+        <p>Everything you need under one roof. Browse our top departments.</p>
+    </div>
+
+    <div class="category-grid">
+        <a href="services.html" class="cat-card">
+            <img src="assets/bakery.jpg" alt="Bakery" onerror="this.src='https://placehold.co/400x500/eee/999?text=Fresh+Bakery'">
+            <div class="cat-overlay"><span class="cat-title">Fresh Bakery</span></div>
+        </a>
+        <a href="services.html" class="cat-card">
+            <img src="assets/electronics.jpg" alt="Electronics" onerror="this.src='https://placehold.co/400x500/eee/999?text=Electronics'">
+            <div class="cat-overlay"><span class="cat-title">Electronics</span></div>
+        </a>
+        <a href="services.html" class="cat-card">
+            <img src="assets/produce.jpg" alt="Produce" onerror="this.src='https://placehold.co/400x500/eee/999?text=Fresh+Produce'">
+            <div class="cat-overlay"><span class="cat-title">Farm Fresh</span></div>
+        </a>
+        <a href="services.html" class="cat-card">
+            <img src="assets/liquor.jpg" alt="Liquor" onerror="this.src='https://placehold.co/400x500/eee/999?text=Wines+&+Spirits'">
+            <div class="cat-overlay"><span class="cat-title">Beverages</span></div>
+        </a>
+    </div>
+
+    <div class="loyalty-banner">
+        <div class="loyalty-text">
+            <h3>Join The Family</h3>
+            <h2>Earn Points Every Time You Shop</h2>
+            <p>Get exclusive discounts and redeem points for shopping vouchers.</p>
+        </div>
+        <a href="loyalty.html" class="btn-loyalty">Join Loyalty Program</a>
+    </div>
+
 </main>
 
 <footer>
     <div class="footer-content">
-        
         <div class="social-links">
             <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            
             <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-
-                <a href="https://x.com/powerstar_supermarket" target="_blank" aria-label="X">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
-
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
         </div>
     </div>
 </footer>
+
 <script>
-    // --- MOBILE MENU TOGGLE ---
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
-
-        // Only run if the button exists on this page
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                
-                // 1. Open/Close the menu
                 navMenu.classList.toggle('active');
-
-                // 2. Change the Icon (Bars <-> X)
                 const icon = menuBtn.querySelector('i');
                 if (navMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
                 } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
                 }
             });
         }
     });
 </script>
+
 </body>
 </html>
