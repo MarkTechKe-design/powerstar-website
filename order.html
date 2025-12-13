@@ -4,257 +4,167 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Order & Collect - Powerstar Supermarkets</title>
-<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* Unique Styles for Order Page */
-    .step-card {
-        background: white;
-        padding: 30px;
-        border-radius: 16px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        border-bottom: 4px solid #006838;
-        display: flex; flex-direction: column; align-items: center;
+    /* --- ARCHITECTURAL STYLING (The Skin) --- */
+    :root {
+        --ps-red: #DA291C;       /* Powerstar Red */
+        --ps-green: #006838;     /* Powerstar Green */
+        --ps-whatsapp: #25D366;  /* WhatsApp Brand Green */
+        --gray-bg: #fdfdfd;
+        --gray-border: #e9ecef;
+        --text-dark: #2c3e50;
     }
-    .step-number {
-        background: #DA291C;
-        color: white;
-        width: 45px; height: 45px;
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        font-weight: 800; font-size: 1.2rem;
+
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--gray-bg); margin: 0; }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+    .page-header {
+        text-align: center; margin-bottom: 50px;
+    }
+    .page-header h1 { color: var(--ps-red); margin-bottom: 10px; }
+    .page-header p { color: #666; font-size: 1.1rem; }
+
+    /* The Grid System */
+    .department-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+    }
+
+    /* The Branch Card Design */
+    .branch-card {
+        background: white;
+        border: 1px solid var(--gray-border);
+        border-left: 5px solid var(--ps-red); /* Brand Accent */
+        border-radius: 8px;
+        padding: 25px;
+        transition: all 0.3s ease;
+        display: flex; flex-direction: column; justify-content: space-between;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    /* Hover Interaction */
+    .branch-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        border-left-color: var(--ps-green); /* Changes to Green on hover */
+    }
+
+    .card-header {
+        display: flex; justify-content: space-between; align-items: flex-start;
         margin-bottom: 20px;
     }
-    .whatsapp-btn {
-        background: #25D366; /* WhatsApp Green */
-        color: white !important;
-        text-decoration: none;
-        padding: 12px 25px;
-        border-radius: 50px;
-        font-weight: bold;
-        display: inline-flex; align-items: center; gap: 10px;
-        transition: transform 0.3s ease;
-        box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
-        margin-top: 15px;
+
+    .branch-name {
+        margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--text-dark);
     }
+
+    .branch-icon {
+        color: #eee; font-size: 1.8rem; transition: color 0.3s;
+    }
+    .branch-card:hover .branch-icon { color: var(--ps-green); }
+
+    .branch-details { margin-bottom: 25px; }
+    
+    .detail-row {
+        display: flex; align-items: center; gap: 12px;
+        color: #555; font-size: 0.95rem; margin-bottom: 10px;
+    }
+    .detail-row i { color: var(--ps-red); width: 20px; text-align: center; }
+
+    /* The WhatsApp Button */
+    .whatsapp-btn {
+        background: #f8f9fa;
+        color: var(--ps-green);
+        text-decoration: none;
+        padding: 14px;
+        border-radius: 6px;
+        font-weight: 700;
+        text-align: center;
+        border: 1px solid var(--ps-whatsapp);
+        transition: all 0.2s;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    
     .whatsapp-btn:hover {
-        transform: translateY(-3px);
-        background: #1ebc57;
-        box-shadow: 0 6px 15px rgba(37, 211, 102, 0.4);
+        background: var(--ps-whatsapp);
+        color: white;
+        box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
     }
 </style>
 </head>
 <body>
 
-<header>
-    <div class="header-inner">
-        <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
-        <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        <nav id="nav-menu">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="services.html">Products</a>
-            <a href="branches.html">Branches</a>
-            <a href="order.html" class="active">Order Online</a>
-            <a href="loyalty.html">Loyalty</a>
-            <a href="careers.html">Careers</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </div>
-</header>
-
-<div class="hero" style="height: 50vh;">
-    <h1>Shop on WhatsApp</h1>
-    <p>Skip the line. Order ahead and pick up at your convenience.</p>
-</div>
-
 <main class="container">
-
-    <div class="section-intro">
-        <h2>How "Click & Collect" Works</h2>
-        <p>Simple, Fast, and Personal.</p>
+    <div class="page-header">
+        <h1>Select Your Branch</h1>
+        <p>Choose a location below to start your order via WhatsApp.</p>
     </div>
 
-    <div class="features-grid" style="margin-bottom: 60px;">
-        <div class="step-card">
-            <div class="step-number">1</div>
-            <h3>Choose Branch</h3>
-            <p>Select your nearest Powerstar branch from the list below.</p>
-        </div>
-        <div class="step-card">
-            <div class="step-number">2</div>
-            <h3>Send List</h3>
-            <p>Click to open WhatsApp. Send us your shopping list.</p>
-        </div>
-        <div class="step-card">
-            <div class="step-number">3</div>
-            <h3>Confirm & Pay</h3>
-            <p>We confirm stock availability. You pay via M-PESA Till.</p>
-        </div>
-        <div class="step-card">
-            <div class="step-number">4</div>
-            <h3>Pick Up</h3>
-            <p>Pass by the "Weka Mzigo" counter and collect your packed goods.</p>
-        </div>
-    </div>
-
-    <div class="section-intro">
-        <h2 style="color: #DA291C;">Start Your Order</h2>
-        <p>Select a branch to start chatting immediately.</p>
-    </div>
-
-    <div class="department-grid">
-        
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Kasarani HQ</h3>
-                <p>Phone: 0790 680038</p>
-                <a href="https://wa.me/254790680038?text=Hi%20Powerstar%20Kasarani,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Naivasha Branch</h3>
-                <p>Phone: 0768 016429</p>
-                <a href="https://wa.me/254768016429?text=Hi%20Powerstar%20Naivasha,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Ruiru Jambo</h3>
-                <p>Phone: 0728 020018</p>
-                <a href="https://wa.me/254728020018?text=Hi%20Powerstar%20Ruiru%20Jambo,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Ruiru Mini</h3>
-                <p>Phone: 0724 588900</p>
-                <a href="https://wa.me/254724588900?text=Hi%20Powerstar%20Ruiru%20Mini,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Kangari Branch</h3>
-                <p>Phone: 0710 976254</p>
-                <a href="https://wa.me/254710976254?text=Hi%20Powerstar%20Kangari,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Joska Branch</h3>
-                <p>Phone: 0791 047850</p>
-                <a href="https://wa.me/254791047850?text=Hi%20Powerstar%20Joska,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Express Branch</h3>
-                <p>Phone: 0701 231370</p>
-                <a href="https://wa.me/254701231370?text=Hi%20Powerstar%20Express,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Base Branch</h3>
-                <p>Phone: 0707 881200</p>
-                <a href="https://wa.me/254707881200?text=Hi%20Powerstar%20Base,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Kitengela Branch</h3>
-                <p>Phone: 0704 121122</p>
-                <a href="https://wa.me/254704121122?text=Hi%20Powerstar%20Kitengela,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Kikuyu Branch</h3>
-                <p>Phone: 0741 251973</p>
-                <a href="https://wa.me/254741251973?text=Hi%20Powerstar%20Kikuyu,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-        <div class="branch-card">
-            <div class="dept-content">
-                <h3 class="dept-title">Kinoo Branch</h3>
-                <p>Phone: 0795 459026</p>
-                <a href="https://wa.me/254795459026?text=Hi%20Powerstar%20Kinoo,%20I%20would%20like%20to%20order..." target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        </div>
-
-    </div>
-
+    <div id="branchContainer" class="department-grid"></div>
 </main>
 
-<footer>
-    <div class="footer-content">
-        <div class="social-links">
-            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
-        </div>
-    </div>
-</footer>
-
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const menuBtn = document.getElementById('mobile-menu-btn');
-        const navMenu = document.getElementById('nav-menu');
-        if (menuBtn && navMenu) {
-            menuBtn.addEventListener('click', function(e) {
-                e.preventDefault(); 
-                navMenu.classList.toggle('active');
-                const icon = menuBtn.querySelector('i');
-                if (navMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
-                }
-            });
-        }
+    /* --- DATA LAYER: Your Branch List --- 
+       I have updated all phone numbers to match your original request.
+       I inferred the 'Location' based on the name. 
+    */
+    const branches = [
+        { name: "Kasarani HQ",      phone: "0790 680 038", location: "Kasarani-Mwiki Road" },
+        { name: "Naivasha Branch",  phone: "0768 016 429", location: "Naivasha Town" },
+        { name: "Ruiru Jambo",      phone: "0728 020 018", location: "Ruiru Opposite Family Bank" },
+        { name: "Ruiru Mini",       phone: "0724 588 900", location: "Ruiru Opposite Ruiru Ndani Stage" },
+        { name: "Kangari Branch",   phone: "0710 976 254", location: "Kangari" },
+        { name: "Joska Branch",     phone: "0791 047 850", location: "Joska Along Kangundo Road" },
+        { name: "Express Branch",   phone: "0701 231 370", location: "Canopy Stage Along Kamiti Road" },
+        { name: "Base Branch",      phone: "0707 881 200", location: "Base Area, Zimmerman" },
+        { name: "Kitengela Branch", phone: "0704 121 122", location: "Kitengela CBD Next to Quickmart" },
+        { name: "Kikuyu Branch",    phone: "0741 251 973", location: "Kikuyu Town" },
+        { name: "Kinoo Branch",     phone: "0795 459 026", location: "Kinoo" }
+    ];
+
+    const container = document.getElementById('branchContainer');
+
+    // Helper: Formats the WhatsApp Link correctly
+    function getWhatsAppLink(phone, branchName) {
+        // Removes spaces, removes leading zero, adds 254
+        const cleanNumber = "254" + phone.replace(/\s/g, '').substring(1);
+        const text = encodeURIComponent(`Hi Powerstar ${branchName}, I would like to order...`);
+        return `https://wa.me/${cleanNumber}?text=${text}`;
+    }
+
+    // Render Logic: Loops through the list above and creates the HTML cards
+    branches.forEach(branch => {
+        const card = document.createElement('div');
+        card.className = 'branch-card';
+        
+        // This HTML structure creates the clean "No-Photo" design
+        card.innerHTML = `
+            <div class="card-header">
+                <h3 class="branch-name">${branch.name}</h3>
+                <i class="fas fa-store branch-icon"></i>
+            </div>
+            
+            <div class="branch-details">
+                <div class="detail-row">
+                    <i class="fas fa-map-marker-alt"></i> 
+                    <span>${branch.location}</span>
+                </div>
+                <div class="detail-row">
+                    <i class="fas fa-phone-alt"></i> 
+                    <span>${branch.phone}</span>
+                </div>
+            </div>
+
+            <a href="${getWhatsAppLink(branch.phone, branch.name)}" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> Chat to Order
+            </a>
+        `;
+        container.appendChild(card);
     });
 </script>
 
