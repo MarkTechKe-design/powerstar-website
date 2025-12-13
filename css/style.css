@@ -197,39 +197,121 @@ nav a:hover, nav a.active { color: var(--powerstar-red); background: rgba(218, 4
 }
 .news-link:hover { text-decoration: underline; }
 
-/* --- 9. CORPORATE STRATEGY (ABOUT US) --- */
-/* The Vision/Mission Split */
-.strategy-section {
-    display: flex; flex-wrap: wrap; margin: 40px 0 80px 0;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.08); border-radius: 16px; overflow: hidden;
-}
-.strategy-card { flex: 1; min-width: 300px; padding: 50px 40px; position: relative; }
-.strategy-card.vision { background: #006838; color: white; }
-.strategy-card.vision h3 { color: white; border-bottom: 2px solid #4da674; display: inline-block; padding-bottom: 10px; }
-.strategy-card.vision p { color: #e0f2e9; font-size: 1.1rem; font-weight: 300; }
-.strategy-card.mission { background: #f8f9fa; color: #333; border-left: 10px solid #DA291C; }
-.strategy-card.mission h3 { color: #333; border-bottom: 2px solid #ccc; display: inline-block; padding-bottom: 10px; }
+/* --- NEW CORPORATE "ABOUT US" STYLES --- */
 
-/* The Values Pillars */
-.values-container {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 25px; margin-top: 40px;
+/* 1. The "Editorial" Split Section (Text + Image) */
+.corporate-split {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 80px;
 }
-.pillar-card {
-    background: white; padding: 30px 20px; text-align: center;
-    border: 1px solid #eee; border-top: 5px solid #DA291C; border-radius: 8px;
-    transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-}
-.pillar-card:hover {
-    transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-top-color: #006838;
-}
-.pillar-icon { font-size: 2.5rem; color: #ccc; margin-bottom: 20px; transition: color 0.3s; }
-.pillar-card:hover .pillar-icon { color: #006838; }
-.pillar-title {
-    font-weight: 800; font-size: 1.1rem; text-transform: uppercase;
-    letter-spacing: 1px; margin-bottom: 10px; display: block; color: #333;
-}
-.pillar-text { font-size: 0.9rem; color: #666; line-height: 1.5; }
 
+.corporate-text {
+    flex: 1;
+}
+
+.corporate-text h2 {
+    font-size: 2.5rem;
+    color: #006838;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* A stylish red line under the heading */
+.corporate-text h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #DA291C;
+    margin-top: 10px;
+}
+
+.corporate-text p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.corporate-image {
+    flex: 1;
+    height: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 20px 20px 0px rgba(0, 104, 56, 0.1); /* The "Offset" Shadow Effect */
+}
+
+.corporate-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 2. "By The Numbers" Strip */
+.stats-strip {
+    background: #006838;
+    color: white;
+    padding: 60px 20px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 80px;
+    text-align: center;
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png'); /* Subtle texture */
+}
+
+.stat-item h3 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    color: white;
+}
+
+.stat-item p {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin: 0;
+}
+
+/* 3. Refined Strategy Cards */
+.strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.strat-card {
+    background: white;
+    padding: 40px;
+    border: 1px solid #eee;
+    border-top: 4px solid #DA291C;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.strat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Mobile Fixes for the Split Layout */
+@media (max-width: 768px) {
+    .corporate-split {
+        flex-direction: column;
+    }
+    .corporate-image {
+        width: 100%;
+        height: 300px;
+        box-shadow: 10px 10px 0px rgba(0, 104, 56, 0.1);
+    }
+}
 /* --- 10. FORMS --- */
 .contact-container { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; }
 .contact-column, .loyalty-card {
