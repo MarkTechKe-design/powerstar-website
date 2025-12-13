@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>News & Updates - Powerstar Supermarkets</title>
+<title>Media & Updates - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -14,76 +15,96 @@
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         <nav id="nav-menu">
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About Us</a> <a href="services.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a> <a href="loyalty.html">Loyalty</a>
+            <a href="order.html">Order Online</a>
+            <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
-            <a href="contact.html">Contact</a>
+            <a href="media.html" class="active">Media</a> <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
-<div class="hero" style="height: 40vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/news-bg.jpg');">
-    <h1>News & Updates</h1>
-    <p>Stay updated with the latest offers, branch openings, and community events.</p>
+<div class="hero" style="height: 50vh; background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 70, 35, 0.8)), url('assets/supermarket-bg.jpg');">
+    <h1>News & Community</h1>
+    <p>Latest updates, branch openings, and CSR activities.</p>
 </div>
 
-<div class="container">
+<main class="container">
     
     <div class="news-grid">
 
         <article class="news-card">
-            <div class="news-image" style="background-image: url('assets/christmas-promo.jpg');"></div>
+            <div class="news-image-container">
+                <span class="news-category">Offers</span>
+                <img src="assets/christmas-promo.jpg" alt="Christmas Offers" onerror="this.src='https://placehold.co/600x400?text=Xmas+Offers'">
+            </div>
             <div class="news-content">
-                <span class="news-date">December 10, 2025</span>
+                <span class="news-date"><i class="far fa-calendar-alt"></i> December 10, 2025</span>
                 <h3 class="news-title">Big Christmas Savings are Here!</h3>
-                <p>Get ready for the festive season with huge discounts on flour, sugar, and cooking oil across all branches.</p>
-                <a href="#" class="read-more">Read Full Story &rarr;</a>
+                <p class="news-excerpt">Get ready for the festive season with huge discounts on flour, sugar, and cooking oil across all branches.</p>
+                <a href="order.html" class="news-link">View Offers on WhatsApp <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
 
         <article class="news-card">
-            <div class="news-image" style="background-image: url('assets/new-branch.jpg');"></div>
+            <div class="news-image-container">
+                <span class="news-category" style="background: #DA291C;">Expansion</span>
+                <img src="assets/new-branch.jpg" alt="Naivasha Branch Opening" onerror="this.src='https://placehold.co/600x400?text=New+Branch'">
+            </div>
             <div class="news-content">
-                <span class="news-date">November 25, 2025</span>
+                <span class="news-date"><i class="far fa-calendar-alt"></i> November 25, 2025</span>
                 <h3 class="news-title">Opening Soon: Powerstar Naivasha</h3>
-                <p>We are expanding! Our newest branch in Naivasha will be opening its doors next month. Come celebrate with us.</p>
-                <a href="#" class="read-more">Read Full Story &rarr;</a>
+                <p class="news-excerpt">We are expanding! Our newest branch in Naivasha will be opening its doors next month. Come celebrate with us.</p>
+                <a href="branches.html" class="news-link">See Location <i class="fas fa-arrow-right"></i></a>
             </div>
         </article>
 
         <article class="news-card">
-            <div class="news-image" style="background-image: url('assets/community.jpg');"></div>
+            <div class="news-image-container">
+                <span class="news-category" style="background: #f39c12;">Community</span>
+                <img src="assets/community.jpg" alt="CSR Activity" onerror="this.src='https://placehold.co/600x400?text=Community+Work'">
+            </div>
             <div class="news-content">
-                <span class="news-date">October 15, 2025</span>
+                <span class="news-date"><i class="far fa-calendar-alt"></i> October 15, 2025</span>
                 <h3 class="news-title">Giving Back to the Community</h3>
-                <p>The Powerstar team visited the local children's home to donate food and spend the day with the kids.</p>
-                <a href="#" class="read-more">Read Full Story &rarr;</a>
+                <p class="news-excerpt">The Powerstar team visited the local children's home to donate food and spend the day with the kids.</p>
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" class="news-link">View Photos on Facebook <i class="fas fa-external-link-alt"></i></a>
             </div>
         </article>
 
     </div>
 
-</div>
+</main>
 
 <footer>
-    © 2025 Powerstar Supermarkets. All Rights Reserved.
+    <div class="footer-content">
+        <div class="social-links">
+            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+        </div>
+    </div>
 </footer>
+
 <script>
-    // --- MOBILE MENU TOGGLE ---
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
 
-        // Only run if the button exists on this page
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                
-                // 1. Open/Close the menu
                 navMenu.classList.toggle('active');
-
-                // 2. Change the Icon (Bars <-> X)
                 const icon = menuBtn.querySelector('i');
                 if (navMenu.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
@@ -96,5 +117,6 @@
         }
     });
 </script>
+
 </body>
 </html>
