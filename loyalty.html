@@ -3,9 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Loyalty Card - Powerstar Supermarkets</title>
-<link rel="stylesheet" href="css/style.css">
+<title>Loyalty Program - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    /* --- 1. DESIGN SYSTEM --- */
+    :root {
+        --ps-red: #DA291C;
+        --ps-green: #006838;
+        --ps-gold: #D4AF37; /* Premium Loyalty Color */
+        --ps-dark: #1a1a1a;
+        --bg-light: #f8f9fa;
+        --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+        --shadow-deep: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* --- 2. HEADER --- */
+    header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
+    .logo img { height: 45px; width: auto; }
+    .nav-menu { display: flex; gap: 25px; }
+    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+    .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
+
+    /* --- 3. PREMIUM HERO --- */
+    .hero {
+        background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 50, 20, 0.95)), url('assets/loyalty-bg.jpg');
+        background-size: cover; background-position: center;
+        height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: white; text-align: center;
+        position: relative; overflow: hidden;
+    }
+    /* Gold Accent */
+    .hero::after {
+        content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 5px;
+        background: linear-gradient(90deg, var(--ps-green), var(--ps-gold), var(--ps-green));
+    }
+    .hero h1 { font-size: 3rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+    .hero p { font-size: 1.2rem; opacity: 0.95; font-weight: 300; max-width: 600px; }
+
+    /* --- 4. BENEFITS GRID (Why Join?) --- */
+    .benefits-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px; margin-top: -50px; position: relative; z-index: 10; margin-bottom: 60px;
+    }
+    .benefit-card {
+        background: white; padding: 30px 20px; border-radius: 12px;
+        text-align: center; box-shadow: var(--shadow-soft);
+        border-bottom: 3px solid var(--ps-gold); /* Gold Accent */
+        transition: transform 0.3s;
+    }
+    .benefit-card:hover { transform: translateY(-5px); }
+    .benefit-icon {
+        width: 60px; height: 60px; background: #fff8e1; color: var(--ps-gold);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 1.8rem; margin: 0 auto 15px auto;
+    }
+    .benefit-card h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: var(--ps-dark); }
+    .benefit-card p { margin: 0; color: #666; font-size: 0.9rem; }
+
+    /* --- 5. FORM SECTION --- */
+    .form-wrapper {
+        max-width: 700px; margin: 0 auto 80px auto;
+        background: white; border-radius: 16px; box-shadow: var(--shadow-deep);
+        overflow: hidden; border: 1px solid #eee;
+    }
+    .form-header {
+        background: #f4f9f4; padding: 30px; text-align: center; border-bottom: 1px solid #eee;
+    }
+    .form-header h2 { color: var(--ps-green); margin: 0 0 5px 0; font-size: 1.8rem; }
+    .form-header p { color: #666; margin: 0; }
+
+    .loyalty-form { padding: 40px; }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; color: #444; margin-bottom: 8px; font-size: 0.9rem; }
+    .form-group input, .form-group select {
+        width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;
+        font-size: 1rem; color: #333; transition: border 0.3s; font-family: 'Poppins', sans-serif;
+    }
+    .form-group input:focus, .form-group select:focus {
+        border-color: var(--ps-green); outline: none; box-shadow: 0 0 0 3px rgba(0, 104, 56, 0.1);
+    }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } /* 2 Column layout */
+
+    .btn-submit {
+        background: var(--ps-whatsapp); color: white; width: 100%;
+        padding: 15px; font-size: 1.1rem; font-weight: 700; border: none; border-radius: 50px;
+        cursor: pointer; transition: background 0.3s, transform 0.2s;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-submit:hover { background: #1ebe57; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+
+    /* --- 6. FOOTER --- */
+    footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; margin-top: auto; border-top: 6px solid var(--ps-red); }
+    .social-links { margin-bottom: 30px; }
+    .social-links a { 
+        display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; 
+        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
+    .copyright { font-size: 0.9rem; opacity: 0.7; }
+
+    @media (max-width: 768px) {
+        .mobile-toggle { display: block; }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .nav-menu.active { display: flex; }
+        .hero h1 { font-size: 2rem; }
+        .form-grid { grid-template-columns: 1fr; } /* Stack form on mobile */
+    }
+</style>
 </head>
 <body>
 
@@ -13,41 +130,79 @@
     <div class="header-inner">
         <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        <nav id="nav-menu">
+        <nav class="nav-menu" id="nav-menu">
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About Us</a> <a href="services.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a> <a href="loyalty.html">Loyalty</a>
-            <a href="careers.html">Careers</a>
+            <a href="order.html">Order Online</a>
+            <a href="loyalty.html" class="active">Loyalty</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
+<div class="hero">
+    <h1>The Powerstar Family</h1>
+    <p>Unlock exclusive savings, earn points, and enjoy member-only perks.</p>
+</div>
+
 <main class="container">
-    <section class="loyalty-section" style="padding: 40px 0;">
-        <div class="loyalty-card" style="max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-top: 5px solid #006838;">
+
+    <div class="benefits-grid">
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-coins"></i></div>
+            <h3>Earn Points</h3>
+            <p>Get 1 point for every 100 KES spent. Redeem points for shopping vouchers.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-percent"></i></div>
+            <h3>Member Prices</h3>
+            <p>Enjoy exclusive discounts on selected items marked with the Gold Tag.</p>
+        </div>
+        <div class="benefit-card">
+            <div class="benefit-icon"><i class="fas fa-gift"></i></div>
+            <h3>Birthday Treats</h3>
+            <p>Special offers and bonus points during your birthday month.</p>
+        </div>
+    </div>
+
+    <div class="form-wrapper">
+        <div class="form-header">
+            <h2>Join the Club</h2>
+            <p>Fill in your details below to register via WhatsApp.</p>
+        </div>
+        
+        <form id="loyaltyForm" class="loyalty-form">
             
-            <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="color: #006838; margin-bottom: 10px; font-size: 1.8rem;">Join the Family</h2>
-                <p style="color: #666;">Sign up for the Powerstar Loyalty Card via WhatsApp.</p>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" placeholder="e.g. John Kamau" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="phone" placeholder="07XX XXX XXX" pattern="[0-9]{10}" required>
+                </div>
             </div>
-    
-            <form id="loyaltyForm" class="contact-column"> <label>Full Name</label>
-                <input type="text" id="fullName" placeholder="e.g. John Kamau" required>
-    
-                <label>Email Address</label>
-                <input type="email" id="email" placeholder="john@email.com" required>
-    
-                <label>Phone Number</label>
-                <input type="tel" id="phone" placeholder="07XX XXX XXX" pattern="[0-9]{10}" required>
-    
-                <label>National ID</label>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="email" placeholder="john@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Date of Birth</label>
+                    <input type="date" id="dob" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>National ID Number</label>
                 <input type="text" id="nationalId" placeholder="ID Number" required>
-    
-                <label>Date of Birth</label>
-                <input type="date" id="dob" required>
-    
+            </div>
+
+            <div class="form-group">
                 <label>Preferred Branch</label>
                 <select id="branch" required>
                     <option value="" disabled selected>-- Select Your Branch --</option>
@@ -63,28 +218,27 @@
                     <option value="Zimmerman Base">Zimmerman Base</option>
                     <option value="Zimmerman Express">Zimmerman Express</option>
                 </select>
-    
-                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 10px;">
-                    <i class="fab fa-whatsapp"></i> Request Card via WhatsApp
-                </button>
-                
-                <div id="loyaltyStatus" style="text-align: center; margin-top: 15px; font-weight: bold;"></div>
-            </form>
-        </div>
-    </section>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                <i class="fab fa-whatsapp"></i> Submit Application
+            </button>
+            
+            <div id="loyaltyStatus" style="text-align: center; margin-top: 15px; font-weight: 600; font-size: 0.9rem;"></div>
+        </form>
+    </div>
+
 </main>
 
 <footer>
     <div class="footer-content">
+        <h4 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Follow Us</h4>
         <div class="social-links">
-            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
@@ -93,6 +247,7 @@
 </footer>
 
 <script>
+    // --- 1. WHATSAPP LOGIC ---
     const branchContacts = {
         "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
         "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
@@ -110,44 +265,36 @@
         const branchKey = document.getElementById('branch').value;
         const status = document.getElementById('loyaltyStatus');
 
+        // Default to HQ if branch not found
         let targetNumber = branchContacts[branchKey] || "254790680038";
 
-        const msg = `*New Loyalty Card Request*\nBranch: ${branchKey}\nName: ${fullName}\nPhone: ${phone}\nID: ${nationalId}\nEmail: ${email}\nDOB: ${dob}`;
+        const msg = `*New Loyalty Card Request*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nEmail: ${email}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
         const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
 
-        status.innerText = "Redirecting to WhatsApp...";
-        status.style.color = "green";
+        status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting to WhatsApp...';
+        status.style.color = "var(--ps-green)";
 
-        setTimeout(() => { window.open(url, '_blank'); }, 1000);
+        setTimeout(() => { window.open(url, '_blank'); status.innerHTML = ''; }, 1500);
     });
 
-</script>
-<script>
-    // --- MOBILE MENU TOGGLE ---
+    // --- 2. MOBILE MENU ---
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
-
-        // Only run if the button exists on this page
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                
-                // 1. Open/Close the menu
                 navMenu.classList.toggle('active');
-
-                // 2. Change the Icon (Bars <-> X)
                 const icon = menuBtn.querySelector('i');
                 if (navMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
                 } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
                 }
             });
         }
     });
 </script>
+
 </body>
 </html>
