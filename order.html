@@ -5,114 +5,257 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Order & Collect - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- ARCHITECTURAL STYLING (The Skin) --- */
+    /* --- 1. GLOBAL VARIABLES & RESET --- */
     :root {
-        --ps-red: #DA291C;       /* Powerstar Red */
-        --ps-green: #006838;     /* Powerstar Green */
-        --ps-whatsapp: #25D366;  /* WhatsApp Brand Green */
-        --gray-bg: #fdfdfd;
-        --gray-border: #e9ecef;
-        --text-dark: #2c3e50;
+        --ps-red: #DA291C;
+        --ps-green: #006838;
+        --ps-whatsapp: #25D366;
+        --ps-dark: #1a1a1a;
+        --bg-light: #f8f9fa;
+        --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
+        --shadow-hover: 0 15px 40px rgba(0,0,0,0.1);
     }
 
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--gray-bg); margin: 0; }
+    * { box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* --- 2. HEADER & NAVIGATION (Restored) --- */
+    header {
+        background: white;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: relative;
+        z-index: 100;
+    }
+    .header-inner {
+        display: flex; justify-content: space-between; align-items: center;
+        height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto;
+    }
+    .logo img { height: 45px; width: auto; } /* Ensure you have logo.png in assets */
     
-    .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+    /* Desktop Nav */
+    .nav-menu { display: flex; gap: 25px; }
+    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+    .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
 
-    .page-header {
-        text-align: center; margin-bottom: 50px;
+    /* Mobile Toggle */
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
+
+    /* --- 3. HERO SECTION (Modern Clip-Path) --- */
+    .hero {
+        background: linear-gradient(135deg, var(--ps-red) 0%, #b31b1b 100%);
+        color: white;
+        text-align: center;
+        padding: 60px 20px 120px 20px; /* Extra bottom padding for overlap */
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
-    .page-header h1 { color: var(--ps-red); margin-bottom: 10px; }
-    .page-header p { color: #666; font-size: 1.1rem; }
+    .hero h1 { font-size: 2.5rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+    .hero p { font-size: 1.1rem; opacity: 0.95; font-weight: 300; margin: 0; }
 
-    /* The Grid System */
+    /* --- 4. STEPS SECTION (Floating Cards) --- */
+    .steps-container {
+        margin-top: -80px; /* Overlaps the red hero */
+        position: relative;
+        z-index: 10;
+        margin-bottom: 60px;
+    }
+    .section-title {
+        text-align: center; margin-bottom: 30px; color: var(--ps-green); 
+        text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
+    }
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+    }
+    .step-card {
+        background: white;
+        padding: 30px 20px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: var(--shadow-card);
+        border-bottom: 4px solid transparent;
+        transition: transform 0.3s ease;
+    }
+    .step-card:hover {
+        transform: translateY(-5px);
+        border-bottom-color: var(--ps-green);
+        box-shadow: var(--shadow-hover);
+    }
+    .step-icon-wrapper {
+        width: 60px; height: 60px;
+        background: rgba(0, 104, 56, 0.08);
+        color: var(--ps-green);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.5rem; margin: 0 auto 15px auto; position: relative;
+    }
+    .step-badge {
+        position: absolute; top: -2px; right: -2px;
+        background: var(--ps-red); color: white;
+        width: 22px; height: 22px; border-radius: 50%;
+        font-size: 0.75rem; font-weight: bold;
+        display: flex; align-items: center; justify-content: center;
+        border: 2px solid white;
+    }
+    .step-card h3 { font-size: 1.1rem; margin: 0 0 8px 0; color: var(--ps-dark); }
+    .step-card p { font-size: 0.9rem; color: #666; margin: 0; line-height: 1.5; }
+
+    /* --- 5. BRANCH GRID (From your code) --- */
+    .list-header { text-align: center; margin-bottom: 30px; border-top: 1px solid #eee; padding-top: 40px; }
+    .list-header h2 { color: var(--ps-red); font-size: 1.8rem; margin: 0; }
+    
     .department-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 25px;
+        padding-bottom: 60px;
     }
-
-    /* The Branch Card Design */
     .branch-card {
         background: white;
-        border: 1px solid var(--gray-border);
-        border-left: 5px solid var(--ps-red); /* Brand Accent */
+        border: 1px solid #eee;
+        border-left: 5px solid var(--ps-red);
         border-radius: 8px;
         padding: 25px;
         transition: all 0.3s ease;
         display: flex; flex-direction: column; justify-content: space-between;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
     }
-
-    /* Hover Interaction */
     .branch-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-        border-left-color: var(--ps-green); /* Changes to Green on hover */
+        border-left-color: var(--ps-green);
     }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+    .branch-name { margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--ps-dark); }
+    .branch-details { margin-bottom: 20px; }
+    .detail-row { display: flex; align-items: flex-start; gap: 10px; color: #555; font-size: 0.9rem; margin-bottom: 8px; }
+    .detail-row i { color: var(--ps-red); width: 18px; margin-top: 3px; }
 
-    .card-header {
-        display: flex; justify-content: space-between; align-items: flex-start;
-        margin-bottom: 20px;
-    }
-
-    .branch-name {
-        margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--text-dark);
-    }
-
-    .branch-icon {
-        color: #eee; font-size: 1.8rem; transition: color 0.3s;
-    }
-    .branch-card:hover .branch-icon { color: var(--ps-green); }
-
-    .branch-details { margin-bottom: 25px; }
-    
-    .detail-row {
-        display: flex; align-items: center; gap: 12px;
-        color: #555; font-size: 0.95rem; margin-bottom: 10px;
-    }
-    .detail-row i { color: var(--ps-red); width: 20px; text-align: center; }
-
-    /* The WhatsApp Button */
     .whatsapp-btn {
-        background: #f8f9fa;
-        color: var(--ps-green);
-        text-decoration: none;
-        padding: 14px;
-        border-radius: 6px;
-        font-weight: 700;
-        text-align: center;
+        background: white; color: var(--ps-green);
+        text-decoration: none; padding: 12px; border-radius: 6px;
+        font-weight: 600; text-align: center;
         border: 1px solid var(--ps-whatsapp);
-        transition: all 0.2s;
-        display: flex; align-items: center; justify-content: center; gap: 10px;
+        transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
     }
-    
-    .whatsapp-btn:hover {
-        background: var(--ps-whatsapp);
-        color: white;
-        box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+    .whatsapp-btn:hover { background: var(--ps-whatsapp); color: white; }
+
+    /* --- 6. FOOTER --- */
+    footer { background: #222; color: #aaa; padding: 40px 20px; text-align: center; margin-top: auto; }
+    .social-links { margin-bottom: 20px; }
+    .social-links a { display: inline-block; width: 40px; height: 40px; background: #333; color: white; border-radius: 50%; line-height: 40px; margin: 0 5px; transition: background 0.3s; }
+    .social-links a:hover { background: var(--ps-red); }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+        .mobile-toggle { display: block; }
+        .nav-menu {
+            display: none; flex-direction: column;
+            position: absolute; top: 70px; left: 0; width: 100%;
+            background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .nav-menu.active { display: flex; }
+        .hero h1 { font-size: 1.8rem; }
+        .steps-container { margin-top: -40px; }
     }
 </style>
 </head>
 <body>
 
+<header>
+    <div class="header-inner">
+        <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
+        <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="branches.html">Branches</a>
+            <a href="order.html" class="active">Order Online</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="container">
+        <h1><i class="fab fa-whatsapp"></i> Shop on WhatsApp</h1>
+        <p>Skip the line. Order ahead and pick up at your convenience.</p>
+    </div>
+</div>
+
 <main class="container">
-    <div class="page-header">
-        <h1>Select Your Branch</h1>
-        <p>Choose a location below to start your order via WhatsApp.</p>
+
+    <div class="steps-container">
+        <div class="section-title">How "Click & Collect" Works</div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon-wrapper"><i class="fas fa-map-marker-alt"></i><div class="step-badge">1</div></div>
+                <h3>Choose Branch</h3>
+                <p>Select your nearest Powerstar branch from the list below.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon-wrapper"><i class="fas fa-clipboard-list"></i><div class="step-badge">2</div></div>
+                <h3>Send List</h3>
+                <p>Click to open WhatsApp. Send us your shopping list.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon-wrapper"><i class="fas fa-mobile-alt"></i><div class="step-badge">3</div></div>
+                <h3>Confirm & Pay</h3>
+                <p>We confirm stock availability. You pay via <b>M-PESA Till</b>.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon-wrapper"><i class="fas fa-shopping-bag"></i><div class="step-badge">4</div></div>
+                <h3>Pick Up</h3>
+                <p>Pass by the <b>"Weka Mzigo"</b> counter and collect your goods.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="list-header">
+        <h2>Start Your Order</h2>
+        <p style="color:#777; margin-top: 5px;">Select a branch to chat immediately</p>
     </div>
 
     <div id="branchContainer" class="department-grid"></div>
+
 </main>
 
+<footer>
+    <div class="footer-content">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+    </div>
+</footer>
+
 <script>
-    /* --- DATA LAYER: Your Branch List --- 
-       I have updated all phone numbers to match your original request.
-       I inferred the 'Location' based on the name. 
-    */
+    // 1. MOBILE MENU TOGGLE
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+    
+    if(menuBtn){
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            if(navMenu.classList.contains('active')){
+                icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+            }
+        });
+    }
+
+    // 2. BRANCH DATA (Your specific list with locations)
     const branches = [
         { name: "Kasarani HQ",      phone: "0790 680 038", location: "Kasarani-Mwiki Road" },
         { name: "Naivasha Branch",  phone: "0768 016 429", location: "Naivasha Town" },
@@ -129,24 +272,21 @@
 
     const container = document.getElementById('branchContainer');
 
-    // Helper: Formats the WhatsApp Link correctly
+    // 3. WHATSAPP LINK GENERATOR
     function getWhatsAppLink(phone, branchName) {
-        // Removes spaces, removes leading zero, adds 254
         const cleanNumber = "254" + phone.replace(/\s/g, '').substring(1);
         const text = encodeURIComponent(`Hi Powerstar ${branchName}, I would like to order...`);
         return `https://wa.me/${cleanNumber}?text=${text}`;
     }
 
-    // Render Logic: Loops through the list above and creates the HTML cards
+    // 4. RENDER CARDS
     branches.forEach(branch => {
         const card = document.createElement('div');
         card.className = 'branch-card';
-        
-        // This HTML structure creates the clean "No-Photo" design
         card.innerHTML = `
             <div class="card-header">
                 <h3 class="branch-name">${branch.name}</h3>
-                <i class="fas fa-store branch-icon"></i>
+                <i class="fas fa-store branch-icon" style="color:#eee;"></i>
             </div>
             
             <div class="branch-details">
