@@ -4,8 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact - Powerstar Supermarkets</title>
-<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    /* --- 1. DESIGN SYSTEM --- */
+    :root {
+        --ps-red: #DA291C;
+        --ps-green: #006838;
+        --ps-whatsapp: #25D366;
+        --ps-dark: #1a1a1a;
+        --bg-light: #f8f9fa;
+        --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+        --shadow-deep: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* --- 2. HEADER --- */
+    header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
+    .logo img { height: 45px; width: auto; }
+    .nav-menu { display: flex; gap: 25px; }
+    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+    .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
+
+    /* --- 3. HERO SECTION --- */
+    .hero {
+        background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 50, 20, 0.95)), url('assets/contact-bg.jpg'); 
+        background-size: cover; background-position: center;
+        height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: white; text-align: center;
+    }
+    .hero h1 { font-size: 3rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+    .hero p { font-size: 1.1rem; opacity: 0.95; font-weight: 300; max-width: 600px; }
+
+    /* --- 4. FLOATING INFO CARDS --- */
+    .features-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px; margin-top: -50px; position: relative; z-index: 10; margin-bottom: 60px;
+    }
+    .info-card {
+        background: white; padding: 30px 20px; border-radius: 12px;
+        text-align: center; box-shadow: var(--shadow-soft);
+        border-bottom: 4px solid transparent; transition: transform 0.3s ease;
+    }
+    .info-card:hover { transform: translateY(-5px); border-bottom-color: var(--ps-red); }
+    
+    .info-card i { font-size: 2.5rem; margin-bottom: 15px; display: inline-block; }
+    .info-card h4 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--ps-dark); }
+    .info-card p { font-size: 0.95rem; color: #666; margin: 0; line-height: 1.5; }
+
+    /* --- 5. DUAL CONTACT FORMS (The Masterpiece) --- */
+    .section-intro { text-align: center; margin-bottom: 40px; }
+    .section-intro h2 { color: var(--ps-dark); font-size: 2rem; margin-bottom: 10px; }
+    .section-intro p { color: #666; }
+
+    .contact-split-wrapper {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px;
+    }
+
+    .form-container {
+        background: white; border-radius: 16px; overflow: hidden;
+        box-shadow: var(--shadow-deep); border: 1px solid #eee;
+    }
+    
+    .form-header { padding: 30px; text-align: center; color: white; }
+    .form-header h2 { margin: 0; font-size: 1.5rem; }
+    .form-header p { margin: 5px 0 0 0; opacity: 0.9; font-size: 0.9rem; }
+
+    /* Theme 1: Customer (Green) */
+    .form-customer .form-header { background: var(--ps-green); }
+    .form-customer .button { background: var(--ps-whatsapp); color: white; }
+    .form-customer .button:hover { background: #1ebe57; }
+
+    /* Theme 2: Vendor (Red) */
+    .form-vendor .form-header { background: var(--ps-red); }
+    .form-vendor .button { background: var(--ps-dark); color: white; }
+    .form-vendor .button:hover { background: #333; }
+
+    form { padding: 30px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 8px; color: #444; }
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; font-size: 0.95rem;
+    }
+    .button {
+        width: 100%; padding: 15px; border: none; border-radius: 50px;
+        font-weight: 700; font-size: 1rem; cursor: pointer; transition: 0.3s;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+
+    /* --- 6. FOOTER --- */
+    footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; margin-top: auto; border-top: 6px solid var(--ps-red); }
+    .social-links { margin-bottom: 30px; }
+    .social-links a { 
+        display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; 
+        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
+    .copyright { font-size: 0.9rem; opacity: 0.7; }
+
+    @media (max-width: 900px) {
+        .contact-split-wrapper { grid-template-columns: 1fr; } /* Stack on tablet/mobile */
+    }
+    @media (max-width: 768px) {
+        .mobile-toggle { display: block; }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .nav-menu.active { display: flex; }
+        .hero h1 { font-size: 2.2rem; }
+    }
+</style>
 </head>
 <body>
 
@@ -13,46 +128,41 @@
     <div class="header-inner">
         <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        <nav id="nav-menu">
+        <nav class="nav-menu" id="nav-menu">
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
             <a href="order.html">Order Online</a>
             <a href="loyalty.html">Loyalty</a>
-            <a href="careers.html">Careers</a>
             <a href="contact.html" class="active">Contact</a>
         </nav>
     </div>
 </header>
 
-<div class="hero" style="height: 50vh; min-height: 350px;">
+<div class="hero">
     <h1>Get in Touch</h1>
     <p>We are here to help. Reach out to the right team instantly.</p>
 </div>
 
 <main class="container">
 
-    <div class="features-grid" style="margin-top: -100px; position: relative; z-index: 2; margin-bottom: 60px;">
-        
+    <div class="features-grid">
         <div class="info-card">
-            <i class="fas fa-map-marker-alt" style="font-size: 2.5rem; color: var(--brand-green); margin-bottom: 15px;"></i>
+            <i class="fas fa-map-marker-alt" style="color: var(--ps-green);"></i>
             <h4>Head Office</h4>
-            <p style="color: var(--text-muted);">Kasarani - Mwiki Road<br>Nairobi, Kenya</p>
+            <p>Kasarani - Mwiki Road<br>Nairobi, Kenya</p>
         </div>
-
         <div class="info-card">
-            <i class="fas fa-phone-alt" style="font-size: 2.5rem; color: var(--brand-red); margin-bottom: 15px;"></i>
+            <i class="fas fa-phone-alt" style="color: var(--ps-red);"></i>
             <h4>Customer Hotline</h4>
-            <p style="color: var(--text-muted);">+254 790 680 038<br>Mon - Sat (8am - 6pm)</p>
+            <p>+254 790 680 038<br>Mon - Sat (8am - 6pm)</p>
         </div>
-
         <div class="info-card">
-            <i class="fas fa-envelope" style="font-size: 2.5rem; color: var(--brand-green); margin-bottom: 15px;"></i>
+            <i class="fas fa-envelope" style="color: var(--ps-green);"></i>
             <h4>Email Us</h4>
-            <p style="color: var(--text-muted);">info@powerstar.co.ke<br>sales@powerstar.co.ke</p>
+            <p>info@powerstar.co.ke<br>sales@powerstar.co.ke</p>
         </div>
-
     </div>
 
     <div class="section-intro">
@@ -62,9 +172,9 @@
 
     <div class="contact-split-wrapper">
 
-        <div class="form-container" style="width: 100%;">
+        <div class="form-container form-customer">
             <div class="form-header">
-                <i class="fab fa-whatsapp" style="font-size: 3rem; color: var(--brand-green); margin-bottom: 10px;"></i>
+                <i class="fab fa-whatsapp" style="font-size: 3rem; margin-bottom: 10px;"></i>
                 <h2>Customer Care</h2>
                 <p>For Feedback, Inquiries & Compliments</p>
             </div>
@@ -98,17 +208,17 @@
                     <textarea id="custMessage" placeholder="How can we help you today?" required rows="4"></textarea>
                 </div>
 
-                <button type="submit" class="button btn-whatsapp" style="margin-top: 20px;">
+                <button type="submit" class="button">
                     Start WhatsApp Chat <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
         </div>
 
-        <div class="form-container form-theme-red" style="width: 100%;">
+        <div class="form-container form-vendor">
             <div class="form-header">
-                <i class="fas fa-truck" style="font-size: 3rem; color: var(--brand-red); margin-bottom: 10px;"></i>
-                <h2>Sales & Marketing</h2>
-                <p>For Suppliers & Bulk Orders</p>
+                <i class="fas fa-truck" style="font-size: 3rem; margin-bottom: 10px;"></i>
+                <h2>Sales & Suppliers</h2>
+                <p>For Bulk Orders & New Product Listings</p>
             </div>
             
             <form id="vendorForm">
@@ -131,26 +241,25 @@
                     <textarea id="vendMessage" placeholder="Briefly describe your offer..." required rows="4"></textarea>
                 </div>
 
-                <button type="submit" class="button btn-primary" style="width: 100%; background: var(--brand-red); margin-top: 20px;">
+                <button type="submit" class="button">
                     Contact Sales HQ <i class="fas fa-briefcase"></i>
                 </button>
             </form>
         </div>
 
     </div>
+
 </main>
 
 <footer>
     <div class="footer-content">
+        <h4 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Follow Us</h4>
         <div class="social-links">
-            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
@@ -159,7 +268,7 @@
 </footer>
 
 <script>
-    // --- 1. WhatsApp Logic (Restored & Cleaned) ---
+    // --- 1. SMART ROUTING LOGIC ---
     const branchNumbers = {
         "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
         "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
@@ -168,25 +277,35 @@
     };
     const SALES_TEAM = "254706246939"; // General Sales Line
 
+    // Customer Form Handler
     document.getElementById('customerForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const branch = document.getElementById('custBranch').value;
-        const msg = `*Customer Feedback*\nBranch: ${branch}\nName: ${document.getElementById('custName').value}\nMsg: ${document.getElementById('custMessage').value}`;
-        const num = branchNumbers[branch] || "254790680038";
-        window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
+        const name = document.getElementById('custName').value;
+        const message = document.getElementById('custMessage').value;
+        
+        // Find the correct phone number, default to HQ if missing
+        const targetNumber = branchNumbers[branch] || "254790680038";
+        
+        const msg = `*Customer Feedback*\n----------------\nBranch: ${branch}\nName: ${name}\nMessage: ${message}`;
+        window.open(`https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     });
 
+    // Vendor Form Handler
     document.getElementById('vendorForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const msg = `*Supplier Inquiry*\nCompany: ${document.getElementById('vendCompany').value}\nType: ${document.getElementById('vendType').value}\nMsg: ${document.getElementById('vendMessage').value}`;
+        const company = document.getElementById('vendCompany').value;
+        const type = document.getElementById('vendType').value;
+        const message = document.getElementById('vendMessage').value;
+        
+        const msg = `*Supplier Inquiry*\n----------------\nCompany: ${company}\nType: ${type}\nDetails: ${message}`;
         window.open(`https://wa.me/${SALES_TEAM}?text=${encodeURIComponent(msg)}`, '_blank');
     });
 
-    // --- 2. Mobile Menu Toggle ---
+    // --- 2. MOBILE MENU ---
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
-
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', function(e) {
                 e.preventDefault(); 
