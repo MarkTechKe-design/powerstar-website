@@ -56,7 +56,7 @@
     .hero h1 { font-size: 2.5rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
     .hero p { font-size: 1.1rem; opacity: 0.95; font-weight: 300; margin: 0; }
 
-    /* --- 4. STEPS SECTION --- */
+    /* --- 4. STEPS SECTION (GRID FIX) --- */
     .steps-container {
         margin-top: -80px;
         position: relative;
@@ -67,11 +67,14 @@
         text-align: center; margin-bottom: 30px; color: var(--ps-green); 
         text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
     }
+    
+    /* Responsive Grid for Steps */
     .steps-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: 1fr; /* Mobile Default: 1 column */
         gap: 20px;
     }
+    
     .step-card {
         background: white;
         padding: 30px 20px;
@@ -105,22 +108,36 @@
     .step-card h3 { font-size: 1.1rem; margin: 0 0 8px 0; color: var(--ps-dark); }
     .step-card p { font-size: 0.9rem; color: #666; margin: 0; line-height: 1.5; }
 
-    /* --- 5. BRANCH GRID --- */
+    /* --- 5. BRANCH GRID (FIXED SIDE BY SIDE) --- */
     .list-header { text-align: center; margin-bottom: 30px; border-top: 1px solid #eee; padding-top: 40px; }
     .list-header h2 { color: var(--ps-red); font-size: 1.8rem; margin: 0; }
     
+    /* THE FIX: Explicit Grid Columns */
     .department-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 25px;
+        grid-template-columns: 1fr; /* Mobile: 1 Column */
+        gap: 20px;
         padding-bottom: 60px;
     }
+
+    /* Tablet: 2 Columns */
+    @media (min-width: 768px) {
+        .steps-grid { grid-template-columns: repeat(2, 1fr); }
+        .department-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Desktop: 3 Columns (Strict Side-by-Side) */
+    @media (min-width: 1024px) {
+        .steps-grid { grid-template-columns: repeat(4, 1fr); } /* 4 Steps side by side */
+        .department-grid { grid-template-columns: repeat(3, 1fr); } /* 3 Branches side by side */
+    }
+
     .branch-card {
         background: white;
         border: 1px solid #eee;
         border-left: 5px solid var(--ps-red);
         border-radius: 8px;
-        padding: 25px;
+        padding: 20px; /* Reduced padding slightly to save space */
         transition: all 0.3s ease;
         display: flex; flex-direction: column; justify-content: space-between;
         box-shadow: 0 2px 5px rgba(0,0,0,0.02);
@@ -145,42 +162,29 @@
     }
     .whatsapp-btn:hover { background: var(--ps-whatsapp); color: white; }
 
-    /* --- 6. FOOTER (UPDATED TO BRAND COLORS) --- */
+    /* --- 6. FOOTER (BRANDED) --- */
     footer { 
-        background-color: var(--ps-green); /* Brand Green Background */
+        background-color: var(--ps-green); 
         color: white; 
         padding: 50px 20px; 
         text-align: center; 
         margin-top: auto; 
-        border-top: 6px solid var(--ps-red); /* Brand Red Top Border */
+        border-top: 6px solid var(--ps-red);
     }
     
-    .footer-content h4 {
-        text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;
-    }
-
+    .footer-content h4 { text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8; }
     .social-links { margin-bottom: 30px; }
-    
     .social-links a { 
         display: inline-flex; align-items: center; justify-content: center;
         width: 45px; height: 45px; 
-        background: rgba(255,255,255,0.1); /* Subtle transparent white */
-        color: white; 
-        border-radius: 50%; 
-        margin: 0 8px; 
-        transition: all 0.3s;
+        background: rgba(255,255,255,0.1); color: white; 
+        border-radius: 50%; margin: 0 8px; transition: all 0.3s;
         border: 1px solid rgba(255,255,255,0.2);
     }
-    
-    .social-links a:hover { 
-        background: var(--ps-red); /* Turns Red on Hover */
-        border-color: var(--ps-red);
-        transform: translateY(-3px);
-    }
-    
+    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
     .copyright { font-size: 0.9rem; opacity: 0.7; }
 
-    /* Mobile Responsiveness */
+    /* Mobile Menu Logic */
     @media (max-width: 768px) {
         .mobile-toggle { display: block; }
         .nav-menu {
