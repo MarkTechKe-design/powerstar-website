@@ -39,14 +39,50 @@
     .hero {
         background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 77, 42, 0.95)), url('assets/hero-pattern.png'); 
         background-color: var(--ps-green);
-        height: 30vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        height: 35vh; /* Increased slightly to accommodate the overlap */
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
         color: white; text-align: center;
     }
     .hero h1 { font-size: 2.5rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
     .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; font-weight: 300; }
 
-    /* --- 4. CATALOG SECTION --- */
-    .catalog-header { text-align: center; margin: 50px 0 40px 0; }
+    /* --- 4. NEW: VALUE PROPOSITION (Trust Signals) --- */
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-top: -50px; /* This creates the floating overlap effect */
+        margin-bottom: 60px;
+        position: relative;
+        z-index: 10;
+    }
+    .value-card {
+        background: white;
+        padding: 30px 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Stronger shadow for lift */
+        border-bottom: 3px solid var(--ps-red);
+        transition: transform 0.3s ease;
+    }
+    .value-card:hover {
+        transform: translateY(-5px);
+    }
+    .icon-circle {
+        width: 70px; height: 70px;
+        background: rgba(0, 104, 56, 0.08);
+        color: var(--ps-green);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.8rem;
+        margin: 0 auto 15px auto;
+    }
+    .value-card h3 { margin: 0 0 10px 0; font-size: 1.1rem; font-weight: 700; color: var(--ps-dark); }
+    .value-card p { margin: 0; font-size: 0.9rem; color: #666; line-height: 1.5; }
+
+
+    /* --- 5. CATALOG SECTION --- */
+    .catalog-header { text-align: center; margin: 0 0 40px 0; }
     .catalog-header h2 { color: var(--ps-dark); font-size: 2rem; margin-bottom: 10px; position: relative; display: inline-block; }
     .catalog-header h2::after { content: ''; display: block; width: 60px; height: 3px; background: var(--ps-red); margin: 10px auto 0; }
     .catalog-header p { color: #666; max-width: 600px; margin: 0 auto; }
@@ -76,7 +112,7 @@
     .dept-features { border-top: 1px dashed #e0e0e0; padding-top: 15px; margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
     .tag { background: #f4f9f4; color: var(--ps-green); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
 
-    /* --- 5. REDESIGNED B2B SECTION (Immersive) --- */
+    /* --- 6. REDESIGNED B2B SECTION (Immersive) --- */
     .b2b-wrapper {
         background: linear-gradient(rgba(0, 104, 56, 0.92), rgba(0, 60, 30, 0.95)), url('assets/wholesale-bg.jpg');
         background-size: cover; background-position: center;
@@ -113,7 +149,7 @@
     }
     .btn-white:hover { transform: translateY(-3px); background: #f0f0f0; }
 
-    /* --- 6. FOOTER --- */
+    /* --- 7. FOOTER --- */
     footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; margin-top: auto; border-top: 6px solid var(--ps-red); }
     .social-links { margin-bottom: 30px; }
     .social-links a { 
@@ -159,6 +195,24 @@
 </div>
 
 <main class="container">
+
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="icon-circle"><i class="fas fa-leaf"></i></div>
+            <h3>Farm Fresh</h3>
+            <p>Sourced directly from local farmers to ensure maximum freshness.</p>
+        </div>
+        <div class="value-card">
+            <div class="icon-circle"><i class="fas fa-tags"></i></div>
+            <h3>Fair Pricing</h3>
+            <p>Competitive prices on all household essentials and premium brands.</p>
+        </div>
+        <div class="value-card">
+            <div class="icon-circle"><i class="fas fa-check-circle"></i></div>
+            <h3>Quality Assured</h3>
+            <p>We strictly inspect all stock to meet our high safety standards.</p>
+        </div>
+    </div>
 
     <div class="catalog-header">
         <h2>Departments</h2>
