@@ -1,189 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Us - Powerstar Supermarkets</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
-
-<style>
-    /* --- COLOR PALETTE (Derived from Logo) --- */
-    :root {
-        --powerstar-green: #006838; /* Deep Logo Green */
-        --powerstar-red: #DA291C;   /* Bright Logo Red */
-        --text-dark: #333333;
-        --text-light: #666666;
-        --bg-light: #f9f9f9;
-        --white: #ffffff;
-    }
-
-    /* --- GLOBAL STYLES --- */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Roboto', sans-serif;
-        background-color: var(--white);
-        color: var(--text-dark);
-        line-height: 1.6;
-    }
-
-    h1, h2, h3 { color: var(--powerstar-green); margin-top: 0; }
-    p { margin-bottom: 1.5em; color: var(--text-light); }
-
-    /* --- HEADER (Mobile Responsive) --- */
-    header {
-        background: var(--white); /* Clean white background for logo pop */
-        border-bottom: 4px solid var(--powerstar-red);
-        padding: 15px 5%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap; /* Allows wrapping on mobile */
-    }
-
-    .brand {
-        display: flex;
-        align-items: center;
-        font-size: 24px;
-        font-weight: 700;
-        color: var(--powerstar-green);
-        text-decoration: none;
-    }
-
-    .brand img {
-        height: 50px;
-        margin-right: 15px;
-    }
-
-    nav { display: flex; gap: 20px; }
-
-    nav a {
-        color: var(--text-dark);
-        text-decoration: none;
-        font-weight: 500;
-        text-transform: uppercase;
-        font-size: 14px;
-        transition: color 0.3s;
-    }
-
-    nav a:hover, nav a.active { color: var(--powerstar-red); }
-
-    /* --- HERO SECTION --- */
-    .page-header {
-        background: var(--powerstar-green);
-        color: white;
-        text-align: center;
-        padding: 60px 20px;
-    }
-    .page-header h1 { color: white; margin: 0; font-size: 2.5rem; }
-    .page-header p { color: #e0e0e0; font-size: 1.2rem; margin-top: 10px; }
-
-    /* --- CONTENT WRAPPER --- */
-    .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 60px 20px;
-    }
-
-    /* --- MISSION & VISION (Grid Layout) --- */
-    .mission-vision-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-        margin-top: 40px;
-    }
-
-    .mv-card {
-        background: var(--bg-light);
-        padding: 40px;
-        border-radius: 8px;
-        border-left: 5px solid var(--powerstar-green);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    /* --- CORE VALUES (Cards) --- */
-    .values-section {
-        margin-top: 60px;
-        text-align: center;
-    }
-
-    .values-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive Grid */
-        gap: 20px;
-        margin-top: 30px;
-    }
-
-    .value-card {
-        background: white;
-        border: 1px solid #eee;
-        padding: 25px;
-        border-radius: 8px;
-        transition: transform 0.2s, box-shadow 0.2s;
-        text-align: left;
-    }
-
-    .value-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        border-top: 3px solid var(--powerstar-red);
-    }
-
-    .value-title {
-        color: var(--powerstar-red);
-        font-weight: bold;
-        font-size: 1.1rem;
-        display: block;
-        margin-bottom: 10px;
-        text-transform: uppercase;
-    }
-
-    /* --- FOOTER --- */
-    <footer>
-    <div class="footer-content">
-        
-        <div class="social-links">
-            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            
-            <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-
-                <a href="https://x.com/powerstar_supermarket" target="_blank" aria-label="X">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="copyright">
-            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
-        </div>
-    </div>
-</footer>
-    }
-
-    /* --- MOBILE RESPONSIVENESS --- */
-    @media (max-width: 768px) {
-        header { flex-direction: column; text-align: center; gap: 15px; }
-        nav { flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .mission-vision-grid { grid-template-columns: 1fr; /* Stack vertically on mobile */ }
-        .page-header h1 { font-size: 2rem; }
-    }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
@@ -193,96 +15,112 @@
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         <nav id="nav-menu">
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About Us</a> <a href="services.html">Products</a>
+            <a href="about.html" class="active">About Us</a>
+            <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a> <a href="loyalty.html">Loyalty</a>
+            <a href="order.html">Order Online</a>
+            <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
-<div class="page-header">
+<div class="hero" style="height: 40vh; background: #006838;">
     <h1>Who We Are</h1>
     <p>Independent. Innovative. Honest.</p>
 </div>
 
-<div class="container">
+<main class="container">
 
     <div style="text-align: center; max-width: 800px; margin: 0 auto 50px auto;">
-        <h2>Welcome to Powerstar</h2>
-        <p style="font-size: 1.1rem;">
+        <h2 style="color: #006838; font-size: 2rem;">Welcome to Powerstar</h2>
+        <p style="font-size: 1.1rem; color: #555; line-height: 1.8;">
             Powerstar Supermarkets is an independent, innovative, and honest sustainable outlet dedicated to providing the most inviting buying environment in the industry. We offer customers a wide range of goods while helping them <strong>save time and money every day</strong>.
         </p>
     </div>
 
     <div class="mission-vision-grid">
         <div class="mv-card">
-            <h3>Our Mission</h3>
-            <p>To be an independent, innovative, honest, and sustainable outlet in which customers are able to choose from a wide range of goods and offering the most inviting buying environment in the industry while saving the customer time and money everyday.</p>
+            <h3><i class="fas fa-bullseye" style="margin-right: 10px;"></i> Our Mission</h3>
+            <p>To be an independent, innovative, honest, and sustainable outlet where customers choose from a wide range of goods in the most inviting buying environment, saving them time and money everyday.</p>
         </div>
         <div class="mv-card">
-            <h3>Our Vision</h3>
-            <p>To deliver an exceptional shopping experience by offering the best service, value, quality, and freshest products while being good stewards of our environment and giving back to the community we serve.</p>
+            <h3><i class="fas fa-eye" style="margin-right: 10px;"></i> Our Vision</h3>
+            <p>To deliver an exceptional shopping experience by offering the best service, value, quality, and freshest products while being good stewards of our environment and giving back to the community.</p>
         </div>
     </div>
 
     <div class="values-section">
-        <h2>Our Core Values</h2>
+        <h2 style="color: #006838;">Our Core Values</h2>
         <p>The principles that guide us everyday.</p>
         
         <div class="values-grid">
             <div class="value-card">
+                <i class="fas fa-users" style="font-size: 2rem; color: #ddd; margin-bottom: 15px;"></i>
                 <span class="value-title">Teamwork</span>
-                Meeting our challenges and opportunities as one team and focused on common goals.
+                <p>Meeting our challenges and opportunities as one team focused on common goals.</p>
             </div>
             
             <div class="value-card">
+                <i class="fas fa-handshake" style="font-size: 2rem; color: #ddd; margin-bottom: 15px;"></i>
                 <span class="value-title">Respect</span>
-                Treating our colleagues, customers, suppliers, and venders with respect and dignity.
+                <p>Treating our colleagues, customers, and suppliers with respect and dignity.</p>
             </div>
             
             <div class="value-card">
+                <i class="fas fa-star" style="font-size: 2rem; color: #ddd; margin-bottom: 15px;"></i>
                 <span class="value-title">Excellence</span>
-                Striving for excellence and working to improve everyday.
+                <p>Striving for excellence and working to improve everyday.</p>
             </div>
             
             <div class="value-card">
+                <i class="fas fa-check-circle" style="font-size: 2rem; color: #ddd; margin-bottom: 15px;"></i>
                 <span class="value-title">Accountability</span>
-                Holding ourselves accountable for delivering results and doing the right thing everyday.
+                <p>Holding ourselves accountable for delivering results and doing the right thing.</p>
             </div>
 
              <div class="value-card">
+                <i class="fas fa-heart" style="font-size: 2rem; color: #ddd; margin-bottom: 15px;"></i>
                 <span class="value-title">Passion</span>
-                Offering our customers the best shopping experience by exceeding their expectations.
+                <p>Offering our customers the best shopping experience by exceeding their expectations.</p>
             </div>
         </div>
     </div>
 
-    <div style="text-align: center; margin-top: 80px;">
-        <h2 style="font-style: italic; color: var(--powerstar-red);">...save everyday!</h2>
+    <div style="text-align: center; margin-top: 80px; margin-bottom: 40px;">
+        <h2 style="font-style: italic; color: #DA291C; font-size: 2rem;">...save everyday!</h2>
     </div>
 
-</div>
+</main>
 
 <footer>
-    &copy; 2025 Powerstar Supermarkets. All Rights Reserved.
+    <div class="footer-content">
+        <div class="social-links">
+            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+        </div>
+    </div>
 </footer>
+
 <script>
-    // --- MOBILE MENU TOGGLE ---
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
 
-        // Only run if the button exists on this page
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                
-                // 1. Open/Close the menu
                 navMenu.classList.toggle('active');
-
-                // 2. Change the Icon (Bars <-> X)
                 const icon = menuBtn.querySelector('i');
                 if (navMenu.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
@@ -295,5 +133,6 @@
         }
     });
 </script>
+
 </body>
 </html>
