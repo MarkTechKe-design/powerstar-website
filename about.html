@@ -4,8 +4,163 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Our Story - Powerstar Supermarkets</title>
-<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    /* --- 1. DESIGN SYSTEM --- */
+    :root {
+        --ps-red: #DA291C;
+        --ps-green: #006838;
+        --ps-dark: #1a1a1a;
+        --bg-light: #f8f9fa;
+        --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+        --shadow-deep: 0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* --- 2. HEADER --- */
+    header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
+    .logo img { height: 45px; width: auto; }
+    .nav-menu { display: flex; gap: 25px; }
+    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+    .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
+    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
+
+    /* --- 3. ARTISTIC HERO SECTION --- */
+    .hero {
+        background: linear-gradient(rgba(0, 50, 25, 0.8), rgba(0, 30, 15, 0.9)), url('assets/supermarket-bg.jpg');
+        background-attachment: fixed; /* Parallax Effect */
+        background-size: cover; background-position: center;
+        height: 60vh;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: white; text-align: center;
+        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    }
+    .hero-eyebrow { 
+        color: var(--ps-red); font-weight: 700; letter-spacing: 3px; 
+        text-transform: uppercase; margin-bottom: 15px; 
+        background: rgba(255,255,255,0.1); padding: 8px 20px; 
+        border-radius: 50px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero h1 { font-size: 3.5rem; margin: 0 0 15px 0; font-weight: 700; letter-spacing: -1px; }
+    .hero p { font-size: 1.25rem; opacity: 0.9; font-weight: 300; max-width: 600px; }
+
+    /* --- 4. THE STORY (Split Layout) --- */
+    .corporate-split {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+        align-items: center; margin: 80px 0;
+    }
+    .corporate-text h2 { font-size: 2.5rem; color: var(--ps-dark); margin-bottom: 25px; position: relative; }
+    .corporate-text h2::after { content: ''; display: block; width: 80px; height: 4px; background: var(--ps-green); margin-top: 10px; border-radius: 2px; }
+    .corporate-text p { font-size: 1.05rem; line-height: 1.8; color: #555; margin-bottom: 20px; }
+    .signature { font-family: 'Dancing Script', cursive; font-size: 2rem; color: var(--ps-red); margin-top: 30px; transform: rotate(-2deg); display: inline-block; }
+    
+    .corporate-image { position: relative; }
+    .corporate-image img { border-radius: 20px; box-shadow: var(--shadow-deep); position: relative; z-index: 2; }
+    .corporate-image::before {
+        content: ''; position: absolute; top: -20px; left: -20px; width: 100%; height: 100%;
+        border: 2px solid var(--ps-red); border-radius: 20px; z-index: 1;
+    }
+
+    /* --- 5. STATS STRIP --- */
+    .stats-strip {
+        background: var(--ps-red); color: white;
+        padding: 50px 0; margin: 60px 0;
+        display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center;
+    }
+    .stat-item h3 { font-size: 3rem; margin: 0; font-weight: 800; }
+    .stat-item p { margin: 5px 0 0 0; font-size: 1.1rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* --- 6. VALUES GALLERY --- */
+    .values-section { text-align: center; margin-bottom: 80px; }
+    .section-header { margin-bottom: 50px; }
+    .section-header h3 { color: var(--ps-green); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; }
+    .section-header h2 { font-size: 2.2rem; margin: 0; color: var(--ps-dark); }
+
+    .visual-gallery {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;
+    }
+    .gallery-item {
+        position: relative; height: 300px; border-radius: 12px; overflow: hidden; cursor: pointer;
+    }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .gallery-overlay {
+        position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        display: flex; align-items: flex-end; padding: 20px;
+    }
+    .gallery-text { color: white; font-weight: 600; font-size: 1.2rem; transform: translateY(0); transition: transform 0.3s; }
+    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-item:hover .gallery-text { transform: translateY(-10px); color: var(--ps-red); }
+
+    /* --- 7. STRATEGY --- */
+    .strategy-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+        border-radius: 20px; overflow: hidden; margin-bottom: 80px; box-shadow: var(--shadow-soft);
+    }
+    .strat-card { padding: 60px 40px; text-align: center; color: white; transition: all 0.3s; }
+    .strat-vision { background: var(--ps-green); }
+    .strat-mission { background: var(--ps-red); }
+    .strat-icon { font-size: 3rem; margin-bottom: 20px; background: rgba(255,255,255,0.2); width: 80px; height: 80px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+    .strat-card h3 { font-size: 1.8rem; margin-bottom: 15px; }
+    .strat-card p { font-size: 1.1rem; line-height: 1.6; opacity: 0.95; }
+    .strat-card:hover { filter: brightness(1.1); z-index: 10; transform: scale(1.02); }
+
+    /* --- 8. TESTIMONIALS (NEW) --- */
+    .testimonial-section {
+        background: #f1f4f6; padding: 80px 0; text-align: center;
+    }
+    .testimonial-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px;
+    }
+    .testi-card {
+        background: white; padding: 35px; border-radius: 12px; text-align: left;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05); position: relative; transition: transform 0.3s ease;
+    }
+    .testi-card:hover { transform: translateY(-5px); }
+    
+    /* Artistic Quote Mark Background */
+    .testi-card::before {
+        content: '\201C'; position: absolute; top: 10px; right: 20px;
+        font-size: 6rem; color: #f0f0f0; font-family: 'Dancing Script', serif; line-height: 1; z-index: 1;
+    }
+    .stars { color: #FFD700; margin-bottom: 15px; position: relative; z-index: 2; }
+    .testi-text { font-size: 0.95rem; color: #555; line-height: 1.6; margin-bottom: 20px; position: relative; z-index: 2; font-style: italic; }
+    .testi-author { font-weight: 700; color: var(--ps-dark); font-size: 1rem; position: relative; z-index: 2; }
+    .testi-author span { display: block; font-size: 0.8rem; color: var(--ps-green); font-weight: 500; text-transform: uppercase; margin-top: 5px; }
+
+    /* --- 9. FOOTER --- */
+    footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; border-top: 6px solid var(--ps-red); }
+    .social-links { margin-bottom: 30px; }
+    .social-links a { 
+        display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; 
+        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
+    .copyright { font-size: 0.9rem; opacity: 0.7; }
+
+    @media (max-width: 900px) {
+        .corporate-split { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+        .corporate-text h2::after { margin: 10px auto; }
+        .corporate-image img { width: 100%; }
+        .strategy-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+        .mobile-toggle { display: block; }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .nav-menu.active { display: flex; }
+        .hero h1 { font-size: 2.5rem; }
+    }
+</style>
 </head>
 <body>
 
@@ -13,23 +168,21 @@
     <div class="header-inner">
         <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        <nav id="nav-menu">
+        <nav class="nav-menu" id="nav-menu">
             <a href="index.html">Home</a>
             <a href="about.html" class="active">About Us</a>
             <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
             <a href="order.html">Order Online</a>
-            <a href="loyalty.html">Loyalty</a>
-            <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
-<div class="hero" style="height: 50vh; background: linear-gradient(rgba(0, 77, 41, 0.85), rgba(0, 50, 25, 0.9)), url('assets/supermarket-bg.jpg'); background-attachment: fixed;">
-    <span style="color: #DA291C; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; display: block;">Since 2024</span>
-    <h1 style="font-size: 3.5rem;">The Powerstar Story</h1>
-    <p>Redefining the retail experience in Kenya.</p>
+<div class="hero">
+    <div class="hero-eyebrow">Serving Kenya Since 2001</div>
+    <h1>The Powerstar Story</h1>
+    <p>Redefining the retail experience with integrity, innovation, and community at heart.</p>
 </div>
 
 <main class="container">
@@ -39,57 +192,17 @@
             <h2>Who We Are</h2>
             <p><strong>Powerstar Supermarkets</strong> is more than just a retail outlet; we are a community partner. Born from a desire to bring high-quality goods at honest prices to Kenyan neighborhoods, we have grown into a trusted household name.</p>
             <p>We believe that shopping should be dignified, easy, and affordable. Our "Save Everyday" philosophy isn't just a slogan—it is the operational backbone of our procurement, logistics, and service delivery.</p>
-            <div style="margin-top: 30px;">
-                <p style="font-family: cursive; font-size: 1.5rem; color: #DA291C;">Independent. Innovative. Honest.</p>
-            </div>
+            <div class="signature">Independent. Innovative. Honest.</div>
         </div>
         <div class="corporate-image">
-            <img src="assets/team.jpg" alt="Powerstar Team" onerror="this.src='https://placehold.co/600x600?text=Powerstar+Store+Front'">
+            <img src="assets/team.jpg" alt="Powerstar Team" onerror="this.src='https://placehold.co/600x500/eee/999?text=Our+Team'">
         </div>
     </section>
 
-    <div style="margin-bottom: 20px;">
-        <h3 style="color: #006838; text-transform: uppercase; letter-spacing: 1px; font-size: 1.2rem;">Our Culture in Motion</h3>
-    </div>
+</main>
 
-    <section class="visual-strip">
-        <div class="visual-item">
-            <img src="assets/value-teamwork.jpg" alt="Teamwork" onerror="this.src='https://placehold.co/400x500?text=Teamwork'">
-            <div class="visual-overlay">
-                <span class="visual-text">Teamwork</span>
-            </div>
-        </div>
-
-        <div class="visual-item">
-            <img src="assets/value-respect.jpg" alt="Respect" onerror="this.src='https://placehold.co/400x500?text=Respect'">
-            <div class="visual-overlay">
-                <span class="visual-text">Respect</span>
-            </div>
-        </div>
-
-        <div class="visual-item">
-            <img src="assets/value-excellence.jpg" alt="Excellence" onerror="this.src='https://placehold.co/400x500?text=Excellence'">
-            <div class="visual-overlay">
-                <span class="visual-text">Excellence</span>
-            </div>
-        </div>
-
-        <div class="visual-item">
-            <img src="assets/value-accountability.jpg" alt="Accountability" onerror="this.src='https://placehold.co/400x500?text=Accountability'">
-            <div class="visual-overlay">
-                <span class="visual-text">Accountability</span>
-            </div>
-        </div>
-
-        <div class="visual-item">
-            <img src="assets/value-passion.jpg" alt="Passion" onerror="this.src='https://placehold.co/400x500?text=Passion'">
-            <div class="visual-overlay">
-                <span class="visual-text">Passion</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="stats-strip">
+<section class="stats-strip">
+    <div class="container" style="display:flex; justify-content:space-around; width:100%; flex-wrap:wrap;">
         <div class="stat-item">
             <h3>10+</h3>
             <p>Branches Nationwide</p>
@@ -102,65 +215,108 @@
             <h3>1000+</h3>
             <p>Daily Customers</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <div style="text-align: center; margin-bottom: 40px;">
-        <h2 style="color: #006838; font-size: 2rem;">Our Strategic Compass</h2>
+<main class="container">
+
+    <div style="margin-top: 80px; text-align: center; margin-bottom: 40px;">
+        <h2 style="font-size: 2rem; color: var(--ps-dark);">Our Strategic Compass</h2>
         <p style="color: #666;">Guiding our growth and service delivery.</p>
     </div>
 
     <div class="strategy-grid">
-        <div class="strat-card">
-            <i class="fas fa-eye" style="font-size: 2.5rem; color: #006838; margin-bottom: 20px;"></i>
-            <h3 style="color: #333; margin-bottom: 15px;">Our Vision</h3>
-            <p style="color: #555;">To deliver an exceptional shopping experience by offering the best service, value, quality, and freshest products while being good stewards of our environment.</p>
+        <div class="strat-card strat-vision">
+            <div class="strat-icon"><i class="fas fa-eye"></i></div>
+            <h3>Our Vision</h3>
+            <p>To deliver an exceptional shopping experience by offering the best service, value, quality, and freshest products while being good stewards of our environment.</p>
         </div>
 
-        <div class="strat-card">
-            <i class="fas fa-bullseye" style="font-size: 2.5rem; color: #DA291C; margin-bottom: 20px;"></i>
-            <h3 style="color: #333; margin-bottom: 15px;">Our Mission</h3>
-            <p style="color: #555;">To provide an inviting buying environment where customers can choose from a wide range of goods, saving them time and money everyday.</p>
+        <div class="strat-card strat-mission">
+            <div class="strat-icon"><i class="fas fa-bullseye"></i></div>
+            <h3>Our Mission</h3>
+            <p>To provide an inviting buying environment where customers can choose from a wide range of goods, saving them time and money everyday.</p>
         </div>
     </div>
 
-    <div style="background: #f9f9f9; padding: 60px 20px; border-radius: 16px; margin-bottom: 60px;">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h2 style="color: #006838;">Defining Our Values</h2>
+    <div class="values-section">
+        <div class="section-header">
+            <h3>Our Culture in Motion</h3>
+            <h2>Defining Our Values</h2>
         </div>
-        
-        <div class="features-grid">
-            <div class="feature-item" style="padding: 20px;">
-                <h4 style="margin-bottom: 10px; color: #006838;">Teamwork</h4>
-                <p style="font-size: 0.9rem;">Meeting challenges as one united family.</p>
+
+        <div class="visual-gallery">
+            <div class="gallery-item">
+                <img src="assets/value-teamwork.jpg" alt="Teamwork" onerror="this.src='https://placehold.co/400x500/1a1a1a/fff?text=Teamwork'">
+                <div class="gallery-overlay"><span class="gallery-text">Teamwork</span></div>
             </div>
-            <div class="feature-item" style="padding: 20px;">
-                <h4 style="margin-bottom: 10px; color: #006838;">Respect</h4>
-                <p style="font-size: 0.9rem;">Dignity for colleagues and customers alike.</p>
+            <div class="gallery-item">
+                <img src="assets/value-respect.jpg" alt="Respect" onerror="this.src='https://placehold.co/400x500/1a1a1a/fff?text=Respect'">
+                <div class="gallery-overlay"><span class="gallery-text">Respect</span></div>
             </div>
-            <div class="feature-item" style="padding: 20px;">
-                <h4 style="margin-bottom: 10px; color: #006838;">Excellence</h4>
-                <p style="font-size: 0.9rem;">Improving our standards everyday.</p>
+            <div class="gallery-item">
+                <img src="assets/value-excellence.jpg" alt="Excellence" onerror="this.src='https://placehold.co/400x500/1a1a1a/fff?text=Excellence'">
+                <div class="gallery-overlay"><span class="gallery-text">Excellence</span></div>
             </div>
-            <div class="feature-item" style="padding: 20px;">
-                <h4 style="margin-bottom: 10px; color: #006838;">Accountability</h4>
-                <p style="font-size: 0.9rem;">Delivering on our promises.</p>
+            <div class="gallery-item">
+                <img src="assets/value-accountability.jpg" alt="Accountability" onerror="this.src='https://placehold.co/400x500/1a1a1a/fff?text=Accountability'">
+                <div class="gallery-overlay"><span class="gallery-text">Accountability</span></div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/value-passion.jpg" alt="Passion" onerror="this.src='https://placehold.co/400x500/1a1a1a/fff?text=Passion'">
+                <div class="gallery-overlay"><span class="gallery-text">Passion</span></div>
             </div>
         </div>
     </div>
 
 </main>
 
+<div class="testimonial-section">
+    <div class="container">
+        <div class="section-header">
+            <h3>Voice of the Customer</h3>
+            <h2>What People Say About Us</h2>
+        </div>
+
+        <div class="testimonial-grid">
+            
+            <div class="testi-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testi-text">"Good customer services and offers are on top. I always find what I need."</p>
+                <div class="testi-author">Joanne Nash <span>Loyal Customer</span></div>
+            </div>
+
+            <div class="testi-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testi-text">"Very affordable supermarket. Kikuyu Powerstar is the best in the area for daily shopping."</p>
+                <div class="testi-author">Lennah K Munyoki <span>Kikuyu Resident</span></div>
+            </div>
+
+            <div class="testi-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testi-text">"I was served by Monica Kagendo at Zimmerman. She was helpful and understanding. We appreciate her for the good service."</p>
+                <div class="testi-author">Fra Lex <span>Zimmerman Branch</span></div>
+            </div>
+
+            <div class="testi-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testi-text">"The cheapest supermarket in the current market with professional staff and pocket-friendly prices. Just missing Powerstar Kikuyu!"</p>
+                <div class="testi-author">Pon Nyambane <span>Former Staff Member</span></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <footer>
     <div class="footer-content">
+        <h4 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Follow Us</h4>
         <div class="social-links">
-            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
