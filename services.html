@@ -3,9 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Departments - Powerstar Supermarkets</title>
+<title>Products - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    /* Badge for Best Sellers (Visual Only - No functionality) */
+    .badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: #DA291C;
+        color: white;
+        padding: 5px 12px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border-radius: 4px;
+        z-index: 10;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .badge.green { background: #006838; }
+</style>
 </head>
 <body>
 
@@ -15,9 +32,11 @@
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         <nav id="nav-menu">
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About Us</a> <a href="services.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html" class="active">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a> <a href="loyalty.html">Loyalty</a>
+            <a href="order.html">Order Online</a>
+            <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
         </nav>
@@ -32,12 +51,60 @@
 <main class="container">
     <div class="section-intro">
         <h2>World-Class Selection</h2>
-        <p>From our in-house bakery to our electronics zone, we offer a diverse range of products tailored for the modern family.</p>
+        <p>From our in-house bakery to our electronics zone, we offer a diverse range of products.</p>
+    </div>
+
+    <div style="margin-bottom: 60px;">
+        <div style="background: #DA291C; color: white; padding: 15px 20px; border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; align-items: center;">
+            <h2 style="margin: 0; font-size: 1.5rem; color: white;">🔥 This Week's Offers</h2>
+            <span style="background: yellow; color: #DA291C; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;">Valid till Sunday</span>
+        </div>
+        
+        <div style="background: white; border: 2px solid #DA291C; border-top: none; border-radius: 0 0 12px 12px; padding: 30px; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+            
+            <div style="text-align: center; border: 1px solid #eee; padding: 15px; border-radius: 8px;">
+                <div style="height: 150px; background: #f9f9f9; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                    <i class="fas fa-shopping-basket" style="font-size: 3rem;"></i>
+                </div>
+                <h4 style="color: #333; margin-bottom: 5px;">5L Cooking Oil</h4>
+                <div style="margin-bottom: 15px;">
+                    <span style="text-decoration: line-through; color: #999; margin-right: 10px;">KES 1,800</span>
+                    <span style="color: #DA291C; font-weight: 800; font-size: 1.2rem;">KES 1,450</span>
+                </div>
+                <a href="order.html" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">Order on WhatsApp</a>
+            </div>
+
+            <div style="text-align: center; border: 1px solid #eee; padding: 15px; border-radius: 8px;">
+                <div style="height: 150px; background: #f9f9f9; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                    <i class="fas fa-tv" style="font-size: 3rem;"></i>
+                </div>
+                <h4 style="color: #333; margin-bottom: 5px;">32" Smart Android TV</h4>
+                <div style="margin-bottom: 15px;">
+                    <span style="text-decoration: line-through; color: #999; margin-right: 10px;">KES 14,000</span>
+                    <span style="color: #DA291C; font-weight: 800; font-size: 1.2rem;">KES 11,999</span>
+                </div>
+                <a href="order.html" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">Order on WhatsApp</a>
+            </div>
+
+            <div style="text-align: center; border: 1px solid #eee; padding: 15px; border-radius: 8px;">
+                <div style="height: 150px; background: #f9f9f9; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #aaa;">
+                    <i class="fas fa-bread-slice" style="font-size: 3rem;"></i>
+                </div>
+                <h4 style="color: #333; margin-bottom: 5px;">Family Bread Bundle</h4>
+                <div style="margin-bottom: 15px;">
+                    <span style="text-decoration: line-through; color: #999; margin-right: 10px;">KES 200</span>
+                    <span style="color: #DA291C; font-weight: 800; font-size: 1.2rem;">KES 150</span>
+                </div>
+                <a href="order.html" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">Order on WhatsApp</a>
+            </div>
+
+        </div>
     </div>
 
     <div class="department-grid">
         
         <div class="dept-card">
+            <span class="badge">FRESH</span>
             <div class="dept-image">
                 <img src="assets/bakery.jpg" alt="Fresh Bakery" onerror="this.src='https://via.placeholder.com/400x300?text=Bakery'">
             </div>
@@ -48,6 +115,7 @@
         </div>
 
         <div class="dept-card">
+            <span class="badge green">BEST SELLER</span>
             <div class="dept-image">
                 <img src="assets/electronics.jpg" alt="Electronics" onerror="this.src='https://via.placeholder.com/400x300?text=Electronics'">
             </div>
@@ -99,7 +167,21 @@
 
     </div>
 
-    <div class="loyalty-banner">
+    <div style="background: #006838; color: white; padding: 40px; border-radius: 12px; margin-top: 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+        <div style="flex: 1; min-width: 300px;">
+            <h2 style="color: white; margin-bottom: 10px;">Buying in Bulk?</h2>
+            <p style="margin-bottom: 20px; opacity: 0.9;">Get special wholesale prices for your hotel, school, or business. We arrange transport for large orders.</p>
+            <ul style="list-style: none; margin-bottom: 20px;">
+                <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #DA291C; margin-right: 10px;"></i> Competitive Wholesale Rates</li>
+                <li style="margin-bottom: 10px;"><i class="fas fa-check-circle" style="color: #DA291C; margin-right: 10px;"></i> Dedicated Account Managers</li>
+            </ul>
+        </div>
+        <div>
+            <a href="contact.html" class="btn-white" style="color: #006838; font-weight: bold; background: white; padding: 15px 30px; border-radius: 50px; text-decoration: none;">Request Quote</a>
+        </div>
+    </div>
+
+    <div class="loyalty-banner" style="margin-top: 40px;">
         <h3>Shop Smart with Powerstar</h3>
         <p>Earn points on every purchase across all departments.</p>
         <a href="loyalty.html" class="btn-white">Join Loyalty Program</a>
