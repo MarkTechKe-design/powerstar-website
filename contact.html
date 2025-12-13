@@ -3,9 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact - Powerstar Supermarkets</title>
+<title>Contact Us - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+    /* Card Container */
+    .contact-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        margin-bottom: 40px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        border-left: 5px solid #ddd;
+    }
+
+    /* Green Theme for Customer Care */
+    .card-green { border-left-color: #25D366; }
+    .header-green { color: #006838; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+    .icon-box-green { background: #e6f7ee; color: #006838; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+
+    /* Red Theme for Sales */
+    .card-red { border-left-color: #DA291C; }
+    .header-red { color: #DA291C; display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+    .icon-box-red { background: #fce8e7; color: #DA291C; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+
+    /* Form Elements */
+    .form-group { margin-bottom: 20px; }
+    
+    label {
+        display: block; /* Forces label to own line */
+        font-weight: bold;
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    input, select, textarea {
+        width: 100%; /* Forces input to fill width */
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: inherit;
+        background: #fcfcfc;
+    }
+
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: #006838;
+        background: white;
+    }
+
+    /* Buttons */
+    .btn-whatsapp {
+        display: block;
+        width: 100%;
+        background: #25D366;
+        color: white;
+        font-weight: bold;
+        padding: 15px;
+        text-align: center;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+    .btn-whatsapp:hover { background: #1ebc57; }
+
+    .btn-sales {
+        display: block;
+        width: 100%;
+        background: #DA291C;
+        color: white;
+        font-weight: bold;
+        padding: 15px;
+        text-align: center;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+    .btn-sales:hover { background: #b31b0f; }
+
+</style>
 </head>
 <body>
 
@@ -26,124 +110,102 @@
     </div>
 </header>
 
-<div class="hero" style="height: 40vh; background: #DA291C;">
-    <h1>Get in Touch</h1>
-    <p>We are here to help. Reach out to the right team instantly.</p>
+<div class="hero" style="height: 40vh;">
+    <h1>Contact Us</h1>
+    <p>We are here to help. Reach out to our team directly.</p>
 </div>
 
 <main class="container">
 
-    <div class="features-grid" style="margin-top: -80px; position: relative; z-index: 2; margin-bottom: 60px;">
-        
-        <div class="feature-item" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-            <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: #006838; margin-bottom: 15px;"></i>
-            <h4 style="margin-bottom: 10px;">Head Office</h4>
-            <p style="font-size: 0.9rem; color: #666;">Kasarani - Mwiki Road<br>Nairobi, Kenya</p>
-        </div>
-
-        <div class="feature-item" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-            <i class="fas fa-phone-alt" style="font-size: 2rem; color: #DA291C; margin-bottom: 15px;"></i>
-            <h4 style="margin-bottom: 10px;">Customer Hotline</h4>
-            <p style="font-size: 0.9rem; color: #666;">+254 790 680 038<br>Mon - Sat (8am - 6pm)</p>
-        </div>
-
-        <div class="feature-item" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-            <i class="fas fa-envelope" style="font-size: 2rem; color: #006838; margin-bottom: 15px;"></i>
-            <h4 style="margin-bottom: 10px;">Email Us</h4>
-            <p style="font-size: 0.9rem; color: #666;">info@powerstar.co.ke<br>sales@powerstar.co.ke</p>
-        </div>
-
-    </div>
-
-    <div class="section-intro">
-        <h2>Start a Conversation</h2>
-        <p>Choose the right department to get the fastest response via WhatsApp.</p>
-    </div>
-
-    <div class="contact-container">
-
-        <div class="contact-column">
-            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                <div style="background: #e6f7ee; padding: 15px; border-radius: 50%; color: #006838;">
-                    <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
-                </div>
-                <div>
-                    <h3 style="margin: 0; color: #006838;">Customer Care</h3>
-                    <span style="font-size: 0.85rem; color: #888;">For Feedback & Inquiries</span>
-                </div>
+    <div class="contact-card card-green">
+        <div class="header-green">
+            <div class="icon-box-green"><i class="fab fa-whatsapp"></i></div>
+            <div>
+                <h2 style="margin: 0; font-size: 1.4rem;">Customer Care</h2>
+                <p style="margin: 0; color: #666;">For Feedback, Compliments & Inquiries</p>
             </div>
-            
-            <form id="customerForm">
+        </div>
+
+        <form action="https://wa.me/254700000000" method="get" target="_blank">
+            <div class="form-group">
                 <label>Your Name</label>
-                <input type="text" id="custName" placeholder="e.g. John Doe" required>
-                
+                <input type="text" placeholder="e.g. John Doe">
+            </div>
+
+            <div class="form-group">
                 <label>Select Branch</label>
-                <select id="custBranch" required>
-                    <option value="" disabled selected>-- Select Branch --</option>
-                    <option value="Kasarani HQ">Kasarani HQ</option>
-                    <option value="Joska">Joska</option>
-                    <option value="Kangari">Kangari</option>
-                    <option value="Naivasha">Naivasha</option>
-                    <option value="Kitengela">Kitengela</option>
-                    <option value="Kikuyu">Kikuyu</option>
-                    <option value="Kinoo">Kinoo</option>
-                    <option value="Ruiru Mini">Ruiru Mini</option>
-                    <option value="Ruiru Jambo">Ruiru Jambo</option>
-                    <option value="Zimmerman Base">Zimmerman Base</option>
-                    <option value="Zimmerman Express">Zimmerman Express</option>
-                </select>
-                
+                <select>
+                    <option>-- Select Branch --</option>
+                    <option>Kasarani HQ</option>
+                    <option>Naivasha Branch</option>
+                    <option>Kangari Branch</option>
+                    <option>Joska Branch</option>
+                    <option>Kitengela Branch</option>
+                    </select>
+            </div>
+
+            <div class="form-group">
                 <label>Topic</label>
-                <select id="custType">
+                <select>
+                    <option>General Inquiry</option>
                     <option>Compliment</option>
                     <option>Complaint</option>
-                    <option>Inquiry</option>
+                    <option>Product Availability</option>
                 </select>
-                
-                <label>Message</label>
-                <textarea id="custMessage" placeholder="How can we help you today?" required rows="4"></textarea>
-                
-                <button type="submit" class="btn-customer" style="width: 100%; margin-top: 10px;">
-                    Start WhatsApp Chat <i class="fas fa-paper-plane"></i>
-                </button>
-            </form>
-        </div>
-
-        <div class="contact-column">
-            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                <div style="background: #fdeceb; padding: 15px; border-radius: 50%; color: #DA291C;">
-                    <i class="fas fa-truck" style="font-size: 1.5rem;"></i>
-                </div>
-                <div>
-                    <h3 style="margin: 0; color: #DA291C;">Sales & Marketing</h3>
-                    <span style="font-size: 0.85rem; color: #888;">For Suppliers & Bulk Buyers</span>
-                </div>
             </div>
-            
-            <form id="vendorForm">
-                <label>Company / Business Name</label>
-                <input type="text" id="vendCompany" placeholder="e.g. Uzuri Distributors Ltd" required>
-                
-                <label>Contact Person</label>
-                <input type="text" id="vendPerson" placeholder="Full Name" required>
-                
-                <label>Inquiry Type</label>
-                <select id="vendType">
-                    <option>New Product Listing</option>
-                    <option>Bulk/Wholesale Quote</option>
-                    <option>General Inquiry</option>
-                </select>
-                
-                <label>Proposal / Details</label>
-                <textarea id="vendMessage" placeholder="Briefly describe your offer..." required rows="4"></textarea>
-                
-                <button type="submit" class="btn-vendor" style="width: 100%; background: #DA291C; margin-top: 10px;">
-                    Contact Sales HQ <i class="fas fa-briefcase"></i>
-                </button>
-            </form>
+
+            <div class="form-group">
+                <label>Message</label>
+                <textarea rows="4" placeholder="How can we help you today?"></textarea>
+            </div>
+
+            <button type="submit" class="btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Start WhatsApp Chat
+            </button>
+        </form>
+    </div>
+
+    <div class="contact-card card-red">
+        <div class="header-red">
+            <div class="icon-box-red"><i class="fas fa-truck"></i></div>
+            <div>
+                <h2 style="margin: 0; font-size: 1.4rem;">Sales & Marketing</h2>
+                <p style="margin: 0; color: #666;">For Suppliers & Bulk Buyers</p>
+            </div>
         </div>
 
+        <form action="mailto:sales@powerstar.co.ke" method="post" enctype="text/plain">
+            
+            <div class="form-group">
+                <label>Company / Business Name</label>
+                <input type="text" name="company" placeholder="e.g. Uzuri Distributors Ltd">
+            </div>
+
+            <div class="form-group">
+                <label>Contact Person</label>
+                <input type="text" name="contact_person" placeholder="Full Name">
+            </div>
+
+            <div class="form-group">
+                <label>Inquiry Type</label>
+                <select name="type">
+                    <option>New Product Listing</option>
+                    <option>Bulk Purchase Quote</option>
+                    <option>Marketing Proposal</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Proposal / Details</label>
+                <textarea name="details" rows="4" placeholder="Briefly describe your offer..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-sales">
+                <i class="fas fa-envelope"></i> Contact Sales HQ
+            </button>
+        </form>
     </div>
+
 </main>
 
 <footer>
@@ -165,30 +227,6 @@
 </footer>
 
 <script>
-    // --- 1. WhatsApp Logic ---
-    const branchNumbers = {
-        "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
-        "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
-        "Kinoo": "254795459026", "Ruiru Mini": "254724588900", "Ruiru Jambo": "254728020018",
-        "Zimmerman Base": "254707881200", "Zimmerman Express": "254701231370"
-    };
-    const SALES_TEAM = "254706246939"; // General Sales Line
-
-    document.getElementById('customerForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const branch = document.getElementById('custBranch').value;
-        const msg = `*Customer Feedback*\nBranch: ${branch}\nName: ${document.getElementById('custName').value}\nMsg: ${document.getElementById('custMessage').value}`;
-        const num = branchNumbers[branch] || "254790680038";
-        window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
-    });
-
-    document.getElementById('vendorForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const msg = `*Supplier Inquiry*\nCompany: ${document.getElementById('vendCompany').value}\nMsg: ${document.getElementById('vendMessage').value}`;
-        window.open(`https://wa.me/${SALES_TEAM}?text=${encodeURIComponent(msg)}`, '_blank');
-    });
-
-    // --- 2. Mobile Menu Toggle (CLEANED UP: Only one instance now) ---
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
@@ -199,9 +237,11 @@
                 navMenu.classList.toggle('active');
                 const icon = menuBtn.querySelector('i');
                 if (navMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
                 } else {
-                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
                 }
             });
         }
