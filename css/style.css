@@ -1,33 +1,31 @@
-/* =======================================================
-   POWERSTAR SUPERMARKETS - BRAND RESTORATION (LOGO MATCHED)
-   Ref: Uploaded Logo Asset (Green Text / Red Bar)
-   ======================================================= */
-
-/* --- 1. TYPOGRAPHY & VARIABLES --- */
+/* --- 1. TYPOGRAPHY & VARIABLES (UPDATED) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:ital,wght@0,600;0,700;0,800;1,600&display=swap');
 
 :root {
-    /* --- BRAND COLORS (Sourced from Logo) --- */
-    /* The Green from "powerstar" text */
-    --brand-green: #006838;       
-    --brand-green-hover: #004e2a; 
+    /* === CORE BRAND COLORS === */
+    --brand-green: #006838;        
+    --brand-red: #DA291C;          
     
-    /* The Red from the bottom bar */
-    --brand-red: #DA291C;         
-    --brand-red-hover: #b30000;   
+    /* === COMPATIBILITY BRIDGE (This fixes the new code) === */
+    /* We map the new --ps variables to your existing colors */
+    --ps-green: var(--brand-green);
+    --ps-red: var(--brand-red);
+    --ps-dark: #1a1a1a;       /* Dark corporate grey */
+    --ps-whatsapp: #25D366;   /* WhatsApp specific green */
+    --ps-gold: #D4AF37;       /* Loyalty Gold */
 
-    /* --- CORPORATE NEUTRALS (No Blue Tones) --- */
+    /* === CORPORATE NEUTRALS === */
     --white: #ffffff;
-    --bg-light: #f9f9f9;          /* Very warm light grey, not blue */
-    --text-main: #222222;         /* Pure Dark Grey for reading */
-    --text-muted: #666666;        /* Medium Grey */
-    --border-color: #e5e5e5;      /* Light Grey border */
+    --bg-light: #f9f9f9;
+    --text-main: #222222;
+    --text-muted: #666666;
+    --border-color: #e5e5e5;
 
-    /* --- LAYOUT TOKENS --- */
+    /* === LAYOUT TOKENS === */
     --max-width: 1240px;
     --radius-card: 12px;
     --radius-btn: 50px;
-    --shadow-soft: 0 4px 20px rgba(0,0,0,0.05); /* Soft, expensive looking shadow */
+    --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
     --shadow-hover: 0 10px 25px rgba(0,0,0,0.10);
     --transition: all 0.3s ease-in-out;
 }
