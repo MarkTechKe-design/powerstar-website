@@ -51,7 +51,7 @@
     .hero h1 { font-size: 3rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
     .hero p { font-size: 1.2rem; opacity: 0.95; font-weight: 300; max-width: 600px; }
 
-    /* --- 4. BENEFITS GRID (Why Join?) --- */
+    /* --- 4. REFINED BENEFITS (The Honest Pitch) --- */
     .benefits-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 30px; margin-top: -50px; position: relative; z-index: 10; margin-bottom: 60px;
@@ -69,11 +69,11 @@
         font-size: 1.8rem; margin: 0 auto 15px auto;
     }
     .benefit-card h3 { margin: 0 0 10px 0; font-size: 1.1rem; color: var(--ps-dark); }
-    .benefit-card p { margin: 0; color: #666; font-size: 0.9rem; }
+    .benefit-card p { margin: 0; color: #666; font-size: 0.9rem; line-height: 1.5; }
 
     /* --- 5. FORM SECTION --- */
     .form-wrapper {
-        max-width: 700px; margin: 0 auto 80px auto;
+        max-width: 600px; margin: 0 auto 80px auto;
         background: white; border-radius: 16px; box-shadow: var(--shadow-deep);
         overflow: hidden; border: 1px solid #eee;
     }
@@ -95,7 +95,7 @@
         border-color: var(--ps-green); outline: none; box-shadow: 0 0 0 3px rgba(0, 104, 56, 0.1);
     }
 
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } /* 2 Column layout */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; } 
 
     .btn-submit {
         background: var(--ps-whatsapp); color: white; width: 100%;
@@ -120,7 +120,7 @@
         .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .nav-menu.active { display: flex; }
         .hero h1 { font-size: 2rem; }
-        .form-grid { grid-template-columns: 1fr; } /* Stack form on mobile */
+        .form-grid { grid-template-columns: 1fr; }
     }
 </style>
 </head>
@@ -143,8 +143,8 @@
 </header>
 
 <div class="hero">
-    <h1>The Powerstar Family</h1>
-    <p>Unlock exclusive savings, earn points, and enjoy member-only perks.</p>
+    <h1>Smart Shopper Card</h1>
+    <p>Turn your daily shopping into real savings. Simple, Honest, Rewarding.</p>
 </div>
 
 <main class="container">
@@ -152,54 +152,48 @@
     <div class="benefits-grid">
         <div class="benefit-card">
             <div class="benefit-icon"><i class="fas fa-coins"></i></div>
-            <h3>Earn Points</h3>
-            <p>Get 1 point for every 100 KES spent. Redeem points for shopping vouchers.</p>
+            <h3>Points Accumulation</h3>
+            <p>Earn <b>1 Point</b> for every <b>KES 200</b> you spend. Watch your balance grow with every visit.</p>
         </div>
         <div class="benefit-card">
-            <div class="benefit-icon"><i class="fas fa-percent"></i></div>
-            <h3>Member Prices</h3>
-            <p>Enjoy exclusive discounts on selected items marked with the Gold Tag.</p>
+            <div class="benefit-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h3>Redeem for Shopping</h3>
+            <p>Your points are as good as cash. Use them to pay for your groceries once you hit the redemption threshold.</p>
         </div>
         <div class="benefit-card">
-            <div class="benefit-icon"><i class="fas fa-gift"></i></div>
-            <h3>Birthday Treats</h3>
-            <p>Special offers and bonus points during your birthday month.</p>
+            <div class="benefit-icon"><i class="fas fa-receipt"></i></div>
+            <h3>Track Your Savings</h3>
+            <p>Your points balance is printed on every receipt, so you always know how much you have saved.</p>
         </div>
     </div>
 
     <div class="form-wrapper">
         <div class="form-header">
-            <h2>Join the Club</h2>
+            <h2>Get Your Card</h2>
             <p>Fill in your details below to register via WhatsApp.</p>
         </div>
         
         <form id="loyaltyForm" class="loyalty-form">
             
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" placeholder="e.g. John Kamau" required>
+            </div>
+
             <div class="form-grid">
-                <div class="form-group">
-                    <label>Full Name</label>
-                    <input type="text" id="fullName" placeholder="e.g. John Kamau" required>
-                </div>
                 <div class="form-group">
                     <label>Phone Number</label>
                     <input type="tel" id="phone" placeholder="07XX XXX XXX" pattern="[0-9]{10}" required>
                 </div>
-            </div>
-
-            <div class="form-grid">
                 <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" placeholder="john@email.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Date of Birth</label>
-                    <input type="date" id="dob" required>
+                    <label>National ID Number</label>
+                    <input type="text" id="nationalId" placeholder="ID Number" required>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>National ID Number</label>
-                <input type="text" id="nationalId" placeholder="ID Number" required>
+                <label>Date of Birth</label>
+                <input type="date" id="dob" required>
             </div>
 
             <div class="form-group">
@@ -221,7 +215,7 @@
             </div>
 
             <button type="submit" class="btn-submit">
-                <i class="fab fa-whatsapp"></i> Submit Application
+                <i class="fab fa-whatsapp"></i> Request Card via WhatsApp
             </button>
             
             <div id="loyaltyStatus" style="text-align: center; margin-top: 15px; font-weight: 600; font-size: 0.9rem;"></div>
@@ -258,7 +252,6 @@
     document.getElementById('loyaltyForm').addEventListener('submit', function(e){
         e.preventDefault();
         const fullName = document.getElementById('fullName').value;
-        const email = document.getElementById('email').value;
         const phone = document.getElementById('phone').value;
         const nationalId = document.getElementById('nationalId').value;
         const dob = document.getElementById('dob').value;
@@ -268,7 +261,7 @@
         // Default to HQ if branch not found
         let targetNumber = branchContacts[branchKey] || "254790680038";
 
-        const msg = `*New Loyalty Card Request*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nEmail: ${email}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
+        const msg = `*New Loyalty Card Request*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
         const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
 
         status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirecting to WhatsApp...';
