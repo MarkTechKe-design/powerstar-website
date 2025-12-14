@@ -27,10 +27,11 @@
 
     /* --- 2. HEADER --- */
     header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
-    .logo img { height: 45px; width: auto; }
-    .nav-menu { display: flex; gap: 25px; }
-    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 90px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
+    .logo img { height: 60px; width: auto; }
+    
+    .nav-menu { display: flex; gap: 20px; }
+    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; text-transform: uppercase; }
     .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
     .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
     .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
@@ -39,19 +40,20 @@
     .hero {
         background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 77, 42, 0.95)), url('assets/hero-pattern.png'); 
         background-color: var(--ps-green);
-        height: 35vh; /* Increased slightly to accommodate the overlap */
+        height: 40vh; /* Slightly taller for better spacing */
         display: flex; flex-direction: column; justify-content: center; align-items: center;
         color: white; text-align: center;
+        padding-bottom: 40px; /* Space for the overlap */
     }
-    .hero h1 { font-size: 2.5rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+    .hero h1 { font-size: 2.5rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; font-weight: 800; }
     .hero p { font-size: 1.1rem; opacity: 0.9; max-width: 700px; font-weight: 300; }
 
-    /* --- 4. NEW: VALUE PROPOSITION (Trust Signals) --- */
+    /* --- 4. VALUE PROPOSITION (Trust Signals) --- */
     .values-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 30px;
-        margin-top: -50px; /* This creates the floating overlap effect */
+        margin-top: -60px; /* Floating overlap effect */
         margin-bottom: 60px;
         position: relative;
         z-index: 10;
@@ -61,13 +63,12 @@
         padding: 30px 20px;
         border-radius: 8px;
         text-align: center;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Stronger shadow for lift */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         border-bottom: 3px solid var(--ps-red);
         transition: transform 0.3s ease;
     }
-    .value-card:hover {
-        transform: translateY(-5px);
-    }
+    .value-card:hover { transform: translateY(-5px); }
+    
     .icon-circle {
         width: 70px; height: 70px;
         background: rgba(0, 104, 56, 0.08);
@@ -79,7 +80,6 @@
     }
     .value-card h3 { margin: 0 0 10px 0; font-size: 1.1rem; font-weight: 700; color: var(--ps-dark); }
     .value-card p { margin: 0; font-size: 0.9rem; color: #666; line-height: 1.5; }
-
 
     /* --- 5. CATALOG SECTION --- */
     .catalog-header { text-align: center; margin: 0 0 40px 0; }
@@ -100,19 +100,37 @@
         display: flex; flex-direction: column; border: 1px solid #eee;
     }
     .dept-card:hover { transform: translateY(-7px); box-shadow: var(--hover-shadow); border-color: transparent; }
-    
+
     .dept-image-wrapper { height: 200px; overflow: hidden; position: relative; background: #f0f0f0; }
     .dept-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
     .dept-card:hover .dept-image-wrapper img { transform: scale(1.1); } 
 
     .dept-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
     .dept-title { margin: 0 0 10px 0; font-size: 1.3rem; color: var(--ps-dark); font-weight: 600; }
-    .dept-desc { margin: 0 0 20px 0; color: #666; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; }
-    
-    .dept-features { border-top: 1px dashed #e0e0e0; padding-top: 15px; margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+    .dept-desc { margin: 0 0 15px 0; color: #666; font-size: 0.9rem; line-height: 1.6; flex-grow: 1; }
+
+    .dept-features { margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
     .tag { background: #f4f9f4; color: var(--ps-green); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
 
-    /* --- 6. REDESIGNED B2B SECTION (Immersive) --- */
+    /* The "Not E-commerce" Button */
+    .dept-btn {
+        text-align: center;
+        background: white;
+        color: var(--ps-green);
+        border: 1px solid var(--ps-green);
+        padding: 10px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+        margin-top: auto; /* Pushes button to bottom */
+    }
+    .dept-btn:hover {
+        background: var(--ps-green);
+        color: white;
+    }
+
+    /* --- 6. B2B SECTION --- */
     .b2b-wrapper {
         background: linear-gradient(rgba(0, 104, 56, 0.92), rgba(0, 60, 30, 0.95)), url('assets/wholesale-bg.jpg');
         background-size: cover; background-position: center;
@@ -124,15 +142,7 @@
         overflow: hidden;
         box-shadow: 0 20px 40px rgba(0, 104, 56, 0.2);
     }
-    /* Decorative Circle */
-    .b2b-wrapper::after {
-        content: ''; position: absolute; top: -50px; right: -50px;
-        width: 300px; height: 300px; border: 40px solid rgba(255,255,255,0.05);
-        border-radius: 50%; pointer-events: none;
-    }
-
     .b2b-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; position: relative; z-index: 2; }
-    
     .b2b-text h2 { font-size: 2.2rem; margin: 0 0 15px 0; font-weight: 700; letter-spacing: 1px; }
     .b2b-text p { font-size: 1.1rem; opacity: 0.9; line-height: 1.7; margin-bottom: 30px; }
     
@@ -141,7 +151,6 @@
     .feature-item i { background: rgba(255,255,255,0.2); width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
 
     .b2b-action { text-align: center; background: rgba(255,255,255,0.1); padding: 30px; border-radius: 12px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); }
-    .b2b-action h3 { margin-top: 0; font-size: 1.2rem; }
     .btn-white { 
         display: inline-block; background: white; color: var(--ps-green); 
         padding: 15px 35px; border-radius: 50px; font-weight: 700; 
@@ -165,7 +174,7 @@
     }
     @media (max-width: 768px) {
         .mobile-toggle { display: block; }
-        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 90px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .nav-menu.active { display: flex; }
         .hero h1 { font-size: 2rem; }
         .b2b-wrapper { padding: 40px 20px; }
@@ -184,6 +193,8 @@
             <a href="services.html" class="active">Products</a>
             <a href="branches.html">Branches</a>
             <a href="order.html">Order Online</a>
+            <a href="loyalty.html">Loyalty</a>
+            <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
@@ -220,7 +231,7 @@
     </div>
 
     <div class="department-grid">
-        
+
         <div class="dept-card">
             <div class="dept-image-wrapper">
                 <img src="assets/bakery.jpg" alt="Bakery" onerror="this.src='https://placehold.co/600x400/eee/999?text=Bakery'">
@@ -229,6 +240,7 @@
                 <h3 class="dept-title">In-House Bakery</h3>
                 <p class="dept-desc">Daily baked breads, custom cakes, and savory pastries.</p>
                 <div class="dept-features"><span class="tag">Fresh Daily</span><span class="tag">Cakes</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -240,6 +252,7 @@
                 <h3 class="dept-title">Fresh Produce</h3>
                 <p class="dept-desc">Locally sourced fruits and vegetables, restocked every morning.</p>
                 <div class="dept-features"><span class="tag">Farm Fresh</span><span class="tag">Organic</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -251,6 +264,7 @@
                 <h3 class="dept-title">Butchery & Deli</h3>
                 <p class="dept-desc">Premium beef, poultry, and fish, plus ready-to-eat smokies and bites.</p>
                 <div class="dept-features"><span class="tag">Halal</span><span class="tag">BBQ Cuts</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -262,6 +276,7 @@
                 <h3 class="dept-title">Electronics</h3>
                 <p class="dept-desc">TVs, audio systems, fridges, and small kitchen appliances.</p>
                 <div class="dept-features"><span class="tag">Warranty</span><span class="tag">Top Brands</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -273,6 +288,19 @@
                 <h3 class="dept-title">Beverages & Liquor</h3>
                 <p class="dept-desc">Soft drinks, juices, imported wines, and premium spirits.</p>
                 <div class="dept-features"><span class="tag">Chilled</span><span class="tag">Wines & Spirits</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
+            </div>
+        </div>
+
+        <div class="dept-card">
+            <div class="dept-image-wrapper">
+                <img src="assets/cereals.jpg" alt="Pantry" onerror="this.src='https://placehold.co/600x400/eee/999?text=Sugar+&+Flour'">
+            </div>
+            <div class="dept-content">
+                <h3 class="dept-title">Pantry & Staples</h3>
+                <p class="dept-desc">Essential stocks of Maize Flour, Sugar, Rice, and Cooking Oil.</p>
+                <div class="dept-features"><span class="tag">Unga</span><span class="tag">Sugar</span><span class="tag">Oil</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -284,6 +312,7 @@
                 <h3 class="dept-title">Home Care</h3>
                 <p class="dept-desc">Detergents, cleaning tools, and air fresheners for a sparkling home.</p>
                 <div class="dept-features"><span class="tag">Bulk Packs</span><span class="tag">Hygiene</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -295,6 +324,7 @@
                 <h3 class="dept-title">Baby & Kids</h3>
                 <p class="dept-desc">Diapers, baby food, toys, and clothing for your little ones.</p>
                 <div class="dept-features"><span class="tag">Diapers</span><span class="tag">Infant Care</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -306,6 +336,7 @@
                 <h3 class="dept-title">Beauty & Personal Care</h3>
                 <p class="dept-desc">Skincare, hair products, and grooming essentials from trusted brands.</p>
                 <div class="dept-features"><span class="tag">Cosmetics</span><span class="tag">Hair Care</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -317,17 +348,7 @@
                 <h3 class="dept-title">Kitchen & Dining</h3>
                 <p class="dept-desc">Cookware, plates, glass sets, and food storage containers.</p>
                 <div class="dept-features"><span class="tag">Cookware</span><span class="tag">Glassware</span></div>
-            </div>
-        </div>
-
-        <div class="dept-card">
-            <div class="dept-image-wrapper">
-                <img src="assets/pet.jpg" alt="Pet" onerror="this.src='https://placehold.co/600x400/eee/999?text=Pet+Center'">
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Pet Center</h3>
-                <p class="dept-desc">Quality dry and wet food, treats, and accessories for pets.</p>
-                <div class="dept-features"><span class="tag">Dog Food</span><span class="tag">Accessories</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -339,6 +360,7 @@
                 <h3 class="dept-title">Luggage & Travel</h3>
                 <p class="dept-desc">Suitcases, backpacks, and travel accessories for your journeys.</p>
                 <div class="dept-features"><span class="tag">Suitcases</span><span class="tag">School Bags</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -350,6 +372,7 @@
                 <h3 class="dept-title">Clothing & Footwear</h3>
                 <p class="dept-desc">Affordable fashion basics, innerwear, and footwear for the family.</p>
                 <div class="dept-features"><span class="tag">Basics</span><span class="tag">Footwear</span></div>
+                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
 
@@ -360,7 +383,7 @@
             <div class="b2b-text">
                 <h2>Powerstar Wholesale & Institutional</h2>
                 <p>We provide specialized bulk supply solutions for Hotels, Schools, Offices, and Retailers. Enjoy dedicated support and volume pricing.</p>
-                
+
                 <div class="b2b-features">
                     <div class="feature-item"><i class="fas fa-percent"></i> Volume Discounts</div>
                     <div class="feature-item"><i class="fas fa-truck"></i> Priority Delivery</div>
