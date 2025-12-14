@@ -6,9 +6,10 @@
 <title>Our Branches - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-    /* Specific Styles for the Branch Cards (No Images) */
+    /* Specific Styles for the Branch Cards */
     .branch-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -17,9 +18,9 @@
     }
 
     .branch-card {
-        background: var(--white);
+        background: white;
         border: 1px solid #eee;
-        border-top: 4px solid var(--powerstar-green); /* Brand Accent */
+        border-top: 4px solid #006838; /* Powerstar Green */
         border-radius: 8px;
         padding: 30px 20px;
         text-align: center;
@@ -33,7 +34,7 @@
     }
 
     .branch-name {
-        color: var(--powerstar-green);
+        color: #006838;
         font-size: 1.25rem;
         font-weight: 800;
         margin-bottom: 5px;
@@ -41,7 +42,7 @@
     }
 
     .branch-phone {
-        color: var(--dark-text);
+        color: #333;
         font-size: 1.1rem;
         font-weight: 600;
         margin-bottom: 20px;
@@ -57,16 +58,17 @@
 
     .action-btn {
         padding: 8px 15px;
-        border-radius: 4px;
+        border-radius: 50px; /* Rounded for modern look */
         text-decoration: none;
         font-size: 0.9rem;
         font-weight: bold;
         transition: 0.2s;
+        display: inline-flex; align-items: center; gap: 8px;
     }
 
     .btn-call {
-        background: var(--off-white);
-        color: var(--dark-text);
+        background: #f4f4f4;
+        color: #333;
         border: 1px solid #ccc;
     }
     .btn-call:hover { background: #e0e0e0; }
@@ -85,24 +87,27 @@
     <div class="header-inner">
         <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        <nav id="nav-menu">
+        
+        <nav class="nav-menu" id="nav-menu">
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About Us</a> <a href="services.html">Products</a>
-            <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a> <a href="loyalty.html">Loyalty</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
+            <a href="branches.html" class="active">Branches</a>
+            <a href="order.html">Order Online</a>
+            <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
-<div class="hero" style="height: 30vh; background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 104, 56, 0.8));">
-    <h1>Our Locations</h1>
-    <p>Visit us or contact your nearest branch directly.</p>
+<div class="hero" style="height: 30vh; background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 104, 56, 0.8)); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white;">
+    <h1 style="margin: 0; font-size: 2.5rem; text-transform: uppercase;">Our Locations</h1>
+    <p style="margin-top: 10px; opacity: 0.9;">Visit us or contact your nearest branch directly.</p>
 </div>
 
 <div class="container">
-    
+
     <div class="branch-grid">
 
         <div class="branch-card">
@@ -209,10 +214,10 @@
 
 <footer>
     <div class="footer-content">
-        
+
         <div class="social-links">
             <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            
+
             <div class="icons-container">
                 <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook">
                     <i class="fab fa-facebook-f"></i>
@@ -252,7 +257,7 @@
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                
+
                 // 1. Open/Close the menu
                 navMenu.classList.toggle('active');
 
