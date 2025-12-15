@@ -11,79 +11,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 
-<style>
-    /* PAGE SPECIFIC OVERRIDES */
-    
-    /* Hero Override */
-    .hero-services {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 50, 20, 0.8)), url('assets/products-hero.jpg');
-        background-size: cover; background-position: center; background-attachment: fixed;
-        height: 55vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-        color: white; text-align: center; padding-bottom: 60px; clip-path: ellipse(150% 100% at 50% 0%);
-        margin-bottom: 60px;
-    }
-    .hero-services h1 { font-size: 3.5rem; margin: 0 0 15px 0; color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .hero-services p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; }
-
-    /* Values Grid (Floating) */
-    .values-grid { margin-top: -80px; position: relative; z-index: 10; margin-bottom: 80px; }
-    
-    .icon-circle {
-        width: 60px; height: 60px; background: rgba(0, 104, 56, 0.1); color: var(--ps-green);
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 1.5rem; margin-bottom: 20px;
-    }
-
-    /* Department Cards */
-    .dept-card { display: flex; flex-direction: column; }
-    .dept-image-wrapper { height: 240px; overflow: hidden; position: relative; cursor: zoom-in; }
-    .dept-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-    .dept-card:hover .dept-image-wrapper img { transform: scale(1.1); }
-    
-    .zoom-hint {
-        position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white;
-        padding: 6px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 600;
-        pointer-events: none; opacity: 0; transition: 0.3s;
-    }
-    .dept-image-wrapper:hover .zoom-hint { opacity: 1; }
-
-    .dept-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
-    .dept-title { margin: 0 0 10px 0; font-size: 1.4rem; color: var(--ps-dark); font-weight: 700; }
-    .dept-desc { margin: 0 0 20px 0; color: #666; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; }
-    .dept-features { margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 8px; }
-    
-    .tag { background: #f4f9f4; color: var(--ps-green); padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
-
-    /* Lightbox */
-    .lightbox {
-        position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center;
-        opacity: 0; transition: opacity 0.3s;
-    }
-    .lightbox.active { display: flex; opacity: 1; }
-    .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 5px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
-    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 3rem; cursor: pointer; }
-
-    /* B2B Section Specifics */
-    .b2b-features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
-    .feature-point { display: flex; flex-direction: column; align-items: flex-start; }
-    .feature-point i { 
-        font-size: 1.8rem; color: var(--ps-red); margin-bottom: 10px; background: white; 
-        width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-    }
-    .feature-point h4 { color: white; margin: 0; font-size: 1.1rem; }
-    .feature-point span { font-size: 0.9rem; opacity: 0.8; }
-
-    .b2b-action { 
-        text-align: center; background: rgba(255,255,255,0.05); padding: 40px; 
-        border-radius: 16px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); 
-    }
-
-    @media (max-width: 900px) {
-        .b2b-features-grid { grid-template-columns: 1fr; }
-        .hero-services { height: 40vh; }
-    }
-</style>
 </head>
 <body>
 
@@ -104,7 +31,7 @@
     </div>
 </header>
 
-<div class="hero-services">
+<div class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 50, 20, 0.8)), url('assets/products-hero.jpg');">
     <div class="reveal">
         <h1>Our Product Range</h1>
         <p>Sourcing the finest quality brands for your home, business, and family.</p>
@@ -216,37 +143,11 @@
             </div>
         </div>
 
-        <div class="dept-card reveal">
-            <div class="dept-image-wrapper" onclick="openLightbox(this)">
-                <img src="assets/household.jpg" alt="Household" onerror="this.src='https://placehold.co/600x400/eee/999?text=Cleaning'">
-                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Home Care</h3>
-                <p class="dept-desc">Detergents, cleaning tools, and air fresheners for a sparkling home.</p>
-                <div class="dept-features"><span class="tag">Bulk Packs</span><span class="tag">Hygiene</span></div>
-                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
-            </div>
-        </div>
-
-        <div class="dept-card reveal">
-            <div class="dept-image-wrapper" onclick="openLightbox(this)">
-                <img src="assets/baby.jpg" alt="Baby" onerror="this.src='https://placehold.co/600x400/eee/999?text=Baby+Shop'">
-                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Baby & Kids</h3>
-                <p class="dept-desc">Diapers, baby food, toys, and clothing for your little ones.</p>
-                <div class="dept-features"><span class="tag">Diapers</span><span class="tag">Infant Care</span></div>
-                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
-            </div>
-        </div>
-
     </div>
 
     <div class="b2b-wrapper reveal">
         <div class="b2b-grid">
-            <div class="b2b-text">
+            <div>
                 <h2 style="color:white; margin-bottom:20px;">Bulk & Institutional Orders</h2>
                 <p style="color:rgba(255,255,255,0.9);">Stocking up for your home, school, or hotel? Enjoy the same great shelf prices with the added convenience of priority handling and logistical support.</p>
 
