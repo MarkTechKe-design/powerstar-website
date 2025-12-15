@@ -334,3 +334,18 @@ footer {
 .benefit-item:hover { transform: translateY(-10px); }
 .benefit-icon { font-size: 3rem; color: var(--ps-gold); margin-bottom: 20px; }
 .benefit-title { font-weight: 800; margin-bottom: 10px; color: var(--ps-green); font-size: 1.2rem; }
+/* --- FORM SCALABILITY UTILITIES (Add to css/style.css) --- */
+
+/* Split Row Grid: 2 columns on desktop, 1 on mobile */
+.form-row-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 700px) {
+    .form-row-split {
+        grid-template-columns: 1fr; /* Stack vertically on phones */
+        gap: 0; /* Remove horizontal gap, rely on margin-bottom */
+    }
+}
