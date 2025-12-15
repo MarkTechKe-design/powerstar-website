@@ -11,29 +11,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 
-<style>
-    /* PAGE SPECIFIC OVERRIDES */
-    /* Ensure action buttons wrap nicely inside the branch cards */
-    .branch-actions {
-        display: flex; flex-wrap: wrap; gap: 10px; width: 100%; margin-top: 20px;
-    }
-    .action-btn { flex: 1; min-width: 120px; }
-    
-    /* Icon styling specific to branch cards */
-    .icon-location {
-        width: 60px; height: 60px;
-        background: rgba(0, 104, 56, 0.08); color: var(--ps-green);
-        border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 1.5rem; margin-bottom: 20px;
-    }
-    
-    .branch-phone {
-        font-weight: 600; font-size: 1.1rem; color: var(--ps-dark); margin-bottom: 15px; display: block;
-    }
-    
-    /* Search Bar Positioning Fix for this page */
-    .search-wrapper { margin-top: -35px; margin-bottom: 60px; }
-</style>
 </head>
 <body>
 
@@ -55,11 +32,16 @@
 </header>
 
 <div class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('assets/branch-hero.jpg');">
-    <h1>Our Network</h1>
-    <p>Find your nearest Powerstar branch and experience quality today.</p>
+    <div class="hero-glass-card reveal">
+        <div style="text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; color: var(--ps-gold); font-weight: 700; font-size: 0.9rem;">
+            Nationwide Reach
+        </div>
+        <h1>Our Network</h1>
+        <p style="color: rgba(255,255,255,0.9);">Find your nearest Powerstar branch and experience quality today.</p>
+    </div>
 </div>
 
-<div class="search-wrapper container">
+<div class="search-wrapper container reveal" style="margin-top: -40px; position: relative; z-index: 20;">
     <div class="search-box">
         <i class="fas fa-search search-icon-glass"></i>
         <input type="text" id="branchSearch" class="search-input" placeholder="Search branch (e.g., Naivasha, Kikuyu)...">
@@ -68,115 +50,119 @@
 
 <main class="container">
 
+    <div class="reveal" style="text-align: center; margin: 40px 0 60px; opacity: 0.6;">
+        
+    </div>
+
     <div class="branch-grid" id="branchGrid">
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Kasarani HQ</h3>
-            <span class="branch-phone">0790 680 038</span>
-            <div class="branch-actions">
-                <a href="tel:0790680038" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254790680038" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Kasarani HQ</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0790 680 038</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0790680038" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254790680038" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Joska Branch</h3>
-            <span class="branch-phone">0791 047 850</span>
-            <div class="branch-actions">
-                <a href="tel:0791047850" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254791047850" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Joska Branch</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0791 047 850</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0791047850" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254791047850" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Kangari Branch</h3>
-            <span class="branch-phone">0710 976 254</span>
-            <div class="branch-actions">
-                <a href="tel:0710976254" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254710976254" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Kangari Branch</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0710 976 254</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0710976254" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254710976254" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Naivasha Branch</h3>
-            <span class="branch-phone">0768 016 429</span>
-            <div class="branch-actions">
-                <a href="tel:0768016429" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254768016429" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Naivasha Branch</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0768 016 429</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0768016429" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254768016429" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Kitengela Branch</h3>
-            <span class="branch-phone">0704 121 122</span>
-            <div class="branch-actions">
-                <a href="tel:0704121122" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254704121122" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Kitengela Branch</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0704 121 122</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0704121122" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254704121122" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Kikuyu Branch</h3>
-            <span class="branch-phone">0741 251 973</span>
-            <div class="branch-actions">
-                <a href="tel:0741251973" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254741251973" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Kikuyu Branch</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0741 251 973</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0741251973" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254741251973" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Kinoo Branch</h3>
-            <span class="branch-phone">0795 459 026</span>
-            <div class="branch-actions">
-                <a href="tel:0795459026" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254795459026" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Kinoo Branch</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0795 459 026</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0795459026" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254795459026" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Ruiru Mini</h3>
-            <span class="branch-phone">0724 588 900</span>
-            <div class="branch-actions">
-                <a href="tel:0724588900" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254724588900" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Ruiru Mini</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0724 588 900</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0724588900" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254724588900" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Ruiru Jambo</h3>
-            <span class="branch-phone">0728 020 018</span>
-            <div class="branch-actions">
-                <a href="tel:0728020018" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254728020018" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Ruiru Jambo</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0728 020 018</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0728020018" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254728020018" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Zimmerman Base</h3>
-            <span class="branch-phone">0707 881 200</span>
-            <div class="branch-actions">
-                <a href="tel:0707881200" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254707881200" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Zimmerman Base</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0707 881 200</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0707881200" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254707881200" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
         <div class="branch-card reveal">
-            <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
-            <h3 class="branch-name">Zimmerman Express</h3>
-            <span class="branch-phone">0701 231 370</span>
-            <div class="branch-actions">
-                <a href="tel:0701231370" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254701231370" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
+            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+            <h3 class="branch-name" style="margin: 10px 0;">Zimmerman Express</h3>
+            <p style="color: #666; margin-bottom: 20px; font-weight: 500;">0701 231 370</p>
+            <div style="width: 100%; display: flex; gap: 10px; flex-wrap: wrap;">
+                <a href="tel:0701231370" class="btn-white" style="flex: 1; border-color: #ddd; color: #555;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254701231370" target="_blank" class="dept-btn" style="flex: 1;"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
