@@ -29,7 +29,7 @@
     html, body {
         width: 100%;
         max-width: 100%;
-        overflow-x: hidden; /* CRITICAL: Stops side-scrolling */
+        overflow-x: hidden; /* Stops side-scrolling */
         margin: 0; padding: 0;
         font-family: 'Poppins', sans-serif;
         background-color: var(--bg-light);
@@ -55,7 +55,7 @@
     }
     .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
     
-    .logo img { height: 95px; width: auto; transition: transform 0.3s; }
+    .logo img { height: 90px; width: auto; transition: transform 0.3s; }
     
     .nav-menu { display: flex; gap: 30px; }
     .nav-menu a {
@@ -73,21 +73,23 @@
 
     .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
 
-    /* --- 2. STYLISH HERO SECTION --- */
+    /* --- 2. HERO SECTION --- */
     .hero {
         position: relative;
-        /* Updated with Products Hero Image */
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 50, 20, 0.8)), url('assets/products-hero.jpg');
-        background-size: cover; background-position: center;
+        background-size: cover; 
+        background-position: center;
+        /* Parallax effect on Desktop only */
+        background-attachment: fixed; 
         height: 55vh;
         display: flex; flex-direction: column; justify-content: center; align-items: center;
         color: white; text-align: center;
         padding-bottom: 60px;
-        /* Architectural Curve */
+        /* Stylish Curve */
         clip-path: ellipse(150% 100% at 50% 0%);
     }
     .hero h1 { 
-        font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive Font Size */
+        font-size: clamp(2.5rem, 5vw, 4rem); 
         margin: 0 0 15px 0; 
         text-transform: uppercase; letter-spacing: 1px; font-weight: 900; 
         color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -99,9 +101,11 @@
 
     /* --- 3. VALUE PROPOSITION --- */
     .values-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        display: grid; 
+        /* Intelligent wrapping for desktop */
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 30px; 
-        margin-top: -80px; /* Floating Effect on Desktop */
+        margin-top: -80px; /* Floating Effect */
         margin-bottom: 80px;
         position: relative; z-index: 10; padding: 0 20px; max-width: 1200px; margin-left: auto; margin-right: auto;
     }
@@ -110,6 +114,8 @@
         text-align: left; box-shadow: var(--shadow-card);
         border-bottom: 4px solid var(--ps-red);
         transition: var(--transition);
+        /* Prevent squishing */
+        min-width: 0;
     }
     .value-card:hover { transform: translateY(-10px); }
     
@@ -141,16 +147,16 @@
 
     .dept-image-wrapper { 
         height: 240px; overflow: hidden; position: relative; 
-        cursor: zoom-in; /* Indicates clickable */
+        cursor: zoom-in;
     }
     .dept-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
     .dept-card:hover .dept-image-wrapper img { transform: scale(1.1); } 
     
-    /* Overlay hint for zoom */
+    /* Zoom Hint */
     .zoom-hint {
         position: absolute; top: 10px; right: 10px; 
-        background: rgba(0,0,0,0.5); color: white; 
-        padding: 5px 10px; border-radius: 20px; font-size: 0.7rem; 
+        background: rgba(0,0,0,0.6); color: white; 
+        padding: 6px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 600;
         pointer-events: none; opacity: 0; transition: 0.3s;
     }
     .dept-image-wrapper:hover .zoom-hint { opacity: 1; }
@@ -174,7 +180,7 @@
     }
     .dept-btn:hover { background: var(--ps-green); color: white; box-shadow: 0 5px 15px rgba(0, 104, 56, 0.3); }
 
-    /* --- 5. B2B SECTION (BRAND RED EDITION) --- */
+    /* --- 5. B2B SECTION (BRAND RED) --- */
     .b2b-wrapper {
         background: linear-gradient(135deg, #004d2a 0%, #006838 100%);
         border-radius: 20px; color: white;
@@ -186,7 +192,7 @@
     /* Brand Red Accent Bar */
     .b2b-wrapper::before {
         content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
-        background: var(--ps-red); /* CHANGED TO RED */
+        background: var(--ps-red);
     }
 
     .b2b-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
@@ -200,7 +206,7 @@
     
     /* ICONS CHANGED TO RED */
     .feature-point i {
-        font-size: 2rem; color: var(--ps-red); /* RED ICONS */
+        font-size: 2rem; color: var(--ps-red); 
         margin-bottom: 15px; background: white; 
         width: 60px; height: 60px; border-radius: 50%;
         display: flex; align-items: center; justify-content: center;
@@ -216,7 +222,7 @@
         padding: 40px; border-radius: 16px; backdrop-filter: blur(10px); 
         border: 1px solid rgba(255,255,255,0.1); 
     }
-    .b2b-action h3 { color: var(--ps-red); margin-bottom: 10px; font-size: 1.5rem; font-weight: 800; } /* RED TEXT */
+    .b2b-action h3 { color: var(--ps-red); margin-bottom: 10px; font-size: 1.5rem; font-weight: 800; }
     .btn-white { 
         display: inline-block; background: white; color: var(--ps-green); 
         padding: 18px 40px; border-radius: 50px; font-weight: 700; 
@@ -225,7 +231,7 @@
     }
     .btn-white:hover { transform: translateY(-5px); background: #f0f0f0; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-    /* --- 6. IMAGE LIGHTBOX (ZOOM) --- */
+    /* --- 6. LIGHTBOX --- */
     .lightbox {
         position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center;
@@ -262,14 +268,23 @@
         .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .nav-menu.active { display: flex; }
         
-        /* FIX: Reset margins on mobile to prevent overflow/cutting */
-        .values-grid { margin-top: 30px; margin-bottom: 40px; }
+        /* FIX: FORCE SINGLE COLUMN STACKING */
+        .values-grid, .department-grid { 
+            grid-template-columns: 1fr !important; /* Forces 1 item per row */
+            margin-top: 30px; 
+            margin-bottom: 40px; 
+            gap: 20px;
+        }
         
-        .hero { height: 40vh; clip-path: none; }
+        /* FIX: Reset margins to prevent cut-off */
+        .values-grid { margin-top: 30px; }
+        
+        .hero { 
+            height: 40vh; 
+            background-attachment: scroll; /* Disable parallax on mobile for performance */
+            clip-path: none; /* Remove complex clip for cleaner mobile edge */
+        }
         .hero h1 { font-size: 2rem; }
-        
-        /* FIX: Stack Departments properly */
-        .department-grid { grid-template-columns: 1fr; }
         
         .b2b-wrapper { padding: 40px 20px; }
         .b2b-features-grid { grid-template-columns: 1fr; gap: 20px; }
