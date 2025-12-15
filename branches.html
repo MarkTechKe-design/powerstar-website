@@ -11,6 +11,29 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 
+<style>
+    /* PAGE SPECIFIC OVERRIDES */
+    /* Ensure action buttons wrap nicely inside the branch cards */
+    .branch-actions {
+        display: flex; flex-wrap: wrap; gap: 10px; width: 100%; margin-top: 20px;
+    }
+    .action-btn { flex: 1; min-width: 120px; }
+    
+    /* Icon styling specific to branch cards */
+    .icon-location {
+        width: 60px; height: 60px;
+        background: rgba(0, 104, 56, 0.08); color: var(--ps-green);
+        border-radius: 50%; display: flex; align-items: center; justify-content: center;
+        font-size: 1.5rem; margin-bottom: 20px;
+    }
+    
+    .branch-phone {
+        font-weight: 600; font-size: 1.1rem; color: var(--ps-dark); margin-bottom: 15px; display: block;
+    }
+    
+    /* Search Bar Positioning Fix for this page */
+    .search-wrapper { margin-top: -35px; margin-bottom: 60px; }
+</style>
 </head>
 <body>
 
@@ -31,12 +54,12 @@
     </div>
 </header>
 
-<div class="hero">
+<div class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('assets/branch-hero.jpg');">
     <h1>Our Network</h1>
     <p>Find your nearest Powerstar branch and experience quality today.</p>
 </div>
 
-<div class="search-wrapper">
+<div class="search-wrapper container">
     <div class="search-box">
         <i class="fas fa-search search-icon-glass"></i>
         <input type="text" id="branchSearch" class="search-input" placeholder="Search branch (e.g., Naivasha, Kikuyu)...">
@@ -52,8 +75,8 @@
             <h3 class="branch-name">Kasarani HQ</h3>
             <span class="branch-phone">0790 680 038</span>
             <div class="branch-actions">
-                <a href="tel:0790680038" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254790680038" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0790680038" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254790680038" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -62,8 +85,8 @@
             <h3 class="branch-name">Joska Branch</h3>
             <span class="branch-phone">0791 047 850</span>
             <div class="branch-actions">
-                <a href="tel:0791047850" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254791047850" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0791047850" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254791047850" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -72,8 +95,8 @@
             <h3 class="branch-name">Kangari Branch</h3>
             <span class="branch-phone">0710 976 254</span>
             <div class="branch-actions">
-                <a href="tel:0710976254" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254710976254" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0710976254" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254710976254" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -82,8 +105,8 @@
             <h3 class="branch-name">Naivasha Branch</h3>
             <span class="branch-phone">0768 016 429</span>
             <div class="branch-actions">
-                <a href="tel:0768016429" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254768016429" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0768016429" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254768016429" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -92,8 +115,8 @@
             <h3 class="branch-name">Kitengela Branch</h3>
             <span class="branch-phone">0704 121 122</span>
             <div class="branch-actions">
-                <a href="tel:0704121122" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254704121122" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0704121122" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254704121122" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -102,8 +125,8 @@
             <h3 class="branch-name">Kikuyu Branch</h3>
             <span class="branch-phone">0741 251 973</span>
             <div class="branch-actions">
-                <a href="tel:0741251973" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254741251973" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0741251973" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254741251973" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -112,8 +135,8 @@
             <h3 class="branch-name">Kinoo Branch</h3>
             <span class="branch-phone">0795 459 026</span>
             <div class="branch-actions">
-                <a href="tel:0795459026" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254795459026" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0795459026" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254795459026" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -122,8 +145,8 @@
             <h3 class="branch-name">Ruiru Mini</h3>
             <span class="branch-phone">0724 588 900</span>
             <div class="branch-actions">
-                <a href="tel:0724588900" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254724588900" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0724588900" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254724588900" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -132,8 +155,8 @@
             <h3 class="branch-name">Ruiru Jambo</h3>
             <span class="branch-phone">0728 020 018</span>
             <div class="branch-actions">
-                <a href="tel:0728020018" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254728020018" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0728020018" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254728020018" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -142,8 +165,8 @@
             <h3 class="branch-name">Zimmerman Base</h3>
             <span class="branch-phone">0707 881 200</span>
             <div class="branch-actions">
-                <a href="tel:0707881200" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254707881200" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0707881200" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254707881200" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -152,8 +175,8 @@
             <h3 class="branch-name">Zimmerman Express</h3>
             <span class="branch-phone">0701 231 370</span>
             <div class="branch-actions">
-                <a href="tel:0701231370" class="action-btn btn-call"><i class="fas fa-phone"></i> Call</a>
-                <a href="https://wa.me/254701231370" target="_blank" class="action-btn btn-chat"><i class="fab fa-whatsapp"></i> Chat</a>
+                <a href="tel:0701231370" class="btn btn-secondary action-btn" style="border:1px solid #eee; color:#333;"><i class="fas fa-phone"></i> Call</a>
+                <a href="https://wa.me/254701231370" target="_blank" class="btn btn-whatsapp action-btn"><i class="fab fa-whatsapp"></i> Chat</a>
             </div>
         </div>
 
@@ -211,7 +234,7 @@
     window.addEventListener("scroll", reveal);
     reveal();
 
-    // 3. BRANCH SEARCH FUNCTIONALITY (Real-Time)
+    // 3. BRANCH SEARCH FUNCTIONALITY
     const searchInput = document.getElementById('branchSearch');
     const branchCards = document.querySelectorAll('.branch-card');
 
@@ -220,13 +243,9 @@
         
         branchCards.forEach(card => {
             const name = card.querySelector('.branch-name').innerText.toLowerCase();
-            // Check if name matches search term
             if (name.includes(term)) {
-                card.classList.remove('hidden');
-                // Re-trigger animation if hidden previously
                 card.style.display = "flex"; 
             } else {
-                card.classList.add('hidden');
                 card.style.display = "none";
             }
         });
