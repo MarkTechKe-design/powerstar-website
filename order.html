@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Order & Collect - Powerstar Supermarkets</title>
+<title>Order Online - Powerstar Supermarkets</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,239 +12,79 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- SENIOR ARCHITECT: DESIGN SYSTEM --- */
-    :root {
-        --ps-red: #DA291C;
-        --ps-green: #006838;
-        --ps-dark: #111;
-        --ps-whatsapp: #25D366;
-        --bg-light: #F9FAFB;
-        --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
-        --shadow-deep: 0 20px 50px rgba(0,0,0,0.1);
-        --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    /* GLOBAL RESET */
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    /* PAGE SPECIFIC: ORDERING FLOW */
     
-    html, body {
-        width: 100%; overflow-x: hidden; margin: 0; padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: var(--bg-light); color: #444;
+    /* 1. Process Timeline */
+    .order-hero {
+        background: linear-gradient(rgba(218, 41, 28, 0.9), rgba(160, 20, 10, 0.95)), url('assets/supermarket-bg.jpg');
+        background-size: cover; background-position: center;
+        height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: white; text-align: center; clip-path: ellipse(150% 100% at 50% 0%);
+        margin-bottom: 60px;
     }
-
-    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--ps-dark); }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-    /* --- ANIMATIONS --- */
-    @keyframes pulse {
-        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
+    .order-hero h1 { font-size: 3rem; color: white; margin-bottom: 10px; }
     
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
-    /* --- 1. HEADER --- */
-    header {
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        position: sticky; top: 0; z-index: 1000;
-        padding: 10px 0;
-    }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
-    
-    .logo img { height: 90px; width: auto; transition: transform 0.3s; }
-    .logo:hover img { transform: scale(1.02); }
-
-    .nav-menu { display: flex; gap: 30px; }
-    .nav-menu a {
-        font-weight: 600; font-size: 0.9rem; color: #555;
-        text-transform: uppercase; letter-spacing: 0.5px;
-        position: relative; transition: var(--transition);
-    }
-    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
-    .nav-menu a::after {
-        content: ''; position: absolute; width: 0; height: 2px;
-        bottom: -5px; left: 0; background-color: var(--ps-red);
-        transition: width 0.3s;
-    }
-    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
-
-    .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
-
-    /* --- 2. HERO SECTION --- */
-    .hero {
-        background: linear-gradient(135deg, var(--ps-red) 0%, #a31616 100%);
-        color: white; text-align: center;
-        padding: 100px 20px 160px 20px; /* Extra padding for overlap */
-        clip-path: ellipse(150% 100% at 50% 0%);
-        position: relative; overflow: hidden;
-    }
-    /* Subtle Pattern Overlay */
-    .hero::before {
-        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
-        background-size: 20px 20px; opacity: 0.3;
-    }
-    .hero-content { position: relative; z-index: 2; }
-    .hero h1 { 
-        font-size: 3.5rem; margin: 0 0 15px 0; 
-        text-transform: uppercase; letter-spacing: 2px; color: white;
-        text-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-    .hero p { font-size: 1.2rem; opacity: 0.95; font-weight: 300; max-width: 600px; margin: 0 auto; }
-
-    /* --- 3. PROCESS STEPS (Floating Cards) --- */
+    /* 2. Step Cards */
     .steps-container {
-        margin-top: -100px; /* Overlaps Hero */
-        position: relative; z-index: 10;
-        margin-bottom: 80px;
-    }
-    .section-title { 
-        text-align: center; margin-bottom: 40px; 
-        color: white; 
-        text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; opacity: 0.9;
-    }
-    
-    .steps-grid { 
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-        gap: 30px; 
+        display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;
+        margin-top: -80px; position: relative; z-index: 10; margin-bottom: 80px;
     }
     .step-card {
-        background: white; padding: 40px 30px; border-radius: 16px; text-align: center;
-        box-shadow: var(--shadow-soft); border-bottom: 4px solid transparent; 
-        transition: transform 0.3s ease; position: relative;
+        background: white; padding: 40px 30px; border-radius: 16px;
+        text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        flex: 1; min-width: 280px; max-width: 350px;
+        border-top: 5px solid var(--ps-green); transition: transform 0.3s;
     }
-    .step-card:hover { transform: translateY(-10px); border-bottom-color: var(--ps-green); box-shadow: var(--shadow-deep); }
-    
-    .step-icon-wrapper {
-        width: 70px; height: 70px; background: rgba(0, 104, 56, 0.08); color: var(--ps-green);
+    .step-card:hover { transform: translateY(-10px); }
+    .step-num {
+        background: var(--ps-red); color: white; width: 40px; height: 40px;
         border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 2rem; margin: 0 auto 20px auto; position: relative;
+        font-weight: 700; margin: 0 auto 20px; font-size: 1.2rem;
     }
-    .step-badge {
-        position: absolute; top: -5px; right: -5px; background: var(--ps-red); color: white;
-        width: 28px; height: 28px; border-radius: 50%; font-size: 0.9rem; font-weight: bold;
-        display: flex; align-items: center; justify-content: center; border: 3px solid white;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    .step-card h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--ps-dark); }
-    .step-card p { font-size: 0.95rem; color: #666; margin: 0; line-height: 1.6; }
+    .step-icon { font-size: 2.5rem; color: var(--ps-dark); margin-bottom: 15px; }
 
-    /* --- 4. CORPORATE BRANCH LISTING (THE MASTERPIECE) --- */
-    .list-header { 
-        text-align: center; margin-bottom: 60px; 
-        position: relative; 
+    /* 3. Branch Selector Grid */
+    .ordering-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px; margin-bottom: 80px;
     }
-    .list-header h2 { color: var(--ps-dark); font-size: 2.5rem; margin: 0; font-weight: 800; }
-    .list-header p { color: #666; font-size: 1.1rem; margin-top: 10px; }
+    .order-branch-card {
+        background: white; border: 1px solid #eee; border-radius: 12px;
+        padding: 25px; display: flex; align-items: center; justify-content: space-between;
+        transition: all 0.3s;
+    }
+    .order-branch-card:hover {
+        border-color: var(--whatsapp-green); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.15);
+        transform: translateX(5px);
+    }
+    .ob-info h4 { margin: 0; font-size: 1.1rem; color: var(--ps-dark); }
+    .ob-info span { font-size: 0.85rem; color: #666; }
     
-    .department-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-        gap: 30px; padding-bottom: 80px; 
+    .btn-chat-sm {
+        background: var(--whatsapp-green); color: white; padding: 10px 20px;
+        border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+        display: flex; align-items: center; gap: 8px; transition: 0.3s;
+    }
+    .btn-chat-sm:hover { background: #1ebc57; }
+
+    /* 4. Payment Trust Strip */
+    .payment-trust {
+        background: #f4f9f4; padding: 40px; border-radius: 16px;
+        text-align: center; margin-bottom: 80px; border: 1px solid #e0e0e0;
+    }
+    .payment-icons {
+        display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap;
+    }
+    .pay-badge {
+        background: white; padding: 10px 25px; border-radius: 8px;
+        font-weight: 700; color: #555; box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        display: flex; align-items: center; gap: 10px;
     }
 
-    /* THE FULFILLMENT CARD DESIGN */
-    .fulfillment-card {
-        background: white; border-radius: 16px; 
-        overflow: hidden; 
-        border: 1px solid #f0f0f0;
-        box-shadow: var(--shadow-soft);
-        transition: var(--transition);
-        display: flex; flex-direction: column;
-        position: relative;
-    }
-    
-    /* Hover State: Lift & Green Border */
-    .fulfillment-card:hover {
-        transform: translateY(-8px);
-        box-shadow: var(--shadow-deep);
-        border-color: var(--ps-green);
-    }
-
-    /* Status Dot */
-    .status-dot {
-        position: absolute; top: 20px; right: 20px;
-        display: flex; align-items: center; gap: 6px;
-        font-size: 0.75rem; font-weight: 700; color: var(--ps-green);
-        background: rgba(0, 104, 56, 0.1); padding: 5px 10px; border-radius: 20px;
-    }
-    .dot {
-        width: 8px; height: 8px; background-color: var(--ps-whatsapp);
-        border-radius: 50%; animation: pulse 2s infinite;
-    }
-
-    .card-body { padding: 30px 25px 20px; flex-grow: 1; }
-    
-    .branch-icon-lg {
-        font-size: 2.5rem; color: #eee; margin-bottom: 15px; display: block;
-    }
-    
-    .fulfillment-card h3 { 
-        font-size: 1.4rem; margin: 0 0 15px 0; color: var(--ps-dark); font-weight: 800; 
-        letter-spacing: -0.5px;
-    }
-
-    .detail-row { 
-        display: flex; align-items: center; gap: 12px; 
-        color: #555; font-size: 0.95rem; margin-bottom: 12px; 
-    }
-    .detail-row i { color: var(--ps-red); font-size: 1rem; width: 20px; text-align: center; }
-
-    /* The "Command" Button Area */
-    .card-footer {
-        padding: 20px 25px;
-        background: #fcfcfc;
-        border-top: 1px solid #f0f0f0;
-    }
-
-    .whatsapp-btn {
-        background: var(--ps-whatsapp); color: white; text-decoration: none; 
-        padding: 15px; border-radius: 8px;
-        font-weight: 700; text-align: center; 
-        transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
-        text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
-        box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
-    }
-    .whatsapp-btn:hover { 
-        background: #1ebc57; 
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
-    }
-
-    /* --- 5. FOOTER --- */
-    footer { background-color: var(--ps-green); color: white; padding: 60px 20px; text-align: center; margin-top: auto; border-top: 8px solid var(--ps-red); }
-    .footer-content h4 { color: rgba(255,255,255,0.8); font-family: 'Poppins', sans-serif; letter-spacing: 2px; }
-    
-    .social-links { margin: 30px 0; }
-    .social-links a { 
-        display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; font-size: 1.4rem;
-        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 10px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
-    }
-    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-5px) scale(1.1); }
-    .copyright { font-size: 0.9rem; opacity: 0.7; }
-
-    /* RESPONSIVE */
     @media (max-width: 768px) {
-        .mobile-toggle { display: block; }
-        .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .nav-menu.active { display: flex; }
-        
-        .hero { height: auto; padding-bottom: 160px; clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); }
-        .hero h1 { font-size: 2rem; }
-        .steps-container { margin-top: -120px; }
-        .logo img { height: 60px; }
-        
-        /* Force Stack on Mobile */
-        .department-grid { grid-template-columns: 1fr; } 
-        
-        /* Mobile Spacing Fix */
-        .fulfillment-card { margin-bottom: 10px; }
+        .order-hero { height: 40vh; }
+        .steps-container { margin-top: -40px; padding: 0 20px; }
+        .ordering-grid { grid-template-columns: 1fr; }
     }
 </style>
 </head>
@@ -267,58 +107,176 @@
     </div>
 </header>
 
-<div class="hero">
-    <div class="hero-content">
-        <h1><i class="fab fa-whatsapp"></i> Shop on WhatsApp</h1>
-        <p>Skip the line. Order ahead and pick up at your convenience.</p>
+<div class="order-hero">
+    <div class="reveal">
+        <h1>Personal Shopper Service</h1>
+        <p>Skip the queue. We pick, pack, and deliver to your doorstep.</p>
     </div>
 </div>
 
 <main class="container">
 
     <div class="steps-container">
-        <div class="section-title">How "Click & Collect" Works</div>
-        <div class="steps-grid">
-            <div class="step-card reveal">
-                <div class="step-icon-wrapper"><i class="fas fa-map-marker-alt"></i><div class="step-badge">1</div></div>
-                <h3>Choose Branch</h3>
-                <p>Select your nearest Powerstar branch from the list below.</p>
-            </div>
-            <div class="step-card reveal">
-                <div class="step-icon-wrapper"><i class="fas fa-clipboard-list"></i><div class="step-badge">2</div></div>
-                <h3>Send List</h3>
-                <p>Click to open WhatsApp. Send us your shopping list.</p>
-            </div>
-            <div class="step-card reveal">
-                <div class="step-icon-wrapper"><i class="fas fa-mobile-alt"></i><div class="step-badge">3</div></div>
-                <h3>Confirm & Pay</h3>
-                <p>We confirm stock availability. You pay via <b>M-PESA Till</b>.</p>
-            </div>
-            <div class="step-card reveal">
-                <div class="step-icon-wrapper"><i class="fas fa-shopping-bag"></i><div class="step-badge">4</div></div>
-                <h3>Pick Up</h3>
-                <p>Pass by the <b>"Weka Mzigo"</b> counter and collect your goods.</p>
-            </div>
+        <div class="step-card reveal">
+            <div class="step-num">1</div>
+            <div class="step-icon"><i class="fas fa-list-ul"></i></div>
+            <h3>Write Your List</h3>
+            <p>Jot down your shopping list on paper or your phone notes. Be specific about brands if you prefer!</p>
+        </div>
+        <div class="step-card reveal">
+            <div class="step-num">2</div>
+            <div class="step-icon"><i class="fab fa-whatsapp" style="color:var(--whatsapp-green);"></i></div>
+            <h3>Send via WhatsApp</h3>
+            <p>Select your nearest branch below. Click to open a chat and send a photo or text of your list.</p>
+        </div>
+        <div class="step-card reveal">
+            <div class="step-num">3</div>
+            <div class="step-icon"><i class="fas fa-motorcycle"></i></div>
+            <h3>Delivery & Pay</h3>
+            <p>We'll confirm the total. Pay via M-Pesa Till upon delivery or before dispatch.</p>
         </div>
     </div>
-    
-    <div class="list-header reveal">
-        <h2>Start Your Order</h2>
-        <p>Select a branch to begin your secure WhatsApp chat.</p>
+
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 40px;">
+        <h2>Select Your Branch</h2>
+        <p>Choose the location nearest to you for faster delivery.</p>
     </div>
 
-    <div id="branchContainer" class="department-grid"></div>
+    <div class="ordering-grid">
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Kasarani HQ</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254790680038?text=Hi%20Powerstar%20Kasarani,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Joska Branch</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254791047850?text=Hi%20Powerstar%20Joska,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Kangari Branch</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254710976254?text=Hi%20Powerstar%20Kangari,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Naivasha Branch</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254768016429?text=Hi%20Powerstar%20Naivasha,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Kitengela Branch</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254704121122?text=Hi%20Powerstar%20Kitengela,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Kikuyu Branch</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254741251973?text=Hi%20Powerstar%20Kikuyu,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Kinoo Branch</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254795459026?text=Hi%20Powerstar%20Kinoo,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Ruiru Mini</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254724588900?text=Hi%20Powerstar%20Ruiru%20Mini,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Ruiru Jambo</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254728020018?text=Hi%20Powerstar%20Ruiru%20Jambo,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Zimmerman Base</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254707881200?text=Hi%20Powerstar%20Zimmerman,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+        <div class="order-branch-card reveal">
+            <div class="ob-info">
+                <h4>Zimmerman Express</h4>
+                <span><i class="fas fa-clock"></i> 8am - 8pm</span>
+            </div>
+            <a href="https://wa.me/254701231370?text=Hi%20Powerstar%20Zimmerman%20Express,%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn-chat-sm">
+                <i class="fab fa-whatsapp"></i> Order Here
+            </a>
+        </div>
+
+    </div>
+
+    <div class="payment-trust reveal">
+        <h3>Secure & Convenient Payments</h3>
+        <p>We accept mobile payments upon delivery for your peace of mind.</p>
+        <div class="payment-icons">
+            <div class="pay-badge"><img src="assets/mpesa.png" alt="M-Pesa" style="height:25px;" onerror="this.style.display='none'"> M-Pesa Till</div>
+            <div class="pay-badge"><i class="fas fa-university"></i> Bank Transfer</div>
+            <div class="pay-badge"><i class="fas fa-hand-holding-usd"></i> Cash on Delivery</div>
+        </div>
+    </div>
 
 </main>
 
 <footer>
     <div class="footer-content">
-        <h4>Follow Us</h4>
         <div class="social-links">
-            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <h4 style="margin-bottom: 20px;">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
@@ -328,23 +286,24 @@
 
 <script>
     // 1. MOBILE MENU
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const navMenu = document.getElementById('nav-menu');
-    
-    if(menuBtn){
-        menuBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            navMenu.classList.toggle('active');
-            const icon = menuBtn.querySelector('i');
-            if(navMenu.classList.contains('active')){
-                icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
-            }
-        });
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                navMenu.classList.toggle('active');
+                const icon = menuBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                }
+            });
+        }
+    });
 
-    // 2. SCROLL ANIMATION
+    // 2. SCROLL REVEAL
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -357,63 +316,7 @@
         }
     }
     window.addEventListener("scroll", reveal);
-    reveal(); // Trigger on load
-
-    // 3. BRANCH DATA (EASY EDIT)
-    const branches = [
-        { name: "Kasarani HQ",      phone: "0790 680 038", location: "Kasarani-Mwiki Road" },
-        { name: "Naivasha Branch",  phone: "0768 016 429", location: "Naivasha Town" },
-        { name: "Ruiru Jambo",      phone: "0728 020 018", location: "Ruiru Opposite Family Bank" },
-        { name: "Ruiru Mini",       phone: "0724 588 900", location: "Ruiru Opposite Ruiru Ndani Stage" },
-        { name: "Kangari Branch",   phone: "0710 976 254", location: "Kangari" },
-        { name: "Joska Branch",     phone: "0791 047 850", location: "Joska Along Kangundo Road" },
-        { name: "Express Branch",   phone: "0701 231 370", location: "Canopy Stage Along Kamiti Road" },
-        { name: "Base Branch",      phone: "0707 881 200", location: "Base Area, Zimmerman" },
-        { name: "Kitengela Branch", phone: "0704 121 122", location: "Kitengela CBD Next to Quickmart" },
-        { name: "Kikuyu Branch",    phone: "0741 251 973", location: "Kikuyu Town" },
-        { name: "Kinoo Branch",     phone: "0795 459 026", location: "Kinoo" }
-    ];
-
-    const container = document.getElementById('branchContainer');
-
-    // 4. WHATSAPP LINK GENERATOR
-    function getWhatsAppLink(phone, branchName) {
-        const cleanNumber = "254" + phone.replace(/\s/g, '').substring(1);
-        const text = encodeURIComponent(`Hi Powerstar ${branchName}, I would like to order...`);
-        return `https://wa.me/${cleanNumber}?text=${text}`;
-    }
-
-    // 5. RENDER "FULFILLMENT CARDS"
-    branches.forEach(branch => {
-        const card = document.createElement('div');
-        card.className = 'fulfillment-card reveal';
-        card.innerHTML = `
-            <div class="status-dot">
-                <div class="dot"></div> ONLINE
-            </div>
-            
-            <div class="card-body">
-                <i class="fas fa-store-alt branch-icon-lg"></i>
-                <h3>${branch.name}</h3>
-                
-                <div class="detail-row">
-                    <i class="fas fa-map-marker-alt"></i> 
-                    <span>${branch.location}</span>
-                </div>
-                <div class="detail-row">
-                    <i class="fas fa-phone-alt"></i> 
-                    <span>${branch.phone}</span>
-                </div>
-            </div>
-
-            <div class="card-footer">
-                <a href="${getWhatsAppLink(branch.phone, branch.name)}" target="_blank" class="whatsapp-btn">
-                    <i class="fab fa-whatsapp"></i> Chat to Order
-                </a>
-            </div>
-        `;
-        container.appendChild(card);
-    });
+    reveal();
 </script>
 
 </body>
