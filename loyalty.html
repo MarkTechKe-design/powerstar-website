@@ -12,209 +12,63 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- SENIOR ARCHITECT: DESIGN SYSTEM --- */
-    :root {
-        --ps-red: #DA291C;
-        --ps-green: #006838;
-        --ps-gold: #D4AF37;
-        --bg-light: #F9FAFB;
-        --shadow-card: 0 15px 40px rgba(0,0,0,0.08);
-        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    /* GLOBAL RESET */
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    /* PAGE SPECIFIC OVERRIDES */
     
-    html, body {
-        width: 100%; overflow-x: hidden; margin: 0; padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: var(--bg-light); color: #444;
-    }
-
-    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
-    a { text-decoration: none; color: inherit; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-    /* --- 1. HEADER --- */
-    header {
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        position: sticky; top: 0; z-index: 1000;
-        padding: 10px 0;
-    }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
-    
-    .logo img { height: 90px; width: auto; transition: transform 0.3s; }
-    .logo:hover img { transform: scale(1.02); }
-
-    .nav-menu { display: flex; gap: 30px; }
-    .nav-menu a {
-        font-weight: 600; font-size: 0.9rem; color: #555;
-        text-transform: uppercase; letter-spacing: 0.5px;
-        position: relative; transition: var(--transition);
-    }
-    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
-    .nav-menu a::after {
-        content: ''; position: absolute; width: 0; height: 2px;
-        bottom: -5px; left: 0; background-color: var(--ps-red);
-        transition: width 0.3s;
-    }
-    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
-
-    .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: #111; }
-
-    /* --- 2. PREMIUM HERO --- */
+    /* Hero Override */
     .hero-loyalty {
         background: linear-gradient(rgba(0, 40, 20, 0.85), rgba(0, 20, 10, 0.9)), url('assets/store-interior.jpg');
         background-size: cover; background-position: center;
-        height: 55vh;
-        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        height: 55vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
         text-align: center; padding: 20px; position: relative;
-        border-bottom: 5px solid var(--ps-gold);
+        border-bottom: 5px solid var(--ps-gold); margin-bottom: 60px;
     }
+    .hero-loyalty h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; margin-bottom: 5px; color: white; text-shadow: 0 4px 15px rgba(0,0,0,0.6); }
+    .loyalty-tagline { font-family: 'Dancing Script', cursive; font-size: 2.5rem; color: white; margin: 0; text-shadow: 0 2px 5px rgba(0,0,0,0.8); }
+    .sub-text { color: #eee; max-width: 600px; font-size: 1.1rem; font-weight: 300; margin-top: 20px; }
 
-    .hero-loyalty h1 { 
-        font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; 
-        margin-bottom: 5px; text-transform: uppercase; letter-spacing: 2px;
-        color: white; text-shadow: 0 4px 15px rgba(0,0,0,0.6);
-    }
-
-    .loyalty-tagline {
-        font-family: 'Dancing Script', cursive; font-size: 2.5rem;
-        color: white; margin: 0; text-shadow: 0 2px 5px rgba(0,0,0,0.8);
-    }
-    
-    .hero-loyalty p.sub-text { 
-        color: #eee; max-width: 600px; font-size: 1.1rem; font-weight: 300; margin-top: 20px;
-    }
-
-    /* --- 3. DIGITAL CARD VISUAL --- */
-    .card-display {
-        margin-top: -100px; margin-bottom: 70px;
-        perspective: 1000px; display: flex; justify-content: center;
-        z-index: 10; position: relative;
-    }
-
+    /* Digital Card Visual */
+    .card-display { margin-top: -100px; margin-bottom: 70px; perspective: 1000px; display: flex; justify-content: center; z-index: 10; position: relative; }
     .smart-card {
         width: 400px; height: 250px;
         background: linear-gradient(135deg, #004d2a 0%, #00331a 100%);
         border-radius: 16px; padding: 25px; color: white;
         box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
-        position: relative; overflow: hidden;
-        display: flex; flex-direction: column; justify-content: space-between;
+        position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between;
         transition: transform 0.5s;
     }
     .smart-card:hover { transform: rotateY(5deg) rotateX(5deg); }
-
-    /* Decorative Rings */
-    .smart-card::before {
-        content: ''; position: absolute; top: -60px; right: -60px;
-        width: 220px; height: 220px; border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 50%;
-    }
-    .smart-card::after {
-        content: ''; position: absolute; bottom: -60px; left: -60px;
-        width: 220px; height: 220px; border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 50%;
-    }
-
+    .smart-card::before { content: ''; position: absolute; top: -60px; right: -60px; width: 220px; height: 220px; border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 50%; }
+    .smart-card::after { content: ''; position: absolute; bottom: -60px; left: -60px; width: 220px; height: 220px; border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 50%; }
+    
     .card-top { display: flex; justify-content: space-between; align-items: center; }
-    
-    .card-chip {
-        width: 55px; height: 40px;
-        background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
-        border-radius: 8px; position: relative; overflow: hidden;
-        border: 1px solid #8c6608; opacity: 0.8;
-    }
-    .card-chip::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(0,0,0,0.4); }
-    .card-chip::after { content: ''; position: absolute; left: 50%; top: 0; height: 100%; width: 1px; background: rgba(0,0,0,0.4); }
-
-    .card-logo-text {
-        font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.5rem;
-        text-transform: uppercase; letter-spacing: 2px; color: white;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-
-    .card-number { 
-        font-size: 1.8rem; letter-spacing: 2px; font-family: 'Courier New', monospace; 
-        text-shadow: 0 2px 2px rgba(0,0,0,0.7); margin-top: 15px; color: white; font-weight: 600;
-    }
-    
-    .card-instruction {
-        font-size: 0.7rem; color: #ddd; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;
-    }
-
+    .card-chip { width: 55px; height: 40px; background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%); border-radius: 8px; border: 1px solid #8c6608; opacity: 0.8; }
+    .card-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.5rem; letter-spacing: 2px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .card-number { font-size: 1.8rem; letter-spacing: 2px; font-family: 'Courier New', monospace; text-shadow: 0 2px 2px rgba(0,0,0,0.7); margin-top: 15px; font-weight: 600; }
+    .card-instruction { font-size: 0.7rem; color: #ddd; letter-spacing: 1px; margin-top: 5px; }
     .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
     .card-label { font-size: 0.65rem; display: block; opacity: 0.8; margin-bottom: 3px; }
-    .card-holder { text-transform: uppercase; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; }
-    .card-tier { color: var(--ps-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem; }
+    .card-holder { font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; }
+    .card-tier { color: var(--ps-gold); font-weight: 800; letter-spacing: 1px; font-size: 1.1rem; }
 
-    /* --- 4. BENEFITS GRID --- */
-    .benefits-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px; margin-bottom: 60px; margin-top: 40px;
-    }
-    .benefit-item {
-        text-align: center; padding: 40px 30px;
-        background: white; border-radius: 16px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        border-bottom: 4px solid var(--ps-gold);
-        transition: transform 0.3s;
-    }
-    .benefit-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); }
-    
+    /* Benefits Grid */
+    .benefit-item { text-align: center; padding: 40px 30px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); border-bottom: 4px solid var(--ps-gold); transition: transform 0.3s; }
+    .benefit-item:hover { transform: translateY(-5px); }
     .benefit-icon { font-size: 3rem; color: var(--ps-gold); margin-bottom: 25px; }
     .benefit-title { font-weight: 700; margin-bottom: 15px; color: var(--ps-green); font-size: 1.2rem; }
-    .benefit-item p { color: #555; line-height: 1.6; }
 
-    /* --- 5. REGISTRATION FORM --- */
-    .form-wrapper {
-        max-width: 600px; margin: 0 auto 80px auto;
-        background: white; border-radius: 16px; 
-        box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-        overflow: hidden; border: 1px solid #eee;
-    }
+    /* Form Wrapper */
+    .form-wrapper { max-width: 600px; margin: 0 auto 80px auto; background: white; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); overflow: hidden; border: 1px solid #eee; }
     .form-header { background: #f4f9f4; padding: 30px; text-align: center; border-bottom: 1px solid #eee; }
     .form-header h2 { color: var(--ps-green); margin: 0 0 5px 0; font-size: 1.8rem; }
-    
     .loyalty-form { padding: 40px; }
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-weight: 600; color: #444; margin-bottom: 8px; }
     
-    .form-group input, .form-group select {
-        width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;
-        font-size: 1rem; font-family: 'Poppins', sans-serif; outline: none; transition: 0.3s;
-    }
-    .form-group input:focus, .form-group select:focus {
-        border-color: var(--ps-green); box-shadow: 0 0 0 3px rgba(0, 104, 56, 0.1);
-    }
-
-    .btn-submit {
-        background: #25D366; color: white; width: 100%;
-        padding: 15px; font-size: 1.1rem; font-weight: 700; border: none; border-radius: 50px;
-        cursor: pointer; transition: 0.3s;
-        display: flex; align-items: center; justify-content: center; gap: 10px;
-    }
+    .btn-submit { background: #25D366; color: white; width: 100%; padding: 15px; font-size: 1.1rem; font-weight: 700; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
     .btn-submit:hover { background: #1ebe57; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
 
-    /* --- 6. FOOTER --- */
-    footer { background-color: var(--ps-green); color: white; padding: 60px 20px; text-align: center; margin-top: auto; border-top: 8px solid var(--ps-red); }
-    .social-links { margin-bottom: 30px; margin-top: 10px; }
-    .social-links a { 
-        display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; font-size: 1.4rem;
-        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 10px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
-    }
-    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-5px) scale(1.1); }
-    .copyright { font-size: 0.9rem; opacity: 0.7; }
-
     @media (max-width: 768px) {
-        .mobile-toggle { display: block; }
-        .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .nav-menu.active { display: flex; }
-        
         .smart-card { width: 320px; height: 200px; }
         .hero-loyalty { height: 60vh; }
         .card-display { margin-top: -80px; }
-        .social-links a { width: 45px; height: 45px; font-size: 1.2rem; }
     }
 </style>
 </head>
@@ -272,8 +126,7 @@
 
 <main class="container">
 
-    <div class="benefits-grid">
-        <div class="benefit-item">
+    <div class="features-grid"> <div class="benefit-item">
             <div class="benefit-icon"><i class="fas fa-coins"></i></div>
             <h3 class="benefit-title">Earn Points</h3>
             <p>Earn 1 Point for every <b>KSh 200</b> spent. Watch your balance grow with every visit.</p>
@@ -349,7 +202,7 @@
 
 <footer>
     <div class="footer-content">
-        <h4 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Follow Us</h4>
+        <h4>Follow Us</h4>
         <div class="social-links">
             <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
             <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
