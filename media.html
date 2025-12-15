@@ -11,75 +11,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 
-<style>
-    /* PAGE SPECIFIC OVERRIDES */
-    
-    /* Hero Override */
-    .hero-media {
-        background: linear-gradient(rgba(0, 50, 20, 0.85), rgba(0, 20, 10, 0.9)), url('assets/supermarket-bg.jpg');
-        background-size: cover; background-position: center; background-attachment: fixed;
-        height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-        text-align: center; color: white; margin-bottom: 60px;
-    }
-    .hero-media h1 { font-size: 3.5rem; margin: 0 0 15px 0; color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    .hero-media p { font-size: 1.2rem; opacity: 0.95; }
-
-    /* Filter System */
-    .filter-container {
-        display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;
-        margin: -30px auto 60px; position: relative; z-index: 10;
-    }
-    .filter-btn {
-        background: white; border: 1px solid #eee; padding: 12px 30px;
-        border-radius: 50px; cursor: pointer; font-weight: 600; color: #555;
-        transition: 0.3s; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    .filter-btn:hover, .filter-btn.active {
-        background: var(--brand-red); color: white; border-color: var(--brand-red);
-        transform: translateY(-3px); box-shadow: 0 10px 20px rgba(218, 41, 28, 0.3);
-    }
-
-    /* Magazine Cards */
-    .blog-card {
-        background: white; border-radius: 16px; overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;
-        transition: transform 0.3s; display: flex; flex-direction: column;
-    }
-    .blog-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-
-    .card-image { height: 240px; overflow: hidden; position: relative; }
-    .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-    .blog-card:hover .card-image img { transform: scale(1.1); }
-    
-    .category-tag {
-        position: absolute; top: 15px; right: 15px;
-        background: var(--brand-green); color: white;
-        padding: 6px 14px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    .tag-red { background: var(--brand-red); }
-
-    .card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
-    .card-date { font-size: 0.8rem; color: #888; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .card-date i { color: var(--brand-green); }
-
-    .card-title { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 15px; line-height: 1.4; }
-    .card-desc { font-size: 0.95rem; color: #666; line-height: 1.7; margin-bottom: 20px; flex-grow: 1; }
-
-    .read-more {
-        color: var(--brand-red); font-weight: 700; font-size: 0.85rem;
-        text-transform: uppercase; letter-spacing: 1px;
-        display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
-    }
-    .read-more:hover { gap: 12px; }
-    .blog-card.hide { display: none; }
-
-    @media (max-width: 768px) {
-        .hero-media { height: 40vh; }
-        .filter-container { margin-top: 40px; }
-    }
-</style>
 </head>
 <body>
 
@@ -100,10 +31,13 @@
     </div>
 </header>
 
-<div class="hero-media">
-    <div class="reveal">
+<div class="hero" style="background-image: linear-gradient(rgba(0, 50, 20, 0.6), rgba(0, 20, 10, 0.8)), url('assets/supermarket-bg.jpg');">
+    <div class="hero-glass-card reveal">
+        <div style="text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; color: var(--ps-gold); font-weight: 700; font-size: 0.9rem;">
+            Latest Updates
+        </div>
         <h1>News & Moments</h1>
-        <p>Celebrating our winners, community events, and latest offers.</p>
+        <p style="color: rgba(255,255,255,0.9);">Celebrating our winners, community events, and latest offers.</p>
     </div>
 </div>
 
@@ -116,82 +50,82 @@
         <button class="filter-btn" onclick="filterGallery('promos', this)">Promotions</button>
     </div>
 
-    <div class="features-grid"> 
+    <div class="gallery-grid">
         
         <div class="blog-card reveal" data-category="events">
-            <div class="card-image">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/winner1.jpg" alt="Trolley Dash Winner" onerror="this.src='https://placehold.co/600x400/eee/999?text=Winner+Image'">
                 <span class="category-tag tag-red">Winner</span>
             </div>
             <div class="card-content">
                 <span class="card-date"><i class="far fa-calendar-alt"></i> Oct 15, 2024 &bull; Joska Branch</span>
-                <h3 class="card-title">60 Seconds of Free Shopping: Joska Winner Takes It All!</h3>
-                <p class="card-desc">Witness the excitement as our lucky Loyalty Card winner raced through the aisles. In just one minute, she managed to grab household essentials worth over KSh 15,000 completely free of charge!</p>
+                <h3 class="dept-title">60 Seconds of Free Shopping</h3>
+                <p class="dept-desc">Witness the excitement as our lucky Loyalty Card winner raced through the aisles. In just one minute, she managed to grab household essentials worth over KSh 15,000 completely free!</p>
                 <a href="loyalty.html" class="read-more">Join Loyalty <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
 
         <div class="blog-card reveal" data-category="store">
-            <div class="card-image">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/store-interior.jpg" alt="Store Interior" onerror="this.src='https://placehold.co/600x400/eee/999?text=Store+Interior'">
                 <span class="category-tag">Experience</span>
             </div>
             <div class="card-content">
                 <span class="card-date"><i class="far fa-clock"></i> Open Daily 7AM - 9PM</span>
-                <h3 class="card-title">A Shopping Experience Designed for Your Comfort</h3>
-                <p class="card-desc">We believe shopping should be relaxing. Walk through our wide, clutter-free aisles stocked with the finest international brands and local favorites. Cleanliness and organization are our top priority.</p>
+                <h3 class="dept-title">A Shopping Experience Designed for Comfort</h3>
+                <p class="dept-desc">We believe shopping should be relaxing. Walk through our wide, clutter-free aisles stocked with the finest international brands and local favorites.</p>
                 <a href="branches.html" class="read-more">Visit Us <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
 
         <div class="blog-card reveal" data-category="promos">
-            <div class="card-image">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/promo1.jpg" alt="Christmas Promo" onerror="this.src='https://placehold.co/600x400/DA291C/fff?text=Christmas+Sale'">
                 <span class="category-tag tag-red">Promotion</span>
             </div>
             <div class="card-content">
                 <span class="card-date"><i class="far fa-calendar-alt"></i> Dec 2024</span>
-                <h3 class="card-title">The Big Christmas Savings Bonanza</h3>
-                <p class="card-desc">The festive season brought incredible joy and massive discounts. Families across Kenya saved big on unga bundles, cooking oil, and holiday feasts during our biggest annual sale event.</p>
+                <h3 class="dept-title">The Big Christmas Savings Bonanza</h3>
+                <p class="dept-desc">The festive season brought incredible joy and massive discounts. Families across Kenya saved big on unga bundles, cooking oil, and holiday feasts.</p>
                 <span class="read-more" style="cursor:default; color:#999; text-decoration: line-through;">Expired</span>
             </div>
         </div>
 
         <div class="blog-card reveal" data-category="store">
-            <div class="card-image">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/bakery-staff.jpg" alt="Bakery Team" onerror="this.src='https://placehold.co/600x400/eee/999?text=Bakery+Team'">
                 <span class="category-tag">Team</span>
             </div>
             <div class="card-content">
                 <span class="card-date"><i class="fas fa-user-friends"></i> Meet the Experts</span>
-                <h3 class="card-title">The Secret Behind Our Famous Soft Bread</h3>
-                <p class="card-desc">Every morning at 4 AM, our dedicated bakery team starts their ovens. Using only premium wheat and zero preservatives, they ensure you wake up to hot, fresh, and fluffy bread every single day.</p>
+                <h3 class="dept-title">The Secret Behind Our Famous Soft Bread</h3>
+                <p class="dept-desc">Every morning at 4 AM, our dedicated bakery team starts their ovens. Using only premium wheat and zero preservatives, they ensure you wake up to hot, fresh bread.</p>
                 <a href="services.html" class="read-more">View Bakery <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
 
         <div class="blog-card reveal" data-category="events">
-            <div class="card-image">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/winner2.jpg" alt="School Fees Winner" onerror="this.src='https://placehold.co/600x400/eee/999?text=School+Fees'">
                 <span class="category-tag tag-red">Community</span>
             </div>
             <div class="card-content">
                 <span class="card-date"><i class="far fa-calendar-alt"></i> Jan 10, 2025 &bull; Kangari</span>
-                <h3 class="card-title">Supporting Education: School Fees Cheque Handover</h3>
-                <p class="card-desc">Education matters to us. We were thrilled to hand over a full term's school fees cheque to our grand prize winner at the Kangari branch. At Powerstar, we don't just sell goods; we build futures.</p>
+                <h3 class="dept-title">Supporting Education: Fees Handover</h3>
+                <p class="dept-desc">Education matters to us. We were thrilled to hand over a full term's school fees cheque to our grand prize winner at the Kangari branch.</p>
                 <a href="loyalty.html" class="read-more">See Rewards <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
 
         <div class="blog-card reveal" data-category="store">
-            <div class="card-image">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/fresh-veg.jpg" alt="Fresh Produce" onerror="this.src='https://placehold.co/600x400/006838/fff?text=Farm+Fresh'">
                 <span class="category-tag">Sourcing</span>
             </div>
             <div class="card-content">
                 <span class="card-date"><i class="fas fa-leaf"></i> Daily Harvest</span>
-                <h3 class="card-title">Our Farm-to-Fork Promise</h3>
-                <p class="card-desc">We partner with over 50 local farmers to bring you crisp vegetables and ripe fruits daily. By cutting out the middleman, we ensure farmers get paid fairly and you get the freshest produce at lower prices.</p>
+                <h3 class="dept-title">Our Farm-to-Fork Promise</h3>
+                <p class="dept-desc">We partner with over 50 local farmers to bring you crisp vegetables and ripe fruits daily. By cutting out the middleman, we ensure farmers get paid fairly.</p>
                 <a href="services.html" class="read-more">Our Produce <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
@@ -199,6 +133,11 @@
     </div>
 
 </main>
+
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Full Screen">
+</div>
 
 <footer>
     <div class="footer-content">
@@ -253,24 +192,47 @@
 
     // 3. BLOG FILTERING LOGIC
     function filterGallery(category, btn) {
-        // Update Button Active State
         const buttons = document.querySelectorAll('.filter-btn');
         buttons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        // Filter Items
         const items = document.querySelectorAll('.blog-card');
         items.forEach(item => {
             if (category === 'all' || item.getAttribute('data-category') === category) {
                 item.classList.remove('hide');
-                // Optional: Add animation class here to fade in
+                // Subtle fade in effect
                 item.style.opacity = '0';
-                setTimeout(() => item.style.opacity = '1', 50);
+                setTimeout(() => { 
+                    item.style.opacity = '1'; 
+                    item.style.transform = 'translateY(0)';
+                }, 50);
             } else {
                 item.classList.add('hide');
             }
         });
     }
+
+    // 4. LIGHTBOX
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(element) {
+        const img = element.querySelector('img');
+        lightboxImg.src = img.src; 
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto'; 
+    }
+
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
 </script>
 
 </body>
