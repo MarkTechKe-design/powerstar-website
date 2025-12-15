@@ -4,8 +4,122 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Media & Gallery - Powerstar Supermarkets</title>
-<link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    /* --- INTERNAL GALLERY STYLES --- */
+    :root {
+        --ps-red: #DA291C;
+        --ps-green: #006838;
+        --ps-dark: #1a1a1a;
+        --transition: all 0.3s ease;
+    }
+
+    body { font-family: 'Poppins', sans-serif; background: #f9f9f9; }
+
+    /* Hero Override */
+    .hero-gallery {
+        background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 50, 20, 0.9)), url('assets/supermarket-bg.jpg');
+        background-size: cover; background-position: center;
+        height: 40vh;
+        display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: white; text-align: center;
+        padding: 20px;
+    }
+    .hero-gallery h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* Filter Buttons */
+    .filter-container {
+        display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;
+        margin: 50px 0 30px;
+    }
+    .filter-btn {
+        background: white; border: 1px solid #ddd; padding: 10px 25px;
+        border-radius: 50px; cursor: pointer; font-weight: 600; color: #555;
+        transition: var(--transition); text-transform: uppercase; font-size: 0.85rem;
+    }
+    .filter-btn:hover, .filter-btn.active {
+        background: var(--ps-red); color: white; border-color: var(--ps-red);
+        transform: translateY(-2px); box-shadow: 0 5px 15px rgba(218, 41, 28, 0.3);
+    }
+
+    /* Masonry Grid */
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 25px;
+        padding-bottom: 80px;
+    }
+
+    .gallery-item {
+        position: relative;
+        height: 300px;
+        border-radius: 12px;
+        overflow: hidden;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        background: white;
+    }
+
+    /* Image Animation */
+    .gallery-item img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+        transform: scale(1.1);
+    }
+
+    /* Overlay Styling */
+    .gallery-overlay {
+        position: absolute;
+        bottom: 0; left: 0; right: 0; top: 0;
+        background: rgba(0, 104, 56, 0.85); /* Powerstar Green Overlay */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: var(--transition);
+        padding: 20px;
+        text-align: center;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .overlay-title {
+        color: white; font-weight: 700; font-size: 1.2rem;
+        transform: translateY(20px); transition: var(--transition);
+    }
+    .overlay-cat {
+        color: #ddd; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
+        margin-top: 5px; transform: translateY(20px); transition: var(--transition); transition-delay: 0.1s;
+    }
+    .gallery-item:hover .overlay-title, 
+    .gallery-item:hover .overlay-cat { transform: translateY(0); }
+
+    /* Lightbox (Modal) */
+    .lightbox {
+        display: none; position: fixed; z-index: 9999;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.9);
+        justify-content: center; align-items: center;
+        padding: 20px;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 90%; max-height: 85vh; border-radius: 5px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+    .lightbox-close {
+        position: absolute; top: 30px; right: 30px;
+        color: white; font-size: 2rem; cursor: pointer; transition: 0.3s;
+    }
+    .lightbox-close:hover { color: var(--ps-red); }
+
+    /* Hide items when filtering */
+    .gallery-item.hide { display: none; }
+
+</style>
 </head>
 <body>
 
@@ -13,97 +127,110 @@
     <div class="header-inner">
         <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-        <nav id="nav-menu">
+        <nav class="nav-menu" id="nav-menu">
             <a href="index.html">Home</a>
-            <a href="about.html" class="active">About Us</a> <a href="services.html">Products</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a> <a href="loyalty.html">Loyalty</a>
+            <a href="order.html">Order Online</a>
+            <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
 </header>
 
-<div class="hero" style="height: 35vh;">
-    <h1>Gallery & Moments</h1>
-    <p>Capturing the excitement and freshness at Powerstar.</p>
+<div class="hero-gallery">
+    <h1>Moments & Memories</h1>
+    <p>Capturing the excitement, community, and freshness at Powerstar.</p>
 </div>
 
 <main class="container">
 
-    <div class="gallery-section">
-        <div class="careers-intro">
-            <h2>Campaign Highlights</h2>
-            <p>Recent events, winners, and promotions.</p>
-        </div>
-        <div class="photo-grid">
-            <div class="photo-item">
-                <img src="assets/winner1.jpg" alt="Trolley Dash Winner">
-                <div class="photo-caption">Trolley Dash Winner (Joska)</div>
-            </div>
-            <div class="photo-item">
-                <img src="assets/winner2.jpg" alt="Trolley Dash Winner">
-                <div class="photo-caption">Trolley Dash Winner (Kangari)</div>
-            </div>
-            <div class="photo-item">
-                <img src="assets/promo1.jpg" alt="Christmas Promo">
-                <div class="photo-caption">Christmas Savings</div>
-            </div>
-        </div>
+    <div class="filter-container">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">All Moments</button>
+        <button class="filter-btn" onclick="filterGallery('events', this)">Events & Winners</button>
+        <button class="filter-btn" onclick="filterGallery('store', this)">Store Interior</button>
+        <button class="filter-btn" onclick="filterGallery('promos', this)">Promotions</button>
     </div>
 
-    <div class="gallery-section" style="margin-top: 60px;">
-        <div class="careers-intro">
-            <h2>The Store Experience</h2>
-            <p>A look inside our clean, modern aisles.</p>
-        </div>
-        <div class="photo-grid">
-            <div class="photo-item">
-                <img src="assets/store-interior.jpg" alt="Wide Aisles">
-                <div class="photo-caption">Spacious Shopping Aisles</div>
+    <div class="gallery-grid">
+        
+        <figure class="gallery-item" data-category="events" onclick="openLightbox(this)">
+            <img src="assets/winner1.jpg" alt="Trolley Dash Winner" onerror="this.src='https://placehold.co/600x600/eee/333?text=Winner+Joy'">
+            <div class="gallery-overlay">
+                <div class="overlay-title">Trolley Dash Winner</div>
+                <div class="overlay-cat">Joska Branch</div>
+                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
             </div>
-            <div class="photo-item">
-                <img src="assets/bakery-staff.jpg" alt="Bakery Team">
-                <div class="photo-caption">Our Expert Bakers</div>
+        </figure>
+
+        <figure class="gallery-item" data-category="store" onclick="openLightbox(this)">
+            <img src="assets/store-interior.jpg" alt="Wide Aisles" onerror="this.src='https://placehold.co/600x600/eee/333?text=Clean+Aisles'">
+            <div class="gallery-overlay">
+                <div class="overlay-title">Modern Shopping</div>
+                <div class="overlay-cat">Clean & Spacious</div>
+                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
             </div>
-            <div class="photo-item">
-                <img src="assets/fresh-veg.jpg" alt="Fresh Produce">
-                <div class="photo-caption">Farm Fresh Section</div>
+        </figure>
+
+        <figure class="gallery-item" data-category="promos" onclick="openLightbox(this)">
+            <img src="assets/promo1.jpg" alt="Christmas Promo" onerror="this.src='https://placehold.co/600x600/DA291C/fff?text=Big+Savings'">
+            <div class="gallery-overlay">
+                <div class="overlay-title">Festive Season</div>
+                <div class="overlay-cat">Christmas Promo</div>
+                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
             </div>
-        </div>
+        </figure>
+
+        <figure class="gallery-item" data-category="store" onclick="openLightbox(this)">
+            <img src="assets/bakery-staff.jpg" alt="Bakery Team" onerror="this.src='https://placehold.co/600x600/eee/333?text=Fresh+Bakery'">
+            <div class="gallery-overlay">
+                <div class="overlay-title">Our Expert Bakers</div>
+                <div class="overlay-cat">In-House Bakery</div>
+                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+            </div>
+        </figure>
+
+        <figure class="gallery-item" data-category="events" onclick="openLightbox(this)">
+            <img src="assets/winner2.jpg" alt="School Fees Winner" onerror="this.src='https://placehold.co/600x600/eee/333?text=Happy+Winner'">
+            <div class="gallery-overlay">
+                <div class="overlay-title">School Fees Winner</div>
+                <div class="overlay-cat">Kangari Branch</div>
+                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+            </div>
+        </figure>
+
+        <figure class="gallery-item" data-category="store" onclick="openLightbox(this)">
+            <img src="assets/fresh-veg.jpg" alt="Fresh Produce" onerror="this.src='https://placehold.co/600x600/006838/fff?text=Farm+Fresh'">
+            <div class="gallery-overlay">
+                <div class="overlay-title">Farm Fresh</div>
+                <div class="overlay-cat">Daily Delivery</div>
+                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+            </div>
+        </figure>
+
     </div>
 
 </main>
 
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Full Screen">
+</div>
+
 <footer>
     <div class="footer-content">
-        
         <div class="social-links">
             <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            
             <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </a>
-
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-
-                <a href="https://x.com/powerstar_supermarket" target="_blank" aria-label="X">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
-
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
         </div>
@@ -111,31 +238,79 @@
 </footer>
 
 <script>
-    // --- MOBILE MENU TOGGLE ---
+    // --- 1. MOBILE MENU TOGGLE ---
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
-
-        // Only run if the button exists on this page
         if (menuBtn && navMenu) {
             menuBtn.addEventListener('click', function(e) {
                 e.preventDefault(); 
-                
-                // 1. Open/Close the menu
                 navMenu.classList.toggle('active');
-
-                // 2. Change the Icon (Bars <-> X)
                 const icon = menuBtn.querySelector('i');
                 if (navMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
                 } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
                 }
             });
         }
     });
+
+    // --- 2. GALLERY FILTERING ---
+    function filterGallery(category, btn) {
+        // Update Button Active State
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter Items
+        const items = document.querySelectorAll('.gallery-item');
+        items.forEach(item => {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+                item.classList.remove('hide');
+                item.style.animation = 'fadeIn 0.5s ease';
+            } else {
+                item.classList.add('hide');
+            }
+        });
+    }
+
+    // --- 3. LIGHTBOX FUNCTIONALITY ---
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(element) {
+        const img = element.querySelector('img');
+        lightboxImg.src = img.src; // Get source from the clicked item
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Stop scrolling behind modal
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Re-enable scrolling
+    }
+
+    // Close lightbox when clicking outside the image
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
 </script>
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+        .mobile-toggle { display: block; }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000; }
+        .nav-menu.active { display: flex; }
+        .hero-gallery h1 { font-size: 2rem; }
+    }
+</style>
+
 </body>
 </html>
