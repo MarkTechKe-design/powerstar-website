@@ -2,62 +2,92 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Careers - Powerstar Supermarkets</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- 1. DESIGN SYSTEM --- */
+    /* --- SENIOR ARCHITECT: DESIGN SYSTEM --- */
     :root {
         --ps-red: #DA291C;
         --ps-green: #006838;
-        --ps-dark: #1a1a1a;
-        --bg-light: #f8f9fa;
-        --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
-        --shadow-deep: 0 20px 50px rgba(0,0,0,0.15);
+        --ps-dark: #111;
+        --ps-gold: #D4AF37;
+        --bg-light: #F9FAFB;
+        --shadow-card: 0 15px 40px rgba(0,0,0,0.08);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    * { box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+    /* GLOBAL RESET */
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    
+    html, body {
+        width: 100%; overflow-x: hidden; margin: 0; padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg-light); color: #444;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--ps-dark); }
     a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* --- 2. HEADER --- */
-    header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
-    .logo img { height: 45px; width: auto; }
-    .nav-menu { display: flex; gap: 25px; }
-    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
-    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
-    .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
-    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
+    /* --- ANIMATIONS --- */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* --- 3. HERO (People Focused) --- */
+    /* --- 1. HEADER --- */
+    header {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        position: sticky; top: 0; z-index: 1000;
+        padding: 10px 0;
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
+    
+    .logo img { height: 90px; width: auto; transition: transform 0.3s; }
+    .logo:hover img { transform: scale(1.02); }
+
+    .nav-menu { display: flex; gap: 30px; }
+    .nav-menu a {
+        font-weight: 600; font-size: 0.9rem; color: #555;
+        text-transform: uppercase; letter-spacing: 0.5px;
+        position: relative; transition: var(--transition);
+    }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+    .nav-menu a::after {
+        content: ''; position: absolute; width: 0; height: 2px;
+        bottom: -5px; left: 0; background-color: var(--ps-red);
+        transition: width 0.3s;
+    }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+
+    .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
+
+    /* --- 2. HERO --- */
     .hero {
-        background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 50, 20, 0.9)), url('assets/team-happy.jpg'); 
+        background: linear-gradient(rgba(0, 50, 20, 0.85), rgba(0, 20, 10, 0.9)), url('assets/team-happy.jpg');
         background-size: cover; background-position: center;
-        height: 40vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
         color: white; text-align: center;
     }
-    .hero h1 { font-size: 3rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; }
+    .hero h1 { font-size: 3rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 2px; color: white; }
     .hero p { font-size: 1.2rem; opacity: 0.95; font-weight: 300; max-width: 600px; }
 
-    /* --- 4. CULTURE GRID (Why Join?) --- */
-    .culture-section { padding: 60px 0; }
-    .section-title { text-align: center; margin-bottom: 50px; }
-    .section-title h2 { color: var(--ps-dark); font-size: 2rem; margin-bottom: 10px; }
-    .section-title p { color: #666; }
-
+    /* --- 3. CULTURE GRID --- */
+    .culture-section { padding: 80px 0; }
     .culture-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
+        gap: 30px; margin-top: 40px;
     }
     .culture-card {
         background: white; padding: 40px 30px; border-radius: 12px;
-        text-align: center; box-shadow: var(--shadow-soft);
+        text-align: center; box-shadow: var(--shadow-card);
         border-bottom: 4px solid transparent; transition: transform 0.3s;
     }
     .culture-card:hover { transform: translateY(-5px); border-bottom-color: var(--ps-green); }
@@ -70,54 +100,94 @@
     .culture-card h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--ps-dark); }
     .culture-card p { color: #666; font-size: 0.95rem; line-height: 1.6; margin: 0; }
 
-    /* --- 5. JOB LISTING (The "Talent Pool" Strategy) --- */
-    .jobs-container {
-        background: white; border-radius: 12px; box-shadow: var(--shadow-soft);
-        overflow: hidden; margin-bottom: 80px; border: 1px solid #eee;
+    /* --- 4. CAREER PATHWAYS (SPLIT) --- */
+    .pathway-section { margin-bottom: 80px; }
+    .section-title { 
+        text-align: center; margin-bottom: 40px; 
+        position: relative; 
     }
-    .job-header {
-        background: #f9f9f9; padding: 20px 30px; border-bottom: 1px solid #eee;
-        display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+    .section-title h2 { font-size: 2.2rem; margin-bottom: 10px; }
+    .section-title span { 
+        display: inline-block; background: var(--ps-red); color: white; 
+        padding: 5px 15px; border-radius: 50px; font-size: 0.8rem; 
+        text-transform: uppercase; letter-spacing: 1px; font-weight: 700;
     }
-    .job-header h3 { margin: 0; color: var(--ps-dark); }
-    .badge { background: var(--ps-green); color: white; padding: 5px 12px; border-radius: 50px; font-size: 0.8rem; font-weight: 600; }
 
-    /* The "General Application" Card */
-    .job-item {
-        padding: 30px; display: flex; align-items: center; justify-content: space-between;
-        border-bottom: 1px solid #eee; flex-wrap: wrap; gap: 20px;
+    /* A. GENERAL APPLICATIONS (Green Theme) */
+    .general-card {
+        background: white; border-radius: 16px; 
+        border: 1px solid #eee; border-left: 6px solid var(--ps-green);
+        padding: 40px; 
+        box-shadow: var(--shadow-card);
+        display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 30px;
     }
-    .job-item:last-child { border-bottom: none; }
+    .gen-info { max-width: 600px; }
+    .gen-info h3 { font-size: 1.5rem; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .status-badge { 
+        background: #e6f4ea; color: var(--ps-green); font-size: 0.75rem; 
+        padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .gen-list { list-style: none; padding: 0; margin: 20px 0; display: flex; flex-wrap: wrap; gap: 15px; }
+    .gen-list li { background: #f9f9f9; padding: 8px 15px; border-radius: 5px; font-size: 0.9rem; font-weight: 500; color: #555; }
+    .alert-box { 
+        background: #fff8e1; border-left: 4px solid #ffc107; padding: 15px; 
+        font-size: 0.85rem; color: #856404; margin-top: 20px; border-radius: 4px;
+    }
+
+    .btn-apply-gen {
+        background: var(--ps-green); color: white; padding: 15px 35px; 
+        border-radius: 50px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        transition: 0.3s; display: inline-block;
+    }
+    .btn-apply-gen:hover { background: #004d2a; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 104, 56, 0.2); }
+
+    /* B. PROFESSIONAL ROLES (Red Theme) */
+    .pro-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px; margin-top: 40px;
+    }
+    .pro-card {
+        background: white; border-radius: 12px; padding: 30px;
+        border: 1px solid #eee; transition: 0.3s;
+        display: flex; flex-direction: column; justify-content: space-between;
+        border-top: 4px solid var(--ps-red);
+    }
+    .pro-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); }
     
-    .job-info h4 { margin: 0 0 5px 0; font-size: 1.2rem; color: var(--ps-dark); }
-    .job-info p { margin: 0; color: #666; font-size: 0.95rem; }
-    .job-meta { display: flex; gap: 15px; margin-top: 10px; font-size: 0.85rem; color: #888; }
-    .job-meta span { display: flex; align-items: center; gap: 5px; }
-
-    .btn-apply {
-        background: white; color: var(--ps-red); border: 1px solid var(--ps-red);
-        padding: 10px 25px; border-radius: 50px; font-weight: 600; transition: 0.3s;
-        text-decoration: none; display: inline-block;
+    .pro-title { font-size: 1.2rem; color: var(--ps-dark); margin-bottom: 5px; font-weight: 700; }
+    .pro-dept { font-size: 0.85rem; color: var(--ps-red); font-weight: 600; text-transform: uppercase; margin-bottom: 15px; display: block; }
+    .pro-meta { font-size: 0.9rem; color: #666; margin-bottom: 20px; line-height: 1.6; }
+    
+    .btn-apply-pro {
+        text-align: center; border: 2px solid var(--ps-red); color: var(--ps-red);
+        padding: 10px; border-radius: 50px; font-weight: 600; text-transform: uppercase; font-size: 0.85rem;
+        transition: 0.3s; width: 100%; display: block;
     }
-    .btn-apply:hover { background: var(--ps-red); color: white; }
+    .btn-apply-pro:hover { background: var(--ps-red); color: white; }
 
-    /* --- 6. FOOTER --- */
-    footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; margin-top: auto; border-top: 6px solid var(--ps-red); }
+    /* Closed State */
+    .btn-closed {
+        background: #eee; color: #999; border-color: #eee; cursor: not-allowed;
+    }
+    .btn-closed:hover { background: #eee; color: #999; transform: none; }
+
+    /* --- 5. FOOTER --- */
+    footer { background-color: var(--ps-green); color: white; padding: 60px 20px; text-align: center; margin-top: auto; border-top: 8px solid var(--ps-red); }
     .social-links { margin-bottom: 30px; }
     .social-links a { 
-        display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; 
-        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
+        display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; font-size: 1.4rem;
+        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 10px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
     }
-    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
+    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-5px) scale(1.1); }
     .copyright { font-size: 0.9rem; opacity: 0.7; }
 
     @media (max-width: 768px) {
         .mobile-toggle { display: block; }
-        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .nav-menu.active { display: flex; }
         .hero h1 { font-size: 2rem; }
-        .job-item { flex-direction: column; text-align: center; align-items: center; }
-        .job-meta { justify-content: center; }
+        .general-card { flex-direction: column; text-align: center; }
+        .gen-list { justify-content: center; }
     }
 </style>
 </head>
@@ -141,16 +211,18 @@
 </header>
 
 <div class="hero">
-    <h1>Join Our Team</h1>
-    <p>Build a career with Kenya's fastest-growing retail family.</p>
+    <div class="reveal">
+        <h1>Join Our Team</h1>
+        <p>Build a career with Kenya's fastest-growing retail family.</p>
+    </div>
 </div>
 
 <main class="container">
 
-    <div class="culture-section">
+    <div class="culture-section reveal">
         <div class="section-title">
             <h2>Why Choose Powerstar?</h2>
-            <p>We don't just offer jobs; we offer pathways to success.</p>
+            <p>We offer more than a paycheck; we offer a pathway to success.</p>
         </div>
         
         <div class="culture-grid">
@@ -172,80 +244,91 @@
         </div>
     </div>
 
-    <div class="section-title" style="margin-bottom: 30px;">
-        <h2>Current Opportunities</h2>
-    </div>
+    <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 80px;">
 
-    <div class="jobs-container">
-        <div class="job-header">
-            <h3>Open Positions</h3>
-            <span class="badge">Always Hiring</span>
+    <div class="pathway-section reveal">
+        <div class="section-title" style="text-align: left; margin-bottom: 20px;">
+            <h2>Store Operations</h2>
+            <p>Front-line roles. No prior experience required for entry levels.</p>
         </div>
 
-        <div class="job-item">
-            <div class="job-info">
-                <h4>General Retail Staff</h4>
-                <p>Cashiers, Shelf Stackers, and Customer Assistants.</p>
-                <div class="job-meta">
-                    <span><i class="fas fa-map-marker-alt"></i> All Branches</span>
-                    <span><i class="fas fa-clock"></i> Full Time</span>
+        <div class="general-card">
+            <div class="gen-info">
+                <h3>General Retail Staff <span class="status-badge">Always Hiring</span></h3>
+                <p>We are continuously building our talent pool for our 11+ branches.</p>
+                <ul class="gen-list">
+                    <li><i class="fas fa-check"></i> Cashiers</li>
+                    <li><i class="fas fa-check"></i> Shelf Stackers</li>
+                    <li><i class="fas fa-check"></i> Customer Assistants</li>
+                    <li><i class="fas fa-check"></i> Cleaners</li>
+                </ul>
+                <div class="alert-box">
+                    <i class="fas fa-exclamation-circle"></i> <strong>Important:</strong> We do NOT accept physical CVs at the branches. All applications must be submitted online via email.
                 </div>
             </div>
-            <a href="mailto:jobs@powerstar.co.ke?subject=Application for Retail Staff" class="btn-apply">Apply Now</a>
-        </div>
-
-        <div class="job-item">
-            <div class="job-info">
-                <h4>Specialists (Bakery/Butchery)</h4>
-                <p>Experienced bakers and butchers needed for our fresh food sections.</p>
-                <div class="job-meta">
-                    <span><i class="fas fa-map-marker-alt"></i> Select Branches</span>
-                    <span><i class="fas fa-certificate"></i> Experience Required</span>
-                </div>
+            <div class="gen-action">
+                <a href="mailto:jobs@powerstarsupermarkets.co.ke?subject=General Application - [Your Name]" class="btn-apply-gen">Apply via Email</a>
             </div>
-            <a href="mailto:careers@powerstar.co.ke?subject=Application for Specialist" class="btn-apply">Apply Now</a>
         </div>
-
     </div>
 
-    <div style="text-align: center; margin-bottom: 60px; padding: 40px; background: #eef7f2; border-radius: 12px;">
-        <h3 style="color: var(--ps-green); margin-bottom: 10px;">Don't see a perfect fit?</h3>
-        <p style="margin-bottom: 20px; color: #555;">We are always looking for talent. Send your CV to our HR database.</p>
-        <div style="font-size: 1.2rem; font-weight: 700; color: var(--ps-dark);">
-            <i class="fas fa-envelope" style="color: var(--ps-red);"></i> careers@powerstar.co.ke
+    <div class="pathway-section reveal">
+        <div class="section-title" style="text-align: left; margin-bottom: 20px;">
+            <h2>Professional & Management</h2>
+            <p>Specialized roles in HQ, Bakery, Butchery, and Logistics.</p>
         </div>
+
+        <div class="pro-grid">
+            
+            <div class="pro-card">
+                <div>
+                    <span class="pro-dept">Bakery</span>
+                    <h3 class="pro-title">Head Baker</h3>
+                    <p class="pro-meta">Experienced baker needed to lead production at our new Ruiru branch. 3+ years experience required.</p>
+                </div>
+                <a href="mailto:careers@powerstarsupermarkets.co.ke?subject=Application for Head Baker" class="btn-apply-pro">Apply Now</a>
+            </div>
+
+            <div class="pro-card">
+                <div>
+                    <span class="pro-dept">Butchery</span>
+                    <h3 class="pro-title">Senior Butcher</h3>
+                    <p class="pro-meta">Skilled in various cuts and display presentation. Must possess food handling certification.</p>
+                </div>
+                <a href="mailto:careers@powerstarsupermarkets.co.ke?subject=Application for Senior Butcher" class="btn-apply-pro">Apply Now</a>
+            </div>
+
+            <div class="pro-card" style="opacity: 0.7; background: #f9f9f9;">
+                <div>
+                    <span class="pro-dept">Logistics</span>
+                    <h3 class="pro-title">Fleet Manager</h3>
+                    <p class="pro-meta">Manage our delivery trucks and coordinate inter-branch transfers.</p>
+                </div>
+                <span class="btn-apply-pro btn-closed">Position Filled</span>
+            </div>
+
+            </div>
     </div>
 
 </main>
 
 <footer>
-    <div class="footer-content" style="display:flex; justify-content:space-around; flex-wrap:wrap; text-align:left; max-width:1200px; margin:0 auto;">
-        <div class="footer-col" style="margin-bottom:30px;">
-            <h4 style="margin-bottom:20px;">Follow Us</h4>
-            <div class="social-links">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+    <div class="footer-content">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
-        <div class="footer-col" style="margin-bottom:30px;">
-            <h4 style="margin-bottom:20px;">Discover</h4>
-            <ul style="list-style:none; padding:0;">
-                <li style="margin-bottom:10px;"><a href="about.html" style="color:rgba(255,255,255,0.8); text-decoration:none;">Our Story</a></li>
-                <li style="margin-bottom:10px;"><a href="media.html" style="color:rgba(255,255,255,0.8); text-decoration:none;">Media & Gallery</a></li>
-                <li style="margin-bottom:10px;"><a href="careers.html" style="color:white; font-weight:bold; text-decoration:none;">Careers</a></li>
-                <li style="margin-bottom:10px;"><a href="loyalty.html" style="color:rgba(255,255,255,0.8); text-decoration:none;">Loyalty Program</a></li>
-            </ul>
+        <div class="copyright">
+            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
         </div>
-    </div>
-    <div class="copyright" style="margin-top:20px; border-top:1px solid rgba(255,255,255,0.1); padding-top:20px; text-align:center;">
-        <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
     </div>
 </footer>
 
 <script>
+    // 1. MOBILE MENU
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
@@ -262,6 +345,21 @@
             });
         }
     });
+
+    // 2. SCROLL REVEAL ANIMATION
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
 </script>
 
 </body>
