@@ -2,12 +2,78 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Our Story - Powerstar Supermarkets</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 
+<style>
+    /* PAGE SPECIFIC OVERRIDES (Only for this page's unique layout) */
+    .corporate-split {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+        align-items: center; margin: 80px 0;
+    }
+    .corporate-image img { border-radius: 20px; box-shadow: var(--shadow-lg); }
+    
+    .stats-bar {
+        background: var(--ps-dark); color: white; padding: 60px 0;
+        display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;
+        margin-bottom: 80px;
+    }
+    .stat-block { text-align: center; }
+    .stat-block h4 { font-size: 3rem; color: var(--ps-gold); margin: 0; }
+    .stat-block span { text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem; }
+
+    .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 80px; }
+    .strat-card {
+        background: white; padding: 50px 40px; border-radius: 16px;
+        text-align: center; box-shadow: var(--shadow-card);
+        border-top: 5px solid var(--ps-green);
+    }
+    .strat-icon {
+        font-size: 3rem; color: var(--ps-green); margin-bottom: 25px;
+        background: rgba(0, 104, 56, 0.1); width: 80px; height: 80px;
+        border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+    }
+
+    .values-grid { 
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+        gap: 30px; margin-bottom: 80px; 
+    }
+    .value-box {
+        background: white; padding: 30px; border-radius: 12px;
+        border: 1px solid #eee; transition: var(--transition);
+    }
+    .value-box:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); border-color: var(--ps-red); }
+    .value-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+    .v-icon { color: var(--ps-red); font-size: 1.5rem; }
+    .v-title { font-size: 1.2rem; font-weight: 700; color: var(--ps-dark); }
+
+    .brand-mantra { 
+        text-align: center; font-size: 1.5rem; font-weight: 300; font-style: italic; 
+        color: var(--ps-grey); margin-bottom: 80px; 
+    }
+
+    .testimonial-section { background: var(--bg-white); padding: 80px 0; }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .testi-item {
+        background: var(--bg-light); padding: 30px; border-radius: 16px;
+        position: relative;
+    }
+    .stars { color: var(--ps-gold); margin-bottom: 15px; }
+    .testi-text { font-style: italic; margin-bottom: 20px; font-size: 0.95rem; }
+    .testi-name { font-weight: 700; color: var(--ps-dark); }
+    .testi-role { font-size: 0.85rem; color: var(--ps-grey); }
+
+    @media (max-width: 900px) {
+        .corporate-split, .strategy-grid { grid-template-columns: 1fr; }
+        .stats-bar { gap: 40px; }
+    }
+</style>
 </head>
 <body>
 
@@ -29,20 +95,22 @@
     </div>
 </header>
 
-<div class="hero">
-    <div class="hero-eyebrow animate-enter">Established 2001</div>
-    <h1 class="animate-enter delay-1">The Powerstar Story</h1>
-    <p class="animate-enter delay-2">Integrity. Innovation. Community.</p>
+<div class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('assets/team.jpg');">
+    <div class="reveal">
+        <div style="font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; color: var(--ps-gold);">Established 2001</div>
+        <h1>The Powerstar Story</h1>
+        <p>Integrity. Innovation. Community.</p>
+    </div>
 </div>
 
 <main class="container">
 
-    <section class="corporate-split">
-        <div class="corporate-text animate-enter delay-1">
+    <section class="corporate-split reveal">
+        <div class="corporate-text">
             <h2>Who We Are</h2>
             <p><strong>Powerstar Supermarkets</strong> is more than just a retail outlet; we are a community partner. Born from a desire to bring high-quality goods at honest prices to Kenyan neighborhoods, we have grown into a trusted household name.</p>
             <p>We believe that shopping should be dignified, easy, and affordable. Our "Save Everyday" philosophy isn't just a slogan—it is the operational backbone of our procurement, logistics, and service delivery.</p>
-            <div class="signature">Independent. Innovative. Honest.</div>
+            <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--ps-green); margin-top: 20px; font-size: 1.1rem;">Independent. Innovative. Honest.</div>
         </div>
         <div class="corporate-image">
             <img src="assets/team.jpg" alt="Powerstar Team" onerror="this.src='https://placehold.co/600x400/eee/999?text=Our+Team'">
@@ -51,7 +119,7 @@
 
 </main>
 
-<div class="stats-bar">
+<div class="stats-bar reveal">
     <div class="stat-block">
         <h4>10+</h4>
         <span>Branches</span>
@@ -66,37 +134,34 @@
     </div>
 </div>
 
-<div class="strategy-section">
-    <div class="container">
-        <div class="section-title">
-            <span>Our Direction</span>
-            <h2>Strategic Compass</h2>
-        </div>
+<div class="container">
+    <div class="reveal" style="text-align: center; margin-bottom: 40px;">
+        <span style="color: var(--ps-red); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Our Direction</span>
+        <h2>Strategic Compass</h2>
+    </div>
 
-        <div class="strategy-grid">
-            <div class="strat-card strat-mission">
-                <div class="strat-icon"><i class="fas fa-bullseye"></i></div>
-                <h3>Our Mission</h3>
-                <p>To be an independent, innovative, honest and a sustainable outlet in which customers are able to choose from a wide range of goods and offering the most inviting buying environment in the industry while saving the customers time and money everyday.</p>
-            </div>
-            
-            <div class="strat-card strat-vision">
-                <div class="strat-icon"><i class="fas fa-eye"></i></div>
-                <h3>Our Vision</h3>
-                <p>To deliver exceptional shopping experience by offering the best service, value, quality, and freshest products while being good stewards of our environment and giving back to the community we serve.</p>
-            </div>
+    <div class="strategy-grid reveal">
+        <div class="strat-card">
+            <div class="strat-icon"><i class="fas fa-bullseye"></i></div>
+            <h3>Our Mission</h3>
+            <p>To be an independent, innovative, honest and a sustainable outlet in which customers are able to choose from a wide range of goods and offering the most inviting buying environment in the industry while saving the customers time and money everyday.</p>
+        </div>
+        
+        <div class="strat-card">
+            <div class="strat-icon"><i class="fas fa-eye"></i></div>
+            <h3>Our Vision</h3>
+            <p>To deliver exceptional shopping experience by offering the best service, value, quality, and freshest products while being good stewards of our environment and giving back to the community we serve.</p>
         </div>
     </div>
 </div>
 
-<div class="values-container container">
-    <div class="section-title">
-        <span>Our DNA</span>
+<div class="container reveal">
+    <div style="text-align: center; margin-bottom: 40px;">
+        <span style="color: var(--ps-red); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Our DNA</span>
         <h2>Core Values</h2>
     </div>
 
     <div class="values-grid">
-        
         <div class="value-box">
             <div class="value-header">
                 <i class="fas fa-users v-icon"></i>
@@ -136,23 +201,21 @@
             </div>
             <p>Offering our customers the best shopping experience by exceeding their expectations.</p>
         </div>
-
     </div>
 
     <div class="brand-mantra">
-        <h3>Consistency is the key to building a strong brand.</h3>
+        <h3>"Consistency is the key to building a strong brand."</h3>
     </div>
 </div>
 
-<div class="testimonial-section">
+<div class="testimonial-section reveal">
     <div class="container">
-        <div class="section-title">
-            <span>Voice of the Customer</span>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <span style="color: var(--ps-red); text-transform: uppercase; font-weight: 700; letter-spacing: 1px;">Voice of the Customer</span>
             <h2>What People Say About Us!</h2>
         </div>
 
         <div class="testi-grid">
-            
             <div class="testi-item">
                 <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p class="testi-text">"Good customer services and offers are on top. I always find what I need."</p>
@@ -173,21 +236,6 @@
                 <div class="testi-name">Fra Lex</div>
                 <div class="testi-role">Zimmerman Branch</div>
             </div>
-
-            <div class="testi-item">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="testi-text">"The cheapest supermarket in the current market with professional staff, quality goods and pocketable prices. Just missing Powerstar Kikuyu for real for real... Wish to be a staff member once more."</p>
-                <div class="testi-name">Pon Nyambane</div>
-                <div class="testi-role">Former Staff Member</div>
-            </div>
-
-            <div class="testi-item">
-                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                <p class="testi-text">"Good customer service and affordable prices."</p>
-                <div class="testi-name">Irene Mwatha</div>
-                <div class="testi-role">Loyal Customer</div>
-            </div>
-
         </div>
     </div>
 </div>
@@ -195,7 +243,7 @@
 <footer>
     <div class="footer-content">
         <div class="social-links">
-            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
+            <h4 style="margin-bottom: 20px;">Follow Us</h4>
             <div class="icons-container">
                 <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -210,6 +258,7 @@
 </footer>
 
 <script>
+    // 1. MOBILE MENU
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
@@ -226,6 +275,21 @@
             });
         }
     });
+
+    // 2. SCROLL REVEAL
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
 </script>
 
 </body>
