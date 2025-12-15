@@ -70,7 +70,7 @@
 
 <main class="container">
 
-    <div class="benefits-grid">
+    <section class="benefits-grid">
         <div class="benefit-item reveal">
             <div class="benefit-icon"><i class="fas fa-coins"></i></div>
             <h3 class="benefit-title">Earn Points</h3>
@@ -86,16 +86,15 @@
             <h3 class="benefit-title">Member Gifts</h3>
             <p>Automatic entry into our School Fees, Trolley Dash, and Holiday giveaways.</p>
         </div>
-    </div>
+    </section>
 
-    <div class="form-wrapper reveal" style="max-width: 600px; margin: 0 auto 80px;">
-        <div class="form-header" style="background: #f4f9f4; border-bottom: 1px solid #eee;">
+    <section class="form-wrapper reveal" style="max-width: 600px; margin: 0 auto 80px;">
+        <div class="form-header" style="background: #f4f9f4; border-bottom: 1px solid #eee; padding: 30px; text-align: center;">
             <h2 style="color: var(--ps-green); margin-bottom: 5px;">Join the Family</h2>
             <p style="color: #666; margin: 0;">Register instantly via WhatsApp.</p>
         </div>
         
-        <form id="loyaltyForm">
-            
+        <form id="loyaltyForm" style="padding: 40px;">
             <div class="form-group">
                 <label>Full Name</label>
                 <input type="text" id="fullName" placeholder="e.g. John Kamau" required>
@@ -141,7 +140,7 @@
             
             <div id="loyaltyStatus" style="text-align: center; margin-top: 15px; font-weight: 600; color: var(--ps-green);"></div>
         </form>
-    </div>
+    </section>
 
 </main>
 
@@ -181,7 +180,7 @@
         }
     });
 
-    // 2. SCROLL REVEAL
+    // 2. SCROLL REVEAL ANIMATION
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -196,7 +195,7 @@
     window.addEventListener("scroll", reveal);
     reveal();
 
-    // 3. REGISTRATION LOGIC
+    // 3. WHATSAPP REGISTRATION LOGIC
     const branchContacts = {
         "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
         "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
@@ -214,7 +213,7 @@
         const branchKey = document.getElementById('branch').value;
         const status = document.getElementById('loyaltyStatus');
 
-        let targetNumber = branchContacts[branchKey] || "254790680038";
+        let targetNumber = branchContacts[branchKey] || "254790680038"; // Default to HQ
 
         const msg = `*New Loyalty Registration*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
         const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
