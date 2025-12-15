@@ -19,8 +19,9 @@
         --ps-dark: #111;
         --ps-whatsapp: #25D366;
         --bg-light: #F9FAFB;
-        --shadow-card: 0 15px 40px rgba(0,0,0,0.08);
-        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+        --shadow-deep: 0 20px 50px rgba(0,0,0,0.1);
+        --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
     /* GLOBAL RESET */
@@ -35,6 +36,16 @@
     h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--ps-dark); }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* --- ANIMATIONS --- */
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
 
     /* --- 1. HEADER --- */
     header {
@@ -67,19 +78,27 @@
 
     /* --- 2. HERO SECTION --- */
     .hero {
-        background: linear-gradient(135deg, var(--ps-red) 0%, #b31b1b 100%);
+        background: linear-gradient(135deg, var(--ps-red) 0%, #a31616 100%);
         color: white; text-align: center;
-        padding: 80px 20px 140px 20px; /* Extra padding bottom for overlap */
+        padding: 100px 20px 160px 20px; /* Extra padding for overlap */
         clip-path: ellipse(150% 100% at 50% 0%);
+        position: relative; overflow: hidden;
     }
+    /* Subtle Pattern Overlay */
+    .hero::before {
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 20px 20px; opacity: 0.3;
+    }
+    .hero-content { position: relative; z-index: 2; }
     .hero h1 { 
-        font-size: 3rem; margin: 0 0 15px 0; 
-        text-transform: uppercase; letter-spacing: 1px; color: white;
+        font-size: 3.5rem; margin: 0 0 15px 0; 
+        text-transform: uppercase; letter-spacing: 2px; color: white;
+        text-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    .hero h1 i { margin-right: 10px; }
-    .hero p { font-size: 1.2rem; opacity: 0.95; font-weight: 300; margin: 0; }
+    .hero p { font-size: 1.2rem; opacity: 0.95; font-weight: 300; max-width: 600px; margin: 0 auto; }
 
-    /* --- 3. PROCESS STEPS (Floating) --- */
+    /* --- 3. PROCESS STEPS (Floating Cards) --- */
     .steps-container {
         margin-top: -100px; /* Overlaps Hero */
         position: relative; z-index: 10;
@@ -87,8 +106,8 @@
     }
     .section-title { 
         text-align: center; margin-bottom: 40px; 
-        color: white; /* Contrast against hero background */
-        text-transform: uppercase; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; opacity: 0.9;
+        color: white; 
+        text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; opacity: 0.9;
     }
     
     .steps-grid { 
@@ -97,10 +116,10 @@
     }
     .step-card {
         background: white; padding: 40px 30px; border-radius: 16px; text-align: center;
-        box-shadow: var(--shadow-card); border-bottom: 4px solid transparent; 
+        box-shadow: var(--shadow-soft); border-bottom: 4px solid transparent; 
         transition: transform 0.3s ease; position: relative;
     }
-    .step-card:hover { transform: translateY(-10px); border-bottom-color: var(--ps-green); }
+    .step-card:hover { transform: translateY(-10px); border-bottom-color: var(--ps-green); box-shadow: var(--shadow-deep); }
     
     .step-icon-wrapper {
         width: 70px; height: 70px; background: rgba(0, 104, 56, 0.08); color: var(--ps-green);
@@ -116,60 +135,93 @@
     .step-card h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--ps-dark); }
     .step-card p { font-size: 0.95rem; color: #666; margin: 0; line-height: 1.6; }
 
-    /* --- 4. BRANCH LIST --- */
+    /* --- 4. CORPORATE BRANCH LISTING (THE MASTERPIECE) --- */
     .list-header { 
-        text-align: center; margin-bottom: 50px; 
+        text-align: center; margin-bottom: 60px; 
         position: relative; 
     }
-    .list-header::after {
-        content: ''; display: block; width: 60px; height: 4px; background: var(--ps-red); margin: 15px auto 0;
-    }
-    .list-header h2 { color: var(--ps-dark); font-size: 2.2rem; margin: 0; }
+    .list-header h2 { color: var(--ps-dark); font-size: 2.5rem; margin: 0; font-weight: 800; }
+    .list-header p { color: #666; font-size: 1.1rem; margin-top: 10px; }
     
     .department-grid { 
-        display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
-        gap: 25px; padding-bottom: 80px; 
+        display: grid; 
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+        gap: 30px; padding-bottom: 80px; 
     }
 
-    .branch-card {
-        background: white; border: 1px solid #eee; border-left: 5px solid var(--ps-red);
-        border-radius: 12px; padding: 25px; transition: all 0.3s ease;
-        display: flex; flex-direction: column; justify-content: space-between;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    }
-    .branch-card:hover { 
-        transform: translateY(-5px); 
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-        border-left-color: var(--ps-green); 
+    /* THE FULFILLMENT CARD DESIGN */
+    .fulfillment-card {
+        background: white; border-radius: 16px; 
+        overflow: hidden; 
+        border: 1px solid #f0f0f0;
+        box-shadow: var(--shadow-soft);
+        transition: var(--transition);
+        display: flex; flex-direction: column;
+        position: relative;
     }
     
-    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-    .branch-name { margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--ps-dark); }
-    .branch-icon { font-size: 1.5rem; color: #eee; }
-
-    .branch-details { margin-bottom: 25px; }
-    .detail-row { 
-        display: flex; align-items: flex-start; gap: 12px; 
-        color: #555; font-size: 0.95rem; margin-bottom: 10px; 
+    /* Hover State: Lift & Green Border */
+    .fulfillment-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-deep);
+        border-color: var(--ps-green);
     }
-    .detail-row i { color: var(--ps-red); width: 20px; margin-top: 4px; }
 
-    /* Whatsapp Button */
+    /* Status Dot */
+    .status-dot {
+        position: absolute; top: 20px; right: 20px;
+        display: flex; align-items: center; gap: 6px;
+        font-size: 0.75rem; font-weight: 700; color: var(--ps-green);
+        background: rgba(0, 104, 56, 0.1); padding: 5px 10px; border-radius: 20px;
+    }
+    .dot {
+        width: 8px; height: 8px; background-color: var(--ps-whatsapp);
+        border-radius: 50%; animation: pulse 2s infinite;
+    }
+
+    .card-body { padding: 30px 25px 20px; flex-grow: 1; }
+    
+    .branch-icon-lg {
+        font-size: 2.5rem; color: #eee; margin-bottom: 15px; display: block;
+    }
+    
+    .fulfillment-card h3 { 
+        font-size: 1.4rem; margin: 0 0 15px 0; color: var(--ps-dark); font-weight: 800; 
+        letter-spacing: -0.5px;
+    }
+
+    .detail-row { 
+        display: flex; align-items: center; gap: 12px; 
+        color: #555; font-size: 0.95rem; margin-bottom: 12px; 
+    }
+    .detail-row i { color: var(--ps-red); font-size: 1rem; width: 20px; text-align: center; }
+
+    /* The "Command" Button Area */
+    .card-footer {
+        padding: 20px 25px;
+        background: #fcfcfc;
+        border-top: 1px solid #f0f0f0;
+    }
+
     .whatsapp-btn {
-        background: white; color: var(--ps-whatsapp); text-decoration: none; 
-        padding: 14px; border-radius: 50px;
-        font-weight: 700; text-align: center; border: 2px solid var(--ps-whatsapp);
-        transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px;
-        text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;
+        background: var(--ps-whatsapp); color: white; text-decoration: none; 
+        padding: 15px; border-radius: 8px;
+        font-weight: 700; text-align: center; 
+        transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px;
+        text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+        box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
     }
     .whatsapp-btn:hover { 
-        background: var(--ps-whatsapp); color: white; 
-        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        background: #1ebc57; 
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
     }
 
     /* --- 5. FOOTER --- */
     footer { background-color: var(--ps-green); color: white; padding: 60px 20px; text-align: center; margin-top: auto; border-top: 8px solid var(--ps-red); }
-    .social-links { margin-bottom: 30px; }
+    .footer-content h4 { color: rgba(255,255,255,0.8); font-family: 'Poppins', sans-serif; letter-spacing: 2px; }
+    
+    .social-links { margin: 30px 0; }
     .social-links a { 
         display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; font-size: 1.4rem;
         background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 10px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
@@ -183,12 +235,16 @@
         .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .nav-menu.active { display: flex; }
         
-        .hero { height: auto; padding-bottom: 160px; clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+        .hero { height: auto; padding-bottom: 160px; clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%); }
         .hero h1 { font-size: 2rem; }
         .steps-container { margin-top: -120px; }
         .logo img { height: 60px; }
         
-        .department-grid { grid-template-columns: 1fr; } /* Stack on mobile */
+        /* Force Stack on Mobile */
+        .department-grid { grid-template-columns: 1fr; } 
+        
+        /* Mobile Spacing Fix */
+        .fulfillment-card { margin-bottom: 10px; }
     }
 </style>
 </head>
@@ -212,7 +268,7 @@
 </header>
 
 <div class="hero">
-    <div class="container">
+    <div class="hero-content">
         <h1><i class="fab fa-whatsapp"></i> Shop on WhatsApp</h1>
         <p>Skip the line. Order ahead and pick up at your convenience.</p>
     </div>
@@ -223,22 +279,22 @@
     <div class="steps-container">
         <div class="section-title">How "Click & Collect" Works</div>
         <div class="steps-grid">
-            <div class="step-card">
+            <div class="step-card reveal">
                 <div class="step-icon-wrapper"><i class="fas fa-map-marker-alt"></i><div class="step-badge">1</div></div>
                 <h3>Choose Branch</h3>
                 <p>Select your nearest Powerstar branch from the list below.</p>
             </div>
-            <div class="step-card">
+            <div class="step-card reveal">
                 <div class="step-icon-wrapper"><i class="fas fa-clipboard-list"></i><div class="step-badge">2</div></div>
                 <h3>Send List</h3>
                 <p>Click to open WhatsApp. Send us your shopping list.</p>
             </div>
-            <div class="step-card">
+            <div class="step-card reveal">
                 <div class="step-icon-wrapper"><i class="fas fa-mobile-alt"></i><div class="step-badge">3</div></div>
                 <h3>Confirm & Pay</h3>
                 <p>We confirm stock availability. You pay via <b>M-PESA Till</b>.</p>
             </div>
-            <div class="step-card">
+            <div class="step-card reveal">
                 <div class="step-icon-wrapper"><i class="fas fa-shopping-bag"></i><div class="step-badge">4</div></div>
                 <h3>Pick Up</h3>
                 <p>Pass by the <b>"Weka Mzigo"</b> counter and collect your goods.</p>
@@ -246,9 +302,9 @@
         </div>
     </div>
     
-    <div class="list-header">
+    <div class="list-header reveal">
         <h2>Start Your Order</h2>
-        <p style="color:#777; margin-top: 5px;">Select a branch to chat immediately</p>
+        <p>Select a branch to begin your secure WhatsApp chat.</p>
     </div>
 
     <div id="branchContainer" class="department-grid"></div>
@@ -257,14 +313,12 @@
 
 <footer>
     <div class="footer-content">
+        <h4>Follow Us</h4>
         <div class="social-links">
-            <h4 style="margin-bottom: 20px;">Follow Us</h4>
-            <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
@@ -290,7 +344,22 @@
         });
     }
 
-    // 2. BRANCH DATA (Easy to update)
+    // 2. SCROLL ANIMATION
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal(); // Trigger on load
+
+    // 3. BRANCH DATA (EASY EDIT)
     const branches = [
         { name: "Kasarani HQ",      phone: "0790 680 038", location: "Kasarani-Mwiki Road" },
         { name: "Naivasha Branch",  phone: "0768 016 429", location: "Naivasha Town" },
@@ -307,25 +376,26 @@
 
     const container = document.getElementById('branchContainer');
 
-    // 3. WHATSAPP LINK GENERATOR
+    // 4. WHATSAPP LINK GENERATOR
     function getWhatsAppLink(phone, branchName) {
-        // Remove spaces, ensure it starts with 254
         const cleanNumber = "254" + phone.replace(/\s/g, '').substring(1);
         const text = encodeURIComponent(`Hi Powerstar ${branchName}, I would like to order...`);
         return `https://wa.me/${cleanNumber}?text=${text}`;
     }
 
-    // 4. RENDER CARDS
+    // 5. RENDER "FULFILLMENT CARDS"
     branches.forEach(branch => {
         const card = document.createElement('div');
-        card.className = 'branch-card';
+        card.className = 'fulfillment-card reveal';
         card.innerHTML = `
-            <div class="card-header">
-                <h3 class="branch-name">${branch.name}</h3>
-                <i class="fas fa-store branch-icon"></i>
+            <div class="status-dot">
+                <div class="dot"></div> ONLINE
             </div>
             
-            <div class="branch-details">
+            <div class="card-body">
+                <i class="fas fa-store-alt branch-icon-lg"></i>
+                <h3>${branch.name}</h3>
+                
                 <div class="detail-row">
                     <i class="fas fa-map-marker-alt"></i> 
                     <span>${branch.location}</span>
@@ -336,9 +406,11 @@
                 </div>
             </div>
 
-            <a href="${getWhatsAppLink(branch.phone, branch.name)}" target="_blank" class="whatsapp-btn">
-                <i class="fab fa-whatsapp"></i> Chat to Order
-            </a>
+            <div class="card-footer">
+                <a href="${getWhatsAppLink(branch.phone, branch.name)}" target="_blank" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> Chat to Order
+                </a>
+            </div>
         `;
         container.appendChild(card);
     });
