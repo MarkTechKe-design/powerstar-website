@@ -12,226 +12,49 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- SENIOR ARCHITECT: DESIGN SYSTEM --- */
-    :root {
-        --ps-red: #DA291C;
-        --ps-green: #006838;
-        --ps-dark: #111;
-        --ps-gold: #D4AF37;
-        --bg-light: #F9FAFB;
-        --shadow-card: 0 15px 35px rgba(0,0,0,0.06);
-        --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-
-    /* GLOBAL RESET & MOBILE STABILITY FIX */
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    /* PAGE SPECIFIC OVERRIDES */
     
-    html, body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden; /* Stops side-scrolling */
-        margin: 0; padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: var(--bg-light);
-        color: #444;
-    }
-
-    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--ps-dark); }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-    .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
-
-    /* --- ANIMATIONS --- */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
-    /* --- 1. HEADER --- */
-    header {
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        position: sticky; top: 0; z-index: 1000;
-        padding: 10px 0;
-    }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
-    
-    .logo img { height: 90px; width: auto; transition: transform 0.3s; }
-    
-    .nav-menu { display: flex; gap: 30px; }
-    .nav-menu a {
-        font-weight: 600; font-size: 0.9rem; color: #555;
-        text-transform: uppercase; letter-spacing: 0.5px;
-        position: relative; transition: var(--transition);
-    }
-    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
-    .nav-menu a::after {
-        content: ''; position: absolute; width: 0; height: 2px;
-        bottom: -5px; left: 0; background-color: var(--ps-red);
-        transition: width 0.3s;
-    }
-    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
-
-    .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
-
-    /* --- 2. HERO SECTION --- */
-    .hero {
-        position: relative;
+    /* Hero Override */
+    .hero-services {
         background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 50, 20, 0.8)), url('assets/products-hero.jpg');
-        background-size: cover; 
-        background-position: center;
-        /* Parallax effect on Desktop only */
-        background-attachment: fixed; 
-        height: 55vh;
-        display: flex; flex-direction: column; justify-content: center; align-items: center;
-        color: white; text-align: center;
-        padding-bottom: 60px;
-        /* Stylish Curve */
-        clip-path: ellipse(150% 100% at 50% 0%);
+        background-size: cover; background-position: center; background-attachment: fixed;
+        height: 55vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: white; text-align: center; padding-bottom: 60px; clip-path: ellipse(150% 100% at 50% 0%);
+        margin-bottom: 60px;
     }
-    .hero h1 { 
-        font-size: clamp(2.5rem, 5vw, 4rem); 
-        margin: 0 0 15px 0; 
-        text-transform: uppercase; letter-spacing: 1px; font-weight: 900; 
-        color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    }
-    .hero p { 
-        font-size: 1.2rem; opacity: 0.95; max-width: 700px; font-weight: 300; 
-        color: rgba(255,255,255,0.9); padding: 0 20px;
-    }
+    .hero-services h1 { font-size: 3.5rem; margin: 0 0 15px 0; color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .hero-services p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; }
 
-    /* --- 3. VALUE PROPOSITION --- */
-    .values-grid {
-        display: grid; 
-        /* Intelligent wrapping for desktop */
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px; 
-        margin-top: -80px; /* Floating Effect */
-        margin-bottom: 80px;
-        position: relative; z-index: 10; padding: 0 20px; max-width: 1200px; margin-left: auto; margin-right: auto;
-    }
-    .value-card {
-        background: white; padding: 40px 30px; border-radius: 16px;
-        text-align: left; box-shadow: var(--shadow-card);
-        border-bottom: 4px solid var(--ps-red);
-        transition: var(--transition);
-        /* Prevent squishing */
-        min-width: 0;
-    }
-    .value-card:hover { transform: translateY(-10px); }
+    /* Values Grid (Floating) */
+    .values-grid { margin-top: -80px; position: relative; z-index: 10; margin-bottom: 80px; }
     
     .icon-circle {
-        width: 60px; height: 60px;
-        background: rgba(0, 104, 56, 0.1); color: var(--ps-green);
+        width: 60px; height: 60px; background: rgba(0, 104, 56, 0.1); color: var(--ps-green);
         border-radius: 50%; display: flex; align-items: center; justify-content: center;
         font-size: 1.5rem; margin-bottom: 20px;
     }
-    .value-card h3 { margin: 0 0 10px 0; font-size: 1.2rem; font-weight: 700; color: var(--ps-dark); }
-    .value-card p { margin: 0; font-size: 0.95rem; color: #666; line-height: 1.6; }
 
-    /* --- 4. CATALOG GRID --- */
-    .catalog-header { text-align: center; margin: 0 auto 60px; max-width: 800px; padding: 0 20px; }
-    .catalog-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
-    .catalog-header p { font-size: 1.1rem; color: #666; }
-
-    .department-grid {
-        display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px; margin-bottom: 100px;
-    }
-
-    .dept-card {
-        background: white; border-radius: 16px; overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: var(--transition);
-        display: flex; flex-direction: column; border: 1px solid #eee;
-    }
-    .dept-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-
-    .dept-image-wrapper { 
-        height: 240px; overflow: hidden; position: relative; 
-        cursor: zoom-in;
-    }
+    /* Department Cards */
+    .dept-card { display: flex; flex-direction: column; }
+    .dept-image-wrapper { height: 240px; overflow: hidden; position: relative; cursor: zoom-in; }
     .dept-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
-    .dept-card:hover .dept-image-wrapper img { transform: scale(1.1); } 
+    .dept-card:hover .dept-image-wrapper img { transform: scale(1.1); }
     
-    /* Zoom Hint */
     .zoom-hint {
-        position: absolute; top: 10px; right: 10px; 
-        background: rgba(0,0,0,0.6); color: white; 
+        position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: white;
         padding: 6px 12px; border-radius: 30px; font-size: 0.7rem; font-weight: 600;
         pointer-events: none; opacity: 0; transition: 0.3s;
     }
     .dept-image-wrapper:hover .zoom-hint { opacity: 1; }
 
     .dept-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
-    .dept-title { margin: 0 0 10px 0; font-size: 1.4rem; color: var(--ps-dark); font-weight: 700; font-family: 'Montserrat', sans-serif; }
+    .dept-title { margin: 0 0 10px 0; font-size: 1.4rem; color: var(--ps-dark); font-weight: 700; }
     .dept-desc { margin: 0 0 20px 0; color: #666; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; }
-
     .dept-features { margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag { 
-        background: #f4f9f4; color: var(--ps-green); 
-        padding: 5px 12px; border-radius: 50px; 
-        font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-    }
-
-    .dept-btn {
-        text-align: center; background: white; color: var(--ps-green);
-        border: 2px solid var(--ps-green); padding: 12px;
-        border-radius: 50px; font-weight: 700; font-size: 0.9rem;
-        transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px;
-    }
-    .dept-btn:hover { background: var(--ps-green); color: white; box-shadow: 0 5px 15px rgba(0, 104, 56, 0.3); }
-
-    /* --- 5. B2B SECTION (BRAND RED) --- */
-    .b2b-wrapper {
-        background: linear-gradient(135deg, #004d2a 0%, #006838 100%);
-        border-radius: 20px; color: white;
-        padding: 80px 50px; margin-bottom: 100px;
-        position: relative; overflow: hidden;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-        border: 1px solid rgba(255,255,255,0.1);
-    }
-    /* Brand Red Accent Bar */
-    .b2b-wrapper::before {
-        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
-        background: var(--ps-red);
-    }
-
-    .b2b-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
-    .b2b-text h2 { font-size: 2.8rem; margin: 0 0 20px 0; font-weight: 800; color: white; }
-    .b2b-text p { font-size: 1.1rem; opacity: 0.9; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
     
-    .b2b-features-grid {
-        display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
-    }
-    .feature-point { display: flex; flex-direction: column; align-items: flex-start; }
-    
-    /* ICONS CHANGED TO RED */
-    .feature-point i {
-        font-size: 2rem; color: var(--ps-red); 
-        margin-bottom: 15px; background: white; 
-        width: 60px; height: 60px; border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
-    .feature-point h4 {
-        color: white; font-size: 1.1rem; font-weight: 700; margin: 0 0 5px 0; font-family: 'Montserrat', sans-serif;
-    }
-    .feature-point span { font-size: 0.9rem; opacity: 0.8; line-height: 1.5; }
+    .tag { background: #f4f9f4; color: var(--ps-green); padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
 
-    .b2b-action { 
-        text-align: center; background: rgba(255,255,255,0.05); 
-        padding: 40px; border-radius: 16px; backdrop-filter: blur(10px); 
-        border: 1px solid rgba(255,255,255,0.1); 
-    }
-    .b2b-action h3 { color: var(--ps-red); margin-bottom: 10px; font-size: 1.5rem; font-weight: 800; }
-    .btn-white { 
-        display: inline-block; background: white; color: var(--ps-green); 
-        padding: 18px 40px; border-radius: 50px; font-weight: 700; 
-        transition: var(--transition); margin-top: 20px; width: 100%;
-        text-transform: uppercase; letter-spacing: 1px;
-    }
-    .btn-white:hover { transform: translateY(-5px); background: #f0f0f0; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
-
-    /* --- 6. LIGHTBOX --- */
+    /* Lightbox */
     .lightbox {
         position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center;
@@ -239,55 +62,26 @@
     }
     .lightbox.active { display: flex; opacity: 1; }
     .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 5px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
-    .lightbox-close {
-        position: absolute; top: 20px; right: 30px; color: white; font-size: 3rem; cursor: pointer;
+    .lightbox-close { position: absolute; top: 20px; right: 30px; color: white; font-size: 3rem; cursor: pointer; }
+
+    /* B2B Section Specifics */
+    .b2b-features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 30px; }
+    .feature-point { display: flex; flex-direction: column; align-items: flex-start; }
+    .feature-point i { 
+        font-size: 1.8rem; color: var(--ps-red); margin-bottom: 10px; background: white; 
+        width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+    }
+    .feature-point h4 { color: white; margin: 0; font-size: 1.1rem; }
+    .feature-point span { font-size: 0.9rem; opacity: 0.8; }
+
+    .b2b-action { 
+        text-align: center; background: rgba(255,255,255,0.05); padding: 40px; 
+        border-radius: 16px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); 
     }
 
-    /* --- 7. FOOTER --- */
-    footer { background-color: var(--ps-green); color: white; padding: 60px 20px; text-align: center; margin-top: auto; border-top: 8px solid var(--ps-red); }
-    .footer-content h4 { color: rgba(255,255,255,0.8); font-family: 'Poppins', sans-serif; letter-spacing: 2px; }
-    
-    .social-links { margin: 30px 0; }
-    .social-links a { 
-        display: inline-flex; align-items: center; justify-content: center; 
-        width: 55px; height: 55px; font-size: 1.4rem;
-        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; 
-        margin: 0 10px; transition: var(--transition); border: 1px solid rgba(255,255,255,0.2);
-    }
-    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-5px) scale(1.1); }
-    .copyright { font-size: 0.9rem; opacity: 0.7; }
-
-    /* --- MOBILE RESPONSIVENESS FIXES (CRITICAL) --- */
     @media (max-width: 900px) {
-        .b2b-grid { grid-template-columns: 1fr; }
-        .b2b-action { margin-top: 20px; }
-    }
-    @media (max-width: 768px) {
-        .logo img { height: 60px; }
-        .mobile-toggle { display: block; }
-        .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .nav-menu.active { display: flex; }
-        
-        /* FIX: FORCE SINGLE COLUMN STACKING */
-        .values-grid, .department-grid { 
-            grid-template-columns: 1fr !important; /* Forces 1 item per row */
-            margin-top: 30px; 
-            margin-bottom: 40px; 
-            gap: 20px;
-        }
-        
-        /* FIX: Reset margins to prevent cut-off */
-        .values-grid { margin-top: 30px; }
-        
-        .hero { 
-            height: 40vh; 
-            background-attachment: scroll; /* Disable parallax on mobile for performance */
-            clip-path: none; /* Remove complex clip for cleaner mobile edge */
-        }
-        .hero h1 { font-size: 2rem; }
-        
-        .b2b-wrapper { padding: 40px 20px; }
-        .b2b-features-grid { grid-template-columns: 1fr; gap: 20px; }
+        .b2b-features-grid { grid-template-columns: 1fr; }
+        .hero-services { height: 40vh; }
     }
 </style>
 </head>
@@ -295,9 +89,7 @@
 
 <header>
     <div class="header-inner">
-        <a href="index.html" class="logo">
-            <img src="assets/logo.png" alt="Powerstar">
-        </a>
+        <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar"></a>
         <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
         <nav class="nav-menu" id="nav-menu">
             <a href="index.html">Home</a>
@@ -308,14 +100,15 @@
             <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
-            <a href="media.html">Media</a>
         </nav>
     </div>
 </header>
 
-<div class="hero">
-    <h1 class="reveal">Our Product Range</h1>
-    <p class="reveal">Sourcing the finest quality brands for your home, business, and family.</p>
+<div class="hero-services">
+    <div class="reveal">
+        <h1>Our Product Range</h1>
+        <p>Sourcing the finest quality brands for your home, business, and family.</p>
+    </div>
 </div>
 
 <main class="container">
@@ -327,20 +120,20 @@
             <p>Sourced directly from local farmers to ensure maximum freshness on your table.</p>
         </div>
         <div class="value-card reveal">
-            <div class="icon-circle"><i class="fas fa-tags"></i></div>
+            <div class="icon-circle" style="color:var(--ps-red); background:rgba(218, 41, 28, 0.1);"><i class="fas fa-tags"></i></div>
             <h3>Fair Pricing</h3>
             <p>Competitive prices on all household essentials and premium brands.</p>
         </div>
         <div class="value-card reveal">
-            <div class="icon-circle"><i class="fas fa-check-circle"></i></div>
+            <div class="icon-circle" style="color:var(--ps-gold); background:rgba(212, 175, 55, 0.1);"><i class="fas fa-check-circle"></i></div>
             <h3>Quality Assured</h3>
             <p>We strictly inspect all stock to meet our high safety and quality standards.</p>
         </div>
     </div>
 
-    <div class="catalog-header reveal">
+    <div class="reveal" style="text-align: center; margin-bottom: 60px;">
         <h2>Our Departments</h2>
-        <p>Explore our extensive range of categories available at all 11+ branches.</p>
+        <p style="color:#666;">Explore our extensive range of categories available at all 11+ branches.</p>
     </div>
 
     <div class="department-grid">
@@ -418,7 +211,7 @@
             <div class="dept-content">
                 <h3 class="dept-title">Pantry & Staples</h3>
                 <p class="dept-desc">Essential stocks of Maize Flour, Sugar, Rice, and Cooking Oil at unbeatable prices.</p>
-                <div class="dept-features"><span class="tag">Unga</span><span class="tag">Sugar</span><span class="tag">Oil</span></div>
+                <div class="dept-features"><span class="tag">Unga</span><span class="tag">Sugar</span></div>
                 <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
             </div>
         </div>
@@ -449,65 +242,13 @@
             </div>
         </div>
 
-        <div class="dept-card reveal">
-            <div class="dept-image-wrapper" onclick="openLightbox(this)">
-                <img src="assets/beauty.jpg" alt="Beauty" onerror="this.src='https://placehold.co/600x400/eee/999?text=Beauty+Care'">
-                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Beauty & Personal Care</h3>
-                <p class="dept-desc">Skincare, hair products, and grooming essentials from trusted brands.</p>
-                <div class="dept-features"><span class="tag">Cosmetics</span><span class="tag">Hair Care</span></div>
-                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
-            </div>
-        </div>
-
-        <div class="dept-card reveal">
-            <div class="dept-image-wrapper" onclick="openLightbox(this)">
-                <img src="assets/kitchen.jpg" alt="Kitchen" onerror="this.src='https://placehold.co/600x400/eee/999?text=Kitchenware'">
-                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Kitchen & Dining</h3>
-                <p class="dept-desc">Cookware, plates, glass sets, and food storage containers.</p>
-                <div class="dept-features"><span class="tag">Cookware</span><span class="tag">Glassware</span></div>
-                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
-            </div>
-        </div>
-
-        <div class="dept-card reveal">
-            <div class="dept-image-wrapper" onclick="openLightbox(this)">
-                <img src="assets/travel.jpg" alt="Travel" onerror="this.src='https://placehold.co/600x400/eee/999?text=Travel+&+Bags'">
-                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Luggage & Travel</h3>
-                <p class="dept-desc">Suitcases, backpacks, and travel accessories for your journeys.</p>
-                <div class="dept-features"><span class="tag">Suitcases</span><span class="tag">School Bags</span></div>
-                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
-            </div>
-        </div>
-
-        <div class="dept-card reveal">
-            <div class="dept-image-wrapper" onclick="openLightbox(this)">
-                <img src="assets/clothing.jpg" alt="Clothing" onerror="this.src='https://placehold.co/600x400/eee/999?text=Clothing'">
-                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Clothing & Footwear</h3>
-                <p class="dept-desc">Affordable fashion basics, innerwear, and footwear for the family.</p>
-                <div class="dept-features"><span class="tag">Basics</span><span class="tag">Footwear</span></div>
-                <a href="order.html" class="dept-btn"><i class="fab fa-whatsapp"></i> Order via WhatsApp</a>
-            </div>
-        </div>
-
     </div>
 
     <div class="b2b-wrapper reveal">
         <div class="b2b-grid">
             <div class="b2b-text">
-                <h2>Bulk & Institutional Orders</h2>
-                <p>Stocking up for your home, school, or hotel? Enjoy the same great shelf prices with the added convenience of priority handling and logistical support.</p>
+                <h2 style="color:white; margin-bottom:20px;">Bulk & Institutional Orders</h2>
+                <p style="color:rgba(255,255,255,0.9);">Stocking up for your home, school, or hotel? Enjoy the same great shelf prices with the added convenience of priority handling and logistical support.</p>
 
                 <div class="b2b-features-grid">
                     <div class="feature-point">
@@ -517,7 +258,7 @@
                     </div>
                     <div class="feature-point">
                         <i class="fas fa-route"></i>
-                        <h4>Shared Transport Costs</h4>
+                        <h4>Shared Transport</h4>
                         <span>Logistics costs subsidized based on distance.</span>
                     </div>
                     <div class="feature-point">
@@ -534,10 +275,10 @@
             </div>
 
             <div class="b2b-action">
-                <h3>Start a Bulk Order</h3>
-                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">Contact us to discuss delivery locations.</p>
+                <h3 style="color:var(--ps-red); font-size:1.5rem; margin-bottom:10px;">Start a Bulk Order</h3>
+                <p style="color:rgba(255,255,255,0.8); font-size:0.9rem; margin-bottom:20px;">Contact us to discuss delivery locations.</p>
                 <a href="contact.html" class="btn-white">Contact Sales</a>
-                <a href="order.html" style="display:block; margin-top:15px; color:white; font-size:0.9rem; text-decoration:underline; opacity: 0.8;">Or Order Bulk via WhatsApp</a>
+                <a href="order.html" style="display:block; margin-top:15px; color:white; font-size:0.8rem; text-decoration:underline; opacity: 0.8;">Or Order Bulk via WhatsApp</a>
             </div>
         </div>
     </div>
@@ -585,23 +326,22 @@
         }
     });
 
-    // 2. SCROLL REVEAL ANIMATION
+    // 2. SCROLL REVEAL
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
             var windowHeight = window.innerHeight;
             var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 150;
+            var elementVisible = 100;
             if (elementTop < windowHeight - elementVisible) {
                 reveals[i].classList.add("active");
             }
         }
     }
     window.addEventListener("scroll", reveal);
-    // Trigger on load
     reveal();
 
-    // 3. IMAGE LIGHTBOX (ZOOM FEATURE)
+    // 3. IMAGE LIGHTBOX
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
 
@@ -617,7 +357,6 @@
         document.body.style.overflow = 'auto'; // Resume scrolling
     }
 
-    // Close on click outside
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox) {
             closeLightbox();
