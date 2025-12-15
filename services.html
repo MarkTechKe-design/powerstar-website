@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Our Products - Powerstar Supermarkets</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,12 +23,13 @@
         --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    /* GLOBAL RESET & MOBILE FIX */
-    * { box-sizing: border-box; }
+    /* GLOBAL RESET & MOBILE STABILITY FIX */
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     
     html, body {
         width: 100%;
-        overflow-x: hidden; /* CRITICAL FIX: Stops mobile side-scroll */
+        max-width: 100%;
+        overflow-x: hidden; /* CRITICAL: Stops side-scrolling */
         margin: 0; padding: 0;
         font-family: 'Poppins', sans-serif;
         background-color: var(--bg-light);
@@ -53,9 +55,8 @@
     }
     .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
     
-    .logo img { height: 90px; width: auto; transition: transform 0.3s; }
-    .logo:hover img { transform: scale(1.02); }
-
+    .logo img { height: 95px; width: auto; transition: transform 0.3s; }
+    
     .nav-menu { display: flex; gap: 30px; }
     .nav-menu a {
         font-weight: 600; font-size: 0.9rem; color: #555;
@@ -72,33 +73,35 @@
 
     .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
 
-    /* --- 2. HERO SECTION (Image Ready) --- */
+    /* --- 2. STYLISH HERO SECTION --- */
     .hero {
         position: relative;
-        /* Put your grocery image here: assets/products-hero.jpg */
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('assets/products-hero.jpg');
+        /* Updated with Products Hero Image */
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 50, 20, 0.8)), url('assets/products-hero.jpg');
         background-size: cover; background-position: center;
-        height: 50vh;
+        height: 55vh;
         display: flex; flex-direction: column; justify-content: center; align-items: center;
         color: white; text-align: center;
         padding-bottom: 60px;
+        /* Architectural Curve */
         clip-path: ellipse(150% 100% at 50% 0%);
     }
     .hero h1 { 
-        font-size: 3.5rem; margin: 0 0 15px 0; 
-        text-transform: uppercase; letter-spacing: 1px; font-weight: 800; 
+        font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive Font Size */
+        margin: 0 0 15px 0; 
+        text-transform: uppercase; letter-spacing: 1px; font-weight: 900; 
         color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .hero p { 
         font-size: 1.2rem; opacity: 0.95; max-width: 700px; font-weight: 300; 
-        color: rgba(255,255,255,0.9);
+        color: rgba(255,255,255,0.9); padding: 0 20px;
     }
 
     /* --- 3. VALUE PROPOSITION --- */
     .values-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 30px; 
-        margin-top: -80px; /* Floating Effect */
+        margin-top: -80px; /* Floating Effect on Desktop */
         margin-bottom: 80px;
         position: relative; z-index: 10; padding: 0 20px; max-width: 1200px; margin-left: auto; margin-right: auto;
     }
@@ -120,7 +123,7 @@
     .value-card p { margin: 0; font-size: 0.95rem; color: #666; line-height: 1.6; }
 
     /* --- 4. CATALOG GRID --- */
-    .catalog-header { text-align: center; margin: 0 auto 60px; max-width: 800px; }
+    .catalog-header { text-align: center; margin: 0 auto 60px; max-width: 800px; padding: 0 20px; }
     .catalog-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
     .catalog-header p { font-size: 1.1rem; color: #666; }
 
@@ -134,11 +137,23 @@
         box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: var(--transition);
         display: flex; flex-direction: column; border: 1px solid #eee;
     }
-    .dept-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .dept-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
-    .dept-image-wrapper { height: 240px; overflow: hidden; position: relative; }
+    .dept-image-wrapper { 
+        height: 240px; overflow: hidden; position: relative; 
+        cursor: zoom-in; /* Indicates clickable */
+    }
     .dept-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
     .dept-card:hover .dept-image-wrapper img { transform: scale(1.1); } 
+    
+    /* Overlay hint for zoom */
+    .zoom-hint {
+        position: absolute; top: 10px; right: 10px; 
+        background: rgba(0,0,0,0.5); color: white; 
+        padding: 5px 10px; border-radius: 20px; font-size: 0.7rem; 
+        pointer-events: none; opacity: 0; transition: 0.3s;
+    }
+    .dept-image-wrapper:hover .zoom-hint { opacity: 1; }
 
     .dept-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
     .dept-title { margin: 0 0 10px 0; font-size: 1.4rem; color: var(--ps-dark); font-weight: 700; font-family: 'Montserrat', sans-serif; }
@@ -159,9 +174,8 @@
     }
     .dept-btn:hover { background: var(--ps-green); color: white; box-shadow: 0 5px 15px rgba(0, 104, 56, 0.3); }
 
-    /* --- 5. B2B SECTION (Clean & Corporate) --- */
+    /* --- 5. B2B SECTION (BRAND RED EDITION) --- */
     .b2b-wrapper {
-        /* No Background Image - Just Pure Corporate Gradient */
         background: linear-gradient(135deg, #004d2a 0%, #006838 100%);
         border-radius: 20px; color: white;
         padding: 80px 50px; margin-bottom: 100px;
@@ -169,39 +183,40 @@
         box-shadow: 0 30px 60px rgba(0,0,0,0.2);
         border: 1px solid rgba(255,255,255,0.1);
     }
-    /* Gold Accent Bar */
+    /* Brand Red Accent Bar */
     .b2b-wrapper::before {
         content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
-        background: var(--ps-gold);
+        background: var(--ps-red); /* CHANGED TO RED */
     }
 
     .b2b-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
     .b2b-text h2 { font-size: 2.8rem; margin: 0 0 20px 0; font-weight: 800; color: white; }
     .b2b-text p { font-size: 1.1rem; opacity: 0.9; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
     
-    /* Grid for Icons (No placeholders) */
     .b2b-features-grid {
         display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
     }
-    .feature-point {
-        display: flex; flex-direction: column; align-items: flex-start;
-    }
+    .feature-point { display: flex; flex-direction: column; align-items: flex-start; }
+    
+    /* ICONS CHANGED TO RED */
     .feature-point i {
-        font-size: 2rem; color: var(--ps-gold); margin-bottom: 15px;
+        font-size: 2rem; color: var(--ps-red); /* RED ICONS */
+        margin-bottom: 15px; background: white; 
+        width: 60px; height: 60px; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     .feature-point h4 {
         color: white; font-size: 1.1rem; font-weight: 700; margin: 0 0 5px 0; font-family: 'Montserrat', sans-serif;
     }
-    .feature-point span {
-        font-size: 0.9rem; opacity: 0.8; line-height: 1.5;
-    }
+    .feature-point span { font-size: 0.9rem; opacity: 0.8; line-height: 1.5; }
 
     .b2b-action { 
         text-align: center; background: rgba(255,255,255,0.05); 
         padding: 40px; border-radius: 16px; backdrop-filter: blur(10px); 
         border: 1px solid rgba(255,255,255,0.1); 
     }
-    .b2b-action h3 { color: var(--ps-gold); margin-bottom: 10px; font-size: 1.5rem; }
+    .b2b-action h3 { color: var(--ps-red); margin-bottom: 10px; font-size: 1.5rem; font-weight: 800; } /* RED TEXT */
     .btn-white { 
         display: inline-block; background: white; color: var(--ps-green); 
         padding: 18px 40px; border-radius: 50px; font-weight: 700; 
@@ -210,7 +225,19 @@
     }
     .btn-white:hover { transform: translateY(-5px); background: #f0f0f0; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
-    /* --- 6. FOOTER --- */
+    /* --- 6. IMAGE LIGHTBOX (ZOOM) --- */
+    .lightbox {
+        position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center;
+        opacity: 0; transition: opacity 0.3s;
+    }
+    .lightbox.active { display: flex; opacity: 1; }
+    .lightbox img { max-width: 90%; max-height: 90vh; border-radius: 5px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+    .lightbox-close {
+        position: absolute; top: 20px; right: 30px; color: white; font-size: 3rem; cursor: pointer;
+    }
+
+    /* --- 7. FOOTER --- */
     footer { background-color: var(--ps-green); color: white; padding: 60px 20px; text-align: center; margin-top: auto; border-top: 8px solid var(--ps-red); }
     .footer-content h4 { color: rgba(255,255,255,0.8); font-family: 'Poppins', sans-serif; letter-spacing: 2px; }
     
@@ -224,7 +251,7 @@
     .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-5px) scale(1.1); }
     .copyright { font-size: 0.9rem; opacity: 0.7; }
 
-    /* --- MOBILE RESPONSIVENESS FIXES --- */
+    /* --- MOBILE RESPONSIVENESS FIXES (CRITICAL) --- */
     @media (max-width: 900px) {
         .b2b-grid { grid-template-columns: 1fr; }
         .b2b-action { margin-top: 20px; }
@@ -236,10 +263,14 @@
         .nav-menu.active { display: flex; }
         
         /* FIX: Reset margins on mobile to prevent overflow/cutting */
-        .values-grid { margin-top: 40px; margin-bottom: 40px; }
+        .values-grid { margin-top: 30px; margin-bottom: 40px; }
         
         .hero { height: 40vh; clip-path: none; }
         .hero h1 { font-size: 2rem; }
+        
+        /* FIX: Stack Departments properly */
+        .department-grid { grid-template-columns: 1fr; }
+        
         .b2b-wrapper { padding: 40px 20px; }
         .b2b-features-grid { grid-template-columns: 1fr; gap: 20px; }
     }
@@ -262,6 +293,7 @@
             <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
+            <a href="media.html">Media</a>
         </nav>
     </div>
 </header>
@@ -299,8 +331,9 @@
     <div class="department-grid">
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/bakery.jpg" alt="Bakery" onerror="this.src='https://placehold.co/600x400/eee/999?text=Bakery'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">In-House Bakery</h3>
@@ -311,8 +344,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/produce.jpg" alt="Produce" onerror="this.src='https://placehold.co/600x400/eee/999?text=Fresh+Produce'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Fresh Produce</h3>
@@ -323,8 +357,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/butchery.jpg" alt="Butchery" onerror="this.src='https://placehold.co/600x400/eee/999?text=Butchery'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Butchery & Deli</h3>
@@ -335,8 +370,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/electronics.jpg" alt="Electronics" onerror="this.src='https://placehold.co/600x400/eee/999?text=Electronics'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Electronics</h3>
@@ -347,8 +383,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/liquor.jpg" alt="Liquor" onerror="this.src='https://placehold.co/600x400/eee/999?text=Beverages'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Beverages & Liquor</h3>
@@ -359,8 +396,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/cereals.jpg" alt="Pantry" onerror="this.src='https://placehold.co/600x400/eee/999?text=Sugar+&+Flour'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Pantry & Staples</h3>
@@ -371,8 +409,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/household.jpg" alt="Household" onerror="this.src='https://placehold.co/600x400/eee/999?text=Cleaning'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Home Care</h3>
@@ -383,8 +422,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/baby.jpg" alt="Baby" onerror="this.src='https://placehold.co/600x400/eee/999?text=Baby+Shop'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Baby & Kids</h3>
@@ -395,8 +435,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/beauty.jpg" alt="Beauty" onerror="this.src='https://placehold.co/600x400/eee/999?text=Beauty+Care'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Beauty & Personal Care</h3>
@@ -407,8 +448,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/kitchen.jpg" alt="Kitchen" onerror="this.src='https://placehold.co/600x400/eee/999?text=Kitchenware'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Kitchen & Dining</h3>
@@ -419,8 +461,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/travel.jpg" alt="Travel" onerror="this.src='https://placehold.co/600x400/eee/999?text=Travel+&+Bags'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Luggage & Travel</h3>
@@ -431,8 +474,9 @@
         </div>
 
         <div class="dept-card reveal">
-            <div class="dept-image-wrapper">
+            <div class="dept-image-wrapper" onclick="openLightbox(this)">
                 <img src="assets/clothing.jpg" alt="Clothing" onerror="this.src='https://placehold.co/600x400/eee/999?text=Clothing'">
+                <div class="zoom-hint"><i class="fas fa-search-plus"></i> Tap to Zoom</div>
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Clothing & Footwear</h3>
@@ -485,6 +529,11 @@
 
 </main>
 
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Full Screen">
+</div>
+
 <footer>
     <div class="footer-content">
         <div class="social-links">
@@ -536,6 +585,29 @@
     window.addEventListener("scroll", reveal);
     // Trigger on load
     reveal();
+
+    // 3. IMAGE LIGHTBOX (ZOOM FEATURE)
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(element) {
+        const img = element.querySelector('img');
+        lightboxImg.src = img.src; 
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Stop scrolling behind
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Resume scrolling
+    }
+
+    // Close on click outside
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
 </script>
 
 </body>
