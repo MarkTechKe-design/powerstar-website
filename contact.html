@@ -11,6 +11,61 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 
+<style>
+    /* PAGE SPECIFIC STYLES (Restores the Layout) */
+    
+    /* 1. Hero Background */
+    .hero-contact {
+        background: linear-gradient(rgba(0, 104, 56, 0.85), rgba(0, 50, 20, 0.9)), url('assets/contact-bg.jpg');
+        background-size: cover; background-position: center;
+        height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+        color: white; text-align: center; margin-bottom: 60px;
+    }
+    .hero-contact h1 { font-size: 3.5rem; margin: 0 0 10px 0; color: white; text-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+    .hero-contact p { font-size: 1.2rem; opacity: 0.95; }
+
+    /* 2. Floating Info Cards */
+    .features-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px; margin-top: -100px; position: relative; z-index: 10; margin-bottom: 80px;
+        padding: 0 20px;
+    }
+    .info-card {
+        background: white; padding: 40px 30px; border-radius: 16px;
+        text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        border-bottom: 4px solid transparent; transition: transform 0.3s ease;
+    }
+    .info-card:hover { transform: translateY(-10px); border-bottom-color: var(--ps-red); }
+    .info-card i { font-size: 2.5rem; margin-bottom: 20px; display: inline-block; }
+    .info-card h4 { font-size: 1.4rem; margin: 0 0 10px 0; color: var(--ps-dark); font-weight: 700; }
+
+    /* 3. Dual Forms Layout */
+    .contact-split-wrapper {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-bottom: 100px;
+    }
+    
+    .form-header { padding: 40px; text-align: center; color: white; }
+    .form-customer .form-header { background: linear-gradient(135deg, #006838 0%, #004d2a 100%); }
+    .form-vendor .form-header { background: linear-gradient(135deg, #DA291C 0%, #a31616 100%); }
+    
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 700; margin-bottom: 8px; color: #333; }
+    .form-group input, .form-group select, .form-group textarea {
+        width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: #f9f9f9; font-family: inherit;
+    }
+    
+    .button {
+        width: 100%; padding: 18px; border: none; border-radius: 50px; font-weight: 700; cursor: pointer; color: white;
+        display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: uppercase;
+    }
+    .form-customer .button { background: #25D366; }
+    .form-vendor .button { background: #111; }
+
+    @media (max-width: 900px) {
+        .contact-split-wrapper { grid-template-columns: 1fr; }
+        .hero-contact { height: auto; padding: 100px 20px 140px; }
+    }
+</style>
 </head>
 <body>
 
@@ -31,7 +86,7 @@
     </div>
 </header>
 
-<div class="hero">
+<div class="hero-contact">
     <div class="reveal">
         <h1>Get in Touch</h1>
         <p>We are here to help. Reach out to the right team instantly.</p>
@@ -58,7 +113,7 @@
         </div>
     </div>
 
-    <div class="section-intro reveal">
+    <div class="reveal" style="text-align:center; margin-bottom: 50px;">
         <h2>Start a Conversation</h2>
         <p>Choose the right department to get the fastest response via WhatsApp.</p>
     </div>
@@ -67,12 +122,12 @@
 
         <div class="form-container form-customer reveal">
             <div class="form-header">
-                <i class="fab fa-whatsapp" style="font-size: 3.5rem;"></i>
-                <h2>Customer Care</h2>
+                <i class="fab fa-whatsapp" style="font-size: 3.5rem; margin-bottom:10px;"></i>
+                <h2 style="color:white;">Customer Care</h2>
                 <p>For Feedback, Inquiries & Compliments</p>
             </div>
             
-            <form id="customerForm">
+            <form id="customerForm" style="padding: 40px;">
                 <div class="form-group">
                     <label>Your Name</label>
                     <input type="text" id="custName" placeholder="e.g. John Doe" required>
@@ -109,12 +164,12 @@
 
         <div class="form-container form-vendor reveal">
             <div class="form-header">
-                <i class="fas fa-truck" style="font-size: 3.5rem;"></i>
-                <h2>Sales & Suppliers</h2>
+                <i class="fas fa-truck" style="font-size: 3.5rem; margin-bottom:10px;"></i>
+                <h2 style="color:white;">Sales & Suppliers</h2>
                 <p>For Bulk Orders & New Product Listings</p>
             </div>
             
-            <form id="vendorForm">
+            <form id="vendorForm" style="padding: 40px;">
                 <div class="form-group">
                     <label>Company / Business Name</label>
                     <input type="text" id="vendCompany" placeholder="e.g. Uzuri Distributors Ltd" required>
@@ -146,12 +201,14 @@
 
 <footer>
     <div class="footer-content">
-        <h4>Follow Us</h4>
         <div class="social-links">
-            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <h4 style="margin-bottom: 20px;">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
@@ -159,6 +216,70 @@
     </div>
 </footer>
 
+<script>
+    // --- 1. SCROLL REVEAL (This fixes the blank page issue) ---
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal(); // Trigger immediately on load
+
+    // --- 2. MOBILE MENU ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        if (menuBtn && navMenu) {
+            menuBtn.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                navMenu.classList.toggle('active');
+                const icon = menuBtn.querySelector('i');
+                if (navMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars'); icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times'); icon.classList.add('fa-bars');
+                }
+            });
+        }
+    });
+
+    // --- 3. FORM LOGIC ---
+    const branchNumbers = {
+        "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
+        "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
+        "Kinoo": "254795459026", "Ruiru Mini": "254724588900", "Ruiru Jambo": "254728020018",
+        "Zimmerman Base": "254707881200", "Zimmerman Express": "254701231370"
+    };
+    const SALES_TEAM = "254706246939"; 
+
+    // Customer Form
+    document.getElementById('customerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const branch = document.getElementById('custBranch').value;
+        const name = document.getElementById('custName').value;
+        const message = document.getElementById('custMessage').value;
+        const targetNumber = branchNumbers[branch] || "254790680038";
+        const msg = `*Customer Feedback*\n----------------\nBranch: ${branch}\nName: ${name}\nMessage: ${message}`;
+        window.open(`https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+
+    // Vendor Form
+    document.getElementById('vendorForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const company = document.getElementById('vendCompany').value;
+        const type = document.getElementById('vendType').value;
+        const message = document.getElementById('vendMessage').value;
+        const msg = `*Supplier Inquiry*\n----------------\nCompany: ${company}\nType: ${type}\nDetails: ${message}`;
+        window.open(`https://wa.me/${SALES_TEAM}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+</script>
 
 </body>
 </html>
