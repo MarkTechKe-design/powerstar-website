@@ -16,19 +16,24 @@
         --ps-red: #DA291C;
         --ps-green: #006838;
         --ps-dark: #111;
-        --ps-gold: #D4AF37; /* Premium Accent */
+        --ps-gold: #D4AF37;
         --bg-light: #F9FAFB;
         --shadow-card: 0 15px 35px rgba(0,0,0,0.06);
         --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
 
-    /* GLOBAL RESET */
+    /* GLOBAL RESET & MOBILE FIX */
     * { box-sizing: border-box; }
-    body { 
-        font-family: 'Poppins', sans-serif; margin: 0; 
-        background-color: var(--bg-light); color: #444; 
-        overflow-x: hidden; 
+    
+    html, body {
+        width: 100%;
+        overflow-x: hidden; /* CRITICAL FIX: Stops mobile side-scroll */
+        margin: 0; padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg-light);
+        color: #444;
     }
+
     h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--ps-dark); }
     a { text-decoration: none; color: inherit; }
     img { max-width: 100%; display: block; }
@@ -38,7 +43,7 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
     .reveal.active { opacity: 1; transform: translateY(0); }
 
-    /* --- 1. PREMIUM HEADER (Synced) --- */
+    /* --- 1. HEADER --- */
     header {
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
@@ -48,7 +53,6 @@
     }
     .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
     
-    /* LOGO: 90px */
     .logo img { height: 90px; width: auto; transition: transform 0.3s; }
     .logo:hover img { transform: scale(1.02); }
 
@@ -68,31 +72,34 @@
 
     .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
 
-    /* --- 2. CATALOG HERO --- */
+    /* --- 2. HERO SECTION (Image Ready) --- */
     .hero {
         position: relative;
-        background: linear-gradient(rgba(0, 50, 20, 0.85), rgba(0, 20, 10, 0.9)), url('assets/hero-pattern.png'); /* Fallback image */
-        background-color: var(--ps-green);
+        /* Put your grocery image here: assets/products-hero.jpg */
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('assets/products-hero.jpg');
+        background-size: cover; background-position: center;
         height: 50vh;
         display: flex; flex-direction: column; justify-content: center; align-items: center;
         color: white; text-align: center;
         padding-bottom: 60px;
-        clip-path: ellipse(150% 100% at 50% 0%); /* Modern Curve */
+        clip-path: ellipse(150% 100% at 50% 0%);
     }
     .hero h1 { 
         font-size: 3.5rem; margin: 0 0 15px 0; 
         text-transform: uppercase; letter-spacing: 1px; font-weight: 800; 
-        color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .hero p { 
-        font-size: 1.2rem; opacity: 0.9; max-width: 700px; font-weight: 300; 
+        font-size: 1.2rem; opacity: 0.95; max-width: 700px; font-weight: 300; 
         color: rgba(255,255,255,0.9);
     }
 
-    /* --- 3. VALUE PROPOSITION (Floating Cards) --- */
+    /* --- 3. VALUE PROPOSITION --- */
     .values-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px; margin-top: -80px; margin-bottom: 80px;
+        gap: 30px; 
+        margin-top: -80px; /* Floating Effect */
+        margin-bottom: 80px;
         position: relative; z-index: 10; padding: 0 20px; max-width: 1200px; margin-left: auto; margin-right: auto;
     }
     .value-card {
@@ -144,7 +151,6 @@
         font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
     }
 
-    /* Primary Action Button */
     .dept-btn {
         text-align: center; background: white; color: var(--ps-green);
         border: 2px solid var(--ps-green); padding: 12px;
@@ -153,19 +159,19 @@
     }
     .dept-btn:hover { background: var(--ps-green); color: white; box-shadow: 0 5px 15px rgba(0, 104, 56, 0.3); }
 
-    /* --- 5. B2B SECTION (Corporate VIP) --- */
+    /* --- 5. B2B SECTION (Clean & Corporate) --- */
     .b2b-wrapper {
-        background: linear-gradient(rgba(0, 20, 10, 0.9), rgba(0, 40, 20, 0.9)), url('assets/wholesale-bg.jpg');
-        background-size: cover; background-position: center;
+        /* No Background Image - Just Pure Corporate Gradient */
+        background: linear-gradient(135deg, #004d2a 0%, #006838 100%);
         border-radius: 20px; color: white;
         padding: 80px 50px; margin-bottom: 100px;
         position: relative; overflow: hidden;
         box-shadow: 0 30px 60px rgba(0,0,0,0.2);
         border: 1px solid rgba(255,255,255,0.1);
     }
-    /* Gold Border Accent */
+    /* Gold Accent Bar */
     .b2b-wrapper::before {
-        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+        content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px;
         background: var(--ps-gold);
     }
 
@@ -173,12 +179,21 @@
     .b2b-text h2 { font-size: 2.8rem; margin: 0 0 20px 0; font-weight: 800; color: white; }
     .b2b-text p { font-size: 1.1rem; opacity: 0.9; line-height: 1.8; margin-bottom: 40px; font-weight: 300; }
     
-    .b2b-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-bottom: 30px; }
-    .feature-item { display: flex; align-items: center; gap: 15px; font-weight: 600; font-size: 1rem; }
-    .feature-item i { 
-        color: var(--ps-gold); background: rgba(255,255,255,0.1); 
-        width: 40px; height: 40px; border-radius: 50%; 
-        display: flex; align-items: center; justify-content: center; font-size: 1rem; 
+    /* Grid for Icons (No placeholders) */
+    .b2b-features-grid {
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
+    }
+    .feature-point {
+        display: flex; flex-direction: column; align-items: flex-start;
+    }
+    .feature-point i {
+        font-size: 2rem; color: var(--ps-gold); margin-bottom: 15px;
+    }
+    .feature-point h4 {
+        color: white; font-size: 1.1rem; font-weight: 700; margin: 0 0 5px 0; font-family: 'Montserrat', sans-serif;
+    }
+    .feature-point span {
+        font-size: 0.9rem; opacity: 0.8; line-height: 1.5;
     }
 
     .b2b-action { 
@@ -209,6 +224,7 @@
     .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-5px) scale(1.1); }
     .copyright { font-size: 0.9rem; opacity: 0.7; }
 
+    /* --- MOBILE RESPONSIVENESS FIXES --- */
     @media (max-width: 900px) {
         .b2b-grid { grid-template-columns: 1fr; }
         .b2b-action { margin-top: 20px; }
@@ -218,8 +234,14 @@
         .mobile-toggle { display: block; }
         .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .nav-menu.active { display: flex; }
+        
+        /* FIX: Reset margins on mobile to prevent overflow/cutting */
+        .values-grid { margin-top: 40px; margin-bottom: 40px; }
+        
+        .hero { height: 40vh; clip-path: none; }
         .hero h1 { font-size: 2rem; }
         .b2b-wrapper { padding: 40px 20px; }
+        .b2b-features-grid { grid-template-columns: 1fr; gap: 20px; }
     }
 </style>
 </head>
@@ -425,20 +447,36 @@
     <div class="b2b-wrapper reveal">
         <div class="b2b-grid">
             <div class="b2b-text">
-                <h2>Powerstar Wholesale</h2>
-                <p>We provide specialized bulk supply solutions for Hotels, Schools, Offices, and Retailers. Enjoy dedicated support, volume pricing, and priority delivery.</p>
+                <h2>Bulk & Institutional Orders</h2>
+                <p>Stocking up for your home, school, or hotel? Enjoy the same great shelf prices with the added convenience of priority handling and logistical support.</p>
 
-                <div class="b2b-features">
-                    <div class="feature-item"><i class="fas fa-percent"></i> Volume Discounts</div>
-                    <div class="feature-item"><i class="fas fa-truck"></i> Priority Delivery</div>
-                    <div class="feature-item"><i class="fas fa-user-tie"></i> Account Manager</div>
-                    <div class="feature-item"><i class="fas fa-file-invoice"></i> Flexible Invoicing</div>
+                <div class="b2b-features-grid">
+                    <div class="feature-point">
+                        <i class="fas fa-truck-fast"></i>
+                        <h4>Priority Delivery</h4>
+                        <span>Get your bulk orders delivered faster.</span>
+                    </div>
+                    <div class="feature-point">
+                        <i class="fas fa-route"></i>
+                        <h4>Shared Transport Costs</h4>
+                        <span>Logistics costs subsidized based on distance.</span>
+                    </div>
+                    <div class="feature-point">
+                        <i class="fas fa-clipboard-check"></i>
+                        <h4>Order Assembly</h4>
+                        <span>We pack everything for you before you arrive.</span>
+                    </div>
+                    <div class="feature-point">
+                        <i class="fas fa-handshake"></i>
+                        <h4>Dedicated Support</h4>
+                        <span>Direct line to our branch managers.</span>
+                    </div>
                 </div>
             </div>
 
             <div class="b2b-action">
-                <h3>Ready to partner?</h3>
-                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">Contact our corporate sales team today.</p>
+                <h3>Start a Bulk Order</h3>
+                <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">Contact us to discuss delivery locations.</p>
                 <a href="contact.html" class="btn-white">Contact Sales</a>
                 <a href="order.html" style="display:block; margin-top:15px; color:white; font-size:0.9rem; text-decoration:underline; opacity: 0.8;">Or Order Bulk via WhatsApp</a>
             </div>
