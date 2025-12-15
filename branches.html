@@ -68,18 +68,16 @@
 
     .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
 
-    /* --- 2. CINEMATIC HERO (With Gentle Fade) --- */
+    /* --- 2. HERO --- */
     .hero {
         position: relative;
-        /* Sophisticated Gradient Fade: Dark at bottom, fading to transparent at top */
         background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('assets/branch-hero.jpg');
         background-size: cover; background-position: center;
-        /* Parallax Disabled on Mobile for stability, handled via media query */
         background-attachment: fixed; 
         height: 45vh;
         display: flex; flex-direction: column; justify-content: center; align-items: center;
         text-align: center; color: white;
-        margin-bottom: 60px;
+        padding-bottom: 40px; /* Space for search bar overlap */
     }
     .hero h1 { 
         font-size: 3.5rem; margin: 0 0 10px 0; 
@@ -90,10 +88,47 @@
         font-size: 1.2rem; opacity: 0.9; font-weight: 300; letter-spacing: 1px;
     }
 
-    /* --- 3. PREMIUM BRANCH CARDS --- */
+    /* --- 3. SEARCH BAR (Floating) --- */
+    .search-wrapper {
+        max-width: 600px;
+        margin: -30px auto 40px; /* Pulls it up into the Hero */
+        padding: 0 20px;
+        position: relative;
+        z-index: 20;
+    }
+    .search-box {
+        position: relative;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        border-radius: 50px;
+        background: white;
+    }
+    .search-input {
+        width: 100%;
+        padding: 18px 25px 18px 55px;
+        border: 1px solid #eee;
+        border-radius: 50px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        outline: none;
+        transition: var(--transition);
+    }
+    .search-input:focus {
+        border-color: var(--ps-green);
+        box-shadow: 0 0 0 4px rgba(0, 104, 56, 0.1);
+    }
+    .search-icon-glass {
+        position: absolute;
+        left: 25px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--ps-green);
+        font-size: 1.2rem;
+    }
+
+    /* --- 4. BRANCH GRID --- */
     .branch-grid {
         display: grid;
-        /* Intelligent responsive grid */
+        /* DESKTOP: Horizontal Grid (3 per row usually) */
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 30px;
         padding-bottom: 80px;
@@ -116,6 +151,9 @@
         box-shadow: var(--shadow-card);
     }
 
+    /* Hidden state for search filter */
+    .branch-card.hidden { display: none !important; }
+
     .icon-location {
         width: 60px; height: 60px;
         background: rgba(0, 104, 56, 0.08); color: var(--ps-green);
@@ -133,19 +171,19 @@
         margin-bottom: 25px; display: block; letter-spacing: 1px;
     }
 
-    /* --- 4. HORIZONTAL ACTIONS (Responsive Safe) --- */
+    /* Action Buttons */
     .branch-actions {
         display: flex;
-        flex-direction: row; /* Horizontal alignment */
-        flex-wrap: wrap; /* CRITICAL: Wraps if screen is too narrow (No overlap) */
+        flex-direction: row;
+        flex-wrap: wrap; /* Prevents overlap on small desktops */
         justify-content: center;
         gap: 15px;
-        width: 100%; /* Take full width of card */
+        width: 100%;
     }
 
     .action-btn {
-        flex: 1; /* Grow to fill space equally */
-        min-width: 120px; /* Don't get smaller than this */
+        flex: 1; 
+        min-width: 110px;
         padding: 12px 20px;
         border-radius: 50px;
         text-decoration: none;
@@ -153,10 +191,9 @@
         font-weight: 600;
         transition: var(--transition);
         display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-        white-space: nowrap; /* Keep text on one line */
+        white-space: nowrap;
     }
 
-    /* Call Button */
     .btn-call {
         background: transparent; color: var(--ps-dark); border: 2px solid #eee;
     }
@@ -164,7 +201,6 @@
         border-color: var(--ps-dark); background: var(--ps-dark); color: white;
     }
 
-    /* WhatsApp Button */
     .btn-chat {
         background: #25D366; color: white; border: 2px solid #25D366;
         box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
@@ -195,13 +231,16 @@
         
         .hero { 
             height: 40vh; 
-            background-attachment: scroll; /* Fix for mobile jitter */
+            background-attachment: scroll; 
         }
         .hero h1 { font-size: 2.2rem; }
         .logo img { height: 60px; }
         
-        /* Ensure Grid Stacks */
-        .branch-grid { grid-template-columns: 1fr; padding: 20px 0; }
+        /* MOBILE: Vertical Stack */
+        .branch-grid { 
+            grid-template-columns: 1fr; /* 1 Column */
+            padding: 20px 0; 
+        }
     }
 </style>
 </head>
@@ -229,9 +268,16 @@
     <p>Find your nearest Powerstar branch and experience quality today.</p>
 </div>
 
+<div class="search-wrapper">
+    <div class="search-box">
+        <i class="fas fa-search search-icon-glass"></i>
+        <input type="text" id="branchSearch" class="search-input" placeholder="Search branch (e.g., Naivasha, Kikuyu)...">
+    </div>
+</div>
+
 <main class="container">
 
-    <div class="branch-grid">
+    <div class="branch-grid" id="branchGrid">
 
         <div class="branch-card reveal">
             <div class="icon-location"><i class="fas fa-map-marker-alt"></i></div>
@@ -354,7 +400,6 @@
                 <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
@@ -396,8 +441,28 @@
         }
     }
     window.addEventListener("scroll", reveal);
-    // Trigger on load
     reveal();
+
+    // 3. BRANCH SEARCH FUNCTIONALITY (Real-Time)
+    const searchInput = document.getElementById('branchSearch');
+    const branchCards = document.querySelectorAll('.branch-card');
+
+    searchInput.addEventListener('keyup', function(e) {
+        const term = e.target.value.toLowerCase();
+        
+        branchCards.forEach(card => {
+            const name = card.querySelector('.branch-name').innerText.toLowerCase();
+            // Check if name matches search term
+            if (name.includes(term)) {
+                card.classList.remove('hidden');
+                // Re-trigger animation if hidden previously
+                card.style.display = "flex"; 
+            } else {
+                card.classList.add('hidden');
+                card.style.display = "none";
+            }
+        });
+    });
 </script>
 
 </body>
