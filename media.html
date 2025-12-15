@@ -12,80 +12,22 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- SENIOR ARCHITECT: DESIGN SYSTEM --- */
-    :root {
-        --ps-red: #DA291C;
-        --ps-green: #006838;
-        --ps-dark: #111;
-        --ps-gold: #D4AF37;
-        --bg-light: #F9FAFB;
-        --shadow-card: 0 10px 30px rgba(0,0,0,0.06);
-        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    }
-
-    /* GLOBAL RESET */
-    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    /* PAGE SPECIFIC OVERRIDES */
     
-    html, body {
-        width: 100%; overflow-x: hidden; margin: 0; padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: var(--bg-light); color: #444;
-    }
-
-    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--ps-dark); }
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; display: block; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-    /* --- ANIMATIONS --- */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-
-    /* --- 1. HEADER --- */
-    header {
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        position: sticky; top: 0; z-index: 1000;
-        padding: 10px 0;
-    }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
-    
-    .logo img { height: 90px; width: auto; transition: transform 0.3s; }
-    .logo:hover img { transform: scale(1.02); }
-
-    .nav-menu { display: flex; gap: 30px; }
-    .nav-menu a {
-        font-weight: 600; font-size: 0.9rem; color: #555;
-        text-transform: uppercase; letter-spacing: 0.5px;
-        position: relative; transition: var(--transition);
-    }
-    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
-    .nav-menu a::after {
-        content: ''; position: absolute; width: 0; height: 2px;
-        bottom: -5px; left: 0; background-color: var(--ps-red);
-        transition: width 0.3s;
-    }
-    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
-
-    .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
-
-    /* --- 2. HERO SECTION --- */
+    /* Hero Override */
     .hero-media {
         background: linear-gradient(rgba(0, 50, 20, 0.85), rgba(0, 20, 10, 0.9)), url('assets/supermarket-bg.jpg');
-        background-size: cover; background-position: center;
-        background-attachment: fixed;
+        background-size: cover; background-position: center; background-attachment: fixed;
         height: 45vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-        text-align: center; color: white;
+        text-align: center; color: white; margin-bottom: 60px;
     }
-    .hero-media h1 { font-size: 3.5rem; margin: 0 0 15px 0; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-    .hero-media p { font-size: 1.2rem; opacity: 0.95; font-weight: 300; max-width: 600px; }
+    .hero-media h1 { font-size: 3.5rem; margin: 0 0 15px 0; color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .hero-media p { font-size: 1.2rem; opacity: 0.95; }
 
-    /* --- 3. FILTER SYSTEM --- */
+    /* Filter System */
     .filter-container {
         display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;
-        margin: -30px auto 60px; /* Pull up overlap */
-        position: relative; z-index: 10;
+        margin: -30px auto 60px; position: relative; z-index: 10;
     }
     .filter-btn {
         background: white; border: 1px solid #eee; padding: 12px 30px;
@@ -94,20 +36,15 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
     .filter-btn:hover, .filter-btn.active {
-        background: var(--ps-red); color: white; border-color: var(--ps-red);
+        background: var(--brand-red); color: white; border-color: var(--brand-red);
         transform: translateY(-3px); box-shadow: 0 10px 20px rgba(218, 41, 28, 0.3);
     }
 
-    /* --- 4. MAGAZINE GRID --- */
-    .gallery-grid {
-        display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-        gap: 30px; padding-bottom: 80px;
-    }
-
+    /* Magazine Cards */
     .blog-card {
         background: white; border-radius: 16px; overflow: hidden;
-        box-shadow: var(--shadow-card); border: 1px solid #eee;
-        transition: var(--transition); display: flex; flex-direction: column;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee;
+        transition: transform 0.3s; display: flex; flex-direction: column;
     }
     .blog-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
 
@@ -117,46 +54,30 @@
     
     .category-tag {
         position: absolute; top: 15px; right: 15px;
-        background: var(--ps-green); color: white;
+        background: var(--brand-green); color: white;
         padding: 6px 14px; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
-    .tag-red { background: var(--ps-red); }
+    .tag-red { background: var(--brand-red); }
 
     .card-content { padding: 30px; display: flex; flex-direction: column; flex-grow: 1; }
     .card-date { font-size: 0.8rem; color: #888; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .card-date i { color: var(--ps-green); }
+    .card-date i { color: var(--brand-green); }
 
-    .card-title { font-size: 1.3rem; font-weight: 800; color: var(--ps-dark); margin-bottom: 15px; line-height: 1.4; }
+    .card-title { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 15px; line-height: 1.4; }
     .card-desc { font-size: 0.95rem; color: #666; line-height: 1.7; margin-bottom: 20px; flex-grow: 1; }
 
     .read-more {
-        color: var(--ps-red); font-weight: 700; font-size: 0.85rem;
+        color: var(--brand-red); font-weight: 700; font-size: 0.85rem;
         text-transform: uppercase; letter-spacing: 1px;
         display: inline-flex; align-items: center; gap: 8px; transition: 0.3s;
     }
     .read-more:hover { gap: 12px; }
-
-    /* Hide items when filtering */
     .blog-card.hide { display: none; }
 
-    /* --- 5. FOOTER --- */
-    footer { background-color: var(--ps-green); color: white; padding: 60px 20px; text-align: center; margin-top: auto; border-top: 8px solid var(--ps-red); }
-    .social-links { margin-bottom: 30px; }
-    .social-links a { 
-        display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; font-size: 1.4rem;
-        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 10px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
-    }
-    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-5px) scale(1.1); }
-    .copyright { font-size: 0.9rem; opacity: 0.7; }
-
     @media (max-width: 768px) {
-        .mobile-toggle { display: block; }
-        .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .nav-menu.active { display: flex; }
         .hero-media { height: 40vh; }
-        .hero-media h1 { font-size: 2rem; }
-        .gallery-grid { grid-template-columns: 1fr; } /* Stack on mobile */
+        .filter-container { margin-top: 40px; }
     }
 </style>
 </head>
@@ -195,7 +116,7 @@
         <button class="filter-btn" onclick="filterGallery('promos', this)">Promotions</button>
     </div>
 
-    <div class="gallery-grid">
+    <div class="features-grid"> 
         
         <div class="blog-card reveal" data-category="events">
             <div class="card-image">
@@ -281,12 +202,14 @@
 
 <footer>
     <div class="footer-content">
-        <h4>Follow Us</h4>
         <div class="social-links">
-            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <h4 style="margin-bottom: 20px;">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
