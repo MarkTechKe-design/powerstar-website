@@ -13,60 +13,55 @@
     
     :root {
         --ps-gold: #D4AF37;
-        --ps-gold-light: #f1e0ac;
         --ps-green: #006838;
     }
 
     /* 1. PREMIUM HERO SECTION */
     .hero-loyalty {
         /* Dark overlay on top of the supermarket background */
-        background: linear-gradient(rgba(0, 40, 20, 0.85), rgba(0, 20, 10, 0.9)), url('assets/supermarket-bg.jpg');
+        background: linear-gradient(rgba(0, 40, 20, 0.85), rgba(0, 20, 10, 0.9)), url('assets/store-interior.jpg');
         background-size: cover;
         background-position: center;
-        height: 55vh; /* Slightly taller */
+        height: 55vh;
         display: flex; flex-direction: column; justify-content: center; align-items: center;
         text-align: center;
         padding: 20px;
         position: relative;
-        border-bottom: 5px solid var(--ps-gold); /* Gold border at bottom */
+        border-bottom: 5px solid var(--ps-gold);
     }
 
-    /* The Premium Golden Title */
+    /* Clean White Title */
     .hero-loyalty h1 { 
         font-family: 'Montserrat', sans-serif;
-        font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive size */
+        font-size: clamp(2.5rem, 5vw, 4rem);
         font-weight: 900; 
         margin-bottom: 5px; 
         text-transform: uppercase; 
         letter-spacing: 2px;
-        
-        /* CSS Trick for Metallic Gold Text */
-        background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: white; /* Pure White */
         text-shadow: 0 4px 15px rgba(0,0,0,0.6);
     }
 
-    /* The Script Tagline */
+    /* UPDATED: Clean White Tagline */
     .loyalty-tagline {
         font-family: 'Dancing Script', cursive;
-        font-size: 2.2rem;
-        color: var(--ps-gold);
+        font-size: 2.5rem;
+        color: white; /* ✅ CHANGED TO WHITE */
         margin: 0;
         text-shadow: 0 2px 5px rgba(0,0,0,0.8);
     }
     
     .hero-loyalty p.sub-text { 
-        color: #ddd; 
+        color: #eee; 
         max-width: 600px; 
         font-size: 1.1rem; 
         font-weight: 300;
         margin-top: 20px;
     }
 
-    /* 2. THE 3D SMART CARD (FIXED LOGO) */
+    /* 2. THE DIGITAL MEMBER ID VISUAL */
     .card-display {
-        margin-top: -100px; /* Floating Effect deeper */
+        margin-top: -100px; /* Floating Effect */
         margin-bottom: 70px;
         perspective: 1000px;
         display: flex; justify-content: center;
@@ -75,25 +70,25 @@
 
     .smart-card {
         width: 400px; height: 250px;
-        /* Deeper Green Gradient */
+        /* Premium Green Gradient */
         background: linear-gradient(135deg, #004d2a 0%, #00331a 100%);
         border-radius: 16px;
         padding: 25px;
         color: white;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(212, 175, 55, 0.3); /* Gold inner border */
+        box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
         position: relative;
         overflow: hidden;
         display: flex; flex-direction: column; justify-content: space-between;
     }
 
-    /* Decorative Gold Rings on Card */
+    /* Decorative Rings */
     .smart-card::before {
         content: ''; position: absolute; top: -60px; right: -60px;
-        width: 220px; height: 220px; border: 2px solid rgba(212, 175, 55, 0.2); border-radius: 50%;
+        width: 220px; height: 220px; border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 50%;
     }
     .smart-card::after {
         content: ''; position: absolute; bottom: -60px; left: -60px;
-        width: 220px; height: 220px; border: 2px solid rgba(212, 175, 55, 0.2); border-radius: 50%;
+        width: 220px; height: 220px; border: 2px solid rgba(255, 255, 255, 0.05); border-radius: 50%;
     }
 
     .card-top { display: flex; justify-content: space-between; align-items: center; }
@@ -104,25 +99,40 @@
         border-radius: 8px;
         position: relative; overflow: hidden;
         border: 1px solid #8c6608;
+        opacity: 0.8;
     }
     .card-chip::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(0,0,0,0.4); }
     .card-chip::after { content: ''; position: absolute; left: 50%; top: 0; height: 100%; width: 1px; background: rgba(0,0,0,0.4); }
 
-    /* New "Gold Foil" Text Logo */
+    /* Clean White Logo Text */
     .card-logo-text {
         font-family: 'Montserrat', sans-serif;
         font-weight: 900;
         font-size: 1.5rem;
         text-transform: uppercase;
         letter-spacing: 2px;
-        /* Gold Foil Gradient */
-        background: linear-gradient(to bottom, #fcf6ba, #bf953f);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        color: white; /* Pure White */
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
     }
 
-    .card-number { font-size: 1.5rem; letter-spacing: 3px; font-family: 'Courier New', monospace; text-shadow: 0 2px 2px rgba(0,0,0,0.7); margin-top: 25px; color: #f1e0ac; }
+    .card-number { 
+        font-size: 1.8rem; 
+        letter-spacing: 2px; 
+        font-family: 'Courier New', monospace; 
+        text-shadow: 0 2px 2px rgba(0,0,0,0.7); 
+        margin-top: 15px; 
+        color: white;
+        font-weight: 600;
+    }
+    
+    .card-instruction {
+        font-size: 0.7rem;
+        color: #ddd;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-top: 5px;
+    }
+
     .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
     .card-label { font-size: 0.65rem; display: block; opacity: 0.8; margin-bottom: 3px; }
     .card-holder { text-transform: uppercase; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; }
@@ -137,7 +147,7 @@
         text-align: center; padding: 35px 25px;
         background: white; border-radius: 16px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        border-bottom: 4px solid var(--ps-gold); /* Gold accent at bottom */
+        border-bottom: 4px solid var(--ps-gold);
         transition: transform 0.3s;
     }
     .benefit-item:hover { transform: translateY(-5px); }
@@ -172,7 +182,6 @@
 
     @media (max-width: 768px) {
         .smart-card { width: 320px; height: 200px; }
-        .card-logo-text { font-size: 1.2rem; }
         .hero-loyalty { height: 60vh; }
         .card-display { margin-top: -80px; }
     }
@@ -200,7 +209,7 @@
 <div class="hero-loyalty">
     <h1>Powerstar Smart Card</h1>
     <p class="loyalty-tagline">...save everyday!!</p>
-    <p class="sub-text">Your passport to exclusive savings. Earn points on every shilling you spend.</p>
+    <p class="sub-text">No plastic needed. Your phone number is your passport to exclusive savings.</p>
 </div>
 
 <div class="container">
@@ -210,7 +219,12 @@
                 <div class="card-chip"></div>
                 <div class="card-logo-text">POWERSTAR</div>
             </div>
-            <div class="card-number">8000 4520 1908 3321</div>
+            
+            <div>
+                <div class="card-number">07XX XXX XXX</div>
+                <div class="card-instruction">YOUR PHONE NUMBER IS YOUR ID</div>
+            </div>
+
             <div class="card-bottom">
                 <div>
                     <span class="card-label">MEMBER NAME</span>
@@ -234,9 +248,9 @@
             <p>Earn 1 Point for every <b>KSh 200</b> spent. Watch your balance grow with every visit.</p>
         </div>
         <div class="benefit-item">
-            <div class="benefit-icon"><i class="fas fa-shopping-basket"></i></div>
-            <h3 class="benefit-title">Redeem Instantly</h3>
-            <p>Use your points to pay for your groceries at the till anytime.</p>
+            <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3 class="benefit-title">Cardless & Easy</h3>
+            <p>No card to carry. Just give the cashier your phone number to earn or redeem points.</p>
         </div>
         <div class="benefit-item">
             <div class="benefit-icon"><i class="fas fa-gift"></i></div>
@@ -247,8 +261,8 @@
 
     <div class="form-wrapper">
         <div class="form-header">
-            <h2>Get Your Card</h2>
-            <p>Fill in your details below to register via WhatsApp.</p>
+            <h2>Join the Family</h2>
+            <p>Register instantly via WhatsApp.</p>
         </div>
         
         <form id="loyaltyForm" class="loyalty-form">
@@ -275,7 +289,7 @@
             </div>
 
             <div class="form-group">
-                <label>Preferred Branch (Pick Up Location)</label>
+                <label>Preferred Branch</label>
                 <select id="branch" required>
                     <option value="" disabled selected>-- Select Your Branch --</option>
                     <option value="Kasarani HQ">Kasarani HQ</option>
@@ -293,7 +307,7 @@
             </div>
 
             <button type="submit" class="btn-submit">
-                <i class="fab fa-whatsapp"></i> Request Card via WhatsApp
+                <i class="fab fa-whatsapp"></i> Register via WhatsApp
             </button>
             
             <div id="loyaltyStatus" style="text-align: center; margin-top: 15px; font-weight: 600; color: #006838;"></div>
@@ -341,7 +355,7 @@
         let targetNumber = branchContacts[branchKey] || "254790680038"; // Default to HQ
 
         // 3. Create the Message
-        const msg = `*New Loyalty Card Request*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
+        const msg = `*New Loyalty Registration*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
         const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
 
         // 4. Redirect
