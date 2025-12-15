@@ -3,24 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Media & Gallery - Powerstar Supermarkets</title>
+<title>News & Gallery - Powerstar Supermarkets</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- INTERNAL GALLERY STYLES --- */
-    :root {
-        --ps-red: #DA291C;
-        --ps-green: #006838;
-        --ps-dark: #1a1a1a;
-        --transition: all 0.3s ease;
-    }
+    /* --- BLOG/GALLERY SPECIFIC STYLES --- */
+    body { background-color: #f4f6f8; }
 
-    body { font-family: 'Poppins', sans-serif; background: #f9f9f9; }
-
-    /* Hero Override */
-    .hero-gallery {
+    /* Hero Section */
+    .hero-media {
         background: linear-gradient(rgba(0, 104, 56, 0.9), rgba(0, 50, 20, 0.9)), url('assets/supermarket-bg.jpg');
         background-size: cover; background-position: center;
         height: 40vh;
@@ -28,96 +21,90 @@
         color: white; text-align: center;
         padding: 20px;
     }
-    .hero-gallery h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-
+    .hero-media h1 { font-size: 3rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
+    
     /* Filter Buttons */
     .filter-container {
         display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;
-        margin: 50px 0 30px;
+        margin: 50px 0 40px;
     }
     .filter-btn {
         background: white; border: 1px solid #ddd; padding: 10px 25px;
         border-radius: 50px; cursor: pointer; font-weight: 600; color: #555;
-        transition: var(--transition); text-transform: uppercase; font-size: 0.85rem;
+        transition: 0.3s; text-transform: uppercase; font-size: 0.85rem;
     }
     .filter-btn:hover, .filter-btn.active {
-        background: var(--ps-red); color: white; border-color: var(--ps-red);
+        background: #DA291C; color: white; border-color: #DA291C;
         transform: translateY(-2px); box-shadow: 0 5px 15px rgba(218, 41, 28, 0.3);
     }
 
-    /* Masonry Grid */
+    /* THE BLOG CARD GRID */
     .gallery-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 25px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 30px;
         padding-bottom: 80px;
     }
 
-    .gallery-item {
-        position: relative;
-        height: 300px;
+    .blog-card {
+        background: white;
         border-radius: 12px;
         overflow: hidden;
-        cursor: pointer;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-        background: white;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+        display: flex; flex-direction: column;
+        border: 1px solid #eee;
+    }
+    .blog-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
-    /* Image Animation */
-    .gallery-item img {
-        width: 100%; height: 100%;
-        object-fit: cover;
+    /* Image Area */
+    .card-image {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+    }
+    .card-image img {
+        width: 100%; height: 100%; object-fit: cover;
         transition: transform 0.5s ease;
     }
-    .gallery-item:hover img {
-        transform: scale(1.1);
+    .blog-card:hover .card-image img { transform: scale(1.1); }
+    
+    .category-tag {
+        position: absolute; top: 15px; right: 15px;
+        background: #006838; color: white;
+        padding: 5px 12px; border-radius: 4px;
+        font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+    .tag-red { background: #DA291C; }
+
+    /* Content Area */
+    .card-content { padding: 25px; display: flex; flex-direction: column; flex-grow: 1; }
+    
+    .card-date { font-size: 0.85rem; color: #888; margin-bottom: 10px; display: block; }
+    
+    .card-title {
+        font-size: 1.25rem; font-weight: 700; color: #1a1a1a;
+        margin-bottom: 12px; line-height: 1.4;
+    }
+    
+    .card-desc {
+        font-size: 0.95rem; color: #555; line-height: 1.6;
+        margin-bottom: 20px; flex-grow: 1; /* Pushes button to bottom */
     }
 
-    /* Overlay Styling */
-    .gallery-overlay {
-        position: absolute;
-        bottom: 0; left: 0; right: 0; top: 0;
-        background: rgba(0, 104, 56, 0.85); /* Powerstar Green Overlay */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        opacity: 0;
-        transition: var(--transition);
-        padding: 20px;
-        text-align: center;
+    .read-more {
+        color: #006838; font-weight: 700; font-size: 0.9rem;
+        text-transform: uppercase; letter-spacing: 0.5px;
+        display: inline-flex; align-items: center; gap: 5px;
     }
-    .gallery-item:hover .gallery-overlay { opacity: 1; }
-
-    .overlay-title {
-        color: white; font-weight: 700; font-size: 1.2rem;
-        transform: translateY(20px); transition: var(--transition);
-    }
-    .overlay-cat {
-        color: #ddd; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;
-        margin-top: 5px; transform: translateY(20px); transition: var(--transition); transition-delay: 0.1s;
-    }
-    .gallery-item:hover .overlay-title, 
-    .gallery-item:hover .overlay-cat { transform: translateY(0); }
-
-    /* Lightbox (Modal) */
-    .lightbox {
-        display: none; position: fixed; z-index: 9999;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0,0,0,0.9);
-        justify-content: center; align-items: center;
-        padding: 20px;
-    }
-    .lightbox.active { display: flex; }
-    .lightbox img { max-width: 90%; max-height: 85vh; border-radius: 5px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
-    .lightbox-close {
-        position: absolute; top: 30px; right: 30px;
-        color: white; font-size: 2rem; cursor: pointer; transition: 0.3s;
-    }
-    .lightbox-close:hover { color: var(--ps-red); }
+    .read-more:hover { color: #DA291C; }
 
     /* Hide items when filtering */
-    .gallery-item.hide { display: none; }
+    .blog-card.hide { display: none; }
 
 </style>
 </head>
@@ -140,84 +127,103 @@
     </div>
 </header>
 
-<div class="hero-gallery">
-    <h1>Moments & Memories</h1>
-    <p>Capturing the excitement, community, and freshness at Powerstar.</p>
+<div class="hero-media">
+    <h1>News & Moments</h1>
+    <p>Celebrating our winners, community events, and latest offers.</p>
 </div>
 
 <main class="container">
 
     <div class="filter-container">
-        <button class="filter-btn active" onclick="filterGallery('all', this)">All Moments</button>
+        <button class="filter-btn active" onclick="filterGallery('all', this)">All News</button>
         <button class="filter-btn" onclick="filterGallery('events', this)">Events & Winners</button>
-        <button class="filter-btn" onclick="filterGallery('store', this)">Store Interior</button>
+        <button class="filter-btn" onclick="filterGallery('store', this)">Inside Powerstar</button>
         <button class="filter-btn" onclick="filterGallery('promos', this)">Promotions</button>
     </div>
 
     <div class="gallery-grid">
         
-        <figure class="gallery-item" data-category="events" onclick="openLightbox(this)">
-            <img src="assets/winner1.jpg" alt="Trolley Dash Winner" onerror="this.src='https://placehold.co/600x600/eee/333?text=Winner+Joy'">
-            <div class="gallery-overlay">
-                <div class="overlay-title">Trolley Dash Winner</div>
-                <div class="overlay-cat">Joska Branch</div>
-                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+        <div class="blog-card" data-category="events">
+            <div class="card-image">
+                <img src="assets/winner1.jpg" alt="Trolley Dash Winner" onerror="this.src='https://placehold.co/600x400/eee/333?text=Winner+Image'">
+                <span class="category-tag tag-red">Winner</span>
             </div>
-        </figure>
+            <div class="card-content">
+                <span class="card-date"><i class="far fa-calendar-alt"></i> Oct 15, 2024 &bull; Joska Branch</span>
+                <h3 class="card-title">60 Seconds of Free Shopping: Joska Winner Takes It All!</h3>
+                <p class="card-desc">Witness the excitement as our lucky Loyalty Card winner raced through the aisles. In just one minute, she managed to grab household essentials worth over KSh 15,000 completely free of charge!</p>
+                <a href="loyalty.html" class="read-more">Join Loyalty <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
 
-        <figure class="gallery-item" data-category="store" onclick="openLightbox(this)">
-            <img src="assets/store-interior.jpg" alt="Wide Aisles" onerror="this.src='https://placehold.co/600x600/eee/333?text=Clean+Aisles'">
-            <div class="gallery-overlay">
-                <div class="overlay-title">Modern Shopping</div>
-                <div class="overlay-cat">Clean & Spacious</div>
-                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+        <div class="blog-card" data-category="store">
+            <div class="card-image">
+                <img src="assets/store-interior.jpg" alt="Store Interior" onerror="this.src='https://placehold.co/600x400/eee/333?text=Store+Interior'">
+                <span class="category-tag">Experience</span>
             </div>
-        </figure>
+            <div class="card-content">
+                <span class="card-date"><i class="far fa-clock"></i> Open Daily 7AM - 9PM</span>
+                <h3 class="card-title">A Shopping Experience Designed for Your Comfort</h3>
+                <p class="card-desc">We believe shopping should be relaxing. Walk through our wide, clutter-free aisles stocked with the finest international brands and local favorites. Cleanliness and organization are our top priority.</p>
+                <a href="branches.html" class="read-more">Visit Us <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
 
-        <figure class="gallery-item" data-category="promos" onclick="openLightbox(this)">
-            <img src="assets/promo1.jpg" alt="Christmas Promo" onerror="this.src='https://placehold.co/600x600/DA291C/fff?text=Big+Savings'">
-            <div class="gallery-overlay">
-                <div class="overlay-title">Festive Season</div>
-                <div class="overlay-cat">Christmas Promo</div>
-                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+        <div class="blog-card" data-category="promos">
+            <div class="card-image">
+                <img src="assets/promo1.jpg" alt="Christmas Promo" onerror="this.src='https://placehold.co/600x400/DA291C/fff?text=Christmas+Sale'">
+                <span class="category-tag tag-red">Promotion</span>
             </div>
-        </figure>
+            <div class="card-content">
+                <span class="card-date"><i class="far fa-calendar-alt"></i> Dec 2024</span>
+                <h3 class="card-title">The Big Christmas Savings Bonanza</h3>
+                <p class="card-desc">The festive season brought incredible joy and massive discounts. Families across Kenya saved big on unga bundles, cooking oil, and holiday feasts during our biggest annual sale event.</p>
+                <span class="read-more" style="cursor:default; color:#888;">Expired</span>
+            </div>
+        </div>
 
-        <figure class="gallery-item" data-category="store" onclick="openLightbox(this)">
-            <img src="assets/bakery-staff.jpg" alt="Bakery Team" onerror="this.src='https://placehold.co/600x600/eee/333?text=Fresh+Bakery'">
-            <div class="gallery-overlay">
-                <div class="overlay-title">Our Expert Bakers</div>
-                <div class="overlay-cat">In-House Bakery</div>
-                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+        <div class="blog-card" data-category="store">
+            <div class="card-image">
+                <img src="assets/bakery-staff.jpg" alt="Bakery Team" onerror="this.src='https://placehold.co/600x400/eee/333?text=Bakery+Team'">
+                <span class="category-tag">Team</span>
             </div>
-        </figure>
+            <div class="card-content">
+                <span class="card-date"><i class="fas fa-user-friends"></i> Meet the Experts</span>
+                <h3 class="card-title">The Secret Behind Our Famous Soft Bread</h3>
+                <p class="card-desc">Every morning at 4 AM, our dedicated bakery team starts their ovens. Using only premium wheat and zero preservatives, they ensure you wake up to hot, fresh, and fluffy bread every single day.</p>
+                <a href="services.html" class="read-more">View Bakery <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
 
-        <figure class="gallery-item" data-category="events" onclick="openLightbox(this)">
-            <img src="assets/winner2.jpg" alt="School Fees Winner" onerror="this.src='https://placehold.co/600x600/eee/333?text=Happy+Winner'">
-            <div class="gallery-overlay">
-                <div class="overlay-title">School Fees Winner</div>
-                <div class="overlay-cat">Kangari Branch</div>
-                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+        <div class="blog-card" data-category="events">
+            <div class="card-image">
+                <img src="assets/winner2.jpg" alt="School Fees Winner" onerror="this.src='https://placehold.co/600x400/eee/333?text=School+Fees'">
+                <span class="category-tag tag-red">Community</span>
             </div>
-        </figure>
+            <div class="card-content">
+                <span class="card-date"><i class="far fa-calendar-alt"></i> Jan 10, 2025 &bull; Kangari</span>
+                <h3 class="card-title">Supporting Education: School Fees Cheque Handover</h3>
+                <p class="card-desc">Education matters to us. We were thrilled to hand over a full term's school fees cheque to our grand prize winner at the Kangari branch. At Powerstar, we don't just sell goods; we build futures.</p>
+                <a href="loyalty.html" class="read-more">See Rewards <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
 
-        <figure class="gallery-item" data-category="store" onclick="openLightbox(this)">
-            <img src="assets/fresh-veg.jpg" alt="Fresh Produce" onerror="this.src='https://placehold.co/600x600/006838/fff?text=Farm+Fresh'">
-            <div class="gallery-overlay">
-                <div class="overlay-title">Farm Fresh</div>
-                <div class="overlay-cat">Daily Delivery</div>
-                <i class="fas fa-search-plus" style="color:white; margin-top:15px; font-size:1.5rem;"></i>
+        <div class="blog-card" data-category="store">
+            <div class="card-image">
+                <img src="assets/fresh-veg.jpg" alt="Fresh Produce" onerror="this.src='https://placehold.co/600x400/006838/fff?text=Farm+Fresh'">
+                <span class="category-tag">Sourcing</span>
             </div>
-        </figure>
+            <div class="card-content">
+                <span class="card-date"><i class="fas fa-leaf"></i> Daily Harvest</span>
+                <h3 class="card-title">Our Farm-to-Fork Promise</h3>
+                <p class="card-desc">We partner with over 50 local farmers to bring you crisp vegetables and ripe fruits daily. By cutting out the middleman, we ensure farmers get paid fairly and you get the freshest produce at lower prices.</p>
+                <a href="services.html" class="read-more">Our Produce <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
 
     </div>
 
 </main>
-
-<div class="lightbox" id="lightbox">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-    <img id="lightbox-img" src="" alt="Full Screen">
-</div>
 
 <footer>
     <div class="footer-content">
@@ -256,7 +262,7 @@
         }
     });
 
-    // --- 2. GALLERY FILTERING ---
+    // --- 2. BLOG FILTERING ---
     function filterGallery(category, btn) {
         // Update Button Active State
         const buttons = document.querySelectorAll('.filter-btn');
@@ -264,53 +270,6 @@
         btn.classList.add('active');
 
         // Filter Items
-        const items = document.querySelectorAll('.gallery-item');
+        const items = document.querySelectorAll('.blog-card');
         items.forEach(item => {
-            if (category === 'all' || item.getAttribute('data-category') === category) {
-                item.classList.remove('hide');
-                item.style.animation = 'fadeIn 0.5s ease';
-            } else {
-                item.classList.add('hide');
-            }
-        });
-    }
-
-    // --- 3. LIGHTBOX FUNCTIONALITY ---
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-
-    function openLightbox(element) {
-        const img = element.querySelector('img');
-        lightboxImg.src = img.src; // Get source from the clicked item
-        lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Stop scrolling behind modal
-    }
-
-    function closeLightbox() {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Re-enable scrolling
-    }
-
-    // Close lightbox when clicking outside the image
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-</script>
-
-<style>
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    @media (max-width: 768px) {
-        .mobile-toggle { display: block; }
-        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); z-index: 1000; }
-        .nav-menu.active { display: flex; }
-        .hero-gallery h1 { font-size: 2rem; }
-    }
-</style>
-
-</body>
-</html>
+            if (category === 'all' || item.getAttribute('data-category') === category)
