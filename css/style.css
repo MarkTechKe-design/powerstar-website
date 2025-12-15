@@ -1,268 +1,719 @@
 /* ==========================================================================
-   POWERSTAR MASTER STYLESHEET (Hybrid V2.0)
+   POWERSTAR SUPERMARKETS - MASTER CORPORATE ARCHITECTURE (V3.0)
+   Designed by: Senior Frontend Architect
+   Focus: High-End Retail, Trust, Speed, & Visual Depth
    ========================================================================== */
 
-/* --- 1. TYPOGRAPHY & VARIABLES --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:ital,wght@0,600;0,700;0,800;1,600&display=swap');
-
+/* --- 1. DESIGN TOKENS & VARIABLES --- */
 :root {
-    /* === CORE BRAND COLORS === */
-    --brand-green: #006838;        
-    --brand-red: #DA291C;          
+    /* === BRAND PALETTE === */
+    --ps-red: #DA291C;
+    --ps-green: #006838;
+    --ps-gold: #D4AF37;
+    --ps-dark: #111111;
+    --ps-grey: #555555;
     
-    /* === COMPATIBILITY MAP (Connects old code to new code) === */
-    --ps-green: var(--brand-green);
-    --ps-red: var(--brand-red);
-    --ps-dark: #1a1a1a;       
-    --ps-whatsapp: #25D366;   
-    --ps-gold: #D4AF37;       
-
-    /* === NEUTRALS === */
-    --white: #ffffff;
-    --bg-light: #f9f9f9;
-    --text-main: #222222;
-    --text-muted: #666666;
-    --border-color: #e5e5e5;
-
-    /* === LAYOUT TOKENS === */
-    --max-width: 1240px;
-    --radius-card: 12px;
-    --radius-btn: 50px;
-    --shadow-soft: 0 4px 20px rgba(0,0,0,0.05);
-    --shadow-hover: 0 10px 25px rgba(0,0,0,0.10);
-    --transition: all 0.3s ease-in-out;
+    /* === FUNCTIONAL COLORS === */
+    --bg-light: #F9FAFB;
+    --bg-white: #FFFFFF;
+    --whatsapp-green: #25D366;
+    --error-red: #ff4d4d;
+    
+    /* === ELEVATION (DEPTH SYSTEM) === */
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+    --shadow-card: 0 15px 35px rgba(0,0,0,0.08);
+    --shadow-hover: 0 25px 50px rgba(0,0,0,0.15);
+    --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.3);
+    
+    /* === ANIMATION === */
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Apple-style ease */
 }
 
-/* --- 2. GLOBAL RESET --- */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-body { 
-    background-color: var(--bg-light); 
-    color: var(--text-main); 
-    font-family: 'Inter', sans-serif; 
+html, body {
+    width: 100%;
+    margin: 0; padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--ps-grey);
     line-height: 1.6;
-    display: flex; flex-direction: column; min-height: 100vh;
+    overflow-x: hidden;
 }
 
-h1, h2, h3, h4 { 
-    font-family: 'Montserrat', sans-serif; 
-    color: var(--text-main);
-    letter-spacing: -0.5px;
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--ps-dark);
+    margin-top: 0;
+    font-weight: 800; /* Bold Corporate Headers */
 }
 
-a { text-decoration: none; transition: var(--transition); color: inherit; }
+a { text-decoration: none; color: inherit; transition: var(--transition); }
 img { max-width: 100%; display: block; }
-ul { list-style: none; }
+ul { list-style: none; padding: 0; margin: 0; }
 
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+/* Layout Utility */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
 
-/* --- 3. HEADER & NAVIGATION --- */
+/* --- 3. ANIMATIONS (Scroll Reveal) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* --- 4. HEADER & NAVIGATION --- */
 header {
-    background: var(--white);
-    border-bottom: 4px solid var(--brand-red); 
-    padding: 15px 0;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px); /* Glassmorphism */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     position: sticky; top: 0; z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    padding: 10px 0;
+    border-bottom: 2px solid rgba(0,0,0,0.03);
 }
 
 .header-inner {
-    max-width: var(--max-width); margin: 0 auto; padding: 0 20px;
     display: flex; justify-content: space-between; align-items: center;
+    max-width: 1300px; margin: 0 auto; padding: 0 30px;
 }
 
-/* Logo Sizing */
 .logo img {
-    height: 90px; 
-    width: auto; 
-    object-fit: contain;
+    height: 90px; /* High Impact Logo */
+    width: auto;
+    transition: transform 0.3s;
 }
+.logo:hover img { transform: scale(1.02); }
 
-/* Navigation */
-.nav-menu { display: flex; gap: 25px; align-items: center; }
-.nav-menu a { 
-    color: var(--text-main); 
-    font-weight: 600; font-size: 0.95rem; 
-    text-transform: uppercase;
+.nav-menu { display: flex; gap: 30px; }
+
+.nav-menu a {
+    font-weight: 600; font-size: 0.9rem; color: #555;
+    text-transform: uppercase; letter-spacing: 0.5px;
     position: relative;
 }
 
-/* Hover Effect */
-.nav-menu a:hover, .nav-menu a.active { color: var(--brand-green); }
-.nav-menu a.active::after {
-    content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--brand-red);
+.nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+
+/* Underline Animation */
+.nav-menu a::after {
+    content: ''; position: absolute; width: 0; height: 2px;
+    bottom: -5px; left: 0; background-color: var(--ps-red);
+    transition: width 0.3s;
+}
+.nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+
+.mobile-toggle {
+    display: none; font-size: 1.8rem;
+    background: none; border: none; cursor: pointer; color: var(--ps-dark);
 }
 
-.mobile-toggle { display: none; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--ps-dark); }
-
-/* --- 4. HERO SECTION --- */
-.hero {
+/* --- 5. UNIVERSAL HERO SYSTEM --- */
+.hero, .hero-loyalty, .hero-media {
     position: relative;
-    background: linear-gradient(135deg, rgba(0, 104, 56, 0.95), rgba(0, 60, 30, 0.9)), url('../assets/supermarket-bg.jpg');
     background-size: cover; background-position: center;
-    height: 80vh; 
-    min-height: 500px;
+    background-attachment: fixed; /* Parallax */
+    height: 50vh;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; color: var(--white); padding: 0 20px;
-    border-bottom-left-radius: 40px; 
-    border-bottom-right-radius: 40px; 
-    box-shadow: var(--shadow-soft);
+    color: white; text-align: center;
+    padding: 0 20px 60px 20px;
+    /* Architectural Curve */
+    clip-path: ellipse(150% 100% at 50% 0%);
     margin-bottom: 60px;
 }
 
-.hero h1 {
-    font-size: clamp(2.5rem, 5vw, 4rem); 
-    font-weight: 800; 
-    margin-bottom: 20px; 
-    color: var(--white);
-    text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+/* Hero Typography */
+.hero h1, .hero-loyalty h1, .hero-media h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 15px 0;
+    text-transform: uppercase; letter-spacing: 2px; font-weight: 900;
+    color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
-.hero p {
-    font-size: 1.25rem; 
-    max-width: 700px; 
-    margin-bottom: 35px; 
+
+.hero p, .hero-loyalty p, .hero-media p {
+    font-size: 1.2rem; opacity: 0.95; max-width: 700px; font-weight: 300;
     color: rgba(255,255,255,0.9);
-    font-style: italic; 
 }
 
-/* --- 5. BUTTONS --- */
-.hero-btns { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+/* Specific Hero Overrides */
+.hero-loyalty { border-bottom: 5px solid var(--ps-gold); }
 
-.btn, .btn-primary, .btn-secondary, .btn-white, .btn-loyalty {
-    padding: 16px 38px; border-radius: var(--radius-btn);
-    font-weight: 700; text-transform: uppercase; font-size: 0.9rem;
-    cursor: pointer; border: none; transition: var(--transition);
-    display: inline-flex; align-items: center; justify-content: center;
+/* --- 6. FLOATING CARDS & GRIDS --- */
+
+/* Base Grid Logic */
+.department-grid, .branch-grid, .values-grid, .gallery-grid, .benefits-grid, .pro-grid, .steps-grid {
+    display: grid;
+    gap: 30px;
+    /* Default Responsive Column Logic */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding-bottom: 80px;
 }
 
-.btn-primary { background: var(--white); color: var(--brand-green); }
-.btn-primary:hover { background: var(--brand-red); color: var(--white); transform: translateY(-3px); }
+/* 6a. SERVICES / DEPT CARDS */
+.dept-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: var(--shadow-soft); border: 1px solid #eee;
+    transition: var(--transition); display: flex; flex-direction: column;
+}
+.dept-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
 
-.btn-secondary { background: transparent; border: 2px solid var(--white); color: var(--white); }
-.btn-secondary:hover { background: var(--white); color: var(--brand-green); }
+.dept-image-wrapper { height: 240px; overflow: hidden; position: relative; }
+.dept-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.dept-card:hover .dept-image-wrapper img { transform: scale(1.1); }
 
-.btn-loyalty { background: var(--white); color: var(--ps-dark); }
-.btn-loyalty:hover { background: var(--brand-red); color: var(--white); }
+.dept-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+.dept-title { margin: 0 0 10px 0; font-size: 1.4rem; font-weight: 700; color: var(--ps-dark); }
+.dept-desc { margin: 0 0 20px 0; color: #666; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; }
 
-/* --- 6. CARDS & GRIDS --- */
-.features-grid, .department-grid, .category-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
-    margin-bottom: 60px;
+.tag { 
+    background: #f4f9f4; color: var(--ps-green); 
+    padding: 5px 12px; border-radius: 50px; 
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    margin-right: 5px;
 }
 
-.feature-item, .dept-card, .cat-card {
-    background: var(--white);
-    border-radius: var(--radius-card);
-    padding: 40px 30px;
-    text-align: center;
-    border: 1px solid var(--border-color);
+/* 6b. BRANCH / LOCATION CARDS */
+.branch-card {
+    background: white; border-radius: 16px; padding: 40px 30px;
+    text-align: center; box-shadow: var(--shadow-soft);
+    border-top: 5px solid var(--ps-green);
     transition: var(--transition);
-    position: relative; overflow: hidden;
 }
+.branch-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
 
-.feature-item:hover, .dept-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--brand-green);
+/* 6c. FULFILLMENT / ORDER CARDS */
+.fulfillment-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    border: 1px solid #f0f0f0; box-shadow: var(--shadow-soft);
+    transition: var(--transition); display: flex; flex-direction: column;
+    position: relative;
 }
+.fulfillment-card:hover { transform: translateY(-8px); border-color: var(--ps-green); box-shadow: var(--shadow-card); }
 
-.feature-icon, .dept-card i {
-    font-size: 3rem; 
-    color: var(--brand-red); 
-    margin-bottom: 25px; 
-    display: inline-block;
+/* 6d. VALUE PROPS (Floating) */
+.values-grid {
+    margin-top: -80px; position: relative; z-index: 10;
 }
-
-.feature-title, .dept-title { 
-    color: var(--brand-green); font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; 
+.value-card, .info-card {
+    background: white; padding: 40px 30px; border-radius: 16px;
+    text-align: left; box-shadow: var(--shadow-card);
+    border-bottom: 4px solid var(--ps-red); transition: var(--transition);
 }
-.feature-text, .dept-desc { color: var(--text-muted); }
+.value-card:hover, .info-card:hover { transform: translateY(-10px); }
 
 /* --- 7. SPECIAL SECTIONS --- */
-.section-intro, .section-header { text-align: center; max-width: 700px; margin: 40px auto 60px; }
-.section-intro h2, .section-header h2 { 
-    color: var(--brand-green); font-size: 2.25rem; margin-bottom: 15px; position: relative; display: inline-block;
-}
-.section-intro h2::after, .section-header h2::after {
-    content: ''; display: block; width: 60px; height: 4px; background: var(--brand-red); margin: 10px auto 0; border-radius: 2px;
-}
 
-/* Loyalty Banner */
-.loyalty-banner {
-    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-    color: white;
-    border-radius: 16px; padding: 50px; margin-bottom: 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 30px;
+/* B2B / Wholesale Section */
+.b2b-wrapper {
+    background: linear-gradient(135deg, #004d2a 0%, #006838 100%);
+    border-radius: 20px; color: white; padding: 80px 50px;
+    margin-bottom: 100px; position: relative; overflow: hidden;
+    box-shadow: var(--shadow-card); border: 1px solid rgba(255,255,255,0.1);
 }
-.loyalty-text h3 { color: var(--brand-red); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; }
-.loyalty-text h2 { font-size: 2.2rem; margin: 10px 0; }
+.b2b-wrapper::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--ps-red);
+}
+.b2b-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
 
-/* --- 8. FOOTER --- */
-footer {
-    background-color: var(--brand-red);
-    color: var(--white);
-    padding: 60px 20px 30px;
+/* 3D Loyalty Card */
+.smart-card {
+    width: 400px; height: 250px;
+    background: linear-gradient(135deg, #004d2a 0%, #00331a 100%);
+    border-radius: 16px; padding: 25px; color: white;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform 0.5s;
+}
+.smart-card:hover { transform: rotateY(5deg) rotateX(5deg); }
+
+/* --- 8. BUTTONS & FORMS --- */
+.btn-white, .dept-btn {
+    display: inline-block; background: white; color: var(--ps-green);
+    padding: 12px 30px; border-radius: 50px; font-weight: 700;
+    transition: var(--transition); border: 2px solid var(--ps-green);
+    text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
     text-align: center;
-    border-top: 6px solid var(--brand-green);
-    margin-top: auto;
+}
+.dept-btn:hover { background: var(--ps-green); color: white; box-shadow: 0 5px 15px rgba(0, 104, 56, 0.3); }
+
+.whatsapp-btn {
+    background: var(--whatsapp-green); color: white; text-decoration: none; 
+    padding: 15px; border-radius: 8px; font-weight: 700; text-align: center; 
+    transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px;
+    text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+}
+.whatsapp-btn:hover { background: #1ebc57; transform: translateY(-2px); }
+
+/* Forms */
+.form-container, .form-wrapper {
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: var(--shadow-hover); border: 1px solid #eee;
+}
+.form-header { padding: 30px; text-align: center; color: white; }
+.form-customer .form-header { background: linear-gradient(135deg, #006838 0%, #004d2a 100%); }
+.form-vendor .form-header { background: linear-gradient(135deg, #DA291C 0%, #a31616 100%); }
+
+form { padding: 40px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-weight: 700; color: var(--ps-dark); margin-bottom: 8px; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 1rem; font-family: 'Poppins', sans-serif; outline: none; transition: 0.3s;
+    background: #fcfcfc;
+}
+.form-group input:focus { border-color: var(--ps-green); background: white; }
+
+/* --- 9. FOOTER --- */
+footer {
+    background-color: var(--ps-green); color: white;
+    padding: 60px 20px; text-align: center;
+    margin-top: auto; border-top: 8px solid var(--ps-red);
 }
 
-.social-links h4 { color: var(--white); margin-bottom: 20px; text-transform: uppercase; }
-.icons-container { display: flex; gap: 15px; justify-content: center; margin-bottom: 30px; }
-.icons-container a {
-    width: 45px; height: 45px; border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--white); font-size: 1.2rem; border: 1px solid rgba(255,255,255,0.3);
+.social-links { margin: 30px 0; }
+.social-links a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 55px; height: 55px; font-size: 1.4rem;
+    background: rgba(255,255,255,0.1); color: white;
+    border-radius: 50%; margin: 0 10px;
+    transition: var(--transition); border: 1px solid rgba(255,255,255,0.2);
 }
-.icons-container a:hover { background: var(--white); color: var(--brand-red); transform: translateY(-5px); }
+.social-links a:hover {
+    background: var(--ps-red); border-color: var(--ps-red);
+    transform: translateY(-5px) scale(1.1);
+}
+.copyright { font-size: 0.9rem; opacity: 0.7; }
 
-/* --- 9. MOBILE MENU --- */
+/* --- 10. SEARCH BAR (Branches) --- */
+.search-wrapper {
+    max-width: 600px; margin: -30px auto 40px; padding: 0 20px; position: relative; z-index: 20;
+}
+.search-box {
+    position: relative; box-shadow: var(--shadow-card); border-radius: 50px; background: white;
+}
+.search-input {
+    width: 100%; padding: 18px 25px 18px 55px; border: 1px solid #eee;
+    border-radius: 50px; font-size: 1rem; outline: none; transition: var(--transition);
+}
+.search-input:focus { border-color: var(--ps-green); }
+.search-icon-glass {
+    position: absolute; left: 25px; top: 50%; transform: translateY(-50%);
+    color: var(--ps-green); font-size: 1.2rem;
+}
+
+/* --- 11. MOBILE RESPONSIVENESS (CRITICAL FIXES) --- */
+@media (max-width: 900px) {
+    /* Stack split layouts */
+    .contact-split-wrapper, .b2b-grid { grid-template-columns: 1fr !important; }
+}
+
 @media (max-width: 768px) {
-    .header-inner { padding: 10px 20px; }
-    .logo img { height: 70px; }
-    
+    /* Header */
+    .header-inner { padding: 0 20px; }
+    .logo img { height: 60px; }
     .mobile-toggle { display: block; }
     
-    .nav-menu { 
-        display: none; position: absolute; top: 100%; left: 0; width: 100%; 
-        background: var(--white); flex-direction: column; padding: 20px; 
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+    .nav-menu {
+        display: none; flex-direction: column;
+        position: absolute; top: 100%; left: 0; width: 100%;
+        background: white; padding: 30px; box-shadow: var(--shadow-hover);
     }
     .nav-menu.active { display: flex; }
-    .nav-menu a { width: 100%; border-bottom: 1px solid var(--bg-light); padding: 15px 0; text-align: center; }
+
+    /* Hero */
+    .hero, .hero-loyalty, .hero-media {
+        height: auto; padding: 80px 20px 100px;
+        background-attachment: scroll; /* No Parallax on mobile */
+        clip-path: none; /* No curve on mobile */
+    }
+    .hero h1 { font-size: 2rem; }
+
+    /* Grids: Force Single Column Stack */
+    .department-grid, .branch-grid, .gallery-grid, .values-grid, .benefits-grid, .steps-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    /* Overlap Fixes */
+    .values-grid, .card-display, .features-grid, .steps-container {
+        margin-top: -30px !important;
+    }
     
-    .hero { height: auto; padding: 100px 20px; border-radius: 0 0 30px 30px; }
-    .hero h1 { font-size: 2.5rem; }
+    /* Smart Card Size */
+    .smart-card { width: 100%; height: 220px; }
+}/* ==========================================================================
+   POWERSTAR SUPERMARKETS - MASTER CORPORATE ARCHITECTURE (V3.0)
+   Designed by: Senior Frontend Architect
+   Focus: High-End Retail, Trust, Speed, & Visual Depth
+   ========================================================================== */
+
+/* --- 1. DESIGN TOKENS & VARIABLES --- */
+:root {
+    /* === BRAND PALETTE === */
+    --ps-red: #DA291C;
+    --ps-green: #006838;
+    --ps-gold: #D4AF37;
+    --ps-dark: #111111;
+    --ps-grey: #555555;
+    
+    /* === FUNCTIONAL COLORS === */
+    --bg-light: #F9FAFB;
+    --bg-white: #FFFFFF;
+    --whatsapp-green: #25D366;
+    --error-red: #ff4d4d;
+    
+    /* === ELEVATION (DEPTH SYSTEM) === */
+    --shadow-soft: 0 10px 30px rgba(0,0,0,0.05);
+    --shadow-card: 0 15px 35px rgba(0,0,0,0.08);
+    --shadow-hover: 0 25px 50px rgba(0,0,0,0.15);
+    --shadow-gold: 0 10px 30px rgba(212, 175, 55, 0.3);
+    
+    /* === ANIMATION === */
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Apple-style ease */
 }
 
-/* --- 10. HELPER CLASSES FOR FORMS (Contact & Order) --- */
-.contact-card, .step-card {
-    background: var(--white); padding: 30px; border-radius: 12px;
-    margin-bottom: 30px; box-shadow: var(--shadow-soft);
-}
-.contact-card { border-left: 5px solid #ddd; }
-.card-green { border-left-color: var(--ps-whatsapp); }
-.card-red { border-left-color: var(--brand-red); }
+/* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-input, select, textarea {
-    width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 8px;
-    font-family: inherit; margin-bottom: 20px; background: #fcfcfc;
+html, body {
+    width: 100%;
+    margin: 0; padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--ps-grey);
+    line-height: 1.6;
+    overflow-x: hidden;
 }
-input:focus, select:focus, textarea:focus {
-    outline: none; border-color: var(--brand-green); background: white;
-}
-label { font-weight: bold; display: block; margin-bottom: 8px; color: var(--text-main); }
 
-.btn-whatsapp {
-    width: 100%; background: var(--ps-whatsapp); color: white; padding: 15px;
-    border-radius: 50px; font-weight: bold; text-align: center; display: inline-block;
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--ps-dark);
+    margin-top: 0;
+    font-weight: 800; /* Bold Corporate Headers */
 }
-.btn-whatsapp:hover { background: #1ebc57; }
 
-.btn-sales {
-    width: 100%; background: var(--brand-red); color: white; padding: 15px;
-    border-radius: 50px; font-weight: bold; text-align: center; display: inline-block;
+a { text-decoration: none; color: inherit; transition: var(--transition); }
+img { max-width: 100%; display: block; }
+ul { list-style: none; padding: 0; margin: 0; }
+
+/* Layout Utility */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
-.btn-sales:hover { background: #b31b0f; }
+
+/* --- 3. ANIMATIONS (Scroll Reveal) --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* --- 4. HEADER & NAVIGATION --- */
+header {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px); /* Glassmorphism */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    position: sticky; top: 0; z-index: 1000;
+    padding: 10px 0;
+    border-bottom: 2px solid rgba(0,0,0,0.03);
+}
+
+.header-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1300px; margin: 0 auto; padding: 0 30px;
+}
+
+.logo img {
+    height: 90px; /* High Impact Logo */
+    width: auto;
+    transition: transform 0.3s;
+}
+.logo:hover img { transform: scale(1.02); }
+
+.nav-menu { display: flex; gap: 30px; }
+
+.nav-menu a {
+    font-weight: 600; font-size: 0.9rem; color: #555;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    position: relative;
+}
+
+.nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+
+/* Underline Animation */
+.nav-menu a::after {
+    content: ''; position: absolute; width: 0; height: 2px;
+    bottom: -5px; left: 0; background-color: var(--ps-red);
+    transition: width 0.3s;
+}
+.nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+
+.mobile-toggle {
+    display: none; font-size: 1.8rem;
+    background: none; border: none; cursor: pointer; color: var(--ps-dark);
+}
+
+/* --- 5. UNIVERSAL HERO SYSTEM --- */
+.hero, .hero-loyalty, .hero-media {
+    position: relative;
+    background-size: cover; background-position: center;
+    background-attachment: fixed; /* Parallax */
+    height: 50vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    color: white; text-align: center;
+    padding: 0 20px 60px 20px;
+    /* Architectural Curve */
+    clip-path: ellipse(150% 100% at 50% 0%);
+    margin-bottom: 60px;
+}
+
+/* Hero Typography */
+.hero h1, .hero-loyalty h1, .hero-media h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 15px 0;
+    text-transform: uppercase; letter-spacing: 2px; font-weight: 900;
+    color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.hero p, .hero-loyalty p, .hero-media p {
+    font-size: 1.2rem; opacity: 0.95; max-width: 700px; font-weight: 300;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Specific Hero Overrides */
+.hero-loyalty { border-bottom: 5px solid var(--ps-gold); }
+
+/* --- 6. FLOATING CARDS & GRIDS --- */
+
+/* Base Grid Logic */
+.department-grid, .branch-grid, .values-grid, .gallery-grid, .benefits-grid, .pro-grid, .steps-grid {
+    display: grid;
+    gap: 30px;
+    /* Default Responsive Column Logic */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    padding-bottom: 80px;
+}
+
+/* 6a. SERVICES / DEPT CARDS */
+.dept-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: var(--shadow-soft); border: 1px solid #eee;
+    transition: var(--transition); display: flex; flex-direction: column;
+}
+.dept-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+
+.dept-image-wrapper { height: 240px; overflow: hidden; position: relative; }
+.dept-image-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.dept-card:hover .dept-image-wrapper img { transform: scale(1.1); }
+
+.dept-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+.dept-title { margin: 0 0 10px 0; font-size: 1.4rem; font-weight: 700; color: var(--ps-dark); }
+.dept-desc { margin: 0 0 20px 0; color: #666; font-size: 0.95rem; line-height: 1.6; flex-grow: 1; }
+
+.tag { 
+    background: #f4f9f4; color: var(--ps-green); 
+    padding: 5px 12px; border-radius: 50px; 
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+    margin-right: 5px;
+}
+
+/* 6b. BRANCH / LOCATION CARDS */
+.branch-card {
+    background: white; border-radius: 16px; padding: 40px 30px;
+    text-align: center; box-shadow: var(--shadow-soft);
+    border-top: 5px solid var(--ps-green);
+    transition: var(--transition);
+}
+.branch-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+
+/* 6c. FULFILLMENT / ORDER CARDS */
+.fulfillment-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    border: 1px solid #f0f0f0; box-shadow: var(--shadow-soft);
+    transition: var(--transition); display: flex; flex-direction: column;
+    position: relative;
+}
+.fulfillment-card:hover { transform: translateY(-8px); border-color: var(--ps-green); box-shadow: var(--shadow-card); }
+
+/* 6d. VALUE PROPS (Floating) */
+.values-grid {
+    margin-top: -80px; position: relative; z-index: 10;
+}
+.value-card, .info-card {
+    background: white; padding: 40px 30px; border-radius: 16px;
+    text-align: left; box-shadow: var(--shadow-card);
+    border-bottom: 4px solid var(--ps-red); transition: var(--transition);
+}
+.value-card:hover, .info-card:hover { transform: translateY(-10px); }
+
+/* --- 7. SPECIAL SECTIONS --- */
+
+/* B2B / Wholesale Section */
+.b2b-wrapper {
+    background: linear-gradient(135deg, #004d2a 0%, #006838 100%);
+    border-radius: 20px; color: white; padding: 80px 50px;
+    margin-bottom: 100px; position: relative; overflow: hidden;
+    box-shadow: var(--shadow-card); border: 1px solid rgba(255,255,255,0.1);
+}
+.b2b-wrapper::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--ps-red);
+}
+.b2b-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 60px; align-items: center; }
+
+/* 3D Loyalty Card */
+.smart-card {
+    width: 400px; height: 250px;
+    background: linear-gradient(135deg, #004d2a 0%, #00331a 100%);
+    border-radius: 16px; padding: 25px; color: white;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: space-between;
+    transition: transform 0.5s;
+}
+.smart-card:hover { transform: rotateY(5deg) rotateX(5deg); }
+
+/* --- 8. BUTTONS & FORMS --- */
+.btn-white, .dept-btn {
+    display: inline-block; background: white; color: var(--ps-green);
+    padding: 12px 30px; border-radius: 50px; font-weight: 700;
+    transition: var(--transition); border: 2px solid var(--ps-green);
+    text-transform: uppercase; letter-spacing: 1px; font-size: 0.9rem;
+    text-align: center;
+}
+.dept-btn:hover { background: var(--ps-green); color: white; box-shadow: 0 5px 15px rgba(0, 104, 56, 0.3); }
+
+.whatsapp-btn {
+    background: var(--whatsapp-green); color: white; text-decoration: none; 
+    padding: 15px; border-radius: 8px; font-weight: 700; text-align: center; 
+    transition: var(--transition); display: flex; align-items: center; justify-content: center; gap: 10px;
+    text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+}
+.whatsapp-btn:hover { background: #1ebc57; transform: translateY(-2px); }
+
+/* Forms */
+.form-container, .form-wrapper {
+    background: white; border-radius: 16px; overflow: hidden;
+    box-shadow: var(--shadow-hover); border: 1px solid #eee;
+}
+.form-header { padding: 30px; text-align: center; color: white; }
+.form-customer .form-header { background: linear-gradient(135deg, #006838 0%, #004d2a 100%); }
+.form-vendor .form-header { background: linear-gradient(135deg, #DA291C 0%, #a31616 100%); }
+
+form { padding: 40px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-weight: 700; color: var(--ps-dark); margin-bottom: 8px; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 1rem; font-family: 'Poppins', sans-serif; outline: none; transition: 0.3s;
+    background: #fcfcfc;
+}
+.form-group input:focus { border-color: var(--ps-green); background: white; }
+
+/* --- 9. FOOTER --- */
+footer {
+    background-color: var(--ps-green); color: white;
+    padding: 60px 20px; text-align: center;
+    margin-top: auto; border-top: 8px solid var(--ps-red);
+}
+
+.social-links { margin: 30px 0; }
+.social-links a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 55px; height: 55px; font-size: 1.4rem;
+    background: rgba(255,255,255,0.1); color: white;
+    border-radius: 50%; margin: 0 10px;
+    transition: var(--transition); border: 1px solid rgba(255,255,255,0.2);
+}
+.social-links a:hover {
+    background: var(--ps-red); border-color: var(--ps-red);
+    transform: translateY(-5px) scale(1.1);
+}
+.copyright { font-size: 0.9rem; opacity: 0.7; }
+
+/* --- 10. SEARCH BAR (Branches) --- */
+.search-wrapper {
+    max-width: 600px; margin: -30px auto 40px; padding: 0 20px; position: relative; z-index: 20;
+}
+.search-box {
+    position: relative; box-shadow: var(--shadow-card); border-radius: 50px; background: white;
+}
+.search-input {
+    width: 100%; padding: 18px 25px 18px 55px; border: 1px solid #eee;
+    border-radius: 50px; font-size: 1rem; outline: none; transition: var(--transition);
+}
+.search-input:focus { border-color: var(--ps-green); }
+.search-icon-glass {
+    position: absolute; left: 25px; top: 50%; transform: translateY(-50%);
+    color: var(--ps-green); font-size: 1.2rem;
+}
+
+/* --- 11. MOBILE RESPONSIVENESS (CRITICAL FIXES) --- */
+@media (max-width: 900px) {
+    /* Stack split layouts */
+    .contact-split-wrapper, .b2b-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 768px) {
+    /* Header */
+    .header-inner { padding: 0 20px; }
+    .logo img { height: 60px; }
+    .mobile-toggle { display: block; }
+    
+    .nav-menu {
+        display: none; flex-direction: column;
+        position: absolute; top: 100%; left: 0; width: 100%;
+        background: white; padding: 30px; box-shadow: var(--shadow-hover);
+    }
+    .nav-menu.active { display: flex; }
+
+    /* Hero */
+    .hero, .hero-loyalty, .hero-media {
+        height: auto; padding: 80px 20px 100px;
+        background-attachment: scroll; /* No Parallax on mobile */
+        clip-path: none; /* No curve on mobile */
+    }
+    .hero h1 { font-size: 2rem; }
+
+    /* Grids: Force Single Column Stack */
+    .department-grid, .branch-grid, .gallery-grid, .values-grid, .benefits-grid, .steps-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+    }
+
+    /* Overlap Fixes */
+    .values-grid, .card-display, .features-grid, .steps-container {
+        margin-top: -30px !important;
+    }
+    
+    /* Smart Card Size */
+    .smart-card { width: 100%; height: 220px; }
+}
