@@ -42,11 +42,11 @@
         text-shadow: 0 4px 15px rgba(0,0,0,0.6);
     }
 
-    /* UPDATED: Clean White Tagline */
+    /* Clean White Tagline */
     .loyalty-tagline {
         font-family: 'Dancing Script', cursive;
         font-size: 2.5rem;
-        color: white; /* ✅ CHANGED TO WHITE */
+        color: white; /* Pure White */
         margin: 0;
         text-shadow: 0 2px 5px rgba(0,0,0,0.8);
     }
@@ -180,10 +180,29 @@
     }
     .btn-submit:hover { background: #1ebe57; transform: translateY(-2px); }
 
+    /* 5. SCALED FOOTER SOCIALS (Big & Spaced Out) */
+    .social-links { margin-bottom: 30px; margin-top: 10px; }
+    .social-links a {
+        display: inline-flex; align-items: center; justify-content: center;
+        width: 55px; height: 55px; /* Increased Size */
+        font-size: 1.5rem; /* Increased Icon Size */
+        background: rgba(255,255,255,0.1); color: white; 
+        border-radius: 50%; 
+        margin: 0 15px; /* Increased Spacing */
+        transition: all 0.3s; 
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    .social-links a:hover { 
+        background: var(--ps-red); 
+        border-color: var(--ps-red); 
+        transform: translateY(-5px) scale(1.1); /* Bigger pop effect */
+    }
+
     @media (max-width: 768px) {
         .smart-card { width: 320px; height: 200px; }
         .hero-loyalty { height: 60vh; }
         .card-display { margin-top: -80px; }
+        .social-links a { width: 45px; height: 45px; font-size: 1.2rem; margin: 0 10px; } /* Slightly smaller on mobile but still spaced */
     }
 </style>
 </head>
