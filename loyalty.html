@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loyalty Program - Powerstar Supermarkets</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
 <style>
@@ -13,98 +13,137 @@
     
     :root {
         --ps-gold: #D4AF37;
+        --ps-gold-light: #f1e0ac;
         --ps-green: #006838;
     }
 
-    /* 1. HERO SECTION (Updated with Branch Image & White Text) */
+    /* 1. PREMIUM HERO SECTION */
     .hero-loyalty {
-        /* Dark overlay on top of the Store Interior image */
-        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/store-interior.jpg');
+        /* Dark overlay on top of the supermarket background */
+        background: linear-gradient(rgba(0, 40, 20, 0.85), rgba(0, 20, 10, 0.9)), url('assets/supermarket-bg.jpg');
         background-size: cover;
         background-position: center;
-        height: 50vh;
+        height: 55vh; /* Slightly taller */
         display: flex; flex-direction: column; justify-content: center; align-items: center;
-        color: white; text-align: center;
+        text-align: center;
         padding: 20px;
         position: relative;
+        border-bottom: 5px solid var(--ps-gold); /* Gold border at bottom */
     }
 
+    /* The Premium Golden Title */
     .hero-loyalty h1 { 
-        font-size: 3rem; 
-        margin-bottom: 10px; 
-        color: white; /* Changed to White */
+        font-family: 'Montserrat', sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive size */
+        font-weight: 900; 
+        margin-bottom: 5px; 
         text-transform: uppercase; 
-        letter-spacing: 2px; 
-        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        letter-spacing: 2px;
+        
+        /* CSS Trick for Metallic Gold Text */
+        background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+
+    /* The Script Tagline */
+    .loyalty-tagline {
+        font-family: 'Dancing Script', cursive;
+        font-size: 2.2rem;
+        color: var(--ps-gold);
+        margin: 0;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.8);
     }
     
-    .hero-loyalty p { 
-        color: #eee; 
+    .hero-loyalty p.sub-text { 
+        color: #ddd; 
         max-width: 600px; 
         font-size: 1.1rem; 
         font-weight: 300;
+        margin-top: 20px;
     }
 
-    /* 2. THE 3D SMART CARD (With Logo) */
+    /* 2. THE 3D SMART CARD (FIXED LOGO) */
     .card-display {
-        margin-top: -80px; /* Floating Effect */
-        margin-bottom: 60px;
+        margin-top: -100px; /* Floating Effect deeper */
+        margin-bottom: 70px;
         perspective: 1000px;
         display: flex; justify-content: center;
+        z-index: 10; position: relative;
     }
 
     .smart-card {
-        width: 380px; height: 240px;
-        background: linear-gradient(135deg, #006838 0%, #004d2a 100%);
-        border-radius: 15px;
+        width: 400px; height: 250px;
+        /* Deeper Green Gradient */
+        background: linear-gradient(135deg, #004d2a 0%, #00331a 100%);
+        border-radius: 16px;
         padding: 25px;
         color: white;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(212, 175, 55, 0.3); /* Gold inner border */
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(255,255,255,0.1);
         display: flex; flex-direction: column; justify-content: space-between;
     }
 
-    /* Decorative Rings */
+    /* Decorative Gold Rings on Card */
     .smart-card::before {
-        content: ''; position: absolute; top: -50px; right: -50px;
-        width: 200px; height: 200px; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%;
+        content: ''; position: absolute; top: -60px; right: -60px;
+        width: 220px; height: 220px; border: 2px solid rgba(212, 175, 55, 0.2); border-radius: 50%;
     }
     .smart-card::after {
-        content: ''; position: absolute; bottom: -50px; left: -50px;
-        width: 200px; height: 200px; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%;
+        content: ''; position: absolute; bottom: -60px; left: -60px;
+        width: 220px; height: 220px; border: 2px solid rgba(212, 175, 55, 0.2); border-radius: 50%;
     }
 
     .card-top { display: flex; justify-content: space-between; align-items: center; }
     
     .card-chip {
-        width: 50px; height: 35px;
+        width: 55px; height: 40px;
         background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
-        border-radius: 6px;
+        border-radius: 8px;
         position: relative; overflow: hidden;
-        box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+        border: 1px solid #8c6608;
     }
-    .card-chip::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(0,0,0,0.3); }
-    .card-chip::after { content: ''; position: absolute; left: 50%; top: 0; height: 100%; width: 1px; background: rgba(0,0,0,0.3); }
+    .card-chip::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(0,0,0,0.4); }
+    .card-chip::after { content: ''; position: absolute; left: 50%; top: 0; height: 100%; width: 1px; background: rgba(0,0,0,0.4); }
 
-    .card-number { font-size: 1.4rem; letter-spacing: 2px; font-family: 'Courier New', monospace; text-shadow: 0 2px 2px rgba(0,0,0,0.5); margin-top: 20px; }
+    /* New "Gold Foil" Text Logo */
+    .card-logo-text {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 900;
+        font-size: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        /* Gold Foil Gradient */
+        background: linear-gradient(to bottom, #fcf6ba, #bf953f);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .card-number { font-size: 1.5rem; letter-spacing: 3px; font-family: 'Courier New', monospace; text-shadow: 0 2px 2px rgba(0,0,0,0.7); margin-top: 25px; color: #f1e0ac; }
     .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
-    .card-tier { color: var(--ps-gold); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+    .card-label { font-size: 0.65rem; display: block; opacity: 0.8; margin-bottom: 3px; }
+    .card-holder { text-transform: uppercase; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; }
+    .card-tier { color: var(--ps-gold); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; font-size: 1.1rem; }
 
     /* 3. BENEFITS GRID */
     .benefits-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px; margin-bottom: 60px;
+        gap: 30px; margin-bottom: 60px; margin-top: 40px;
     }
     .benefit-item {
-        text-align: center; padding: 30px;
-        background: white; border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-        border-top: 3px solid var(--ps-gold);
+        text-align: center; padding: 35px 25px;
+        background: white; border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        border-bottom: 4px solid var(--ps-gold); /* Gold accent at bottom */
+        transition: transform 0.3s;
     }
-    .benefit-icon { font-size: 2.5rem; color: var(--ps-gold); margin-bottom: 20px; }
-    .benefit-title { font-weight: 700; margin-bottom: 10px; color: #333; }
+    .benefit-item:hover { transform: translateY(-5px); }
+    .benefit-icon { font-size: 3rem; color: var(--ps-gold); margin-bottom: 25px; }
+    .benefit-title { font-weight: 700; margin-bottom: 15px; color: var(--ps-green); font-size: 1.2rem; }
+    .benefit-item p { color: #555; line-height: 1.6; }
 
     /* 4. FORM */
     .form-wrapper {
@@ -133,8 +172,9 @@
 
     @media (max-width: 768px) {
         .smart-card { width: 320px; height: 200px; }
+        .card-logo-text { font-size: 1.2rem; }
         .hero-loyalty { height: 60vh; }
-        .card-display { margin-top: -60px; }
+        .card-display { margin-top: -80px; }
     }
 </style>
 </head>
@@ -159,7 +199,8 @@
 
 <div class="hero-loyalty">
     <h1>Powerstar Smart Card</h1>
-    <p>Your passport to exclusive savings. Earn points on every shilling.</p>
+    <p class="loyalty-tagline">...save everyday!!</p>
+    <p class="sub-text">Your passport to exclusive savings. Earn points on every shilling you spend.</p>
 </div>
 
 <div class="container">
@@ -167,17 +208,18 @@
         <div class="smart-card">
             <div class="card-top">
                 <div class="card-chip"></div>
-                
-                <img src="assets/logo.png" alt="Powerstar" style="height: 35px; width: auto; filter: brightness(0) invert(1);">
-            
+                <div class="card-logo-text">POWERSTAR</div>
             </div>
             <div class="card-number">8000 4520 1908 3321</div>
             <div class="card-bottom">
-                <div class="card-holder">
-                    <span style="font-size: 0.6rem; display: block;">MEMBER NAME</span>
-                    JOHN KAMAU
+                <div>
+                    <span class="card-label">MEMBER NAME</span>
+                    <span class="card-holder">JOHN KAMAU</span>
                 </div>
-                <div class="card-tier">GOLD MEMBER</div>
+                <div>
+                     <span class="card-label" style="text-align: right;">TIER STATUS</span>
+                    <div class="card-tier">GOLD MEMBER</div>
+                </div>
             </div>
         </div>
     </div>
@@ -262,14 +304,12 @@
 
 <footer>
     <div class="footer-content">
+        <h4 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Follow Us</h4>
         <div class="social-links">
-            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
