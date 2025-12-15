@@ -9,15 +9,14 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- LOYALTY SPECIFIC STYLES --- */
+    /* --- LOYALTY PREMIUM STYLES --- */
     
-    /* Gold Theme for Loyalty */
     :root {
         --ps-gold: #D4AF37;
-        --ps-gold-dark: #AA8C2C;
+        --ps-green: #006838;
     }
 
-    /* Hero Override */
+    /* 1. HERO SECTION (Dark & Premium) */
     .hero-loyalty {
         background: linear-gradient(135deg, #111 0%, #333 100%);
         height: 50vh;
@@ -28,7 +27,7 @@
         overflow: hidden;
     }
     
-    /* Gold shine effect in background */
+    /* Gold shine effect */
     .hero-loyalty::after {
         content: ''; position: absolute; top: -50%; right: -50%;
         width: 100%; height: 100%;
@@ -39,7 +38,7 @@
     .hero-loyalty h1 { font-size: 3rem; margin-bottom: 10px; color: var(--ps-gold); text-transform: uppercase; letter-spacing: 2px; }
     .hero-loyalty p { color: #ccc; max-width: 600px; font-size: 1.1rem; }
 
-    /* THE CSS CREDIT CARD */
+    /* 2. THE 3D SMART CARD (The "I want that" Factor) */
     .card-display {
         margin-top: -80px; /* Floating Effect */
         margin-bottom: 60px;
@@ -60,16 +59,14 @@
         display: flex; flex-direction: column; justify-content: space-between;
     }
 
-    /* Decorative Rings on Card */
+    /* Decorative Rings */
     .smart-card::before {
         content: ''; position: absolute; top: -50px; right: -50px;
-        width: 200px; height: 200px;
-        border: 2px solid rgba(255,255,255,0.1); border-radius: 50%;
+        width: 200px; height: 200px; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%;
     }
     .smart-card::after {
         content: ''; position: absolute; bottom: -50px; left: -50px;
-        width: 200px; height: 200px;
-        border: 2px solid rgba(255,255,255,0.1); border-radius: 50%;
+        width: 200px; height: 200px; border: 2px solid rgba(255,255,255,0.1); border-radius: 50%;
     }
 
     .card-top { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -77,28 +74,17 @@
         width: 50px; height: 35px;
         background: linear-gradient(135deg, #ffd700 0%, #b8860b 100%);
         border-radius: 6px;
-        position: relative;
-        overflow: hidden;
+        position: relative; overflow: hidden;
     }
-    /* Chip Details */
-    .card-chip::before {
-        content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: rgba(0,0,0,0.3);
-    }
-    .card-chip::after {
-        content: ''; position: absolute; left: 50%; top: 0; height: 100%; width: 1px; background: rgba(0,0,0,0.3);
-    }
-
-    .card-logo { font-weight: 800; font-size: 1.2rem; text-transform: uppercase; font-style: italic; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+    .card-logo { font-weight: 800; font-size: 1.2rem; text-transform: uppercase; font-style: italic; }
     .card-number { font-size: 1.4rem; letter-spacing: 2px; font-family: 'Courier New', monospace; text-shadow: 0 2px 2px rgba(0,0,0,0.5); margin-top: 20px; }
-    
     .card-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
-    .card-holder { text-transform: uppercase; font-size: 0.85rem; opacity: 0.8; }
     .card-tier { color: var(--ps-gold); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
-    /* BENEFITS GRID */
+    /* 3. BENEFITS GRID */
     .benefits-grid {
         display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px; margin-bottom: 80px;
+        gap: 30px; margin-bottom: 60px;
     }
     .benefit-item {
         text-align: center; padding: 30px;
@@ -106,24 +92,33 @@
         box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         border-top: 3px solid var(--ps-gold);
     }
-    .benefit-icon {
-        font-size: 2.5rem; color: var(--ps-gold); margin-bottom: 20px;
-    }
+    .benefit-icon { font-size: 2.5rem; color: var(--ps-gold); margin-bottom: 20px; }
     .benefit-title { font-weight: 700; margin-bottom: 10px; color: #333; }
 
-    /* REGISTER SECTION */
-    .join-box {
-        background: #fdfdfd; border: 2px dashed #ccc;
-        padding: 40px; text-align: center; border-radius: 12px;
-        margin-bottom: 60px;
+    /* 4. REGISTRATION FORM (Clean & Smart) */
+    .form-wrapper {
+        max-width: 600px; margin: 0 auto 80px auto;
+        background: white; border-radius: 16px; 
+        box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        overflow: hidden; border: 1px solid #eee;
     }
-    .whatsapp-btn {
-        background: #25D366; color: white; padding: 15px 40px;
-        border-radius: 50px; font-weight: 700; font-size: 1.1rem;
-        display: inline-flex; align-items: center; gap: 10px;
-        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    .form-header { background: #f4f9f4; padding: 30px; text-align: center; border-bottom: 1px solid #eee; }
+    .form-header h2 { color: var(--ps-green); margin: 0 0 5px 0; font-size: 1.8rem; }
+    
+    .loyalty-form { padding: 40px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; color: #444; margin-bottom: 8px; }
+    .form-group input, .form-group select {
+        width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px;
+        font-size: 1rem; font-family: 'Poppins', sans-serif;
     }
-    .whatsapp-btn:hover { background: #1ebe5b; transform: translateY(-2px); }
+    .btn-submit {
+        background: #25D366; color: white; width: 100%;
+        padding: 15px; font-size: 1.1rem; font-weight: 700; border: none; border-radius: 50px;
+        cursor: pointer; transition: 0.3s;
+        display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .btn-submit:hover { background: #1ebe57; transform: translateY(-2px); }
 
     @media (max-width: 768px) {
         .smart-card { width: 320px; height: 200px; }
@@ -153,7 +148,7 @@
 
 <div class="hero-loyalty">
     <h1>Powerstar Smart Card</h1>
-    <p>More than just a card. It's your passport to savings, exclusive deals, and community rewards.</p>
+    <p>Your passport to exclusive savings. Earn points on every shilling.</p>
 </div>
 
 <div class="container">
@@ -177,11 +172,6 @@
 
 <main class="container">
 
-    <div class="section-header" style="text-align: center; margin-bottom: 50px;">
-        <h2>Why Join The Family?</h2>
-        <p>Every shilling you spend earns you points. Redeem them for shopping anytime.</p>
-    </div>
-
     <div class="benefits-grid">
         <div class="benefit-item">
             <div class="benefit-icon"><i class="fas fa-coins"></i></div>
@@ -190,44 +180,82 @@
         </div>
         <div class="benefit-item">
             <div class="benefit-icon"><i class="fas fa-shopping-basket"></i></div>
-            <h3 class="benefit-title">Redeem for Shopping</h3>
-            <p>Short on cash? Use your points to pay for your groceries at the till instantly.</p>
+            <h3 class="benefit-title">Redeem Instantly</h3>
+            <p>Use your points to pay for your groceries at the till anytime.</p>
         </div>
         <div class="benefit-item">
             <div class="benefit-icon"><i class="fas fa-gift"></i></div>
-            <h3 class="benefit-title">Exclusive Prizes</h3>
+            <h3 class="benefit-title">Member Gifts</h3>
             <p>Automatic entry into our School Fees, Trolley Dash, and Holiday giveaways.</p>
-        </div>
-        <div class="benefit-item">
-            <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
-            <h3 class="benefit-title">Member Discounts</h3>
-            <p>Get special prices on selected items marked with the "Smart Price" tag.</p>
         </div>
     </div>
 
-    <div class="join-box">
-        <h2 style="color: var(--ps-dark); margin-bottom: 15px;">How to Get Your Card</h2>
-        <p style="margin-bottom: 30px; color: #555;">Registration is free and instant. You can visit the Customer Care desk at any branch, or start the process via WhatsApp right now.</p>
+    <div class="form-wrapper">
+        <div class="form-header">
+            <h2>Get Your Card</h2>
+            <p>Fill in your details below to register via WhatsApp.</p>
+        </div>
         
-        <a href="https://wa.me/254700000000?text=Hi%20Powerstar,%20I%20would%20like%20to%20register%20for%20a%20Loyalty%20Card." target="_blank" class="whatsapp-btn">
-            <i class="fab fa-whatsapp"></i> Register via WhatsApp
-        </a>
-        <p style="margin-top: 15px; font-size: 0.85rem; color: #888;">*You will need your ID and Phone Number to register.</p>
+        <form id="loyaltyForm" class="loyalty-form">
+            
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="fullName" placeholder="e.g. John Kamau" required>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="phone" placeholder="07XX XXX XXX" required>
+                </div>
+                <div class="form-group">
+                    <label>National ID</label>
+                    <input type="text" id="nationalId" placeholder="ID Number" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Date of Birth</label>
+                <input type="date" id="dob" required>
+            </div>
+
+            <div class="form-group">
+                <label>Preferred Branch (Pick Up Location)</label>
+                <select id="branch" required>
+                    <option value="" disabled selected>-- Select Your Branch --</option>
+                    <option value="Kasarani HQ">Kasarani HQ</option>
+                    <option value="Joska">Joska</option>
+                    <option value="Kangari">Kangari</option>
+                    <option value="Naivasha">Naivasha</option>
+                    <option value="Kitengela">Kitengela</option>
+                    <option value="Kikuyu">Kikuyu</option>
+                    <option value="Kinoo">Kinoo</option>
+                    <option value="Ruiru Mini">Ruiru Mini</option>
+                    <option value="Ruiru Jambo">Ruiru Jambo</option>
+                    <option value="Zimmerman Base">Zimmerman Base</option>
+                    <option value="Zimmerman Express">Zimmerman Express</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">
+                <i class="fab fa-whatsapp"></i> Request Card via WhatsApp
+            </button>
+            
+            <div id="loyaltyStatus" style="text-align: center; margin-top: 15px; font-weight: 600; color: #006838;"></div>
+        </form>
     </div>
 
 </main>
 
 <footer>
     <div class="footer-content">
+        <h4 style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-size: 0.9rem; opacity: 0.8;">Follow Us</h4>
         <div class="social-links">
-            <h4 style="margin-bottom: 15px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Follow Us</h4>
-            <div class="icons-container">
-                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
@@ -236,6 +264,38 @@
 </footer>
 
 <script>
+    // --- SMART BRANCH LOGIC ---
+    const branchContacts = {
+        "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
+        "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
+        "Kinoo": "254795459026", "Ruiru Mini": "254724588900", "Ruiru Jambo": "254728020018",
+        "Zimmerman Base": "254707881200", "Zimmerman Express": "254701231370"
+    };
+
+    document.getElementById('loyaltyForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        
+        // 1. Gather Data
+        const fullName = document.getElementById('fullName').value;
+        const phone = document.getElementById('phone').value;
+        const nationalId = document.getElementById('nationalId').value;
+        const dob = document.getElementById('dob').value;
+        const branchKey = document.getElementById('branch').value;
+        const status = document.getElementById('loyaltyStatus');
+
+        // 2. Determine correct WhatsApp Number
+        let targetNumber = branchContacts[branchKey] || "254790680038"; // Default to HQ
+
+        // 3. Create the Message
+        const msg = `*New Loyalty Card Request*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
+        const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
+
+        // 4. Redirect
+        status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        setTimeout(() => { window.open(url, '_blank'); status.innerHTML = ''; }, 1000);
+    });
+
+    // --- MOBILE MENU TOGGLE ---
     document.addEventListener('DOMContentLoaded', function() {
         const menuBtn = document.getElementById('mobile-menu-btn');
         const navMenu = document.getElementById('nav-menu');
