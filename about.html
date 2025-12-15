@@ -9,13 +9,14 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- 1. CORPORATE DESIGN SYSTEM --- */
+    /* --- 1. MODERN CORPORATE DESIGN SYSTEM --- */
     :root {
         --ps-red: #DA291C;
         --ps-green: #006838;
         --ps-dark: #111;
+        --ps-gold: #FFD700; /* Star Color */
         --bg-light: #F9FAFB;
-        --shadow-card: 0 15px 40px rgba(0,0,0,0.08); /* High-end soft shadow */
+        --shadow-card: 0 15px 40px rgba(0,0,0,0.08);
     }
 
     * { box-sizing: border-box; }
@@ -36,14 +37,14 @@
     /* --- 2. HEADER --- */
     header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
     .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
-    .logo img { height: 45px; width: auto; }
+    .logo img { height: 90px; width: auto; }
     .nav-menu { display: flex; gap: 25px; }
     .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
     .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
     .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
     .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
 
-    /* --- 3. HERO SECTION (Parallax & Modern Clip) --- */
+    /* --- 3. HERO SECTION --- */
     .hero {
         background: linear-gradient(rgba(0, 50, 25, 0.85), rgba(0, 30, 15, 0.9)), url('assets/supermarket-bg.jpg');
         background-attachment: fixed;
@@ -51,7 +52,6 @@
         height: 55vh;
         display: flex; flex-direction: column; justify-content: center; align-items: center;
         color: white; text-align: center;
-        /* Architectural Curve */
         clip-path: ellipse(150% 100% at 50% 0%);
     }
     .hero-eyebrow { 
@@ -65,7 +65,7 @@
     }
     .hero p { font-size: 1.2rem; opacity: 0.9; font-weight: 300; max-width: 600px; }
 
-    /* --- 4. CORPORATE INTRO (Who We Are) --- */
+    /* --- 4. CORPORATE INTRO --- */
     .corporate-split {
         display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
         align-items: center; margin: 80px 0;
@@ -80,7 +80,7 @@
     
     .signature { font-family: 'Dancing Script', cursive; font-size: 1.8rem; color: var(--ps-green); margin-top: 10px; }
 
-    /* Team Image Styling - High End Shadow */
+    /* Team Image Styling */
     .corporate-image img { 
         border-radius: 12px; 
         box-shadow: 20px 20px 0px rgba(0, 104, 56, 0.1); 
@@ -97,7 +97,7 @@
     .stat-block h4 { font-size: 3rem; margin: 0; font-weight: 800; color: var(--ps-red); }
     .stat-block span { font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; }
 
-    /* --- 6. STRATEGIC COMPASS (Mission/Vision) --- */
+    /* --- 6. STRATEGIC COMPASS --- */
     .strategy-section { background: white; padding: 80px 0; margin-top: 50px; }
     .strategy-grid {
         display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
@@ -123,7 +123,7 @@
     .strat-card h3 { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; margin-bottom: 15px; color: var(--ps-dark); }
     .strat-card p { font-size: 0.95rem; line-height: 1.7; color: #666; }
 
-    /* --- 7. CORE VALUES (Grid - No Images) --- */
+    /* --- 7. CORE VALUES --- */
     .values-container { padding: 80px 0; }
     .section-title { text-align: center; margin-bottom: 60px; }
     .section-title h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--ps-dark); }
@@ -159,23 +159,26 @@
         margin: 0; font-weight: 700;
         text-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
-    /* Decorative lines around mantra */
     .brand-mantra::before {
         content: ''; display: block; width: 50px; height: 3px; background: #ddd; margin: 0 auto 20px;
     }
 
-    /* --- 8. TESTIMONIALS --- */
+    /* --- 8. TESTIMONIALS (UPDATED) --- */
     .testimonial-section { background: white; padding: 80px 0; }
     .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
     .testi-item { 
         background: #f9f9f9; padding: 30px; border-radius: 8px; 
         border-left: 4px solid var(--ps-green);
+        transition: transform 0.3s;
     }
+    .testi-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); }
+    
+    .stars { margin-bottom: 12px; color: var(--ps-gold); font-size: 0.9rem; } /* GOLD STARS */
     .testi-text { font-style: italic; color: #555; margin-bottom: 20px; line-height: 1.6; }
     .testi-name { font-weight: 700; color: var(--ps-dark); font-size: 0.95rem; }
-    .testi-role { font-size: 0.8rem; color: #888; text-transform: uppercase; }
+    .testi-role { font-size: 0.8rem; color: #888; text-transform: uppercase; margin-top: 3px; }
 
-    /* --- FOOTER (Updated to Match Loyalty) --- */
+    /* --- FOOTER --- */
     footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; border-top: 6px solid var(--ps-red); margin-top: auto; }
     
     .social-links { margin-bottom: 30px; margin-top: 10px; }
@@ -226,6 +229,7 @@
             <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
+            <a href="media.html">Media</a>
         </nav>
     </div>
 </header>
@@ -308,7 +312,7 @@
 
         <div class="value-box">
             <div class="value-header">
-                <i class="fas fa-hand-holding-heart v-icon"></i>
+                <i class="fas fa-handshake v-icon"></i>
                 <span class="v-title">Respect</span>
             </div>
             <p>Treating our colleagues, customers, suppliers and vendors with respect and dignity.</p>
@@ -349,27 +353,46 @@
     <div class="container">
         <div class="section-title">
             <span>Voice of the Customer</span>
-            <h2>What People Say</h2>
+            <h2>What People Say Us!</h2>
         </div>
 
         <div class="testi-grid">
+            
             <div class="testi-item">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p class="testi-text">"Good customer services and offers are on top. I always find what I need."</p>
                 <div class="testi-name">Joanne Nash</div>
                 <div class="testi-role">Loyal Customer</div>
             </div>
 
             <div class="testi-item">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p class="testi-text">"Very affordable supermarket. Kikuyu Powerstar is the best in the area for daily shopping."</p>
                 <div class="testi-name">Lennah K Munyoki</div>
                 <div class="testi-role">Kikuyu Resident</div>
             </div>
 
             <div class="testi-item">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p class="testi-text">"I was served by Monica Kagendo at Zimmerman. She was helpful and understanding. We appreciate her for the good service."</p>
                 <div class="testi-name">Fra Lex</div>
                 <div class="testi-role">Zimmerman Branch</div>
             </div>
+
+            <div class="testi-item">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testi-text">"The cheapest supermarket in the current market with professional staff, quality goods and pocketable prices. Just missing Powerstar Kikuyu for real for real... Wish to be a staff member once more."</p>
+                <div class="testi-name">Pon Nyambane</div>
+                <div class="testi-role">Former Staff Member</div>
+            </div>
+
+            <div class="testi-item">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p class="testi-text">"Good customer service and affordable prices."</p>
+                <div class="testi-name">Irene Mwatha</div>
+                <div class="testi-role">Loyal Customer</div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -382,7 +405,6 @@
                 <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
             </div>
         </div>
