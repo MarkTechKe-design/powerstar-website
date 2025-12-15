@@ -717,3 +717,58 @@ footer {
     /* Smart Card Size */
     .smart-card { width: 100%; height: 220px; }
 }
+/* --- 12. UTILITIES & LIGHTBOX (ADD TO BOTTOM OF STYLE.CSS) --- */
+
+/* Badge/Tag Styles (For Products & News) */
+.tag, .category-tag {
+    background: #f4f9f4; 
+    color: var(--ps-green);
+    padding: 5px 12px; 
+    border-radius: 50px; 
+    font-size: 0.75rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.tag-red { background: var(--ps-red); color: white; }
+
+/* Lightbox / Zoom Effect (For Services & Media) */
+.lightbox {
+    position: fixed; 
+    z-index: 9999; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); 
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+    opacity: 0; 
+    transition: opacity 0.3s;
+    backdrop-filter: blur(5px);
+}
+.lightbox.active { display: flex; opacity: 1; }
+
+.lightbox img { 
+    max-width: 90%; 
+    max-height: 90vh; 
+    border-radius: 5px; 
+    box-shadow: 0 0 50px rgba(0,0,0,0.5); 
+    animation: zoomIn 0.3s ease;
+}
+
+.lightbox-close {
+    position: absolute; 
+    top: 20px; right: 30px; 
+    color: white; 
+    font-size: 3rem; 
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.lightbox-close:hover { transform: scale(1.2); color: var(--ps-red); }
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
