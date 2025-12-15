@@ -2,149 +2,193 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Order & Collect - Powerstar Supermarkets</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 
 <style>
-    /* --- 1. GLOBAL VARIABLES --- */
+    /* --- SENIOR ARCHITECT: DESIGN SYSTEM --- */
     :root {
         --ps-red: #DA291C;
         --ps-green: #006838;
+        --ps-dark: #111;
         --ps-whatsapp: #25D366;
-        --ps-dark: #1a1a1a;
-        --bg-light: #f8f9fa;
-        --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
-        --shadow-hover: 0 15px 40px rgba(0,0,0,0.1);
+        --bg-light: #F9FAFB;
+        --shadow-card: 0 15px 40px rgba(0,0,0,0.08);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
 
-    * { box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--bg-light); color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+    /* GLOBAL RESET */
+    * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    
+    html, body {
+        width: 100%; overflow-x: hidden; margin: 0; padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg-light); color: #444;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; color: var(--ps-dark); }
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* --- 2. HEADER & NAVIGATION --- */
-    header { background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: relative; z-index: 100; }
-    .header-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
-    .logo img { height: 45px; width: auto; } /* Adjusted height for better fit */
+    /* --- 1. HEADER --- */
+    header {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        position: sticky; top: 0; z-index: 1000;
+        padding: 10px 0;
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1300px; margin: 0 auto; padding: 0 30px; }
     
-    .nav-menu { display: flex; gap: 25px; }
-    .nav-menu a { font-weight: 500; font-size: 0.95rem; color: #444; transition: color 0.3s; }
-    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
-    .nav-menu a.active { font-weight: 700; border-bottom: 2px solid var(--ps-red); }
-    .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #333; }
+    .logo img { height: 90px; width: auto; transition: transform 0.3s; }
+    .logo:hover img { transform: scale(1.02); }
 
-    /* --- 3. HERO SECTION --- */
+    .nav-menu { display: flex; gap: 30px; }
+    .nav-menu a {
+        font-weight: 600; font-size: 0.9rem; color: #555;
+        text-transform: uppercase; letter-spacing: 0.5px;
+        position: relative; transition: var(--transition);
+    }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+    .nav-menu a::after {
+        content: ''; position: absolute; width: 0; height: 2px;
+        bottom: -5px; left: 0; background-color: var(--ps-red);
+        transition: width 0.3s;
+    }
+    .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+
+    .mobile-toggle { display: none; font-size: 1.8rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
+
+    /* --- 2. HERO SECTION --- */
     .hero {
         background: linear-gradient(135deg, var(--ps-red) 0%, #b31b1b 100%);
         color: white; text-align: center;
-        padding: 60px 20px 120px 20px;
-        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        padding: 80px 20px 140px 20px; /* Extra padding bottom for overlap */
+        clip-path: ellipse(150% 100% at 50% 0%);
     }
-    .hero h1 { font-size: 2.5rem; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
-    .hero p { font-size: 1.1rem; opacity: 0.95; font-weight: 300; margin: 0; }
+    .hero h1 { 
+        font-size: 3rem; margin: 0 0 15px 0; 
+        text-transform: uppercase; letter-spacing: 1px; color: white;
+    }
+    .hero h1 i { margin-right: 10px; }
+    .hero p { font-size: 1.2rem; opacity: 0.95; font-weight: 300; margin: 0; }
 
-    /* --- 4. STEPS SECTION (How To Order) --- */
+    /* --- 3. PROCESS STEPS (Floating) --- */
     .steps-container {
-        margin-top: -80px; /* Overlaps Hero */
+        margin-top: -100px; /* Overlaps Hero */
         position: relative; z-index: 10;
-        margin-bottom: 60px;
+        margin-bottom: 80px;
     }
-    .section-title { text-align: center; margin-bottom: 30px; color: var(--ps-green); text-transform: uppercase; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px; }
+    .section-title { 
+        text-align: center; margin-bottom: 40px; 
+        color: white; /* Contrast against hero background */
+        text-transform: uppercase; font-size: 0.9rem; font-weight: 700; letter-spacing: 2px; opacity: 0.9;
+    }
     
-    .steps-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-    .step-card {
-        background: white; padding: 30px 20px; border-radius: 12px; text-align: center;
-        box-shadow: var(--shadow-card); border-bottom: 4px solid transparent; transition: transform 0.3s ease;
+    .steps-grid { 
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+        gap: 30px; 
     }
-    .step-card:hover { transform: translateY(-5px); border-bottom-color: var(--ps-green); box-shadow: var(--shadow-hover); }
+    .step-card {
+        background: white; padding: 40px 30px; border-radius: 16px; text-align: center;
+        box-shadow: var(--shadow-card); border-bottom: 4px solid transparent; 
+        transition: transform 0.3s ease; position: relative;
+    }
+    .step-card:hover { transform: translateY(-10px); border-bottom-color: var(--ps-green); }
     
     .step-icon-wrapper {
-        width: 60px; height: 60px; background: rgba(0, 104, 56, 0.08); color: var(--ps-green);
+        width: 70px; height: 70px; background: rgba(0, 104, 56, 0.08); color: var(--ps-green);
         border-radius: 50%; display: flex; align-items: center; justify-content: center;
-        font-size: 1.5rem; margin: 0 auto 15px auto; position: relative;
+        font-size: 2rem; margin: 0 auto 20px auto; position: relative;
     }
     .step-badge {
-        position: absolute; top: -2px; right: -2px; background: var(--ps-red); color: white;
-        width: 22px; height: 22px; border-radius: 50%; font-size: 0.75rem; font-weight: bold;
-        display: flex; align-items: center; justify-content: center; border: 2px solid white;
+        position: absolute; top: -5px; right: -5px; background: var(--ps-red); color: white;
+        width: 28px; height: 28px; border-radius: 50%; font-size: 0.9rem; font-weight: bold;
+        display: flex; align-items: center; justify-content: center; border: 3px solid white;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
-    .step-card h3 { font-size: 1.1rem; margin: 0 0 8px 0; color: var(--ps-dark); }
-    .step-card p { font-size: 0.9rem; color: #666; margin: 0; line-height: 1.5; }
+    .step-card h3 { font-size: 1.2rem; margin: 0 0 10px 0; color: var(--ps-dark); }
+    .step-card p { font-size: 0.95rem; color: #666; margin: 0; line-height: 1.6; }
 
-    /* --- 5. VALUES SECTION (Trust Signals - ADDED CORRECTLY) --- */
-    .values-grid {
-        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px; margin-bottom: 60px;
+    /* --- 4. BRANCH LIST --- */
+    .list-header { 
+        text-align: center; margin-bottom: 50px; 
+        position: relative; 
     }
-    .value-card {
-        background: white; padding: 30px; border-radius: 12px;
-        text-align: center; border: 1px solid #eee; display: flex; align-items: center; gap: 20px;
-        text-align: left; /* Horizontal Layout for neatness */
-        transition: transform 0.3s;
+    .list-header::after {
+        content: ''; display: block; width: 60px; height: 4px; background: var(--ps-red); margin: 15px auto 0;
     }
-    .value-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); border-color: transparent; }
-
-    .icon-circle {
-        min-width: 60px; height: 60px; background: rgba(218, 41, 28, 0.1); color: var(--ps-red);
-        border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
-    }
-    .value-text h3 { margin: 0 0 5px 0; font-size: 1.1rem; color: var(--ps-dark); }
-    .value-text p { margin: 0; font-size: 0.85rem; color: #666; line-height: 1.5; }
-
-    /* --- 6. BRANCH GRID --- */
-    .list-header { text-align: center; margin-bottom: 30px; border-top: 1px solid #eee; padding-top: 40px; }
-    .list-header h2 { color: var(--ps-red); font-size: 1.8rem; margin: 0; }
+    .list-header h2 { color: var(--ps-dark); font-size: 2.2rem; margin: 0; }
     
-    .department-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 60px; }
-
-    /* Responsive Logic */
-    @media (min-width: 768px) {
-        .steps-grid { grid-template-columns: repeat(2, 1fr); }
-        .department-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (min-width: 1024px) {
-        .steps-grid { grid-template-columns: repeat(4, 1fr); }
-        .department-grid { grid-template-columns: repeat(3, 1fr); }
+    .department-grid { 
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+        gap: 25px; padding-bottom: 80px; 
     }
 
     .branch-card {
         background: white; border: 1px solid #eee; border-left: 5px solid var(--ps-red);
-        border-radius: 8px; padding: 20px; transition: all 0.3s ease;
+        border-radius: 12px; padding: 25px; transition: all 0.3s ease;
         display: flex; flex-direction: column; justify-content: space-between;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.03);
     }
-    .branch-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-left-color: var(--ps-green); }
+    .branch-card:hover { 
+        transform: translateY(-5px); 
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+        border-left-color: var(--ps-green); 
+    }
     
-    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-    .branch-name { margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--ps-dark); }
-    .detail-row { display: flex; align-items: flex-start; gap: 10px; color: #555; font-size: 0.9rem; margin-bottom: 8px; }
-    .detail-row i { color: var(--ps-red); width: 18px; margin-top: 3px; }
+    .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .branch-name { margin: 0; font-size: 1.3rem; font-weight: 700; color: var(--ps-dark); }
+    .branch-icon { font-size: 1.5rem; color: #eee; }
 
-    .whatsapp-btn {
-        background: white; color: var(--ps-green); text-decoration: none; padding: 12px; border-radius: 6px;
-        font-weight: 600; text-align: center; border: 1px solid var(--ps-whatsapp);
-        transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+    .branch-details { margin-bottom: 25px; }
+    .detail-row { 
+        display: flex; align-items: flex-start; gap: 12px; 
+        color: #555; font-size: 0.95rem; margin-bottom: 10px; 
     }
-    .whatsapp-btn:hover { background: var(--ps-whatsapp); color: white; }
+    .detail-row i { color: var(--ps-red); width: 20px; margin-top: 4px; }
 
-    /* --- 7. FOOTER --- */
-    footer { background-color: var(--ps-green); color: white; padding: 50px 20px; text-align: center; margin-top: auto; border-top: 6px solid var(--ps-red); }
+    /* Whatsapp Button */
+    .whatsapp-btn {
+        background: white; color: var(--ps-whatsapp); text-decoration: none; 
+        padding: 14px; border-radius: 50px;
+        font-weight: 700; text-align: center; border: 2px solid var(--ps-whatsapp);
+        transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 10px;
+        text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.5px;
+    }
+    .whatsapp-btn:hover { 
+        background: var(--ps-whatsapp); color: white; 
+        box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    /* --- 5. FOOTER --- */
+    footer { background-color: var(--ps-green); color: white; padding: 60px 20px; text-align: center; margin-top: auto; border-top: 8px solid var(--ps-red); }
     .social-links { margin-bottom: 30px; }
     .social-links a { 
-        display: inline-flex; align-items: center; justify-content: center; width: 45px; height: 45px; 
-        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
+        display: inline-flex; align-items: center; justify-content: center; width: 55px; height: 55px; font-size: 1.4rem;
+        background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 10px; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.2);
     }
-    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
+    .social-links a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-5px) scale(1.1); }
     .copyright { font-size: 0.9rem; opacity: 0.7; }
 
+    /* RESPONSIVE */
     @media (max-width: 768px) {
         .mobile-toggle { display: block; }
-        .nav-menu { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
         .nav-menu.active { display: flex; }
-        .hero h1 { font-size: 1.8rem; }
-        .steps-container { margin-top: -40px; }
+        
+        .hero { height: auto; padding-bottom: 160px; clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%); }
+        .hero h1 { font-size: 2rem; }
+        .steps-container { margin-top: -120px; }
+        .logo img { height: 60px; }
+        
+        .department-grid { grid-template-columns: 1fr; } /* Stack on mobile */
     }
 </style>
 </head>
@@ -160,6 +204,8 @@
             <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
             <a href="order.html" class="active">Order Online</a>
+            <a href="loyalty.html">Loyalty</a>
+            <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
         </nav>
     </div>
@@ -211,13 +257,14 @@
 
 <footer>
     <div class="footer-content">
-        <h4>Follow Us</h4>
         <div class="social-links">
-            <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://x.com/powerstar_supermarket" target="_blank"><i class="fab fa-x-twitter"></i></a>
-            <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <h4 style="margin-bottom: 20px;">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
         <div class="copyright">
             <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
@@ -231,7 +278,8 @@
     const navMenu = document.getElementById('nav-menu');
     
     if(menuBtn){
-        menuBtn.addEventListener('click', () => {
+        menuBtn.addEventListener('click', (e) => {
+            e.preventDefault();
             navMenu.classList.toggle('active');
             const icon = menuBtn.querySelector('i');
             if(navMenu.classList.contains('active')){
@@ -242,7 +290,7 @@
         });
     }
 
-    // 2. BRANCH DATA
+    // 2. BRANCH DATA (Easy to update)
     const branches = [
         { name: "Kasarani HQ",      phone: "0790 680 038", location: "Kasarani-Mwiki Road" },
         { name: "Naivasha Branch",  phone: "0768 016 429", location: "Naivasha Town" },
@@ -261,6 +309,7 @@
 
     // 3. WHATSAPP LINK GENERATOR
     function getWhatsAppLink(phone, branchName) {
+        // Remove spaces, ensure it starts with 254
         const cleanNumber = "254" + phone.replace(/\s/g, '').substring(1);
         const text = encodeURIComponent(`Hi Powerstar ${branchName}, I would like to order...`);
         return `https://wa.me/${cleanNumber}?text=${text}`;
@@ -273,7 +322,7 @@
         card.innerHTML = `
             <div class="card-header">
                 <h3 class="branch-name">${branch.name}</h3>
-                <i class="fas fa-store branch-icon" style="color:#eee;"></i>
+                <i class="fas fa-store branch-icon"></i>
             </div>
             
             <div class="branch-details">
