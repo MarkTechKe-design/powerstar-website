@@ -239,3 +239,46 @@ footer {
     .department-grid, .branch-grid, .values-grid { grid-template-columns: 1fr !important; gap: 20px; }
     .values-grid { margin-top: -30px !important; }
 }
+/* --- 11. MEDIA / NEWS PAGE SPECIFIC STYLES --- */
+
+/* Filter Buttons */
+.filter-container {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 15px;
+    margin: -40px auto 60px; position: relative; z-index: 10;
+}
+
+.filter-btn {
+    background: white; border: 1px solid #eee; padding: 12px 30px;
+    border-radius: 50px; font-weight: 600; color: var(--ps-grey);
+    font-size: 0.85rem; cursor: pointer; transition: var(--transition);
+    box-shadow: var(--shadow-soft); text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--ps-red); color: white; border-color: var(--ps-red);
+    transform: translateY(-3px); box-shadow: var(--shadow-hover);
+}
+
+/* Blog/News Cards */
+.blog-card {
+    background: white; border-radius: 16px; overflow: hidden;
+    border: 1px solid #eee; box-shadow: var(--shadow-soft);
+    transition: var(--transition); display: flex; flex-direction: column;
+}
+.blog-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+.blog-card.hide { display: none; } /* Used for filtering */
+
+.card-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; }
+
+.card-date { 
+    font-size: 0.75rem; color: #999; margin-bottom: 15px; 
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+    display: flex; align-items: center; gap: 5px;
+}
+
+.read-more {
+    margin-top: auto; color: var(--ps-red); font-weight: 700; 
+    font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
+    transition: var(--transition);
+}
+.read-more:hover { letter-spacing: 2px; }
