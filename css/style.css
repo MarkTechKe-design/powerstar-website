@@ -639,3 +639,34 @@ footer {
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
 }
+/* ==========================================================================
+   CRITICAL VISIBILITY PATCH (Add to bottom of css/style.css)
+   ========================================================================== */
+
+/* 1. FORCE FOOTER COPYRIGHT TO WHITE */
+footer .copyright p {
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin: 0;
+}
+
+/* 2. FORCE HERO TEXT TO WHITE (Global Fix) */
+/* This ensures text is white on ALL pages, even if Glass Card is missing */
+.hero h1, 
+.hero h2, 
+.hero p, 
+.hero-glass-card h1, 
+.hero-glass-card p,
+.hero-glass-card div {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Adds shadow for readability */
+}
+
+/* 3. ENSURE HERO LINKS/BUTTONS ARE VISIBLE */
+.hero a {
+    text-decoration: none;
+}
+
+/* 4. FORCE GOLD TEXT IN HERO TO STAY GOLD */
+.hero-glass-card div[style*="color: var(--ps-gold)"] {
+    color: #D4AF37 !important; /* Keeps the 'Welcome' text gold */
+}
