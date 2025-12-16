@@ -83,6 +83,128 @@ header {
     color: white; text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 .hero p { font-size: 1.2rem; opacity: 0.95; max-width: 700px; font-weight: 300; color: rgba(255,255,255,0.9); }
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+  position: relative;
+  height: 85vh;
+  background: url('../images/hero-bg.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  margin-bottom: 16px;
+  font-size: 13px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: #f5c400; /* Brand yellow */
+}
+
+.hero h1 {
+  font-size: 52px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.95;
+  margin-bottom: 32px;
+}
+
+/* CTA Buttons */
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Primary CTA */
+.btn-primary {
+  background: #0a8f3c; /* Powerstar green */
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #087a33;
+  transform: translateY(-2px);
+}
+
+/* Secondary CTA */
+.btn-secondary {
+  border: 2px solid #ffffff;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  color: #0a8f3c;
+}
+@media (max-width: 768px) {
+  .hero {
+    height: auto;
+    padding: 80px 20px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-eyebrow {
+    font-size: 11px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+}
 
 /* --- 5. GRIDS & CARDS --- */
 .department-grid, .branch-grid, .values-grid, .gallery-grid {
