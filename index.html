@@ -48,95 +48,99 @@
 
 <main class="container">
 
-    <div class="values-grid">
-        <div class="value-card reveal">
-            <div style="font-size: 2.5rem; color: var(--ps-green); margin-bottom: 15px;"><i class="fas fa-leaf"></i></div>
+    <section class="values-grid">
+        <article class="value-card reveal">
+            <div class="icon-circle"><i class="fas fa-leaf"></i></div>
             <h3>Farm Fresh</h3>
-            <p>Sourced directly from local farmers to ensure maximum freshness.  We cut out the middleman to pass the savings to you.</p>
-        </div>
-        <div class="value-card reveal">
-            <div style="font-size: 2.5rem; color: var(--ps-red); margin-bottom: 15px;"><i class="fas fa-tags"></i></div>
+            <p>Sourced directly from local farmers to ensure maximum freshness on your table every single day.</p>
+            <div style="margin-top: 15px; opacity: 0.6; font-size: 0.8rem;"></div>
+        </article>
+        
+        <article class="value-card reveal">
+            <div class="icon-circle" style="color:var(--ps-red); background:rgba(218, 41, 28, 0.1);"><i class="fas fa-tags"></i></div>
             <h3>Unbeatable Value</h3>
             <p>Committed to helping you save everyday with competitive pricing on all household essentials.</p>
-        </div>
-        <div class="value-card reveal">
-            <div style="font-size: 2.5rem; color: var(--ps-gold); margin-bottom: 15px;"><i class="fas fa-users"></i></div>
+        </article>
+        
+        <article class="value-card reveal">
+            <div class="icon-circle" style="color:var(--ps-gold); background:rgba(212, 175, 55, 0.1);"><i class="fas fa-users"></i></div>
             <h3>Community First</h3>
             <p>With 10+ branches, we are proud to create jobs and support the neighborhoods we call home.</p>
-        </div>
-    </div>
+        </article>
+    </section>
 
-    <div style="text-align: center; margin: 80px 0 40px;" class="reveal">
+    <section class="reveal" style="text-align: center; margin: 80px 0 40px;">
         <h2>Shop Essentials</h2>
         <p style="color: #666;">Everything you need under one roof.</p>
-    </div>
+    </section>
 
     <div class="department-grid">
         
         <a href="services.html" class="dept-card reveal">
             <div class="dept-image-wrapper">
-                <img src="assets/bakery.jpg" alt="Bakery" onerror="this.src='https://placehold.co/600x400/eee/999?text=Fresh+Bakery'">
+                <img src="assets/bakery.jpg" alt="Bakery" loading="lazy" onerror="this.src='https://placehold.co/600x400/eee/999?text=Fresh+Bakery'">
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Fresh Bakery</h3>
                 <p class="dept-desc">Hot loaves, cakes, and pastries baked fresh every morning.</p>
-                <span class="btn btn-primary" style="font-size: 0.8rem; padding: 10px 20px;">View More</span>
+                <span class="dept-btn">View More</span>
             </div>
         </a>
 
         <a href="services.html" class="dept-card reveal">
             <div class="dept-image-wrapper">
-                <img src="assets/electronics.jpg" alt="Electronics" onerror="this.src='https://placehold.co/600x400/eee/999?text=Electronics'">
+                <img src="assets/electronics.jpg" alt="Electronics" loading="lazy" onerror="this.src='https://placehold.co/600x400/eee/999?text=Electronics'">
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Electronics</h3>
                 <p class="dept-desc">TVs, audio systems, and home appliances at great prices.</p>
-                <span class="btn btn-primary" style="font-size: 0.8rem; padding: 10px 20px;">View More</span>
+                <span class="dept-btn">View More</span>
             </div>
         </a>
 
         <a href="services.html" class="dept-card reveal">
             <div class="dept-image-wrapper">
-                <img src="assets/produce.jpg" alt="Produce" onerror="this.src='https://placehold.co/600x400/eee/999?text=Fresh+Produce'">
+                <img src="assets/produce.jpg" alt="Produce" loading="lazy" onerror="this.src='https://placehold.co/600x400/eee/999?text=Fresh+Produce'">
             </div>
             <div class="dept-content">
                 <h3 class="dept-title">Fresh Produce</h3>
                 <p class="dept-desc">Hand-picked fruits and vegetables from local farms.</p>
-                <span class="btn btn-primary" style="font-size: 0.8rem; padding: 10px 20px;">View More</span>
+                <span class="dept-btn">View More</span>
             </div>
         </a>
 
     </div>
 
-    <div style="background: white; padding: 60px 20px; border-radius: 20px; margin-bottom: 80px; box-shadow: var(--shadow-card);" class="reveal">
+    <section class="reveal" style="background: white; padding: 60px 40px; border-radius: 20px; margin-bottom: 80px; box-shadow: var(--shadow-card); border: 1px solid #eee;">
         <div style="text-align: center; margin-bottom: 40px;">
             <h2>Simple Way to Shop</h2>
             <p style="color: #666;">Get your groceries sorted in 3 easy steps.</p>
-            
         </div>
 
-        <div class="grid-standard" style="text-align: center;">
-            <div>
+        <div class="values-grid" style="margin-top: 0; box-shadow: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div style="text-align: center;">
                 <div style="font-size: 3rem; color: var(--ps-red); margin-bottom: 20px;"><i class="fas fa-search"></i></div>
                 <h3>1. Browse</h3>
-                <p>Check out our products page or visit your nearest branch.</p>
+                <p style="font-size: 0.95rem; color: #666;">Check out our products page or visit your nearest branch.</p>
             </div>
-            <div>
+            <div style="text-align: center;">
                 <div style="font-size: 3rem; color: var(--whatsapp-green); margin-bottom: 20px;"><i class="fab fa-whatsapp"></i></div>
                 <h3>2. Order</h3>
-                <p>Click the WhatsApp button to send your list to a branch manager.</p>
+                <p style="font-size: 0.95rem; color: #666;">Click the WhatsApp button to send your list to a manager.</p>
             </div>
-            <div>
+            <div style="text-align: center;">
                 <div style="font-size: 3rem; color: var(--ps-green); margin-bottom: 20px;"><i class="fas fa-check-circle"></i></div>
                 <h3>3. Receive</h3>
-                <p>Pay securely via M-Pesa Till. We pack and you collect.</p>
+                <p style="font-size: 0.95rem; color: #666;">Pay securely via M-Pesa Till. We pack and you collect.</p>
             </div>
         </div>
 
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="order.html" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Start an Order Now</a>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="order.html" class="btn-primary" style="background: var(--whatsapp-green); border-color: var(--whatsapp-green); display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px;">
+                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Start an Order Now
+            </a>
         </div>
-    </div>
+    </section>
 
     <div class="b2b-wrapper reveal">
         <div class="b2b-grid">
@@ -144,7 +148,7 @@
                 <h3 style="color: var(--ps-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Join The Family</h3>
                 <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">Earn Points Every Time You Shop</h2>
                 <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px;">Get exclusive discounts, holiday giveaways, and redeem points for shopping vouchers. It's free to join!</p>
-                <a href="loyalty.html" class="btn" style="background: var(--ps-gold); color: black;">Join Loyalty Program</a>
+                <a href="loyalty.html" class="btn-white" style="color: var(--ps-dark);">Join Loyalty Program</a>
             </div>
             <div style="text-align: center; font-size: 8rem; color: rgba(255,255,255,0.1);">
                 <i class="fas fa-crown"></i>
@@ -196,7 +200,7 @@
         for (var i = 0; i < reveals.length; i++) {
             var windowHeight = window.innerHeight;
             var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 150;
+            var elementVisible = 100;
             if (elementTop < windowHeight - elementVisible) {
                 reveals[i].classList.add("active");
             }
