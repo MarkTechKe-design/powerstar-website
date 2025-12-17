@@ -23,7 +23,7 @@
             <a href="about.html">About Us</a>
             <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a>
+            <a href="order.html">Shop on WhatsApp</a>
             <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
@@ -31,139 +31,152 @@
     </div>
 </header>
 
-<div class="hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 50, 20, 0.7)), url('assets/supermarket-bg.jpg');">
-    
+<div class="hero">
     <div class="hero-glass-card reveal">
-        <div style="text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; color: var(--ps-gold); font-weight: 700; font-size: 0.9rem;">
-            Welcome to Powerstar
-        </div>
+        <div class="hero-welcome-text">Welcome to Powerstar</div>
         <h1>Your Neighborhood Partner</h1>
-        <p style="color: rgba(255,255,255,0.9);">Experience quality, freshness, and huge savings at any of our 11+ branches.</p>
-        
-        <div style="margin-top: 30px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-            <a href="services.html" class="btn btn-primary">Our Products</a>
-            <a href="branches.html" class="btn" style="background: white; color: var(--ps-dark);">Find a Branch</a>
-        </div>
+        <p>Freshness You Trust, Savings You Love.</p>
     </div>
-
 </div>
 
 <main class="container">
 
+    <div class="quick-access-section reveal">
+        <div class="quick-access-grid">
+            <a href="branches.html" class="quick-card">
+                <div class="quick-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <span class="quick-label">Find Branch</span>
+            </a>
+            <a href="services.html" class="quick-card">
+                <div class="quick-icon"><i class="fas fa-shopping-basket"></i></div>
+                <span class="quick-label">Products</span>
+            </a>
+            <a href="order.html" class="quick-card whatsapp-card">
+                <div class="quick-icon"><i class="fab fa-whatsapp"></i></div>
+                <span class="quick-label">Shop on WhatsApp</span>
+            </a>
+            <a href="loyalty.html" class="quick-card loyalty-card">
+                <div class="quick-icon"><i class="fas fa-crown"></i></div>
+                <span class="quick-label">Loyalty Club</span>
+            </a>
+            <a href="media.html" class="quick-card">
+                <div class="quick-icon"><i class="fas fa-tags"></i></div>
+                <span class="quick-label">Weekly Offers</span>
+            </a>
+            <a href="careers.html" class="quick-card">
+                <div class="quick-icon"><i class="fas fa-briefcase"></i></div>
+                <span class="quick-label">Careers</span>
+            </a>
+            <a href="media.html" class="quick-card">
+                <div class="quick-icon"><i class="fas fa-images"></i></div>
+                <span class="quick-label">Gallery & News</span>
+            </a>
+            <a href="contact.html" class="quick-card">
+                <div class="quick-icon"><i class="fas fa-headset"></i></div>
+                <span class="quick-label">Contact Us</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="offers-slider-section reveal">
+        <div class="section-header-center">
+            <span class="section-subtitle">Don't Miss Out</span>
+            <h2>This Week's Specials</h2>
+        </div>
+
+        <div class="slider-container" id="promoSlider">
+            <div class="slider-track" id="sliderTrack">
+                <div class="slide slide-1">
+                    <div class="slide-content">
+                        <span class="offer-tag">Fresh Deals</span>
+                        <h2>Market Day Savings</h2>
+                        <p>Get up to 20% OFF on all fresh vegetables and fruits every Wednesday & Saturday.</p>
+                        <a href="branches.html" class="btn btn-primary">Visit Nearest Branch</a>
+                    </div>
+                </div>
+                <div class="slide slide-2">
+                    <div class="slide-content">
+                        <span class="offer-tag">Back to School</span>
+                        <h2>Stationery Super Sale</h2>
+                        <p>Everything your kids need for the new term at wholesale prices. Stock up now!</p>
+                        <a href="services.html" class="btn btn-primary">View Catalog</a>
+                    </div>
+                </div>
+                <div class="slide slide-3">
+                    <div class="slide-content">
+                        <span class="offer-tag">Bulk Buying</span>
+                        <h2>Wholesale for Everyone</h2>
+                        <p>Buying rice, oil, or flour in bulk? Ask our managers for special discounts.</p>
+                        <a href="order.html" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Inquire on WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-arrow arrow-left" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></div>
+            <div class="slider-arrow arrow-right" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></div>
+
+            <div class="slider-dots" id="sliderDots">
+                <div class="dot active" onclick="goToSlide(0)"></div>
+                <div class="dot" onclick="goToSlide(1)"></div>
+                <div class="dot" onclick="goToSlide(2)"></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="how-it-works-section reveal">
+        <h2 class="hiw-title">How Powerstar Works</h2>
+        <p class="hiw-subtitle">Simple, convenient, and rewarding.</p>
+        
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                <h3 class="step-title">1. Choose a Branch</h3>
+                <p class="step-desc">Locate your nearest store to see local stock and offers.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-icon-circle"><i class="fas fa-tags"></i></div>
+                <h3 class="step-title">2. View Offers</h3>
+                <p class="step-desc">Browse our weekly specials and digital catalog.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-icon-circle"><i class="fas fa-shopping-bag"></i></div>
+                <h3 class="step-title">3. Shop Easy</h3>
+                <p class="step-desc">Visit in-store or order via WhatsApp for pickup.</p>
+            </div>
+            <div class="step-item">
+                <div class="step-icon-circle"><i class="fas fa-star"></i></div>
+                <h3 class="step-title">4. Earn Points</h3>
+                <p class="step-desc">Scan your loyalty card to earn rewards on every purchase.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="values-grid">
         <article class="value-card reveal">
-            <div class="icon-circle"><i class="fas fa-leaf"></i></div>
+            <div class="icon-circle icon-green"><i class="fas fa-leaf"></i></div>
             <h3>Farm Fresh</h3>
             <p>Sourced directly from local farmers to ensure maximum freshness on your table every single day.</p>
-            <div style="margin-top: 15px; opacity: 0.6; font-size: 0.8rem;"></div>
         </article>
         
         <article class="value-card reveal">
-            <div class="icon-circle" style="color:var(--ps-red); background:rgba(218, 41, 28, 0.1);"><i class="fas fa-tags"></i></div>
+            <div class="icon-circle icon-red"><i class="fas fa-tags"></i></div>
             <h3>Unbeatable Value</h3>
             <p>Committed to helping you save everyday with competitive pricing on all household essentials.</p>
         </article>
         
         <article class="value-card reveal">
-            <div class="icon-circle" style="color:var(--ps-gold); background:rgba(212, 175, 55, 0.1);"><i class="fas fa-users"></i></div>
+            <div class="icon-circle icon-gold"><i class="fas fa-users"></i></div>
             <h3>Community First</h3>
             <p>With 10+ branches, we are proud to create jobs and support the neighborhoods we call home.</p>
         </article>
     </section>
-
-    <section class="reveal" style="text-align: center; margin: 80px 0 40px;">
-        <h2>Shop Essentials</h2>
-        <p style="color: #666;">Everything you need under one roof.</p>
-    </section>
-
-    <div class="department-grid">
-        
-        <a href="services.html" class="dept-card reveal">
-            <div class="dept-image-wrapper">
-                <img src="assets/bakery.jpg" alt="Bakery" loading="lazy" onerror="this.src='https://placehold.co/600x400/eee/999?text=Fresh+Bakery'">
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Fresh Bakery</h3>
-                <p class="dept-desc">Hot loaves, cakes, and pastries baked fresh every morning.</p>
-                <span class="dept-btn">View More</span>
-            </div>
-        </a>
-
-        <a href="services.html" class="dept-card reveal">
-            <div class="dept-image-wrapper">
-                <img src="assets/electronics.jpg" alt="Electronics" loading="lazy" onerror="this.src='https://placehold.co/600x400/eee/999?text=Electronics'">
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Electronics</h3>
-                <p class="dept-desc">TVs, audio systems, and home appliances at great prices.</p>
-                <span class="dept-btn">View More</span>
-            </div>
-        </a>
-
-        <a href="services.html" class="dept-card reveal">
-            <div class="dept-image-wrapper">
-                <img src="assets/produce.jpg" alt="Produce" loading="lazy" onerror="this.src='https://placehold.co/600x400/eee/999?text=Fresh+Produce'">
-            </div>
-            <div class="dept-content">
-                <h3 class="dept-title">Fresh Produce</h3>
-                <p class="dept-desc">Hand-picked fruits and vegetables from local farms.</p>
-                <span class="dept-btn">View More</span>
-            </div>
-        </a>
-
-    </div>
-
-    <section class="reveal" style="background: white; padding: 60px 40px; border-radius: 20px; margin-bottom: 80px; box-shadow: var(--shadow-card); border: 1px solid #eee;">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h2>Simple Way to Shop</h2>
-            <p style="color: #666;">Get your groceries sorted in 3 easy steps.</p>
-        </div>
-
-        <div class="values-grid" style="margin-top: 0; box-shadow: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-            <div style="text-align: center;">
-                <div style="font-size: 3rem; color: var(--ps-red); margin-bottom: 20px;"><i class="fas fa-search"></i></div>
-                <h3>1. Browse</h3>
-                <p style="font-size: 0.95rem; color: #666;">Check out our products page or visit your nearest branch.</p>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 3rem; color: var(--whatsapp-green); margin-bottom: 20px;"><i class="fab fa-whatsapp"></i></div>
-                <h3>2. Order</h3>
-                <p style="font-size: 0.95rem; color: #666;">Click the WhatsApp button to send your list to a manager.</p>
-            </div>
-            <div style="text-align: center;">
-                <div style="font-size: 3rem; color: var(--ps-green); margin-bottom: 20px;"><i class="fas fa-check-circle"></i></div>
-                <h3>3. Receive</h3>
-                <p style="font-size: 0.95rem; color: #666;">Pay securely via M-Pesa Till. We pack and you collect.</p>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="order.html" class="btn-primary" style="background: var(--whatsapp-green); border-color: var(--whatsapp-green); display: inline-flex; align-items: center; gap: 10px; padding: 15px 30px;">
-                <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Start an Order Now
-            </a>
-        </div>
-    </section>
-
-    <div class="b2b-wrapper reveal">
-        <div class="b2b-grid">
-            <div>
-                <h3 style="color: var(--ps-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Join The Family</h3>
-                <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">Earn Points Every Time You Shop</h2>
-                <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px;">Get exclusive discounts, holiday giveaways, and redeem points for shopping vouchers. It's free to join!</p>
-                <a href="loyalty.html" class="btn-white" style="color: var(--ps-dark);">Join Loyalty Program</a>
-            </div>
-            <div style="text-align: center; font-size: 8rem; color: rgba(255,255,255,0.1);">
-                <i class="fas fa-crown"></i>
-            </div>
-        </div>
-    </div>
 
 </main>
 
 <footer>
     <div class="footer-content">
         <div class="social-links">
-            <h4 style="margin-bottom: 20px;">Follow Us</h4>
+            <h4 class="social-title">Follow Us</h4>
             <div class="icons-container">
                 <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -172,7 +185,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p style="color: rgba(255,255,255,0.8);">&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
         </div>
     </div>
 </footer>
@@ -210,6 +223,39 @@
     }
     window.addEventListener("scroll", reveal);
     reveal();
+
+    // 3. PROMO SLIDER LOGIC
+    let currentSlide = 0;
+    const track = document.getElementById('sliderTrack');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = 3;
+
+    function goToSlide(index) {
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+        currentSlide = index;
+        const offset = -currentSlide * 100;
+        track.style.transform = `translateX(${offset}%)`;
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentSlide].classList.add('active');
+    }
+
+    function nextSlide() { goToSlide(currentSlide + 1); }
+    function prevSlide() { goToSlide(currentSlide - 1); }
+
+    let slideInterval = setInterval(nextSlide, 5000);
+    const sliderContainer = document.getElementById('promoSlider');
+    sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    sliderContainer.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    sliderContainer.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+    sliderContainer.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 50) nextSlide();
+        if (touchEndX - touchStartX > 50) prevSlide();
+    });
 </script>
 
 </body>
