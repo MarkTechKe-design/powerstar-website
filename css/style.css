@@ -194,3 +194,73 @@ footer { background: var(--ps-green); color: white; padding: 80px 20px 40px; tex
     .smart-card { height: auto; aspect-ratio: 1.6/1; }
     .card-number { font-size: 1.2rem; }
 }
+/* ==========================================================================
+   HOMEPAGE REFINEMENT (V13.0)
+   Target: High-End Corporate Layout Fixes
+   ========================================================================== */
+
+/* 1. Quick Access Grid - 4 Columns on Desktop */
+@media (min-width: 1024px) {
+    .quick-access-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+        gap: 24px;
+        max-width: 1100px; /* Constrain width for cleaner look */
+        margin: 0 auto;
+    }
+}
+
+/* 2. Quick Access Cards - Minimalist */
+.quick-card {
+    padding: 30px 20px !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06) !important; /* Softer shadow */
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.quick-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
+    border-color: var(--ps-green);
+}
+
+/* 3. Hero CTA Button - Make it pop */
+.hero .btn-primary {
+    background-color: var(--ps-gold);
+    color: var(--ps-dark);
+    font-weight: 800;
+    border: none;
+    padding: 16px 40px;
+    font-size: 1rem;
+}
+.hero .btn-primary:hover {
+    background-color: white;
+    transform: translateY(-2px);
+}
+
+/* 4. How It Works - Horizontal Flow */
+.how-it-works-section {
+    background: #ffffff; /* Clean white background */
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.step-icon-circle {
+    width: 80px; height: 80px; /* Larger icons */
+    font-size: 2rem;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 20px rgba(0, 104, 56, 0.1);
+}
+
+/* 5. Mobile Adjustments */
+@media (max-width: 768px) {
+    .quick-access-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px;
+    }
+    .hero-glass-card {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+    .steps-container {
+        gap: 40px; /* More space between steps on mobile */
+    }
+}
