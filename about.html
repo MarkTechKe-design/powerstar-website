@@ -15,6 +15,10 @@
     .hero.about-hero {
         background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('assets/team.jpg');
     }
+    /* Mobile Override for 2-column compass */
+    @media (max-width: 768px) {
+        .compass-grid { grid-template-columns: 1fr !important; }
+    }
 </style>
 
 </head>
@@ -54,42 +58,44 @@
                 <p><strong>Powerstar Supermarkets</strong> is more than just a retail outlet; we are a community partner. Born from a desire to bring high-quality goods at honest prices to Kenyan neighborhoods, we have grown into a trusted household name.</p>
                 <p>We believe that shopping should be dignified, easy, and affordable. Our "Save Everyday" philosophy isn't just a slogan—it is the operational backbone of our procurement, logistics, and service delivery.</p>
                 
-                <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--ps-green); margin-top: 20px; font-size: 1.1rem;">
+                <div style="font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--ps-green); margin-top: 20px; font-size: 1.1rem; border-top: 1px solid #eee; padding-top: 15px;">
                     Independent. Innovative. Honest.
                 </div>
             </div>
             <div>
-                <img src="assets/team.jpg" alt="Powerstar Team" style="border-radius: 16px; box-shadow: var(--shadow-card); width: 100%; object-fit: cover;" onerror="this.src='https://placehold.co/600x400/eee/999?text=Our+Team'">
+                <img src="assets/team.jpg" alt="Powerstar Team" style="border-radius: 16px; box-shadow: var(--shadow-card); width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://placehold.co/600x400/eee/999?text=Our+Team'">
             </div>
         </div>
     </div>
 
 </main>
 
-<div class="reveal" style="background: #000000; color: white; padding: 80px 0; margin-bottom: 80px;">
-    <div class="container" style="display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; text-align: center;">
+<div class="reveal" style="background: #000000; color: white; padding: 80px 0; margin-bottom: 80px; margin-top: 80px;">
+    <div class="container" style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; text-align: center;">
         <div style="flex: 1; min-width: 200px;">
             <h4 style="font-size: 3.5rem; color: var(--ps-gold); margin: 0; line-height: 1;">10+</h4>
-            <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; opacity: 0.8;">Branches</span>
+            <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; opacity: 0.8;">Branches</span>
         </div>
-        <div style="flex: 1; min-width: 200px;">
+        <div style="flex: 1; min-width: 200px; border-left: 1px solid rgba(255,255,255,0.1); border-right: 1px solid rgba(255,255,255,0.1);">
             <h4 style="font-size: 3.5rem; color: var(--ps-gold); margin: 0; line-height: 1;">100%</h4>
-            <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; opacity: 0.8;">Kenyan Owned</span>
+            <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; opacity: 0.8;">Kenyan Owned</span>
         </div>
         <div style="flex: 1; min-width: 200px;">
             <h4 style="font-size: 3.5rem; color: var(--ps-gold); margin: 0; line-height: 1;">1000+</h4>
-            <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; opacity: 0.8;">Daily Customers</span>
+            <span style="text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; opacity: 0.8;">Daily Customers</span>
         </div>
     </div>
 </div>
 
 <div class="container">
+    
     <div class="section-header-center reveal">
         <span class="section-subtitle">Our Direction</span>
         <h2>Strategic Compass</h2>
     </div>
 
-    <div class="values-grid">
+    <div class="values-grid compass-grid" style="grid-template-columns: repeat(2, 1fr); max-width: 900px; margin: 0 auto 80px;">
+        
         <div class="value-card reveal">
             <div class="icon-circle icon-green"><i class="fas fa-bullseye"></i></div>
             <h3>Our Mission</h3>
@@ -101,44 +107,54 @@
             <h3>Our Vision</h3>
             <p>To deliver exceptional shopping experiences by offering the best service, value, quality, and freshest products while being good stewards of our environment.</p>
         </div>
-    </div>
-</div>
 
-<div class="container reveal">
-    <div class="section-header-center">
-        <span class="section-subtitle">Our DNA</span>
-        <h2>Core Values</h2>
     </div>
 
-    <div class="quick-access-grid" style="margin-bottom: 80px;">
-        <div class="quick-card">
-            <div class="quick-icon"><i class="fas fa-users"></i></div>
-            <h3>Teamwork</h3>
-            <p style="font-size: 0.9rem;">Meeting challenges as one team.</p>
+    <div class="reveal">
+        <div class="section-header-center">
+            <span class="section-subtitle">Our DNA</span>
+            <h2>Core Values</h2>
         </div>
 
-        <div class="quick-card">
-            <div class="quick-icon"><i class="fas fa-handshake"></i></div>
-            <h3>Respect</h3>
-            <p style="font-size: 0.9rem;">Treating everyone with dignity.</p>
-        </div>
+        <div class="department-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 60px;">
+            
+            <div class="dept-card" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--ps-red);">
+                <div style="margin-bottom: 20px; color: var(--ps-red); font-size: 2rem;"><i class="fas fa-users"></i></div>
+                <h3>Teamwork</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Meeting challenges as one team.</p>
+            </div>
 
-        <div class="quick-card">
-            <div class="quick-icon"><i class="fas fa-medal"></i></div>
-            <h3>Excellence</h3>
-            <p style="font-size: 0.9rem;">Striving for improvement everyday.</p>
-        </div>
+            <div class="dept-card" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--ps-red);">
+                <div style="margin-bottom: 20px; color: var(--ps-red); font-size: 2rem;"><i class="fas fa-handshake"></i></div>
+                <h3>Respect</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Treating everyone with dignity.</p>
+            </div>
 
-        <div class="quick-card">
-            <div class="quick-icon"><i class="fas fa-check-circle"></i></div>
-            <h3>Accountability</h3>
-            <p style="font-size: 0.9rem;">Doing the right thing, always.</p>
+            <div class="dept-card" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--ps-red);">
+                <div style="margin-bottom: 20px; color: var(--ps-red); font-size: 2rem;"><i class="fas fa-medal"></i></div>
+                <h3>Excellence</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Continuous improvement.</p>
+            </div>
+
+            <div class="dept-card" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--ps-red);">
+                <div style="margin-bottom: 20px; color: var(--ps-red); font-size: 2rem;"><i class="fas fa-check-circle"></i></div>
+                <h3>Accountability</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Doing the right thing.</p>
+            </div>
+
+            <div class="dept-card" style="padding: 30px; text-align: center; border-bottom: 4px solid var(--ps-red);">
+                <div style="margin-bottom: 20px; color: var(--ps-red); font-size: 2rem;"><i class="fas fa-heart"></i></div>
+                <h3>Passion</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Serving with energy.</p>
+            </div>
+
         </div>
     </div>
 
     <div class="reveal" style="text-align: center; font-size: 1.4rem; font-weight: 300; font-style: italic; color: #666; margin-bottom: 80px;">
         "Consistency is the key to building a strong brand."
     </div>
+
 </div>
 
 <div style="background: #f9fcf9; padding: 80px 0;" class="reveal">
@@ -152,27 +168,27 @@
             <div class="dept-card" style="padding: 30px;">
                 <div style="color: var(--ps-gold); margin-bottom: 15px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"Good customer services and offers are on top. I always find what I need."</p>
-                <div>
+                <div style="border-top: 1px solid #eee; padding-top: 15px;">
                     <strong style="color: var(--ps-dark);">Joanne Nash</strong><br>
-                    <span style="font-size: 0.85rem; color: #666;">Loyal Customer</span>
+                    <span style="font-size: 0.8rem; color: #999;">Loyal Customer</span>
                 </div>
             </div>
 
             <div class="dept-card" style="padding: 30px;">
                 <div style="color: var(--ps-gold); margin-bottom: 15px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"Very affordable supermarket. Kikuyu Powerstar is the best in the area for daily shopping."</p>
-                <div>
+                <div style="border-top: 1px solid #eee; padding-top: 15px;">
                     <strong style="color: var(--ps-dark);">Lennah K Munyoki</strong><br>
-                    <span style="font-size: 0.85rem; color: #666;">Kikuyu Resident</span>
+                    <span style="font-size: 0.8rem; color: #999;">Kikuyu Resident</span>
                 </div>
             </div>
 
             <div class="dept-card" style="padding: 30px;">
                 <div style="color: var(--ps-gold); margin-bottom: 15px;"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                 <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"I was served by Monica Kagendo at Zimmerman. She was helpful and understanding."</p>
-                <div>
+                <div style="border-top: 1px solid #eee; padding-top: 15px;">
                     <strong style="color: var(--ps-dark);">Fra Lex</strong><br>
-                    <span style="font-size: 0.85rem; color: #666;">Zimmerman Branch</span>
+                    <span style="font-size: 0.8rem; color: #999;">Zimmerman Branch</span>
                 </div>
             </div>
         </div>
