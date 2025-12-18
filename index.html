@@ -233,9 +233,12 @@
     function goToSlide(index) {
         if (index < 0) index = totalSlides - 1;
         if (index >= totalSlides) index = 0;
+        
         currentSlide = index;
         const offset = -currentSlide * 100;
         track.style.transform = `translateX(${offset}%)`;
+        
+        // Update dots
         dots.forEach(dot => dot.classList.remove('active'));
         dots[currentSlide].classList.add('active');
     }
@@ -243,18 +246,23 @@
     function nextSlide() { goToSlide(currentSlide + 1); }
     function prevSlide() { goToSlide(currentSlide - 1); }
 
+    // Auto Scroll
     let slideInterval = setInterval(nextSlide, 5000);
+
+    // Pause on Interaction
     const sliderContainer = document.getElementById('promoSlider');
     sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
     sliderContainer.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 5000));
 
+    // Touch Swipe Support
     let touchStartX = 0;
     let touchEndX = 0;
+
     sliderContainer.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
     sliderContainer.addEventListener('touchend', e => {
         touchEndX = e.changedTouches[0].screenX;
-        if (touchStartX - touchEndX > 50) nextSlide();
-        if (touchEndX - touchStartX > 50) prevSlide();
+        if (touchStartX - touchEndX > 50) nextSlide(); // Swipe Left
+        if (touchEndX - touchStartX > 50) prevSlide(); // Swipe Right
     });
 </script>
 
