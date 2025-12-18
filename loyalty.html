@@ -7,9 +7,15 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Dancing+Script:wght@600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
+
+<style>
+    .hero.loyalty-hero {
+        background-image: linear-gradient(rgba(0, 40, 20, 0.8), rgba(0, 20, 10, 0.95)), url('assets/store-interior.jpg');
+    }
+</style>
 
 </head>
 <body>
@@ -23,7 +29,7 @@
             <a href="about.html">About Us</a>
             <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a>
+            <a href="order.html">Shop on WhatsApp</a>
             <a href="loyalty.html" class="active">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
@@ -31,13 +37,11 @@
     </div>
 </header>
 
-<div class="hero" style="background-image: linear-gradient(rgba(0, 40, 20, 0.8), rgba(0, 20, 10, 0.95)), url('assets/store-interior.jpg'); height: 55vh;">
+<div class="hero loyalty-hero">
     <div class="hero-glass-card reveal">
-        <div style="text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; color: var(--ps-gold); font-weight: 700; font-size: 0.9rem;">
-            Exclusive Membership
-        </div>
+        <div class="hero-welcome-text">Exclusive Membership</div>
         <h1>Powerstar Smart Card</h1>
-        <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem;">Your phone number is your passport to savings. No plastic, no fees, just rewards.</p>
+        <p>Your phone number is your passport to savings. No plastic, no fees, just rewards.</p>
     </div>
 </div>
 
@@ -48,7 +52,7 @@
                 <div class="card-chip"></div>
                 <div class="card-logo-text">POWERSTAR</div>
             </div>
-            
+
             <div>
                 <div class="card-number">07XX XXX XXX</div>
                 <div class="card-instruction">YOUR PHONE NUMBER IS YOUR ID</div>
@@ -71,10 +75,8 @@
 <main class="container">
 
     <div class="reveal" style="text-align: center; margin-bottom: 50px;">
-        <h2 style="color: var(--ps-dark); margin-bottom: 20px;">How It Works</h2>
-        <p style="color: #666; max-width: 600px; margin: 0 auto 40px;">We've made earning simple. No cards to carry, just give your number at the till.</p>
-        
-        
+        <h2>How It Works</h2>
+        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">We've made earning simple. No cards to carry, just give your number at the till.</p>
     </div>
 
     <section class="benefits-grid">
@@ -95,39 +97,39 @@
         </article>
     </section>
 
-    <section class="form-wrapper reveal" style="max-width: 700px; margin: 0 auto 80px; box-shadow: var(--shadow-card); border-radius: 16px; overflow: hidden; border: 1px solid #eee;">
-        
-        <div class="form-header" style="background: linear-gradient(135deg, #006838 0%, #004d2a 100%); padding: 40px 30px; text-align: center; color: white;">
+    <section class="loyalty-form-section reveal">
+
+        <div class="form-header">
             <h2 style="color: white; margin-bottom: 10px;">Unlock Your Status</h2>
             <p style="opacity: 0.9; margin: 0; font-size: 0.95rem;">Join 50,000+ Kenyans saving everyday. Register instantly via WhatsApp.</p>
         </div>
-        
-        <form id="loyaltyForm" style="padding: 40px; background: white;">
-            
+
+        <form id="loyaltyForm" class="form-body">
+
             <div class="form-group">
-                <label style="font-weight: 700; color: var(--ps-dark); margin-bottom: 8px; display: block;">Full Official Name</label>
-                <input type="text" id="fullName" placeholder="e.g. John Kamau" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                <label>Full Official Name</label>
+                <input type="text" id="fullName" placeholder="e.g. John Kamau" required>
             </div>
 
             <div class="form-row-split">
                 <div class="form-group">
-                    <label style="font-weight: 700; color: var(--ps-dark); margin-bottom: 8px; display: block;">Phone Number (M-Pesa)</label>
-                    <input type="tel" id="phone" placeholder="07XX XXX XXX" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                    <label>Phone Number (M-Pesa)</label>
+                    <input type="tel" id="phone" placeholder="07XX XXX XXX" required>
                 </div>
                 <div class="form-group">
-                    <label style="font-weight: 700; color: var(--ps-dark); margin-bottom: 8px; display: block;">National ID Number</label>
-                    <input type="text" id="nationalId" placeholder="e.g. 12345678" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;">
+                    <label>National ID Number</label>
+                    <input type="text" id="nationalId" placeholder="e.g. 12345678" required>
                 </div>
             </div>
 
             <div class="form-row-split">
                 <div class="form-group">
-                    <label style="font-weight: 700; color: var(--ps-dark); margin-bottom: 8px; display: block;">Date of Birth</label>
-                    <input type="date" id="dob" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; color: #555;">
+                    <label>Date of Birth</label>
+                    <input type="date" id="dob" required>
                 </div>
                 <div class="form-group">
-                    <label style="font-weight: 700; color: var(--ps-dark); margin-bottom: 8px; display: block;">Preferred Home Branch</label>
-                    <select id="branch" required style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; background: white;">
+                    <label>Preferred Home Branch</label>
+                    <select id="branch" required>
                         <option value="" disabled selected>-- Select Location --</option>
                         <option value="Kasarani HQ">Kasarani HQ</option>
                         <option value="Joska">Joska</option>
@@ -145,14 +147,14 @@
             </div>
 
             <div style="margin-top: 30px;">
-                <button type="submit" class="btn-whatsapp" style="width: 100%; border-radius: 50px; font-size: 1.1rem; padding: 18px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                <button type="submit" class="btn-whatsapp" style="width: 100%; font-size: 1.1rem; padding: 18px;">
                     <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i> Activate Membership
                 </button>
                 <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; color: #999;">
                     <i class="fas fa-lock"></i> Your data is secure. By registering, you agree to receive promotional updates.
                 </p>
             </div>
-            
+
             <div id="loyaltyStatus" style="text-align: center; margin-top: 15px; font-weight: 600; color: var(--ps-green);"></div>
         </form>
     </section>
@@ -195,7 +197,7 @@
         }
     });
 
-    // 2. SCROLL REVEAL ANIMATION
+    // 2. SCROLL REVEAL
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -210,7 +212,7 @@
     window.addEventListener("scroll", reveal);
     reveal();
 
-    // 3. WHATSAPP REGISTRATION LOGIC
+    // 3. WHATSAPP LOGIC
     const branchContacts = {
         "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
         "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
@@ -220,20 +222,13 @@
 
     document.getElementById('loyaltyForm').addEventListener('submit', function(e){
         e.preventDefault();
-        
         const fullName = document.getElementById('fullName').value;
-        const phone = document.getElementById('phone').value;
-        const nationalId = document.getElementById('nationalId').value;
-        const dob = document.getElementById('dob').value;
         const branchKey = document.getElementById('branch').value;
         const status = document.getElementById('loyaltyStatus');
-
-        let targetNumber = branchContacts[branchKey] || "254790680038"; // Default to HQ
-
-        const msg = `*New Loyalty Registration*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
+        let targetNumber = branchContacts[branchKey] || "254790680038";
+        const msg = `*New Loyalty Registration*\nName: ${fullName}\nBranch: ${branchKey}`;
         const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
-
-        status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        status.innerHTML = 'Processing...';
         setTimeout(() => { window.open(url, '_blank'); status.innerHTML = ''; }, 1000);
     });
 </script>
