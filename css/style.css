@@ -1,299 +1,410 @@
 /* ==========================================================================
-   POWERSTAR SUPERMARKETS - FINAL CORPORATE MASTER (V16.0)
-   Role: Senior Frontend Architect
-   CRITICAL FIXES: 
-   1. Footer restored to Brand Green (removed unauthorized black).
-   2. grids rewritten with 'auto-fit' to ensure horizontal flow on desktop (fixes vertical products).
-   3. Increased spacing for less crowded, corporate feel.
+   POWERSTAR SUPERMARKETS – CORPORATE MASTER CSS (V18.0)
+   Role: Principal Frontend Architect
+   Intent: Board-ready, enterprise-grade retail UI
    ========================================================================== */
 
-/* --- 1. DESIGN TOKENS & CORE VARIABLES --- */
+
+/* ==========================================================================
+   1. DESIGN TOKENS (STRICT – DO NOT OVERRIDE CASUALLY)
+   ========================================================================== */
+
 :root {
-    /* === Brand Palette (Strict) === */
+    /* Brand */
     --ps-red: #DA291C;
     --ps-green: #006838;
-    --ps-gold: #D4AF37; /* Used sparingly for accents */
-    --ps-dark: #1A1A1A; /* Deep charcoal instead of pure black for softer text */
-    --ps-grey-light: #F8F9FA; /* Clean corporate background grey */
+    --ps-gold: #D4AF37;
 
-    /* === UI Colors === */
-    --bg-body: #FFFFFF;
-    --bg-white: #FFFFFF;
-    --text-main: #333333;
-    --text-muted: #666666;
-    --border-color: rgba(0, 0, 0, 0.1);
+    /* Neutrals */
+    --ps-dark: #1A1A1A;
+    --ps-text: #333333;
+    --ps-muted: #6B7280;
+    --ps-border: rgba(0,0,0,0.08);
+    --ps-bg-soft: #F7F8FA;
+    --ps-white: #FFFFFF;
 
-    /* === Dimensions & Spacing === */
-    --container-width: 1200px; /* Tighter, more controlled width */
-    --radius-md: 12px;
+    /* Layout */
+    --container-width: 1200px;
+    --radius-sm: 10px;
+    --radius-md: 14px;
     --radius-lg: 20px;
-    --section-spacing: 100px; /* Consistent deep spacing between sections */
 
-    /* === Animation & Depth === */
-    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --shadow-soft: 0 5px 20px rgba(0, 0, 0, 0.05);
-    --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
+    /* Spacing Rhythm */
+    --space-xs: 12px;
+    --space-sm: 20px;
+    --space-md: 40px;
+    --space-lg: 80px;
+    --space-xl: 110px;
+
+    /* Motion */
+    --ease: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --shadow-soft: 0 6px 20px rgba(0,0,0,0.05);
+    --shadow-card: 0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
+
+/* ==========================================================================
+   2. BASE RESET & TYPOGRAPHY
+   ========================================================================== */
+
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    color: var(--text-main);
-    line-height: 1.7;
-    background-color: var(--bg-body);
+    font-family: 'Poppins', system-ui, sans-serif;
+    color: var(--ps-text);
+    line-height: 1.65;
+    background: var(--ps-white);
     -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4 {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
     color: var(--ps-dark);
-    margin-top: 0;
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    margin: 0 0 16px;
+    font-weight: 700;
 }
 
-a { text-decoration: none; color: inherit; transition: var(--transition-smooth); }
-img { max-width: 100%; display: block; }
-ul { list-style: none; padding: 0; margin: 0; }
+h1 { font-size: 3.2rem; }
+h2 { font-size: 2.4rem; }
+h3 { font-size: 1.25rem; }
+
+p {
+    margin: 0 0 20px;
+    color: var(--ps-muted);
+    font-size: 1rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
 
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 24px;
-    width: 100%;
 }
 
-/* --- 3. UTILITIES & ANIMATIONS --- */
-.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-.reveal.active { opacity: 1; transform: translateY(0); }
-@keyframes zoomIn { from { transform: scale(0.98); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-.text-center { text-align: center; }
-.section-header { margin-bottom: 60px; text-align: center; }
-.section-subtitle { 
-    display: block; color: var(--ps-red); font-weight: 700; 
-    text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 10px; 
-}
+/* ==========================================================================
+   3. HEADER – STABLE, QUIET, EXECUTIVE
+   ========================================================================== */
 
-/* --- 4. HEADER (Clean Corporate) --- */
 header {
-    background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--border-color);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--ps-border);
 }
 
 .header-inner {
-    display: flex; justify-content: space-between; align-items: center;
-    max-width: var(--container-width); margin: 0 auto; padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 78px;
 }
 
-.logo img { height: 55px; width: auto; }
+.logo img {
+    height: 52px;
+}
 
-.nav-menu { display: flex; gap: 35px; }
+.nav-menu {
+    display: flex;
+    gap: 34px;
+}
+
 .nav-menu a {
-    font-weight: 600; font-size: 0.9rem; text-transform: uppercase;
-    letter-spacing: 0.5px; color: var(--ps-dark); position: relative;
-}
-.nav-menu a::after {
-    content: ''; position: absolute; width: 0; height: 2px;
-    bottom: -5px; left: 0; background: var(--ps-red); transition: 0.3s;
-}
-.nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
-
-.mobile-toggle { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
-
-/* --- 5. HERO SECTION (Refined Hierarchy) --- */
-.hero {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
     position: relative;
-    /* Darkened overlay for better text contrast */
-    background-image: linear-gradient(rgba(0, 60, 30, 0.75), rgba(0, 40, 20, 0.85)), url('../assets/supermarket-bg.jpg');
-    background-size: cover; background-position: center; background-attachment: fixed;
-    min-height: 65vh; /* Slightly shorter for corporate feel */
-    display: flex; align-items: center; justify-content: center;
-    color: white; text-align: center; padding: 0 20px;
 }
 
-.hero-glass-card {
-    max-width: 850px; padding: 40px;
-    /* Removed glass effect border for cleaner look, relying on dark background */
-    animation: zoomIn 0.8s ease-out;
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    height: 2px;
+    width: 0;
+    background: var(--ps-red);
+    transition: width 0.25s ease;
 }
 
-.hero-welcome-text {
-    color: var(--ps-gold); text-transform: uppercase; letter-spacing: 3px;
-    font-weight: 700; font-size: 0.9rem; margin-bottom: 15px; display: block;
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+
+/* ==========================================================================
+   4. HERO – AUTHORITY FIRST, NOT PROMOTION
+   ========================================================================== */
+
+.hero {
+    background:
+        linear-gradient(rgba(0,50,25,0.85), rgba(0,35,18,0.9)),
+        url('../assets/supermarket-bg.jpg') center/cover no-repeat;
+    padding: var(--space-xl) 0;
+    text-align: center;
+    color: white;
+}
+
+.hero span {
+    display: block;
+    color: var(--ps-gold);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
 }
 
 .hero h1 {
-    font-size: 3.8rem; color: white; margin-bottom: 20px; font-weight: 800;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    color: white;
+    margin-bottom: 20px;
 }
 
-.hero p { font-size: 1.25rem; color: rgba(255,255,255,0.95); font-weight: 400; max-width: 700px; margin: 0 auto 30px; }
-
-/* --- 6. MODERN GRIDS (CRITICAL FIX FOR VERTICAL PRODUCTS) --- */
-
-/* This is the key fix for the products page. 
-   Using 'auto-fit' and 'minmax(280px, 1fr)' ensures that on wide screens, 
-   items will arrange horizontally in as many columns as fit. 
-   On narrow screens, they naturally stack vertically.
-*/
-.department-grid, 
-.values-grid, 
-.benefits-grid,
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px; /* Generous spacing to prevent crowding */
-    margin-bottom: var(--section-spacing);
+.hero p {
+    max-width: 680px;
+    margin: 0 auto 32px;
+    color: rgba(255,255,255,0.9);
 }
 
-/* Quick Access needs stricter control to ensure 4 columns on desktop */
-.quick-access-grid {
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+
+/* ==========================================================================
+   5. BUTTON SYSTEM – SINGLE SOURCE OF TRUTH
+   ========================================================================== */
+
+.btn {
+    padding: 14px 34px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.btn-primary {
+    background: var(--ps-red);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(218,41,28,0.3);
+}
+
+.btn-outline {
+    background: white;
+    color: var(--ps-green);
+}
+
+.btn-outline:hover {
+    background: var(--ps-green);
+    color: white;
+}
+
+
+/* ==========================================================================
+   6. QUICK ACCESS – NAVIGATION, NOT FEATURES
+   ========================================================================== */
+
+.quick-access {
+    margin-top: -40px;
+    padding-bottom: var(--space-lg);
+}
+
+.quick-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
 }
 
-/* --- 7. CARDS & UI COMPONENTS --- */
-
-/* Quick Access Cards (Home) */
-.quick-access-section { margin-top: -50px; position: relative; z-index: 20; padding-bottom: var(--section-spacing); }
 .quick-card {
-    background: white; padding: 30px 20px; border-radius: var(--radius-md);
-    text-align: center; box-shadow: var(--shadow-soft); transition: var(--transition-smooth);
-    border: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center;
-    height: 100%;
+    background: white;
+    border: 1px solid var(--ps-border);
+    border-radius: var(--radius-md);
+    padding: 28px 20px;
+    text-align: center;
 }
-.quick-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--ps-green); }
+
 .quick-icon {
-    font-size: 1.8rem; color: var(--ps-green); margin-bottom: 15px;
-    width: 64px; height: 64px; background: var(--ps-grey-light); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; transition: 0.3s;
-}
-.quick-card:hover .quick-icon { background: var(--ps-green); color: white; }
-.quick-label { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ps-dark); }
-
-/* Standard Content/Product Cards */
-.dept-card, .value-card, .benefit-item, .blog-card {
-    background: white; border-radius: var(--radius-md); overflow: hidden;
-    box-shadow: var(--shadow-card); border: 1px solid var(--border-color);
-    transition: var(--transition-smooth); display: flex; flex-direction: column;
-    height: 100%; /* Ensures equal height in grid */
-}
-.dept-card:hover, .value-card:hover, .benefit-item:hover, .blog-card:hover {
-    transform: translateY(-8px); box-shadow: var(--shadow-hover);
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 14px;
+    background: var(--ps-bg-soft);
+    color: var(--ps-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
 }
 
-/* Value/Benefit Specifics */
-.value-card, .benefit-item { padding: 35px; text-align: left; }
-.icon-circle, .benefit-icon {
-    width: 60px; height: 60px; background: var(--ps-grey-light); color: var(--ps-green);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem; margin-bottom: 20px;
+.quick-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-/* Buttons */
-.btn, .btn-primary, .btn-white, .btn-whatsapp {
-    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-    padding: 14px 32px; border-radius: 50px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 1px; transition: 0.3s; border: none; cursor: pointer;
+
+/* ==========================================================================
+   7. OFFERS SLIDER – INFORMATIONAL, CONTROLLED
+   ========================================================================== */
+
+.offers {
+    background: var(--ps-bg-soft);
+    padding: var(--space-lg) 0;
 }
-/* Primary Brand Button */
-.btn-primary { background: var(--ps-red); color: white; }
-.btn-primary:hover { background: #b01e14; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(218, 41, 28, 0.3); }
 
-/* White/Hero Button */
-.btn-white { background: white; color: var(--ps-green); font-weight: 800; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
-.btn-white:hover { background: var(--ps-green); color: white; transform: translateY(-2px); }
-
-/* WhatsApp Button */
-.btn-whatsapp { background: #25D366; color: white; }
-.btn-whatsapp:hover { background: #1ebc57; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
-
-/* --- 8. SECTIONS: SLIDER & HOW IT WORKS --- */
-.offers-slider-section { padding: var(--section-spacing) 0; background: var(--ps-grey-light); }
-.slider-container {
-    position: relative; max-width: 1200px; margin: 0 auto;
-    border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card);
+.slider {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
 }
-.slider-track { display: flex; transition: transform 0.5s ease-in-out; height: 480px; }
+
 .slide {
-    min-width: 100%; position: relative; display: flex; align-items: center; justify-content: left; /* Left align corporate text */
-    padding: 0 80px; background-size: cover; background-position: center;
+    min-height: 420px;
+    padding: 0 80px;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
 }
-/* Standardized Slide Backgrounds */
-.slide-1 { background-image: url('../assets/promo1.jpg'); }
-.slide-2 { background-image: url('../assets/promo2.jpg'); }
-.slide-3 { background-image: url('../assets/promo3.jpg'); }
 
-.slide::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%); }
-.slide-content { position: relative; z-index: 2; max-width: 600px; color: white; text-align: left; }
-.offer-tag { display: inline-block; background: var(--ps-red); color: white; padding: 5px 15px; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 15px; border-radius: 4px; }
-.slide h2 { font-size: 3rem; color: white; margin-bottom: 15px; line-height: 1.1; }
-.slide p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
+.slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+}
 
-/* How It Works - Horizontal Flow */
-.how-it-works-section { padding: var(--section-spacing) 0; text-align: center; }
-.steps-container { display: flex; justify-content: center; gap: 40px; margin-top: 50px; }
-.step-item { flex: 1; max-width: 280px; display: flex; flex-direction: column; align-items: center; }
-.step-icon-circle { width: 80px; height: 80px; font-size: 2rem; margin-bottom: 20px; background: white; border: 2px solid var(--border-color); color: var(--ps-green); box-shadow: var(--shadow-soft); }
+.slide-content {
+    position: relative;
+    max-width: 560px;
+    color: white;
+}
 
-/* --- 9. FOOTER (CRITICAL FIX: BRAND COLORS) --- */
+.slide h2 {
+    color: white;
+}
+
+.slide p {
+    color: rgba(255,255,255,0.9);
+}
+
+
+/* ==========================================================================
+   8. HOW IT WORKS – OPERATIONAL CLARITY
+   ========================================================================== */
+
+.how-it-works {
+    padding: var(--space-lg) 0;
+    text-align: center;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 50px;
+}
+
+.step {
+    max-width: 260px;
+}
+
+.step-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    background: white;
+    border: 1px solid var(--ps-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ps-green);
+    font-size: 1.8rem;
+}
+
+
+/* ==========================================================================
+   9. FOOTER – STABILITY & TRUST
+   ========================================================================== */
+
 footer {
-    /* FIX: Changed from black to brand green */
     background: var(--ps-green);
     color: white;
-    padding: 80px 0 30px;
-    text-align: center;
-    /* Added red top border for brand identity */
+    padding: var(--space-lg) 0 40px;
     border-top: 8px solid var(--ps-red);
+    text-align: center;
 }
-.footer-content h4 { color: white; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; }
-.icons-container a {
-    display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px;
-    transition: 0.3s; border: 1px solid rgba(255,255,255,0.15);
-}
-.icons-container a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
-.copyright p { opacity: 0.7; font-size: 0.9rem; margin-top: 40px; }
 
-/* --- 10. RESPONSIVE BREAKPOINTS --- */
+footer h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.footer-icons a {
+    width: 44px;
+    height: 44px;
+    margin: 0 8px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.12);
+    color: white;
+}
+
+.footer-icons a:hover {
+    background: var(--ps-red);
+}
+
+footer p {
+    margin-top: 40px;
+    font-size: 0.85rem;
+    opacity: 0.75;
+}
+
+
+/* ==========================================================================
+   10. RESPONSIVE
+   ========================================================================== */
+
 @media (max-width: 900px) {
-    .quick-access-grid { grid-template-columns: repeat(2, 1fr); }
-    .hero h1 { font-size: 3rem; }
+    .quick-grid { grid-template-columns: repeat(2, 1fr); }
+    .steps { flex-direction: column; align-items: center; }
 }
 
 @media (max-width: 768px) {
-    .mobile-toggle { display: block; }
-    .nav-menu {
-        display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%;
-        background: white; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 1px solid var(--border-color);
-    }
-    .nav-menu.active { display: flex; }
-    .nav-menu a { font-size: 1rem; padding: 10px 0; border-bottom: 1px solid #eee; }
-    .nav-menu a::after { display: none; } /* Remove underline hover on mobile */
-
-    .hero { min-height: auto; padding: 140px 20px 80px; background-attachment: scroll; }
-    .hero h1 { font-size: 2.5rem; }
-    
-    .slider-track { height: auto; min-height: 450px; }
-    .slide { padding: 40px 20px; justify-content: center; text-align: center; }
-    .slide-content { text-align: center; }
-    .slide h2 { font-size: 2rem; }
-    .slider-arrow { display: none; } /* Hide arrows on mobile */
-
-    .steps-container { flex-direction: column; align-items: center; gap: 50px; }
-    
-    /* Ensure grids stack on mobile if they haven't already */
-    .quick-access-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    h1 { font-size: 2.4rem; }
+    h2 { font-size: 1.9rem; }
+    .slide { padding: 40px 24px; text-align: center; }
+    .slide-content { margin: 0 auto; }
 }
