@@ -23,21 +23,20 @@
             <a href="about.html">About Us</a>
             <a href="services.html">Products</a>
             <a href="branches.html">Branches</a>
-            <a href="order.html">Order Online</a>
+            <a href="order.html">Shop on WhatsApp</a>
             <a href="loyalty.html">Loyalty</a>
             <a href="careers.html">Careers</a>
             <a href="contact.html">Contact</a>
+            <a href="media.html" class="active">Media</a>
         </nav>
     </div>
 </header>
 
 <div class="hero" style="background-image: linear-gradient(rgba(0, 50, 20, 0.6), rgba(0, 20, 10, 0.8)), url('assets/supermarket-bg.jpg');">
     <div class="hero-glass-card reveal">
-        <div style="text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; color: var(--ps-gold); font-weight: 700; font-size: 0.9rem;">
-            Latest Updates
-        </div>
+        <div class="hero-welcome-text">Latest Updates</div>
         <h1>News & Moments</h1>
-        <p style="color: rgba(255,255,255,0.9);">Celebrating our winners, community events, and latest offers.</p>
+        <p>Celebrating our winners, community events, and latest offers.</p>
     </div>
 </div>
 
@@ -236,6 +235,13 @@
 
     lightbox.addEventListener('click', function(e) {
         if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+    
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
             closeLightbox();
         }
     });
