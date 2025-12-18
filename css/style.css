@@ -3,23 +3,23 @@
     /* === Brand Palette (Strict Adherence) === */
     --ps-red: #DA291C;
     --ps-green: #006838;
-    /* Gold removed. Grey removed. */
-    --ps-dark: #000000; /* Pure Black for maximum contrast */
+    --ps-gold: #D4AF37;
+    --ps-dark: #111111;
+    --ps-grey: #555555;
+    --ps-light-grey: #f4f4f4;
 
     /* === UI & Functional Colors === */
-    --bg-body: #FFFFFF; /* Changed from light grey to White */
+    --bg-body: #F9FAFB;
     --bg-white: #FFFFFF;
     --whatsapp-green: #25D366;
-    --text-main: var(--ps-dark);
-    /* Muted text is now just black, hierarchy achieved via font-weight/size */
-    --text-muted: var(--ps-dark); 
-    /* Borders are now subtle green instead of grey */
-    --border-color: rgba(0, 104, 56, 0.15); 
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-color: #eeeeee;
 
-    /* === Elevation & Depth (Using black shadows remains necessary for depth on white) === */
-    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.12);
-    --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.18);
+    /* === Elevation & Depth (Refined for Premium Feel) === */
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.12);
     
     /* === Layout & Spacing (8px Grid System) === */
     --container-width: 1300px;
@@ -69,7 +69,6 @@ h1, h2, h3, h4, h5, h6 {
 h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
 h2 { font-size: clamp(2rem, 4vw, 3rem); }
 h3 { font-size: 1.5rem; }
-/* Muted text is now black, but lighter weight */
 p { margin-bottom: 1.5rem; color: var(--text-muted); font-weight: 400; }
 
 a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
@@ -109,7 +108,7 @@ header {
     top: 0;
     z-index: 1000;
     padding: 12px 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
 }
 
 .header-inner {
@@ -122,7 +121,7 @@ header {
 }
 
 .logo img {
-    height: 60px;
+    height: 60px; /* Optimized height */
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -131,9 +130,9 @@ header {
 .nav-menu { display: flex; gap: 32px; align-items: center; }
 
 .nav-menu a {
-    font-weight: 700; /* Increased weight for contrast against white */
+    font-weight: 600;
     font-size: 0.9rem;
-    color: var(--ps-dark); /* Changed from grey to black */
+    color: var(--ps-grey);
     text-transform: uppercase;
     letter-spacing: 0.5px;
     position: relative;
@@ -180,17 +179,17 @@ header {
     padding: 80px 20px 100px;
     clip-path: ellipse(150% 100% at 50% 0%);
     margin-bottom: 60px;
-    background-color: var(--ps-green);
+    background-color: var(--ps-green); /* Fallback */
 }
 
 /* Hero Glass Card Overlay */
 .hero-glass-card {
-    background: rgba(0, 0, 0, 0.7); /* Slightly darker for better white text contrast */
+    background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(12px);
     padding: 48px 64px;
     border-radius: var(--radius-md);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     max-width: 800px;
     width: 100%;
     margin: 0 auto;
@@ -202,8 +201,7 @@ header {
     text-transform: uppercase;
     letter-spacing: 3px;
     margin-bottom: 12px;
-    /* Changed from Gold to White for strict palette */
-    color: white !important;
+    color: var(--ps-gold) !important;
     font-weight: 700;
     font-size: 0.85rem;
     text-shadow: 0 2px 4px rgba(0,0,0,0.5);
@@ -220,10 +218,10 @@ header {
     font-size: 1.15rem;
     line-height: 1.6;
     margin-bottom: 32px;
-    font-weight: 500;
 }
 
 /* --- 6. BUTTONS & CTAs --- */
+/* Base Button Style */
 .btn, .btn-primary, .btn-white, .btn-whatsapp, .dept-btn {
     display: inline-flex;
     align-items: center;
@@ -242,6 +240,7 @@ header {
     line-height: 1;
 }
 
+/* Primary CTA (Green) */
 .btn-primary, .dept-btn {
     background-color: var(--ps-green);
     color: white;
@@ -255,18 +254,19 @@ header {
     box-shadow: 0 6px 20px rgba(0, 104, 56, 0.35);
 }
 
+/* Secondary CTA (White Outline/Solid) */
 .btn-white {
     background-color: white;
     color: var(--ps-green);
     border-color: white;
-    border: 2px solid var(--ps-green); /* Added green border for definition on white bg */
 }
 .btn-white:hover {
-    background-color: var(--ps-green); /* Invert on hover */
-    color: white;
+    background-color: var(--ps-light-grey);
+    color: var(--ps-dark);
     transform: translateY(-2px);
 }
 
+/* WhatsApp Specific */
 .btn-whatsapp {
     background-color: var(--whatsapp-green);
     color: white;
@@ -278,13 +278,14 @@ header {
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35);
 }
 
-/* Focus States - Changed from Gold to Green */
+/* Focus States for Accessibility */
 button:focus-visible, a:focus-visible {
-    outline: 2px solid var(--ps-green);
+    outline: 2px solid var(--ps-gold);
     outline-offset: 4px;
 }
 
 /* --- 7. CARDS & GRIDS --- */
+/* Universal Grid Layouts */
 .department-grid, .branch-grid, .values-grid, .gallery-grid, .benefits-grid, .quick-access-grid {
     display: grid;
     gap: 32px;
@@ -292,7 +293,7 @@ button:focus-visible, a:focus-visible {
     padding-bottom: 80px;
 }
 
-/* Quick Access */
+/* Quick Access Grid Specifics */
 .quick-access-section {
     margin-top: -60px;
     position: relative;
@@ -319,48 +320,42 @@ button:focus-visible, a:focus-visible {
     align-items: center;
     justify-content: center;
     height: 100%;
-    border: 1px solid var(--border-color); /* Subtle green border */
 }
 .quick-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-hover);
     border-bottom-color: var(--ps-red);
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
 }
 
 .quick-icon {
     font-size: 1.8rem;
     color: var(--ps-green);
     margin-bottom: 12px;
-    background: white; /* Changed from light grey-green to white */
+    background: #f4f9f4;
     width: 60px; height: 60px;
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     transition: 0.3s;
-    border: 2px solid var(--ps-green); /* Added green border for definition */
 }
 .quick-card:hover .quick-icon {
     background: var(--ps-green);
     color: white;
 }
 .quick-label {
-    font-weight: 800;
+    font-weight: 700;
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 /* Card Overrides */
-.quick-card.whatsapp-card .quick-icon { color: var(--whatsapp-green); border-color: var(--whatsapp-green); }
+.quick-card.whatsapp-card .quick-icon { color: var(--whatsapp-green); background: #eefdf3; }
 .quick-card.whatsapp-card:hover .quick-icon { background: var(--whatsapp-green); color: white; }
 .quick-card.whatsapp-card:hover { border-bottom-color: var(--whatsapp-green); }
 
-/* Loyalty changed from Gold to Green/Red mix for distinctiveness without Gold */
-.quick-card.loyalty-card .quick-icon { color: var(--ps-red); border-color: var(--ps-red); }
-.quick-card.loyalty-card:hover .quick-icon { background: var(--ps-red); color: white; }
-.quick-card.loyalty-card:hover { border-bottom-color: var(--ps-red); }
+.quick-card.loyalty-card .quick-icon { color: var(--ps-gold); background: #fffcf0; }
+.quick-card.loyalty-card:hover .quick-icon { background: var(--ps-gold); color: white; }
+.quick-card.loyalty-card:hover { border-bottom-color: var(--ps-gold); }
 
 
 /* Value Cards (Floating) */
@@ -379,14 +374,10 @@ button:focus-visible, a:focus-visible {
     border-bottom: 4px solid var(--ps-red);
     transition: var(--transition-smooth);
     height: 100%;
-    border: 1px solid var(--border-color);
 }
 .value-card:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-hover);
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
 }
 
 /* Department/Product Cards */
@@ -430,21 +421,19 @@ button:focus-visible, a:focus-visible {
     color: var(--ps-dark);
 }
 
-/* Icon Circles - Gold removed */
+/* Icon Circles */
 .icon-circle {
     width: 70px; height: 70px;
-    background: white; /* Changed from subtle grey tint to white */
+    background: rgba(0, 104, 56, 0.08);
     color: var(--ps-green);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-size: 1.8rem;
     margin-bottom: 24px;
-    border: 2px solid var(--ps-green); /* Added border for definition */
 }
-.icon-green { color: var(--ps-green); border-color: var(--ps-green); }
-.icon-red { color: var(--ps-red); border-color: var(--ps-red); }
-/* Gold icon repurposed to Green for community */
-.icon-gold { color: var(--ps-green); border-color: var(--ps-green); }
+.icon-green { color: var(--ps-green); }
+.icon-red { color: var(--ps-red); background: rgba(218, 41, 28, 0.1); }
+.icon-gold { color: var(--ps-gold); background: rgba(212, 175, 55, 0.1); }
 
 
 /* --- 8. OFFERS SLIDER --- */
@@ -503,7 +492,7 @@ button:focus-visible, a:focus-visible {
 
 .slide::before {
     content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.5)); /* Darker overlay for better contrast */
+    background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
 }
 
 .slide-content {
@@ -523,11 +512,11 @@ button:focus-visible, a:focus-visible {
 
 .slide h2 {
     font-size: 3rem; margin-bottom: 16px; color: white;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+    text-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 
 .slide p {
-    font-size: 1.2rem; margin-bottom: 32px; color: white; font-weight: 500;
+    font-size: 1.2rem; margin-bottom: 32px; color: rgba(255,255,255,0.95);
 }
 
 .slider-dots {
@@ -539,38 +528,34 @@ button:focus-visible, a:focus-visible {
     width: 12px; height: 12px; background: rgba(255,255,255,0.4);
     border-radius: 50%; cursor: pointer; transition: 0.3s;
 }
-/* Active dot changed from Gold to Green */
-.dot.active { background: var(--ps-green); transform: scale(1.2); }
+.dot.active { background: var(--ps-gold); transform: scale(1.2); }
 
 .slider-arrow {
     position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(0,0,0,0.5); /* Darker background for contrast */
-    color: white;
+    background: rgba(255,255,255,0.15); color: white;
     width: 56px; height: 56px; border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     cursor: pointer; z-index: 10; backdrop-filter: blur(8px);
     transition: 0.3s;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.1);
 }
-.slider-arrow:hover { background: var(--ps-red); color: white; border-color: var(--ps-red); }
+.slider-arrow:hover { background: white; color: var(--ps-dark); }
 .arrow-left { left: 24px; }
 .arrow-right { right: 24px; }
 
 
 /* --- 9. HOW IT WORKS SECTION --- */
 .how-it-works-section {
-    background-color: white; /* Changed from light grey-green to white */
+    background-color: #f9fcf9;
     padding: 60px 24px;
     border-radius: 16px;
     margin-bottom: 80px;
-    box-shadow: var(--shadow-card); /* Increased shadow for separation on white bg */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
     text-align: center;
-    border: 1px solid var(--border-color); /* Subtle green border for definition */
 }
 
 .hiw-title { margin-bottom: 12px; }
-/* Subtitle changed from grey to black */
-.hiw-subtitle { color: var(--ps-dark); max-width: 600px; margin: 0 auto; font-weight: 500; }
+.hiw-subtitle { color: #666; max-width: 600px; margin: 0 auto; }
 
 .steps-container {
     display: flex;
@@ -590,7 +575,7 @@ button:focus-visible, a:focus-visible {
     position: relative;
 }
 
-/* Connector Line - Changed from Grey to subtle Green */
+/* Connector Line */
 .step-item:not(:last-child)::after {
     content: '';
     position: absolute;
@@ -598,7 +583,7 @@ button:focus-visible, a:focus-visible {
     right: -50%;
     width: 100%;
     height: 2px;
-    background-color: rgba(0, 104, 56, 0.2); /* Subtle green line */
+    background-color: #e0e0e0;
     z-index: 0;
     display: none;
 }
@@ -616,18 +601,17 @@ button:focus-visible, a:focus-visible {
     font-size: 1.25rem;
     margin-bottom: 16px;
     z-index: 1;
-    box-shadow: var(--shadow-soft);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
 .step-title {
-    font-weight: 800; color: var(--ps-dark);
+    font-weight: 700; color: var(--ps-dark);
     margin-bottom: 8px; font-size: 1.1rem;
 }
 
-/* Step description changed from grey to black */
 .step-desc {
-    font-size: 0.9rem; color: var(--ps-dark);
-    line-height: 1.5; max-width: 220px; font-weight: 500;
+    font-size: 0.9rem; color: #666;
+    line-height: 1.5; max-width: 220px;
 }
 
 
@@ -682,10 +666,9 @@ footer {
     transform: translateY(-5px) scale(1.1);
 }
 .copyright p { 
-    color: white !important; /* Enforced white */
+    color: rgba(255,255,255,0.8) !important; 
     font-size: 0.85rem; 
     margin-top: 40px;
-    opacity: 0.8;
 }
 
 /* --- 12. RESPONSIVE BREAKPOINTS (MOBILE FIRST) --- */
@@ -703,11 +686,10 @@ footer {
     .slider-arrow { display: none; }
     .steps-container { flex-direction: column; align-items: center; gap: 40px; }
     .step-item { width: 100%; }
-    /* Connector line changed to subtle green */
     .step-item:not(:last-child)::before {
         content: ''; position: absolute; top: 50px; left: 50%;
         transform: translateX(-50%); width: 2px; height: 40px;
-        background-color: rgba(0, 104, 56, 0.2);
+        background-color: #e0e0e0;
     }
 }
 
@@ -720,11 +702,11 @@ footer {
         display: none; flex-direction: column;
         position: absolute; top: 100%; left: 0; width: 100%;
         background: white; padding: 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Darker shadow for white bg */
-        border-top: 1px solid var(--border-color);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
     }
     .nav-menu.active { display: flex; }
-    .nav-menu a { padding: 12px 0; border-bottom: 1px solid var(--border-color); width: 100%; color: var(--ps-dark); }
+    .nav-menu a { padding: 12px 0; border-bottom: 1px solid #f5f5f5; width: 100%; }
 
     .hero {
         min-height: auto;
