@@ -1,7 +1,10 @@
 /* ==========================================================================
-   POWERSTAR SUPERMARKETS - FINAL CORPORATE MASTER (V15.0)
+   POWERSTAR SUPERMARKETS - FINAL CORPORATE MASTER (V16.0)
    Role: Senior Frontend Architect
-   Target: High-End Corporate Aesthetic, Clean Layout, No Clutter
+   CRITICAL FIXES: 
+   1. Footer restored to Brand Green (removed unauthorized black).
+   2. grids rewritten with 'auto-fit' to ensure horizontal flow on desktop (fixes vertical products).
+   3. Increased spacing for less crowded, corporate feel.
    ========================================================================== */
 
 /* --- 1. DESIGN TOKENS & CORE VARIABLES --- */
@@ -9,28 +12,28 @@
     /* === Brand Palette (Strict) === */
     --ps-red: #DA291C;
     --ps-green: #006838;
-    --ps-gold: #D4AF37; /* Reserved for Loyalty/Premium Accents Only */
-    --ps-dark: #1A1A1A; /* Softer Black for elegance */
-    --ps-grey: #F4F7F6; /* Corporate Light Grey */
+    --ps-gold: #D4AF37; /* Used sparingly for accents */
+    --ps-dark: #1A1A1A; /* Deep charcoal instead of pure black for softer text */
+    --ps-grey-light: #F8F9FA; /* Clean corporate background grey */
 
     /* === UI Colors === */
     --bg-body: #FFFFFF;
     --bg-white: #FFFFFF;
-    --whatsapp-green: #25D366;
     --text-main: #333333;
     --text-muted: #666666;
-    --border-color: rgba(0, 0, 0, 0.08);
+    --border-color: rgba(0, 0, 0, 0.1);
 
-    /* === Spacing & Dimensions === */
-    --container-width: 1200px; /* Tighter container for focus */
+    /* === Dimensions & Spacing === */
+    --container-width: 1200px; /* Tighter, more controlled width */
     --radius-md: 12px;
     --radius-lg: 20px;
+    --section-spacing: 100px; /* Consistent deep spacing between sections */
 
     /* === Animation & Depth === */
     --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.04);
-    --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.1);
+    --shadow-soft: 0 5px 20px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
 
 /* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
@@ -52,7 +55,6 @@ h1, h2, h3, h4 {
     margin-top: 0;
     margin-bottom: 1rem;
     line-height: 1.2;
-    letter-spacing: -0.02em;
 }
 
 a { text-decoration: none; color: inherit; transition: var(--transition-smooth); }
@@ -66,15 +68,22 @@ ul { list-style: none; padding: 0; margin: 0; }
     width: 100%;
 }
 
-/* --- 3. ANIMATIONS --- */
-.reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+/* --- 3. UTILITIES & ANIMATIONS --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 @keyframes zoomIn { from { transform: scale(0.98); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-/* --- 4. HEADER (Minimalist) --- */
+.text-center { text-align: center; }
+.section-header { margin-bottom: 60px; text-align: center; }
+.section-subtitle { 
+    display: block; color: var(--ps-red); font-weight: 700; 
+    text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; margin-bottom: 10px; 
+}
+
+/* --- 4. HEADER (Clean Corporate) --- */
 header {
     background: rgba(255,255,255,0.98);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -83,272 +92,208 @@ header {
 }
 
 .header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: var(--container-width); margin: 0 auto; padding: 0 24px;
 }
 
 .logo img { height: 55px; width: auto; }
 
-.nav-menu { display: flex; gap: 40px; }
+.nav-menu { display: flex; gap: 35px; }
 .nav-menu a {
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-main);
-    padding: 5px 0;
+    font-weight: 600; font-size: 0.9rem; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--ps-dark); position: relative;
 }
-.nav-menu a:hover, .nav-menu a.active { color: var(--ps-red); }
+.nav-menu a::after {
+    content: ''; position: absolute; width: 0; height: 2px;
+    bottom: -5px; left: 0; background: var(--ps-red); transition: 0.3s;
+}
+.nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
 
 .mobile-toggle { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--ps-dark); }
 
-/* --- 5. HERO SECTION (Executive) --- */
+/* --- 5. HERO SECTION (Refined Hierarchy) --- */
 .hero {
     position: relative;
-    background-image: linear-gradient(rgba(0, 50, 20, 0.7), rgba(0, 30, 10, 0.8)), url('../assets/supermarket-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    min-height: 65vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    padding: 0 20px;
-    margin-bottom: 0; /* Removing gap below hero */
+    /* Darkened overlay for better text contrast */
+    background-image: linear-gradient(rgba(0, 60, 30, 0.75), rgba(0, 40, 20, 0.85)), url('../assets/supermarket-bg.jpg');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    min-height: 65vh; /* Slightly shorter for corporate feel */
+    display: flex; align-items: center; justify-content: center;
+    color: white; text-align: center; padding: 0 20px;
 }
 
 .hero-glass-card {
-    background: transparent; /* Removed box for cleaner look */
-    padding: 0;
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 850px; padding: 40px;
+    /* Removed glass effect border for cleaner look, relying on dark background */
     animation: zoomIn 0.8s ease-out;
 }
 
 .hero-welcome-text {
-    color: rgba(255,255,255,0.9);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
+    color: var(--ps-gold); text-transform: uppercase; letter-spacing: 3px;
+    font-weight: 700; font-size: 0.9rem; margin-bottom: 15px; display: block;
 }
 
 .hero h1 {
-    font-size: 4rem;
-    color: white;
-    margin-bottom: 20px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    font-size: 3.8rem; color: white; margin-bottom: 20px; font-weight: 800;
+    text-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.hero p {
-    font-size: 1.3rem;
-    color: rgba(255,255,255,0.9);
-    font-weight: 300;
-    margin-bottom: 40px;
+.hero p { font-size: 1.25rem; color: rgba(255,255,255,0.95); font-weight: 400; max-width: 700px; margin: 0 auto 30px; }
+
+/* --- 6. MODERN GRIDS (CRITICAL FIX FOR VERTICAL PRODUCTS) --- */
+
+/* This is the key fix for the products page. 
+   Using 'auto-fit' and 'minmax(280px, 1fr)' ensures that on wide screens, 
+   items will arrange horizontally in as many columns as fit. 
+   On narrow screens, they naturally stack vertically.
+*/
+.department-grid, 
+.values-grid, 
+.benefits-grid,
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px; /* Generous spacing to prevent crowding */
+    margin-bottom: var(--section-spacing);
 }
 
-/* Button Refinement (No Yellow) */
-.hero .btn-white {
-    background-color: white;
-    color: var(--ps-green);
-    font-weight: 700;
-    padding: 16px 48px;
-    border-radius: 50px;
-    border: 2px solid white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-.hero .btn-white:hover {
-    background-color: transparent;
-    color: white;
-    transform: translateY(-3px);
-}
-
-/* --- 6. QUICK ACCESS STRIP (Modern Dashboard) --- */
-.quick-access-section {
-    background: var(--bg-white);
-    padding: 60px 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
+/* Quick Access needs stricter control to ensure 4 columns on desktop */
 .quick-access-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: 24px;
 }
 
+/* --- 7. CARDS & UI COMPONENTS --- */
+
+/* Quick Access Cards (Home) */
+.quick-access-section { margin-top: -50px; position: relative; z-index: 20; padding-bottom: var(--section-spacing); }
 .quick-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 20px;
-    background: var(--bg-white);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
-    transition: var(--transition-smooth);
-    text-align: center;
-    color: var(--ps-dark);
+    background: white; padding: 30px 20px; border-radius: var(--radius-md);
+    text-align: center; box-shadow: var(--shadow-soft); transition: var(--transition-smooth);
+    border: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center;
+    height: 100%;
 }
-
-.quick-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-card);
-    border-color: var(--ps-green);
-}
-
+.quick-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--ps-green); }
 .quick-icon {
-    font-size: 2rem;
-    color: var(--ps-green);
-    margin-bottom: 15px;
-    background: var(--ps-grey);
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s;
+    font-size: 1.8rem; color: var(--ps-green); margin-bottom: 15px;
+    width: 64px; height: 64px; background: var(--ps-grey-light); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; transition: 0.3s;
 }
-
 .quick-card:hover .quick-icon { background: var(--ps-green); color: white; }
-.quick-label { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
+.quick-label { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ps-dark); }
 
-/* --- 7. SLIDER SECTION --- */
-.offers-slider-section { padding: 80px 0; overflow: hidden; background: var(--ps-grey); }
-.section-header-center { text-align: center; margin-bottom: 50px; }
-.section-subtitle { color: var(--ps-red); text-transform: uppercase; font-weight: 700; letter-spacing: 1.5px; font-size: 0.8rem; display: block; margin-bottom: 10px; }
-
-.slider-container {
-    position: relative; width: 100%; max-width: 1200px; margin: 0 auto;
-    overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover);
+/* Standard Content/Product Cards */
+.dept-card, .value-card, .benefit-item, .blog-card {
+    background: white; border-radius: var(--radius-md); overflow: hidden;
+    box-shadow: var(--shadow-card); border: 1px solid var(--border-color);
+    transition: var(--transition-smooth); display: flex; flex-direction: column;
+    height: 100%; /* Ensures equal height in grid */
 }
-.slider-track { display: flex; transition: transform 0.5s ease; height: 500px; }
-.slide { min-width: 100%; position: relative; display: flex; align-items: center; justify-content: center; text-align: center; background-size: cover; background-position: center; }
+.dept-card:hover, .value-card:hover, .benefit-item:hover, .blog-card:hover {
+    transform: translateY(-8px); box-shadow: var(--shadow-hover);
+}
 
-/* Slide Images */
+/* Value/Benefit Specifics */
+.value-card, .benefit-item { padding: 35px; text-align: left; }
+.icon-circle, .benefit-icon {
+    width: 60px; height: 60px; background: var(--ps-grey-light); color: var(--ps-green);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn, .btn-primary, .btn-white, .btn-whatsapp {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 14px 32px; border-radius: 50px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; transition: 0.3s; border: none; cursor: pointer;
+}
+/* Primary Brand Button */
+.btn-primary { background: var(--ps-red); color: white; }
+.btn-primary:hover { background: #b01e14; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(218, 41, 28, 0.3); }
+
+/* White/Hero Button */
+.btn-white { background: white; color: var(--ps-green); font-weight: 800; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+.btn-white:hover { background: var(--ps-green); color: white; transform: translateY(-2px); }
+
+/* WhatsApp Button */
+.btn-whatsapp { background: #25D366; color: white; }
+.btn-whatsapp:hover { background: #1ebc57; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3); }
+
+/* --- 8. SECTIONS: SLIDER & HOW IT WORKS --- */
+.offers-slider-section { padding: var(--section-spacing) 0; background: var(--ps-grey-light); }
+.slider-container {
+    position: relative; max-width: 1200px; margin: 0 auto;
+    border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-card);
+}
+.slider-track { display: flex; transition: transform 0.5s ease-in-out; height: 480px; }
+.slide {
+    min-width: 100%; position: relative; display: flex; align-items: center; justify-content: left; /* Left align corporate text */
+    padding: 0 80px; background-size: cover; background-position: center;
+}
+/* Standardized Slide Backgrounds */
 .slide-1 { background-image: url('../assets/promo1.jpg'); }
 .slide-2 { background-image: url('../assets/promo2.jpg'); }
 .slide-3 { background-image: url('../assets/promo3.jpg'); }
 
-.slide::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.3)); }
-.slide-content { position: relative; z-index: 2; color: white; padding: 40px; max-width: 800px; }
-.slide h2 { font-size: 3.5rem; margin-bottom: 20px; color: white; }
-.slide p { font-size: 1.2rem; margin-bottom: 40px; color: rgba(255,255,255,0.9); }
+.slide::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%); }
+.slide-content { position: relative; z-index: 2; max-width: 600px; color: white; text-align: left; }
+.offer-tag { display: inline-block; background: var(--ps-red); color: white; padding: 5px 15px; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 15px; border-radius: 4px; }
+.slide h2 { font-size: 3rem; color: white; margin-bottom: 15px; line-height: 1.1; }
+.slide p { font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9; }
 
-.slider-dots { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 10; }
-.dot { width: 12px; height: 12px; background: rgba(255,255,255,0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
-.dot.active { background: white; transform: scale(1.3); }
+/* How It Works - Horizontal Flow */
+.how-it-works-section { padding: var(--section-spacing) 0; text-align: center; }
+.steps-container { display: flex; justify-content: center; gap: 40px; margin-top: 50px; }
+.step-item { flex: 1; max-width: 280px; display: flex; flex-direction: column; align-items: center; }
+.step-icon-circle { width: 80px; height: 80px; font-size: 2rem; margin-bottom: 20px; background: white; border: 2px solid var(--border-color); color: var(--ps-green); box-shadow: var(--shadow-soft); }
 
-.btn-primary { background: var(--ps-red); color: white; padding: 14px 36px; border-radius: 50px; font-weight: 700; border: none; font-size: 0.95rem; }
-.btn-primary:hover { background: #b01e14; transform: translateY(-2px); }
-
-.slider-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    background: rgba(255,255,255,0.1); color: white; width: 60px; height: 60px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; cursor: pointer;
-    backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.2); transition: 0.3s;
+/* --- 9. FOOTER (CRITICAL FIX: BRAND COLORS) --- */
+footer {
+    /* FIX: Changed from black to brand green */
+    background: var(--ps-green);
+    color: white;
+    padding: 80px 0 30px;
+    text-align: center;
+    /* Added red top border for brand identity */
+    border-top: 8px solid var(--ps-red);
 }
-.slider-arrow:hover { background: white; color: var(--ps-dark); }
-.arrow-left { left: 30px; }
-.arrow-right { right: 30px; }
-
-/* --- 8. HOW IT WORKS (Horizontal & Clean) --- */
-.how-it-works-section { padding: 100px 0; background: white; text-align: center; }
-.steps-container {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin-top: 60px;
-    flex-wrap: wrap;
-}
-
-.step-item {
-    flex: 1;
-    min-width: 250px;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.step-icon-circle {
-    width: 90px;
-    height: 90px;
-    background: white;
-    border: 2px solid var(--border-color);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--ps-green);
-    font-size: 2rem;
-    margin-bottom: 25px;
-    box-shadow: var(--shadow-soft);
-}
-
-.step-title { font-size: 1.2rem; margin-bottom: 10px; color: var(--ps-dark); }
-.step-desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
-
-/* --- 9. BRAND VALUES --- */
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    padding-bottom: 100px;
-    margin-top: 40px;
-}
-
-.value-card {
-    padding: 40px;
-    background: white;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
-    text-align: left;
-    border-top: 4px solid var(--ps-green);
-    transition: var(--transition-smooth);
-}
-.value-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
-
-/* --- 10. FOOTER --- */
-footer { background: #0a0a0a; color: white; padding: 80px 0 40px; text-align: center; }
-.social-links { margin-bottom: 40px; }
-.social-links h4 { color: white; margin-bottom: 20px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
+.footer-content h4 { color: white; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; }
 .icons-container a {
-    display: inline-flex; width: 50px; height: 50px; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 10px;
-    transition: 0.3s;
+    display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.1); color: white; border-radius: 50%; margin: 0 8px;
+    transition: 0.3s; border: 1px solid rgba(255,255,255,0.15);
 }
-.icons-container a:hover { background: var(--ps-red); transform: translateY(-3px); }
-.copyright p { opacity: 0.6; font-size: 0.85rem; }
+.icons-container a:hover { background: var(--ps-red); border-color: var(--ps-red); transform: translateY(-3px); }
+.copyright p { opacity: 0.7; font-size: 0.9rem; margin-top: 40px; }
 
-/* --- 11. RESPONSIVE BREAKPOINTS --- */
+/* --- 10. RESPONSIVE BREAKPOINTS --- */
 @media (max-width: 900px) {
-    .quick-access-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .quick-access-grid { grid-template-columns: repeat(2, 1fr); }
     .hero h1 { font-size: 3rem; }
-    .values-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
     .mobile-toggle { display: block; }
-    .nav-menu { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%; background: white; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 1px solid var(--border-color); }
+    .nav-menu {
+        display: none; flex-direction: column; position: absolute; top: 100%; left: 0; width: 100%;
+        background: white; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 1px solid var(--border-color);
+    }
     .nav-menu.active { display: flex; }
+    .nav-menu a { font-size: 1rem; padding: 10px 0; border-bottom: 1px solid #eee; }
+    .nav-menu a::after { display: none; } /* Remove underline hover on mobile */
+
+    .hero { min-height: auto; padding: 140px 20px 80px; background-attachment: scroll; }
+    .hero h1 { font-size: 2.5rem; }
     
-    .hero { min-height: auto; padding: 120px 20px 80px; }
-    .hero h1 { font-size: 2.2rem; }
-    .hero p { font-size: 1rem; }
+    .slider-track { height: auto; min-height: 450px; }
+    .slide { padding: 40px 20px; justify-content: center; text-align: center; }
+    .slide-content { text-align: center; }
+    .slide h2 { font-size: 2rem; }
+    .slider-arrow { display: none; } /* Hide arrows on mobile */
+
+    .steps-container { flex-direction: column; align-items: center; gap: 50px; }
     
-    .slider-track { height: 400px; }
-    .slide h2 { font-size: 1.8rem; }
-    .slide-content { padding: 20px; }
-    .slider-arrow { display: none; }
-    
-    .steps-container { flex-direction: column; gap: 50px; }
+    /* Ensure grids stack on mobile if they haven't already */
+    .quick-access-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
 }
