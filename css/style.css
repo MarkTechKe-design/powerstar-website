@@ -203,3 +203,69 @@ footer { background: var(--ps-green); color: white; padding: 80px 20px 40px; tex
     .hero h1 { font-size: 2rem; }
     .b2b-wrapper { padding: 40px 24px; }
 }
+/* ==========================================================================
+   HOMEPAGE RESCUE PATCH (V12.0)
+   Target: Fix broken Quick Access Grid & restore structure
+   ========================================================================== */
+
+/* 1. Force 4-Column Grid on Desktop for Quick Access */
+@media (min-width: 1024px) {
+    .quick-access-grid {
+        grid-template-columns: repeat(4, 1fr) !important; /* Force 4 columns */
+        gap: 24px;
+    }
+}
+
+/* 2. Tablet Mode (2 columns is fine here) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .quick-access-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+/* 3. Mobile Mode (2 columns for icons is better than 1 big stack) */
+@media (max-width: 767px) {
+    .quick-access-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px;
+    }
+    
+    /* Make icons smaller on mobile to fit nicely */
+    .quick-card {
+        padding: 15px !important;
+    }
+    .quick-icon {
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 1.5rem !important;
+        margin-bottom: 10px !important;
+    }
+    .quick-label {
+        font-size: 0.75rem !important;
+    }
+}
+
+/* 4. Fix "How Powerstar Works" Alignment */
+.steps-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.step-item {
+    flex: 1;
+    min-width: 200px; /* Ensures they don't squash too much */
+    text-align: center;
+}
+
+/* 5. Ensure Hero Text is Visible */
+.hero-glass-card {
+    background: rgba(0, 0, 0, 0.75) !important; /* Darker for contrast */
+}
+.hero-welcome-text {
+    color: var(--ps-gold) !important;
+}
+.hero h1 {
+    color: white !important;
+}
