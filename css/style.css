@@ -1,9 +1,15 @@
+/* ==========================================================================
+   POWERSTAR SUPERMARKETS - FINAL PRODUCTION MASTER (V10.0)
+   Role: Senior Frontend Architect
+   Target: Clean CSS, Fixed Hero, Solved Careers/Store Ops Contrast
+   ========================================================================== */
+
 /* --- 1. DESIGN TOKENS & CORE VARIABLES --- */
 :root {
     /* === Brand Palette (Strict) === */
     --ps-red: #DA291C;
     --ps-green: #006838;
-    --ps-gold: #D4AF37; /* Used for premium accents/loyalty only */
+    --ps-gold: #D4AF37; /* Premium accents/Loyalty */
     --ps-dark: #000000;
 
     /* === UI Colors === */
@@ -143,7 +149,7 @@ header {
 
 /* --- 6. HOMEPAGE: QUICK ACCESS GRID (4 Columns) --- */
 .quick-access-section {
-    margin-top: -60px; /* Pulls into Hero */
+    margin-top: -60px;
     position: relative;
     z-index: 20;
     padding-bottom: 40px;
@@ -151,12 +157,10 @@ header {
 
 .quick-access-grid {
     display: grid;
-    /* Default Mobile: 2 cols for icons is usually safe, or 1 if very small */
     grid-template-columns: repeat(2, 1fr); 
     gap: 15px;
 }
 
-/* Tablet & Desktop: 4 Columns for Quick Access */
 @media (min-width: 900px) {
     .quick-access-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -209,21 +213,20 @@ header {
 .quick-card.loyalty-card:hover { border-bottom-color: var(--ps-gold); }
 
 /* --- 7. PRODUCTS PAGE: DEPARTMENT GRID (3 Columns) --- */
-/* This is the fix requested for the Products page structure */
 .department-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Mobile: 1 Col */
+    grid-template-columns: 1fr;
     gap: 32px;
     padding-bottom: 80px;
     margin-top: 40px;
 }
 
 @media (min-width: 768px) {
-    .department-grid { grid-template-columns: repeat(2, 1fr); } /* Tablet: 2 Cols */
+    .department-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (min-width: 1024px) {
-    .department-grid { grid-template-columns: repeat(3, 1fr); } /* Desktop: 3 Cols */
+    .department-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 .dept-card {
@@ -464,56 +467,47 @@ footer { background: var(--ps-green); color: white; padding: 80px 20px 40px; tex
     /* Ensure grids don't overflow */
     .department-grid, .values-grid { grid-template-columns: 1fr; }
 }
+
 /* ==========================================================================
-   HOTFIX: CAREERS & CONTRAST READABILITY
-   Target: Fix text blending on "Store Operations" and dark sections
+   HOTFIX: CAREERS & STORE OPERATIONS CONTRAST FIX
+   Forces WHITE Background and DARK Text on specific cards to prevent blending
    ========================================================================== */
 
-/* 1. Force White Text on Brand Backgrounds */
-/* If you used a utility class or style for the green background */
-.bg-green, .bg-red, .bg-dark, header.bg-green {
+/* 1. Target potential container classes for Careers/Store Ops */
+.career-card, 
+.store-ops-card, 
+.job-card,
+.career-section .card,
+.store-operations .card {
+    background-color: #ffffff !important; /* Force White Background */
+    color: #000000 !important; /* Force Black Text */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+    border-radius: 16px !important;
+    padding: 30px !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+}
+
+/* 2. Fix Headings inside these cards */
+.career-card h3, 
+.store-ops-card h3, 
+.job-card h3,
+.career-section .card h3 {
+    color: #006838 !important; /* Powerstar Green for Headlines */
+    text-shadow: none !important;
+}
+
+/* 3. Fix Paragraphs inside these cards */
+.career-card p, 
+.store-ops-card p, 
+.job-card p,
+.career-section .card p {
+    color: #000000 !important; /* Pure Black for readability */
+    font-weight: 500 !important;
+}
+
+/* 4. Safety Net: If text is directly on a green background (no card) */
+.bg-green h1, .bg-green h2, .bg-green h3, .bg-green p,
+.bg-dark h1, .bg-dark h2, .bg-dark h3, .bg-dark p {
     color: #ffffff !important;
-}
-
-.bg-green h1, .bg-green h2, .bg-green h3, .bg-green p, .bg-green i,
-.bg-red h1, .bg-red h2, .bg-red h3, .bg-red p, .bg-red i {
-    color: #ffffff !important;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Subtle shadow for lift */
-}
-
-/* 2. Fix for "Cards" on colored backgrounds */
-/* If the Store Operations section has cards inside it */
-.bg-green .value-card, 
-.bg-green .dept-card, 
-.bg-green .quick-card {
-    background: #ffffff !important; /* Ensure card stays white */
-    color: var(--ps-dark) !important; /* Text inside card stays black */
-}
-
-/* 3. Universal "Text-on-Image" Safety Class */
-/* Use this if the text is sitting directly on an image */
-.text-overlay-fix h1, 
-.text-overlay-fix h2, 
-.text-overlay-fix h3, 
-.text-overlay-fix p {
-    color: #ffffff !important;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.9) !important; /* Heavy shadow for max readability */
-}
-
-/* 4. Specific "Store Operations" Section Hard Fix */
-/* In case it's a specific grid item causing trouble */
-.career-card, .store-ops-card {
-    background-color: #ffffff;
-    box-shadow: var(--shadow-card);
-    padding: 30px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-color);
-}
-
-.career-card h3, .store-ops-card h3 {
-    color: var(--ps-green) !important; /* Header stands out */
-}
-
-.career-card p, .store-ops-card p {
-    color: var(--ps-dark) !important; /* Body text stands out */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5) !important;
 }
