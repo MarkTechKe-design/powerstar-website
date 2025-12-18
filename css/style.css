@@ -264,3 +264,70 @@ footer { background: var(--ps-green); color: white; padding: 80px 20px 40px; tex
         gap: 40px; /* More space between steps on mobile */
     }
 }
+/* ==========================================================================
+   HOMEPAGE FINAL POLISH (V14.0)
+   Target: Fix Mobile Icons, Remove Yellow Button, Align 'How It Works'
+   ========================================================================== */
+
+/* 1. Hero Button Fix */
+.hero .btn-white {
+    background-color: white !important;
+    color: var(--ps-green) !important;
+    border: 2px solid white !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
+}
+.hero .btn-white:hover {
+    background-color: transparent !important;
+    color: white !important;
+}
+
+/* 2. 'How It Works' Alignment Fix */
+.how-it-works-section {
+    text-align: center; /* Ensures header is centered */
+}
+
+.steps-container {
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.step-item {
+    flex: 1;
+    min-width: 220px;
+    max-width: 300px; /* Prevents stretching too wide */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center icons and text */
+    text-align: center; /* Center text content */
+}
+
+.step-icon-circle {
+    margin: 0 auto 20px auto; /* Force center alignment of icon */
+}
+
+/* 3. Slider Content Fix for Mobile */
+@media (max-width: 768px) {
+    .slide-content {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .slide h2 {
+        font-size: 1.8rem !important; /* Smaller font for mobile */
+        margin-bottom: 10px;
+    }
+    
+    .slide p {
+        font-size: 1rem !important;
+        margin-bottom: 20px;
+    }
+    
+    .btn-primary {
+        padding: 12px 24px; /* Smaller button padding */
+        font-size: 0.9rem;
+    }
+}
