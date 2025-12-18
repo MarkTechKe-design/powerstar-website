@@ -464,3 +464,56 @@ footer { background: var(--ps-green); color: white; padding: 80px 20px 40px; tex
     /* Ensure grids don't overflow */
     .department-grid, .values-grid { grid-template-columns: 1fr; }
 }
+/* ==========================================================================
+   HOTFIX: CAREERS & CONTRAST READABILITY
+   Target: Fix text blending on "Store Operations" and dark sections
+   ========================================================================== */
+
+/* 1. Force White Text on Brand Backgrounds */
+/* If you used a utility class or style for the green background */
+.bg-green, .bg-red, .bg-dark, header.bg-green {
+    color: #ffffff !important;
+}
+
+.bg-green h1, .bg-green h2, .bg-green h3, .bg-green p, .bg-green i,
+.bg-red h1, .bg-red h2, .bg-red h3, .bg-red p, .bg-red i {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Subtle shadow for lift */
+}
+
+/* 2. Fix for "Cards" on colored backgrounds */
+/* If the Store Operations section has cards inside it */
+.bg-green .value-card, 
+.bg-green .dept-card, 
+.bg-green .quick-card {
+    background: #ffffff !important; /* Ensure card stays white */
+    color: var(--ps-dark) !important; /* Text inside card stays black */
+}
+
+/* 3. Universal "Text-on-Image" Safety Class */
+/* Use this if the text is sitting directly on an image */
+.text-overlay-fix h1, 
+.text-overlay-fix h2, 
+.text-overlay-fix h3, 
+.text-overlay-fix p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.9) !important; /* Heavy shadow for max readability */
+}
+
+/* 4. Specific "Store Operations" Section Hard Fix */
+/* In case it's a specific grid item causing trouble */
+.career-card, .store-ops-card {
+    background-color: #ffffff;
+    box-shadow: var(--shadow-card);
+    padding: 30px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.career-card h3, .store-ops-card h3 {
+    color: var(--ps-green) !important; /* Header stands out */
+}
+
+.career-card p, .store-ops-card p {
+    color: var(--ps-dark) !important; /* Body text stands out */
+}
