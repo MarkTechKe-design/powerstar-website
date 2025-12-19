@@ -12,10 +12,12 @@
 <link rel="stylesheet" href="css/style.css">
 
 <style>
+    /* Hero Image Override */
     .hero.services-hero {
         background-image: linear-gradient(rgba(0, 60, 30, 0.8), rgba(0, 40, 20, 0.9)), url('assets/bakery.jpg');
     }
-    /* Minor tweak for product tags */
+    
+    /* Product Tags */
     .product-tag {
         display: inline-block;
         font-size: 0.75rem;
@@ -32,6 +34,10 @@
         background: var(--ps-red);
         color: white;
     }
+
+    /* Force text visibility on cards */
+    .dept-title { color: #1a1a1a !important; }
+    .dept-desc { color: #555555 !important; }
 </style>
 
 </head>
@@ -56,7 +62,7 @@
 
 <div class="hero services-hero">
     <div class="hero-glass-card reveal">
-        <div class="hero-welcome-text" style="color: white;">Premium Selection</div>
+        <div class="hero-welcome-text" style="color: #D4AF37;">Premium Selection</div>
         <h1>Our Product Range</h1>
         <p>Sourcing the finest quality brands for your home, business, and family.</p>
     </div>
@@ -85,7 +91,7 @@
     <div class="reveal" style="text-align: center; margin-bottom: 60px; margin-top: 60px;">
         <span class="section-subtitle">Browse Categories</span>
         <h2>Explore Our Departments</h2>
-        <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Everything you need under one roof, available at all 11+ branches.</p>
+        <p style="color: #666; max-width: 600px; margin: 0 auto;">Everything you need under one roof, available at all 11+ branches.</p>
     </div>
 
     <div class="department-grid">
@@ -272,18 +278,63 @@
 
     </div>
 
-    <div class="b2b-wrapper reveal" style="margin-top: 60px;">
-        <div class="b2b-grid">
-            <div style="display: flex; flex-direction: column; justify-content: center;">
-                <h3 style="color:white; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; font-size: 0.9rem;">For Business & Schools</h3>
-                <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px;">Bulk Orders Made Easy</h2>
-                <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px;">Stocking up for your home, school, or hotel? Enjoy wholesale prices with priority handling and delivery support.</p>
+    <div class="reveal" style="margin-top: 80px; margin-bottom: 80px;">
+        <div style="
+            background: linear-gradient(135deg, #004d2a 0%, #002914 100%);
+            border-radius: 20px;
+            padding: 60px 40px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+        ">
+            <div style="flex: 1; min-width: 300px; z-index: 2;">
+                <h3 style="color: #D4AF37; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; font-size: 0.9rem; font-weight: 700;">For Business & Schools</h3>
+                <h2 style="color: white; font-size: 2.5rem; margin-bottom: 20px; line-height: 1.1;">Bulk Orders Made Easy</h2>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 1.1rem; line-height: 1.6; max-width: 600px;">
+                    Stocking up for your home, school, or hotel? Enjoy wholesale prices with priority handling and delivery support.
+                </p>
                 <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-                    <a href="contact.html" class="btn-white">Contact Sales Team</a>
-                    <a href="order.html" class="btn-primary" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);">Order on WhatsApp</a>
+                    <a href="contact.html" style="
+                        background: white; 
+                        color: #006838; 
+                        padding: 14px 32px; 
+                        border-radius: 50px; 
+                        font-weight: 700; 
+                        text-decoration: none; 
+                        display: inline-block;
+                        transition: transform 0.2s;
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                    ">Contact Sales Team</a>
+                    
+                    <a href="order.html" style="
+                        background: rgba(255,255,255,0.15); 
+                        color: white; 
+                        border: 1px solid rgba(255,255,255,0.3); 
+                        padding: 14px 32px; 
+                        border-radius: 50px; 
+                        font-weight: 700; 
+                        text-decoration: none; 
+                        display: inline-block;
+                        backdrop-filter: blur(5px);
+                    ">Order on WhatsApp</a>
                 </div>
             </div>
-            <div style="text-align: center; font-size: 10rem; color: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center;">
+
+            <div style="
+                font-size: 12rem; 
+                color: rgba(255,255,255,0.05); 
+                position: absolute; 
+                right: -20px; 
+                bottom: -20px; 
+                pointer-events: none;
+                z-index: 1;
+            ">
                 <i class="fas fa-truck-loading"></i>
             </div>
         </div>
