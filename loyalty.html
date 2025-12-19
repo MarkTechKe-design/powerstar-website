@@ -7,11 +7,12 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <link rel="stylesheet" href="css/style.css">
 
 <style>
+    /* Specific Hero for Loyalty Page */
     .hero.loyalty-hero {
         background-image: linear-gradient(rgba(0, 40, 20, 0.8), rgba(0, 20, 10, 0.95)), url('assets/store-interior.jpg');
     }
@@ -147,8 +148,8 @@
             </div>
 
             <div style="margin-top: 30px;">
-                <button type="submit" class="btn-whatsapp" style="width: 100%; font-size: 1.1rem; padding: 18px;">
-                    <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i> Activate Membership
+                <button type="submit" class="btn-whatsapp" style="width: 100%;">
+                    <i class="fab fa-whatsapp" style="font-size: 1.4rem; margin-right: 10px;"></i> Activate Membership
                 </button>
                 <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; color: #999;">
                     <i class="fas fa-lock"></i> Your data is secure. By registering, you agree to receive promotional updates.
@@ -197,7 +198,7 @@
         }
     });
 
-    // 2. SCROLL REVEAL
+    // 2. SCROLL REVEAL ANIMATION
     function reveal() {
         var reveals = document.querySelectorAll(".reveal");
         for (var i = 0; i < reveals.length; i++) {
@@ -212,7 +213,7 @@
     window.addEventListener("scroll", reveal);
     reveal();
 
-    // 3. WHATSAPP LOGIC
+    // 3. WHATSAPP REGISTRATION LOGIC
     const branchContacts = {
         "Kasarani HQ": "254790680038", "Joska": "254791047850", "Kangari": "254710976254",
         "Naivasha": "254768016429", "Kitengela": "254704121122", "Kikuyu": "254741251973",
@@ -223,12 +224,18 @@
     document.getElementById('loyaltyForm').addEventListener('submit', function(e){
         e.preventDefault();
         const fullName = document.getElementById('fullName').value;
+        const phone = document.getElementById('phone').value;
+        const nationalId = document.getElementById('nationalId').value;
+        const dob = document.getElementById('dob').value;
         const branchKey = document.getElementById('branch').value;
         const status = document.getElementById('loyaltyStatus');
+
         let targetNumber = branchContacts[branchKey] || "254790680038";
-        const msg = `*New Loyalty Registration*\nName: ${fullName}\nBranch: ${branchKey}`;
+
+        const msg = `*New Loyalty Registration*\n------------------\nName: ${fullName}\nPhone: ${phone}\nID No: ${nationalId}\nDOB: ${dob}\nPreferred Branch: ${branchKey}`;
         const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
-        status.innerHTML = 'Processing...';
+
+        status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
         setTimeout(() => { window.open(url, '_blank'); status.innerHTML = ''; }, 1000);
     });
 </script>
