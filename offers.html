@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Weekly Offers - Powerstar Supermarkets</title>
+    <meta name="description"
+        content="Check out this week's special offers and discounts at Powerstar Supermarkets. Save on groceries, electronics, and more.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+    <script src="js/whatsapp-orders.js" defer></script>
+    <script src="js/ga4-events.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Logo"></a>
+            <button class="mobile-toggle" id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Products</a>
+                <a href="branches.html">Branches</a>
+                <a href="order.html">Shop on WhatsApp</a>
+                <a href="loyalty.html">Loyalty</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero offers-hero">
+        <div class="hero-glass-card reveal">
+            <span class="hero-welcome-text">Best Prices in Town</span>
+            <h1>Weekly Specials</h1>
+            <p>Grab these limited-time deals at your nearest branch or order online.</p>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- SAFE TO EDIT: Promotional Slider (Campaigns) -->
+        <section class="promo-slider-section reveal" style="margin-top: 40px; margin-bottom: 60px;">
+            <div class="slider-container" id="promoSlider">
+
+                <!-- Navigation Arrows -->
+                <button class="slider-arrow prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-arrow next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
+
+                <!-- Track -->
+                <div class="slider-track" id="sliderTrack">
+                    <!-- Slide 1 -->
+                    <div class="slide active">
+                        <img src="assets/promotions/promo-1.jpg" class="slide-bg" alt="Cooking Oil Promo"
+                            onerror="this.src='https://placehold.co/1200x400/333/fff?text=Cooking+Oil+Week'">
+                        <div class="slide-content">
+                            <span class="offer-tag">Mega Saver</span>
+                            <h2>Cooking Oil Week</h2>
+                            <p>Huge discounts on all 5L brands. Stock up now!</p>
+                            <a href="#offers-grid" class="btn btn-primary">Shop Now</a>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <img src="assets/promotions/promo-2.jpg" class="slide-bg" alt="Back to School"
+                            onerror="this.src='https://placehold.co/1200x400/da291c/fff?text=Back+to+School'">
+                        <div class="slide-content">
+                            <span class="offer-tag">Education</span>
+                            <h2>Back to School</h2>
+                            <p>Everything your kids need at wholesale prices.</p>
+                            <a href="#offers-grid" class="btn btn-primary">View Offers</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indicators -->
+                <div class="slider-indicators">
+                    <span class="indicator active" onclick="currentSlide(1)"></span>
+                    <span class="indicator" onclick="currentSlide(2)"></span>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-header-center reveal" id="offers-grid" style="margin-top: 20px;">
+            <span class="section-subtitle">Hurry, Limited Stock!</span>
+            <h2>Top 6 Deals</h2>
+        </div>
+
+        <!-- SAFE TO EDIT: Offers Grid -->
+        <!-- SAFE TO EDIT: Offers Grid -->
+        <div class="offers-grid reveal">
+
+            <!-- Card 1 -->
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="assets/offers/offer-1.jpg" alt="Cooking Oil 5L" onerror="this.style.display='none'">
+                    <span class="discount-badge">-10%</span>
+                </div>
+                <div class="offer-details">
+                    <h3>Cooking Oil 5L</h3>
+                    <div class="price-row">
+                        <span class="old-price">Ksh 1,800</span>
+                        <span class="new-price">Ksh 1,620</span>
+                    </div>
+                    <small class="branch-label">Prices may vary by branch</small>
+                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="assets/offers/offer-2.jpg" alt="Sugar 2kg" onerror="this.style.display='none'">
+                    <span class="discount-badge">HOT</span>
+                </div>
+                <div class="offer-details">
+                    <h3>Sugar 2kg</h3>
+                    <div class="price-row">
+                        <span class="old-price">Ksh 450</span>
+                        <span class="new-price">Ksh 390</span>
+                    </div>
+                    <small class="branch-label">Prices may vary by branch</small>
+                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="assets/offers/offer-3.jpg" alt="Wheat Flour 2kg" onerror="this.style.display='none'">
+                    <span class="discount-badge">-15%</span>
+                </div>
+                <div class="offer-details">
+                    <h3>Wheat Flour 2kg</h3>
+                    <div class="price-row">
+                        <span class="old-price">Ksh 220</span>
+                        <span class="new-price">Ksh 185</span>
+                    </div>
+                    <small class="branch-label">Prices may vary by branch</small>
+                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="assets/offers/offer-4.jpg" alt="Bar Soap 1kg" onerror="this.style.display='none'">
+                    <span class="discount-badge">SALE</span>
+                </div>
+                <div class="offer-details">
+                    <h3>Bar Soap 1kg</h3>
+                    <div class="price-row">
+                        <span class="old-price">Ksh 180</span>
+                        <span class="new-price">Ksh 150</span>
+                    </div>
+                    <small class="branch-label">Prices may vary by branch</small>
+                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="assets/offers/offer-5.jpg" alt="Rice 5kg" onerror="this.style.display='none'">
+                    <span class="discount-badge">-20%</span>
+                </div>
+                <div class="offer-details">
+                    <h3>Rice 5kg</h3>
+                    <div class="price-row">
+                        <span class="old-price">Ksh 1,200</span>
+                        <span class="new-price">Ksh 960</span>
+                    </div>
+                    <small class="branch-label">Prices may vary by branch</small>
+                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="offer-card">
+                <div class="offer-image">
+                    <img src="assets/offers/offer-6.jpg" alt="Milk Long Life" onerror="this.style.display='none'">
+                    <span class="discount-badge">DEAL</span>
+                </div>
+                <div class="offer-details">
+                    <h3>Milk Long Life</h3>
+                    <div class="price-row">
+                        <span class="old-price">Ksh 100</span>
+                        <span class="new-price">Ksh 85</span>
+                    </div>
+                    <small class="branch-label">Prices may vary by branch</small>
+                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+
+        <section class="reveal" style="text-align: center; margin: 80px 0;">
+            <p style="margin-bottom: 20px;">Don't see what you need?</p>
+            <a href="services.html" class="btn btn-outline"
+                style="border: 2px solid var(--text-color); color: var(--text-color);">View Full Product Catalog</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <h4 class="social-title">Follow Us</h4>
+                <div class="icons-container">
+                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

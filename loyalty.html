@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Descriptive Title for SEO -->
+    <title>Loyalty Program - Powerstar Supermarkets</title>
+    <meta name="description"
+        content="Join the Powerstar Smart Card loyalty program. Earn points with every purchase, no card needed. Just use your phone number to start saving.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Defer loading of non-critical JS -->
+    <script src="js/main.js" defer></script>
+    <script src="js/loyalty.js" defer></script>
+    <script src="js/whatsapp-orders.js" defer></script>
+    <script src="js/ga4-events.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <!-- SAFE TO EDIT: Logo -->
+            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
+                    class="fas fa-bars"></i></button>
+
+            <!-- SAFE TO EDIT: Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Products</a>
+                <a href="branches.html">Branches</a>
+                <a href="order.html">Shop on WhatsApp</a>
+                <a href="loyalty.html" class="active">Loyalty</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 5. HERO SECTION -->
+    <div class="hero loyalty-hero">
+        <div class="hero-glass-card reveal">
+            <span class="hero-welcome-text">Exclusive Membership</span>
+            <h1>Powerstar Smart Card</h1>
+            <p>Your phone number is your passport to savings. No plastic, no fees, just rewards.</p>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- 1. VIRTUAL SMART CARD (Visual Anchor) -->
+        <div class="card-display reveal">
+            <div class="smart-card">
+                <div class="card-top">
+                    <div class="card-chip"></div>
+                    <div class="card-logo-text">POWERSTAR</div>
+                </div>
+
+                <div>
+                    <!-- Placeholder Number -->
+                    <div class="card-number">07XX XXX XXX</div>
+                    <div class="card-instruction">YOUR PHONE NUMBER IS YOUR ID</div>
+                </div>
+
+                <div class="card-bottom">
+                    <div>
+                        <span class="card-label">MEMBER NAME</span>
+                        <span class="card-holder">JOHN KAMAU</span>
+                    </div>
+                    <div>
+                        <span class="card-label" style="text-align: right;">TIER STATUS</span>
+                        <div class="card-tier">GOLD MEMBER</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. VALUE PROPOSITION -->
+        <div class="benefits-intro reveal">
+            <span class="section-subtitle">Simple. Cardless. Rewarding.</span>
+            <h2>How It Works</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                We've revolutionized loyalty. No plastic cards to lose. Just use your phone number at the till to earn
+                points instantly.
+            </p>
+        </div>
+
+        <!-- 3. BENEFITS GRID -->
+        <section class="benefits-grid">
+            <article class="benefit-item reveal">
+                <div class="benefit-icon"><i class="fas fa-coins"></i></div>
+                <h3 class="benefit-title">Earn Instantly</h3>
+                <p>Get <b>1 Point</b> for every <b>KSh 200</b> you spend. Points accumulate automatically with every
+                    visit.</p>
+            </article>
+
+            <article class="benefit-item reveal">
+                <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3 class="benefit-title">Zero Hassle</h3>
+                <p>Forget bulky wallets. Your mobile number is your unique ID. Fast, secure, and always with you.</p>
+            </article>
+
+            <article class="benefit-item reveal">
+                <div class="benefit-icon"><i class="fas fa-gift"></i></div>
+                <h3 class="benefit-title">Exclusive Perks</h3>
+                <p>Unlock members-only discounts, entry to "Trolley Dash" giveaways, and holiday gift hampers.</p>
+            </article>
+        </section>
+
+        <!-- 4. REGISTRATION FORM (Preserved Logic) -->
+        <section class="loyalty-form-section reveal">
+
+            <div class="form-header-center">
+                <h2>Join the Club</h2>
+                <p>Join over 50,000 smart shoppers saving every day.</p>
+            </div>
+
+            <!-- DO NOT CHANGE IDs: Logic depends on 'loyaltyForm', 'fullName', 'phone', etc. -->
+            <form id="loyaltyForm" class="form-body">
+
+                <h3 class="form-section-title">Member Registration</h3>
+
+                <div class="form-group">
+                    <label>Full Official Name</label>
+                    <input type="text" id="fullName" placeholder="As per ID (e.g. John Kamau)" required>
+                </div>
+
+                <div class="form-row-split">
+                    <div class="form-group">
+                        <label>Phone Number (WhatsApp)</label>
+                        <input type="tel" id="phone" placeholder="07XX XXX XXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label>National ID Number</label>
+                        <input type="text" id="nationalId" placeholder="e.g. 12345678" required>
+                    </div>
+                </div>
+
+                <div class="form-row-split">
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" id="dob" required>
+                    </div>
+                    <!-- SAFE TO EDIT: Branch Options (Keep value="" matching JS keys if needed) -->
+                    <div class="form-group">
+                        <label>Preferred Home Branch</label>
+                        <select id="branch" required>
+                            <option value="" disabled selected>-- Select Location --</option>
+                            <option value="Kasarani HQ">Kasarani HQ</option>
+                            <option value="Joska">Joska</option>
+                            <option value="Kangari">Kangari</option>
+                            <option value="Naivasha">Naivasha</option>
+                            <option value="Kitengela">Kitengela</option>
+                            <option value="Kikuyu">Kikuyu</option>
+                            <option value="Kinoo">Kinoo</option>
+                            <option value="Ruiru Mini">Ruiru Mini</option>
+                            <option value="Ruiru Jambo">Ruiru Jambo</option>
+                            <option value="Zimmerman Base">Zimmerman Base</option>
+                            <option value="Zimmerman Express">Zimmerman Express</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <button type="submit" class="btn-whatsapp-submit">
+                        <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i> Activate via WhatsApp
+                    </button>
+                    <p style="text-align: center; margin-top: 20px; font-size: 0.85rem; color: #777; line-height: 1.5;">
+                        <i class="fas fa-lock" style="margin-right: 5px;"></i>
+                        Your data is strictly confidential. Clicking 'Activate' opens WhatsApp to complete registration.
+                    </p>
+                </div>
+
+                <!-- Feedback Container -->
+                <div id="loyaltyStatus"
+                    style="text-align: center; margin-top: 20px; font-weight: 600; color: var(--ps-green); min-height: 24px;">
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <h4 class="social-title">Follow Us</h4>
+                <div class="icons-container">
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
+                            class="fab fa-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

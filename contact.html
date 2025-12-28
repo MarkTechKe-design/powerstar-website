@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Descriptive Title for SEO -->
+    <title>Contact Us - Powerstar Supermarkets</title>
+    <meta name="description"
+        content="Get in touch with Powerstar Supermarkets. Contact our Customer Care, Sales Team, or Suppliers via WhatsApp or visit our Head Office.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Defer loading of non-critical JS -->
+    <script src="js/main.js" defer></script>
+    <script src="js/contact.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <!-- SAFE TO EDIT: Logo -->
+            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
+                    class="fas fa-bars"></i></button>
+
+            <!-- SAFE TO EDIT: Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Products</a>
+                <a href="branches.html">Branches</a>
+                <a href="order.html">Shop on WhatsApp</a>
+                <a href="loyalty.html">Loyalty</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html" class="active">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SAFE TO EDIT: Hero Section -->
+    <div class="hero contact-hero">
+        <div class="reveal">
+            <h1>Get in Touch</h1>
+            <p>We are here to help. Reach out to the right team instantly.</p>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- SAFE TO EDIT: Contact Details Cards -->
+        <div class="features-grid">
+            <div class="info-card reveal">
+                <i class="fas fa-map-marker-alt" style="color: var(--ps-green);"></i>
+                <h4>Head Office</h4>
+                <p>Kasarani - Mwiki Road<br>Nairobi, Kenya</p>
+            </div>
+            <div class="info-card reveal">
+                <i class="fas fa-phone-alt" style="color: var(--ps-red);"></i>
+                <h4>Customer Hotline</h4>
+                <p>+254 790 680 038<br>Mon - Sat (8am - 6pm)</p>
+            </div>
+            <div class="info-card reveal">
+                <i class="fas fa-envelope" style="color: var(--ps-green);"></i>
+                <h4>Email Us</h4>
+                <p>info@powerstar.co.ke<br>sales@powerstar.co.ke</p>
+            </div>
+        </div>
+
+        <!-- Intro Text -->
+        <div class="reveal" style="text-align:center; margin-bottom: 50px;">
+            <span class="section-subtitle">Instant Support</span>
+            <h2>Start a Conversation</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Choose the right department to get
+                the fastest response via WhatsApp.</p>
+        </div>
+
+        <!-- Contact Forms Wrapper -->
+        <div class="contact-split-wrapper">
+
+            <!-- SAFE TO EDIT: Customer Form -->
+            <div class="form-container form-customer reveal">
+                <div class="form-header">
+                    <i class="fab fa-whatsapp" style="font-size: 3.5rem; margin-bottom:10px;"></i>
+                    <h2>Customer Care</h2>
+                    <p>For Feedback, Inquiries & Compliments</p>
+                </div>
+
+                <form id="customerForm">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="custName" placeholder="e.g. John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Select Branch</label>
+                        <select id="custBranch" required>
+                            <option value="" disabled selected>-- Select Your Branch --</option>
+                            <option value="Kasarani HQ">Kasarani HQ</option>
+                            <option value="Joska">Joska</option>
+                            <option value="Kangari">Kangari</option>
+                            <option value="Naivasha">Naivasha</option>
+                            <option value="Kitengela">Kitengela</option>
+                            <option value="Kikuyu">Kikuyu</option>
+                            <option value="Kinoo">Kinoo</option>
+                            <option value="Ruiru Mini">Ruiru Mini</option>
+                            <option value="Ruiru Jambo">Ruiru Jambo</option>
+                            <option value="Zimmerman Base">Zimmerman Base</option>
+                            <option value="Zimmerman Express">Zimmerman Express</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="custMessage" placeholder="How can we help you today?" required
+                            rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="button">
+                        Start WhatsApp Chat <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- SAFE TO EDIT: Vendor Form -->
+            <div class="form-container form-vendor reveal">
+                <div class="form-header">
+                    <i class="fas fa-truck" style="font-size: 3.5rem; margin-bottom:10px;"></i>
+                    <h2>Sales & Suppliers</h2>
+                    <p>For Bulk Orders & New Product Listings</p>
+                </div>
+
+                <form id="vendorForm">
+                    <div class="form-group">
+                        <label>Company / Business Name</label>
+                        <input type="text" id="vendCompany" placeholder="e.g. Uzuri Distributors Ltd" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Inquiry Type</label>
+                        <select id="vendType">
+                            <option>New Product Listing</option>
+                            <option>Bulk/Wholesale Quote</option>
+                            <option>General Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Proposal / Details</label>
+                        <textarea id="vendMessage" placeholder="Briefly describe your offer..." required
+                            rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="button">
+                        Contact Sales HQ <i class="fas fa-briefcase"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <h4 class="social-title">Follow Us</h4>
+                <div class="icons-container">
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
+                            class="fab fa-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

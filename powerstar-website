@@ -1,0 +1,28 @@
+PowerstarWebsite/
+│
+├── index.html           ← Homepage
+├── about.html           ← Our Story & Strategy
+├── services.html        ← [RENAMED] Formerly "products.html" (matches nav links)
+├── branches.html        ← Branch Locator & Contacts
+├── order.html           ← [NEW] "Simple Way to Shop" & Payment Options
+├── loyalty.html         ← [NEW] Smart Card Registration
+├── careers.html         ← Jobs & Culture
+├── contact.html         ← Customer Care & Supplier Forms
+├── media.html           ← [MERGED] Combines News & Gallery (Delete 'news.html')
+│
+├── css/
+│   └── style.css        ← The Master CSS file I provided
+│
+├── js/
+│   └── main.js          ← (Optional) You can delete this if you used my inline scripts.
+│                          My code included all necessary JS at the bottom of each HTML file 
+│                          for faster loading.
+│
+└── assets/              ← KEEP ALL IMAGES DIRECTLY IN HERE
+    ├── logo.png
+    ├── supermarket-bg.jpg
+    ├── team-happy.jpg
+    ├── products-hero.jpg
+    ├── bakery.jpg
+    ├── electronics.jpg
+    ├── ... (and all other images referenced in the code)

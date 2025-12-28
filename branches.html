@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Descriptive Title for SEO -->
+    <title>Our Branches - Powerstar Supermarkets</title>
+    <meta name="description"
+        content="Find a Powerstar Supermarket near you. View our branch locations, contact details, and shop via WhatsApp for convenience.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Leaflet Map CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Defer loading of non-critical JS -->
+    <script src="js/main.js" defer></script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/branches.js" defer></script>
+    <script src="js/whatsapp-orders.js" defer></script>
+    <script src="js/ga4-events.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <!-- SAFE TO EDIT: Logo -->
+            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
+                    class="fas fa-bars"></i></button>
+
+            <!-- SAFE TO EDIT: Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html">Products</a>
+                <a href="branches.html" class="active">Branches</a>
+                <a href="order.html">Shop on WhatsApp</a>
+                <a href="loyalty.html">Loyalty</a>
+                <a href="careers.html">Careers</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SAFE TO EDIT: Hero Section -->
+    <div class="hero branch-hero">
+        <div class="hero-glass-card reveal">
+            <!-- EDITABLE: Subtitle -->
+            <span class="hero-welcome-text">Nationwide Reach</span>
+            <!-- EDITABLE: Main Headline -->
+            <h1>Our Network</h1>
+            <!-- EDITABLE: Tagline -->
+            <p>Find your nearest Powerstar branch and experience quality today.</p>
+        </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-wrapper container reveal"
+        style="margin-top: -40px; position: relative; z-index: 20; max-width: 600px;">
+        <div class="search-box"
+            style="background: white; padding: 15px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; align-items: center; border: 1px solid var(--border-color);">
+            <i class="fas fa-search" style="color: var(--ps-green); margin-left: 15px; font-size: 1.2rem;"></i>
+            <input type="text" id="branchSearch" placeholder="Search branch (e.g., Naivasha, Kikuyu)..."
+                style="border: none; outline: none; flex-grow: 1; padding: 10px 15px; font-family: 'Poppins', sans-serif; font-size: 1rem;">
+        </div>
+    </div>
+
+    <!-- BRANCH MAP LOCATOR -->
+    <main class="container" style="max-width: 1400px; padding: 0 20px;">
+
+        <div class="section-header-center reveal" style="margin-top: 60px; margin-bottom: 40px;">
+            <span class="section-subtitle">Nationwide Network</span>
+            <h2>Find Us Near You</h2>
+        </div>
+
+        <div class="locator-wrapper reveal">
+            <!-- Sidebar: Branch List -->
+            <div class="locator-list" id="branchList">
+
+                <!-- 1. Kasarani HQ -->
+                <div class="branch-item" data-lat="-1.223" data-lng="36.897" data-name="Kasarani HQ"
+                    data-phone="0790 680 038" data-whatsapp="254790680038" data-hours="8:00 AM - 9:00 PM">
+                    <div class="branch-info">
+                        <h3>Kasarani HQ</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 9:00 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0790 680 038</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 2. Naivasha -->
+                <div class="branch-item" data-lat="-0.717" data-lng="36.431" data-name="Naivasha Branch"
+                    data-phone="0768 016 429" data-whatsapp="254768016429" data-hours="8:00 AM - 8:30 PM">
+                    <div class="branch-info">
+                        <h3>Naivasha</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 8:30 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0768 016 429</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 3. Kitengela -->
+                <div class="branch-item" data-lat="-1.487" data-lng="36.959" data-name="Kitengela Branch"
+                    data-phone="0704 121 122" data-whatsapp="254704121122" data-hours="8:00 AM - 9:00 PM">
+                    <div class="branch-info">
+                        <h3>Kitengela</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 9:00 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0704 121 122</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 4. Kikuyu -->
+                <div class="branch-item" data-lat="-1.250" data-lng="36.666" data-name="Kikuyu Branch"
+                    data-phone="0741 251 973" data-whatsapp="254741251973" data-hours="8:00 AM - 8:30 PM">
+                    <div class="branch-info">
+                        <h3>Kikuyu</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 8:30 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0741 251 973</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 5. Kinoo -->
+                <div class="branch-item" data-lat="-1.246" data-lng="36.699" data-name="Kinoo Branch"
+                    data-phone="0795 459 026" data-whatsapp="254795459026" data-hours="8:00 AM - 8:30 PM">
+                    <div class="branch-info">
+                        <h3>Kinoo</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 8:30 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0795 459 026</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 6. Zimmerman Base -->
+                <div class="branch-item" data-lat="-1.206" data-lng="36.908" data-name="Zimmerman Base"
+                    data-phone="0707 881 200" data-whatsapp="254707881200" data-hours="8:00 AM - 9:00 PM">
+                    <div class="branch-info">
+                        <h3>Zimmerman Base</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 9:00 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0707 881 200</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 7. Zimmerman Express -->
+                <div class="branch-item" data-lat="-1.208" data-lng="36.906" data-name="Zimmerman Express"
+                    data-phone="0701 231 370" data-whatsapp="254701231370" data-hours="8:00 AM - 9:00 PM">
+                    <div class="branch-info">
+                        <h3>Zimmerman Express</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 9:00 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0701 231 370</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 8. Ruiru Mini -->
+                <div class="branch-item" data-lat="-1.146" data-lng="36.959" data-name="Ruiru Mini"
+                    data-phone="0724 588 900" data-whatsapp="254724588900" data-hours="8:00 AM - 9:00 PM">
+                    <div class="branch-info">
+                        <h3>Ruiru Mini</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 9:00 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0724 588 900</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 9. Ruiru Jambo -->
+                <div class="branch-item" data-lat="-1.149" data-lng="36.963" data-name="Ruiru Jambo"
+                    data-phone="0728 020 018" data-whatsapp="254728020018" data-hours="8:00 AM - 9:00 PM">
+                    <div class="branch-info">
+                        <h3>Ruiru Jambo</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 9:00 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0728 020 018</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 10. Kangari -->
+                <div class="branch-item" data-lat="-0.898" data-lng="36.969" data-name="Kangari Branch"
+                    data-phone="0710 976 254" data-whatsapp="254710976254" data-hours="8:00 AM - 8:30 PM">
+                    <div class="branch-info">
+                        <h3>Kangari</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 8:30 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0710 976 254</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+                <!-- 11. Joska -->
+                <div class="branch-item" data-lat="-1.291" data-lng="37.078" data-name="Joska Branch"
+                    data-phone="0791 047 850" data-whatsapp="254791047850" data-hours="8:00 AM - 8:30 PM">
+                    <div class="branch-info">
+                        <h3>Joska</h3>
+                        <p class="branch-meta"><i class="far fa-clock"></i> 8:00 AM - 8:30 PM</p>
+                        <p class="branch-meta"><i class="fas fa-phone-alt"></i> 0791 047 850</p>
+                    </div>
+                    <div class="branch-actions">
+                        <button class="btn-locate" data-action="locate">View Map</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Map Container -->
+            <div class="locator-map" id="map" aria-label="Branch locations map"></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <h4 class="social-title">Follow Us</h4>
+                <div class="icons-container">
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
+                            class="fab fa-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

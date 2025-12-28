@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Descriptive Title for SEO -->
+    <title>Our Products - Powerstar Supermarkets</title>
+    <meta name="description"
+        content="Explore our wide range of products including fresh produce, bakery, butchery, electronics, and household essentials. Wholesale prices available.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Defer loading of non-critical JS -->
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <!-- SAFE TO EDIT: Logo -->
+            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
+                    class="fas fa-bars"></i></button>
+
+            <!-- SAFE TO EDIT: Navigation Links -->
+            <nav class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="offers.html">Offers</a>
+                <a href="services.html" class="active">Products</a>
+                <a href="order.html">Shop</a>
+                <a href="branches.html">Branches</a>
+                <a href="loyalty.html">Loyalty</a>
+                <a href="media.html">Media</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- SAFE TO EDIT: Hero Section -->
+    <div class="hero services-hero">
+        <div class="hero-glass-card reveal">
+            <!-- EDITABLE: Subtitle -->
+            <span class="hero-welcome-text">Premium Selection</span>
+            <!-- EDITABLE: Main Headline -->
+            <h1>Our Product Range</h1>
+            <!-- EDITABLE: Tagline -->
+            <p>Sourcing the finest quality brands for your home, business, and family.</p>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- Value Props -->
+        <div class="values-grid" style="margin-top: -50px; position: relative; z-index: 10;">
+            <div class="value-card reveal">
+                <div class="icon-circle"><i class="fas fa-leaf"></i></div>
+                <h3>Farm Fresh</h3>
+                <p>Sourced directly from local farmers to ensure maximum freshness on your table.</p>
+            </div>
+            <div class="value-card reveal">
+                <div class="icon-circle"><i class="fas fa-tags"></i></div>
+                <h3>Fair Pricing</h3>
+                <p>Competitive prices on all household essentials and premium brands.</p>
+            </div>
+            <div class="value-card reveal">
+                <div class="icon-circle"><i class="fas fa-check-circle"></i></div>
+                <h3>Quality Assured</h3>
+                <p>We strictly inspect all stock to meet our high safety standards.</p>
+            </div>
+        </div>
+
+        <!-- Intro Text -->
+        <div class="reveal section-header">
+            <span class="section-subtitle">Browse Categories</span>
+            <h2>Explore Our Departments</h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Everything you need under one roof,
+                available at all 11+ branches.</p>
+        </div>
+
+        <!-- SAFE TO EDIT: Department Grid -->
+        <div class="department-grid">
+
+            <!-- Bakery -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/bakery.jpg" alt="Bakery" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Bakery'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">In-House Bakery</h3>
+                    <p class="dept-desc">Daily baked breads, custom cakes, and savory pastries. Hot and fresh every
+                        morning.</p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Fresh Daily</span>
+                        <span class="product-tag">Cakes</span>
+                    </div>
+                    <!-- Link to Order Page -->
+                    <a href="order.html" class="dept-btn.btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produce -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/produce.jpg" alt="Produce" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Fresh+Produce'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Fresh Produce</h3>
+                    <p class="dept-desc">Locally sourced fruits and vegetables, hand-picked and restocked every morning.
+                    </p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Farm Fresh</span>
+                        <span class="product-tag">Organic</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Butchery -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/butchery.jpg" alt="Butchery" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Butchery'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Butchery & Deli</h3>
+                    <p class="dept-desc">Premium beef, poultry, and fish, plus ready-to-eat smokies and bites.</p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Halal</span>
+                        <span class="product-tag">BBQ Cuts</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Pantry -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/cereals.jpg" alt="Cereals" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Pantry'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Pantry Staples</h3>
+                    <p class="dept-desc">Maize flour, rice, sugar, and cooking oils. Available in retail and bulk sizes.
+                    </p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Unga</span>
+                        <span class="product-tag">Bulk</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Liquor -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/liquor.jpg" alt="Liquor" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Liquor'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Beverages & Liquor</h3>
+                    <p class="dept-desc">Soft drinks, juices, imported wines, and premium spirits for every occasion.
+                    </p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Chilled</span>
+                        <span class="product-tag">18+ Only</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Electronics -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/electronics.jpg" alt="Electronics" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Electronics'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Electronics</h3>
+                    <p class="dept-desc">TVs, audio systems, extension cables, and home entertainment essentials.</p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Warranty</span>
+                        <span class="product-tag">Top Brands</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Kitchen -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/kitchen.jpg" alt="Kitchen" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Kitchen'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Kitchen & Dining</h3>
+                    <p class="dept-desc">Cookware, cutlery, glassware, and small appliances like blenders and kettles.
+                    </p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Glassware</span>
+                        <span class="product-tag">Utensils</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Household -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/household.jpg" alt="Household" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Household'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Household Care</h3>
+                    <p class="dept-desc">Cleaning detergents, laundry essentials, tissues, and home organization items.
+                    </p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Detergents</span>
+                        <span class="product-tag">Hygiene</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Baby Care -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/baby.jpg" alt="Baby" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Baby+Care'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Baby Care</h3>
+                    <p class="dept-desc">Diapers, wipes, baby food, and gentle skincare products for your little ones.
+                    </p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Diapers</span>
+                        <span class="product-tag">Food</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Beauty -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/beauty.jpg" alt="Beauty" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Beauty'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Beauty & Personal Care</h3>
+                    <p class="dept-desc">Skincare, haircare, deodorants, and cosmetics from trusted international
+                        brands.</p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Skincare</span>
+                        <span class="product-tag">Hair</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Clothing -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/clothing.jpg" alt="Clothing" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Clothing'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Clothing & Textiles</h3>
+                    <p class="dept-desc">Affordable fashion for men, women, and kids, plus bedsheets and towels.</p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Fashion</span>
+                        <span class="product-tag">Home</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Travel -->
+            <div class="dept-card reveal">
+                <div class="dept-image-wrapper">
+                    <img src="assets/travel.jpg" alt="Travel" loading="lazy" class="lightbox-trigger"
+                        onerror="this.src='https://placehold.co/600x400/eee/999?text=Travel'">
+                </div>
+                <div class="card-content">
+                    <h3 class="dept-title">Travel & Luggage</h3>
+                    <p class="dept-desc">Suitcases, travel bags, and accessories for your next journey.</p>
+                    <div style="margin-bottom: 20px;">
+                        <span class="product-tag highlight">Bags</span>
+                        <span class="product-tag">Accessories</span>
+                    </div>
+                    <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on
+                        WhatsApp</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bulk Order Promo -->
+        <!-- REFACTORED: Moved inline styles to class 'promo-banner' (Needs to be added to CSS) -->
+        <div class="reveal promo-banner">
+            <div class="promo-content-wrapper">
+                <div style="flex: 1; min-width: 300px; z-index: 2;">
+                    <!-- EDITABLE: Promo Content -->
+                    <h3 class="promo-subtitle">For Business & Schools</h3>
+                    <h2 class="promo-title">Bulk Orders Made Easy</h2>
+                    <p class="promo-desc">
+                        Stocking up for your home, school, or hotel? Enjoy wholesale prices with priority handling and
+                        delivery support.
+                    </p>
+                    <div class="promo-actions">
+                        <a href="contact.html" class="btn-white">Contact Sales Team</a>
+                        <a href="order.html" class="btn-outline-white">Order on WhatsApp</a>
+                    </div>
+                </div>
+
+                <div class="promo-icon-bg">
+                    <i class="fas fa-truck-loading"></i>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <h4 class="social-title">Follow Us</h4>
+                <div class="icons-container">
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
+                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
+                            class="fab fa-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
+                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
