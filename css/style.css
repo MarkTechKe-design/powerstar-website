@@ -332,11 +332,19 @@ header {
     min-height: 45vh;
 }
 
-.hero.order-hero {
-    background: linear-gradient(rgba(218, 41, 28, 0.9), rgba(160, 20, 10, 0.95)), url('../assets/supermarket-bg.jpg');
-    clip-path: ellipse(150% 100% at 50% 0%);
-    min-height: 45vh;
-    margin-bottom: 60px;
+.hero.offers-hero {
+    background-image: url('../assets/hero/offers-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 65vh;
+    position: relative;
+}
+.hero.offers-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
 }
 
 .hero.contact-hero {
