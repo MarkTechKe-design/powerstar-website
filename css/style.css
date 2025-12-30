@@ -225,32 +225,7 @@ header {
 }
 
 .logo img {
-    height: 72px;
-    /* Strong desktop presence */
-    width: auto;
-    max-width: none;
-    display: block;
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-    .logo img {
-        height: 64px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .logo img {
-        height: 54px;
-    }
-}
-
-/* Small phones */
-@media (max-width: 480px) {
-    .logo img {
-        height: 48px;
-    }
+    /* Rules moved to 'RESPONSIVE & UI STABILIZATION (FINAL POLISH)' section */
 }
 
 .nav-menu {
@@ -326,18 +301,14 @@ header {
     background-image: linear-gradient(rgba(0, 60, 30, 0.8), rgba(0, 40, 20, 0.9)), url('../assets/products-hero.jpg');
 }
 
-.hero.offers-hero {
-    /* No specific image requested, keeping professional branding fallback */
-    background-image: linear-gradient(135deg, var(--ps-green) 0%, #004d2a 100%);
-    min-height: 45vh;
-}
+
 
 .hero.offers-hero {
     background-image: url('../assets/hero/offers-hero.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 65vh;
+    min-height: 70vh;
     position: relative;
 }
 
@@ -732,7 +703,8 @@ header {
 .dept-image-wrapper img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #fff;
     transition: transform 0.5s;
 }
 
@@ -1316,7 +1288,8 @@ footer {
 .offer-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    background: #fff;
     transition: 0.5s;
 }
 
@@ -1393,7 +1366,7 @@ footer {
 }
 
 /* Responsive Grid */
-@media (max-width: 900px) {
+@media (max-width: 991px) {
     .offers-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -2435,20 +2408,7 @@ footer {
             color: var(--ps-green);
         }
 
-        /* Responsive Mobile */
-        @media (max-width: 600px) {
-            .payment-icons {
-                flex-direction: column;
-                width: 100%;
-            }
 
-            .pay-badge {
-                width: 100%;
-                max-width: 300px;
-                /* Limit width on mobile */
-                justify-content: center;
-            }
-        }
     }
 
     /* ===========================================
@@ -2693,4 +2653,217 @@ footer {
     height: 22px;
     width: auto;
     display: block;
+}
+
+
+
+
+/* ==========================================================================
+   12. RESPONSIVE & UI STABILIZATION (FINAL POLISH)
+   ========================================================================== */
+
+/* --- 1. LOGO STABILIZATION (LOCKED) --- */
+.logo img {
+    height: 72px !important;
+    width: auto !important;
+    max-width: none !important;
+    display: block !important;
+}
+
+@media (max-width: 1024px) {
+    .logo img {
+        height: 64px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo img {
+        height: 54px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 48px !important;
+    }
+}
+
+/* --- 2. HERO SECTIONS MOBILE FIX --- */
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto !important;
+        /* Prevent excessive height */
+        padding-top: 140px;
+        /* Account for fixed header */
+        padding-bottom: 60px;
+        background-attachment: scroll !important;
+        /* Fix mobile zoom/parallax jitter */
+        background-position: center top !important;
+        /* Focus on faces/top of images */
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+}
+
+/* --- 3. SLIDER MOBILE FIX --- */
+@media (max-width: 768px) {
+
+    .slider-container,
+    .promo-slider-container {
+        height: 500px !important;
+        /* Fixed height for mobile readability */
+    }
+
+    .slide-bg {
+        object-fit: cover !important;
+        object-position: center !important;
+    }
+
+    /* Ensure content is readable over images on mobile */
+    .slide-content,
+    .promo-content {
+        padding: 25px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: var(--radius-md);
+        backdrop-filter: blur(4px);
+        margin: 0 20px;
+    }
+}
+
+/* --- 4. OFFERS HERO FIX --- */
+@media (max-width: 768px) {
+    .hero.offers-hero {
+        background-position: 70% center !important;
+        min-height: 45vh !important;
+    }
+}
+
+/* Tablet Hero Fix */
+@media (min-width: 769px) and (max-width: 991px) {
+    .hero.offers-hero {
+        min-height: 55vh !important;
+    }
+}
+
+/* --- 5. BULK ORDERS PROMO CARD (Premium Box Style) --- */
+/* Base styles already added, ensuring specific overrides */
+.promo-banner {
+    background: white;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-color);
+    margin: 60px auto;
+    max-width: 1000px;
+    overflow: hidden;
+    position: relative;
+    /* Ensure it behaves like a card not a section */
+    padding: 0 !important;
+}
+
+/* Wrapper to handle layout */
+.promo-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 50px;
+    position: relative;
+    gap: 40px;
+    z-index: 2;
+}
+
+.promo-text-col {
+    flex: 1;
+    min-width: 300px;
+    z-index: 2;
+}
+
+/* Text Styling */
+.promo-title {
+    color: var(--ps-dark);
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.promo-subtitle {
+    color: var(--ps-red);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    display: block;
+    font-weight: 700;
+}
+
+.promo-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 550px;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.promo-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Icon Watermark */
+.promo-icon-bg {
+    font-size: 12rem;
+    color: rgba(0, 104, 56, 0.04);
+    position: absolute;
+    right: -30px;
+    bottom: -40px;
+    transform: rotate(-15deg);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Mobile Responsive Rule for Bulk Card */
+@media (max-width: 768px) {
+    .promo-content-wrapper {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 25px;
+        gap: 20px;
+    }
+
+    .promo-actions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .promo-desc {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .promo-icon-bg {
+        font-size: 8rem;
+        bottom: 0px;
+        right: 0px;
+    }
+}
+
+/* --- 6. BUTTON VARIANT FIXES --- */
+.btn-outline-white {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+}
+
+/* On white card, btn-outline-white is invisible. We need a dark outline variant just for this card */
+.promo-banner .btn-outline-white {
+    border: 2px solid var(--ps-dark);
+    color: var(--ps-dark);
+}
+
+.promo-banner .btn-outline-white:hover {
+    background: var(--ps-dark);
+    color: white;
 }

@@ -14,9 +14,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initScrollReveal();
-    initPromoSlider();
+    // initPromoSlider(); // Moved to be called by content-loader after data load, or if element exists static
+    if (document.getElementById('sliderTrack') && document.querySelectorAll('.slide').length > 0) {
+        initPromoSlider();
+    }
     initOffersSystem();
-    initLightbox();
+    // initLightbox(); // Handled by js/lightbox.js
     initStatsCounter();
 });
 
@@ -54,38 +57,11 @@ function initOffersSystem() {
 // ===========================================
 // LIGHTBOX MODULE
 // ===========================================
-function initLightbox() {
-    const lightbox = document.createElement('div');
-    lightbox.className = 'lightbox';
-    lightbox.id = 'lightbox';
-    document.body.appendChild(lightbox);
-
-    const img = document.createElement('img');
-    const closeBtn = document.createElement('div');
-    closeBtn.className = 'lightbox-close';
-    closeBtn.innerHTML = '&times;';
-
-    lightbox.appendChild(img);
-    lightbox.appendChild(closeBtn);
-
-    const triggers = document.querySelectorAll('.lightbox-trigger');
-    triggers.forEach(trigger => {
-        trigger.style.cursor = 'zoom-in';
-        trigger.addEventListener('click', e => {
-            lightbox.classList.add('active');
-            img.src = trigger.src;
-        });
-    });
-
-    const closeLightbox = () => {
-        lightbox.classList.remove('active');
-    };
-
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target !== img) closeLightbox();
-    });
-}
+// ===========================================
+// LIGHTBOX MODULE
+// ===========================================
+// Note: Lightbox logic has been moved to js/lightbox.js for strict modularity.
+// This block is intentionally left empty/commented to prevent conflicts.
 
 // ===========================================
 // 1. MOBILE MENU MODULE
@@ -177,7 +153,10 @@ function initScrollReveal() {
 // ===========================================
 // 3. HERO PROMO SLIDER (TRUE CAROUSEL)
 // ===========================================
-function initPromoSlider() {
+// ===========================================
+// 3. HERO PROMO SLIDER (TRUE CAROUSEL)
+// ===========================================
+window.initPromoSlider = function () {
     const sliderContainer = document.getElementById('promoSlider');
     if (!sliderContainer) return;
 
@@ -186,8 +165,21 @@ function initPromoSlider() {
     const indicators = document.querySelectorAll('.indicator');
     const totalSlides = slides.length;
     let currentSlideIndex = 0;
-    let slideInterval;
     const AUTOPLAY_DELAY = 5000;
+
+    // Cleanup previous instance
+    if (window.promoSliderInterval) {
+        clearInterval(window.promoSliderInterval);
+    }
+    if (sliderContainer._stopFn) {
+        sliderContainer.removeEventListener('mouseenter', sliderContainer._stopFn);
+    }
+    if (sliderContainer._startFn) {
+        sliderContainer.removeEventListener('mouseleave', sliderContainer._startFn);
+    }
+    // Note: Touch events are harder to remove if anonymous, but the interval is the main issue.
+    // We will use named handlers for touch too.
+
 
     // Helper: Update Active Classes
     const showSlide = (index) => {
@@ -225,15 +217,19 @@ function initPromoSlider() {
 
     // --- Autoplay ---
     const startAutoScroll = () => {
-        if (slideInterval) clearInterval(slideInterval);
-        slideInterval = setInterval(() => {
+        if (window.promoSliderInterval) clearInterval(window.promoSliderInterval);
+        window.promoSliderInterval = setInterval(() => {
             showSlide(currentSlideIndex + 1);
         }, AUTOPLAY_DELAY);
     };
 
     const stopAutoScroll = () => {
-        if (slideInterval) clearInterval(slideInterval);
+        if (window.promoSliderInterval) clearInterval(window.promoSliderInterval);
     };
+
+    // Store references for cleanup
+    sliderContainer._startFn = startAutoScroll;
+    sliderContainer._stopFn = stopAutoScroll;
 
     // Start
     startAutoScroll();
@@ -247,16 +243,27 @@ function initPromoSlider() {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    sliderContainer.addEventListener('touchstart', (e) => {
+    const onTouchStart = (e) => {
         touchStartX = e.changedTouches[0].screenX;
         stopAutoScroll();
-    }, { passive: true });
+    };
 
-    sliderContainer.addEventListener('touchend', (e) => {
+    const onTouchEnd = (e) => {
         touchEndX = e.changedTouches[0].screenX;
         handleSwipe();
         startAutoScroll();
-    }, { passive: true });
+    };
+
+    // Remove old touch listeners if present
+    if (sliderContainer._touchStartFn) sliderContainer.removeEventListener('touchstart', sliderContainer._touchStartFn);
+    if (sliderContainer._touchEndFn) sliderContainer.removeEventListener('touchend', sliderContainer._touchEndFn);
+
+    sliderContainer.addEventListener('touchstart', onTouchStart, { passive: true });
+    sliderContainer.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    // Store new references
+    sliderContainer._touchStartFn = onTouchStart;
+    sliderContainer._touchEndFn = onTouchEnd;
 
     const handleSwipe = () => {
         const SWIPE_THRESHOLD = 50;
@@ -358,4 +365,4 @@ function initStatsCounter() {
 }
 
 // Ensure it runs
-document.addEventListener("DOMContentLoaded", initStatsCounter);
+

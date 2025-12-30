@@ -55,7 +55,7 @@ async function loadSlides() {
             const slideEl = document.createElement('div');
             slideEl.className = `slide slide-${index + 1} ${index === 0 ? 'active' : ''}`;
             slideEl.innerHTML = `
-                <img src="${slide.image}" class="slide-bg" alt="${slide.title}">
+                <img src="${slide.image}" class="slide-bg lightbox-trigger" alt="${slide.title}">
                 <div class="slide-content">
                     <span class="slide-subtitle reveal">${slide.subtitle}</span>
                     <h2 class="reveal">${slide.title}</h2>
@@ -68,7 +68,7 @@ async function loadSlides() {
 
         // Re-initialize slider logic from main.js if needed (or ensure main.js handles dynamic slides)
         // Since main.js might bind events to existing slides, we might need to trigger a re-init.
-        if (window.initSlider) window.initSlider();
+        if (window.initPromoSlider) window.initPromoSlider();
 
     } catch (error) {
         console.error('Error loading slides:', error);
