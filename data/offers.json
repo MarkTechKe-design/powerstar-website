@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "title": "Weekend Special",
+        "description": "Get 10% off all dairy products this weekend.",
+        "image": "assets/promotions/promo-1.jpg",
+        "valid_until": "2025-12-31"
+    }
+]

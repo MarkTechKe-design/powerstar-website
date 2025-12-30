@@ -1,0 +1,22 @@
+{
+    "company_name": "Powerstar Supermarkets",
+    "founded_year": "2001",
+    "tagline": "Freshness & Value You Can Trust",
+    "contact": {
+        "phone": "+254 700 000 000",
+        "email": "info@powerstar.co.ke",
+        "address": "Nairobi, Kenya"
+    },
+    "social_links": {
+        "facebook": "https://www.facebook.com/PowerstarSupermarkets",
+        "instagram": "https://www.instagram.com/powerstar_supermarket_limited",
+        "tiktok": "https://www.tiktok.com/@powerstar_supermarkets",
+        "linkedin": "https://www.linkedin.com/company/powerstar_supermarkets"
+    },
+    "sections": {
+        "hero_welcome": "Established 2001",
+        "hero_headline": "Your Neighborhood Supermarket",
+        "hero_subheadline": "Fresh produce, daily essentials, and unbeatable value—right at your doorstep.",
+        "footer_copyright": "© 2025 Powerstar Supermarkets. All Rights Reserved."
+    }
+}

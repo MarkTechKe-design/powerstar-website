@@ -1,0 +1,23 @@
+[
+    {
+        "id": "bakery",
+        "name": "Fresh Bakery",
+        "description": "Oven-fresh bread, cakes, and pastries baked throughout the day.",
+        "image": "assets/departments/bakery.jpg",
+        "link": "services.html#bakery"
+    },
+    {
+        "id": "butchery",
+        "name": "Premium Butchery",
+        "description": "High-quality cuts of beef, goat, chicken, and fish.",
+        "image": "assets/departments/butchery.jpg",
+        "link": "services.html#butchery"
+    },
+    {
+        "id": "groceries",
+        "name": "Fresh Groceries",
+        "description": "Hand-picked fruits and vegetables from local farms.",
+        "image": "assets/departments/produce.jpg",
+        "link": "services.html#groceries"
+    }
+]

@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "image": "assets/supermarket-bg.jpg",
+        "title": "Freshness Guaranteed",
+        "subtitle": "Farm-fresh produce delivered daily to our shelves.",
+        "button_text": "View Weekly Fresh",
+        "button_link": "services.html",
+        "active": true
+    },
+    {
+        "id": 2,
+        "image": "assets/hero/offers-hero.jpg",
+        "title": "Back to School Deals",
+        "subtitle": "Wholesale prices on stationery and snacks for the new term.",
+        "button_text": "See Catalogue",
+        "button_link": "services.html",
+        "active": true
+    },
+    {
+        "id": 3,
+        "image": "assets/products-hero.jpg",
+        "title": "Bulk Savings",
+        "subtitle": "Stock up on sodas, juices, and water for your events or business.",
+        "button_text": "Order Bulk",
+        "button_link": "order.html",
+        "active": true
+    }
+]

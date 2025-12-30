@@ -94,3 +94,70 @@ async function loadOffers() {
 - `/js` - Frontend logic (WhatsApp, GA4, Maps).
 - `/css` - Styles.
 - `/uploads` - (Created automatically) Stores admin-uploaded images.
+
+---
+
+# Powerstar Admin Update Workflow
+
+This guide explains how to update the website content using the new JSON-based system.
+
+## 1. Folder Structure
+The website files are organized as follows:
+```
+/
+├── assets/             # Images
+│   ├── departments/    # Department images (Bakery, Butchery, etc.)
+│   ├── hero/           # Slider images
+│   ├── offers/         # Promotion images
+│   └── uploads/        # Admin uploaded files
+├── data/               # Content Data (JSON)
+│   ├── site-content.json   # Global text (Phone, Email, Hero Text)
+│   ├── slides.json         # Hero Slider data
+│   ├── departments.json    # Departments list
+│   └── offers.json         # Weekly offers
+├── admin/              # Backend
+│   ├── api/            # JSON endpoints for updates
+│   ├── config/         # Database config
+│   └── uploads/        # (Legacy/Future)
+└── index.html          # Main page
+```
+
+## 2. Updating Content (Text)
+Currently, updates are done by editing the JSON files in the `data/` directory.
+
+### Example: Updating the Hero Headline
+1. Open `data/site-content.json`.
+2. Locate the `"sections"` object.
+3. Change `"hero_headline": "Your New Headline"`.
+4. Save the file.
+5. The website will automatically reflect the change on the next refresh.
+
+### Example: Adding a New Slide
+1. Open `data/slides.json`.
+2. Copy an existing slide object.
+3. Paste it into the array and update the values:
+   ```json
+   {
+       "id": 4,
+       "image": "assets/hero/new-image.jpg",
+       "title": "New Promotion",
+       "subtitle": "Great Savings",
+       "button_text": "Shop Now",
+       "button_link": "offers.html",
+       "active": true
+   }
+   ```
+4. Upload the image to `assets/hero/`.
+
+## 3. Updating Images
+1. **Best Practice**: Always place images in their specific folder (`assets/departments`, `assets/hero`).
+2. **Naming**: Use lowercase, hyphen-separated names (e.g., `fresh-bread.jpg`).
+3. **Reference**: Update the JSON file to point to the new image path.
+
+## 4. Developer Notes (Backend)
+- A PHP API is available at `admin/api/update-content.php` for programmatic updates.
+- Database Connection: `admin/config/db.php` (Edit credentials here).
+- Image Upload API: `admin/api/upload-image.php`.
+
+> [!WARNING]
+> Do NOT edit `index.html` text directly. It is now dynamically loaded from `data/site-content.json`. Editing HTML will break the dynamic loading or be overwritten.
