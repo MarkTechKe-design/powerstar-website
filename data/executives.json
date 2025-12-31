@@ -1,0 +1,25 @@
+{
+    "executives": [
+        {
+            "name": "Mark Ochieng",
+            "title": "Chief Executive Officer",
+            "image": "assets/team/ceo.jpg",
+            "bio": "A visionary leader with over two decades of experience in the East African retail sector. Mark has spearheaded Powerstar's expansion from a single outlet to a household name, driving strategic growth and operational integrity.",
+            "quote": "Our success is measured by the trust our customers place in us every single day."
+        },
+        {
+            "name": "Sarah Kamau",
+            "title": "Operations Director",
+            "image": "assets/team/ops-dir.jpg",
+            "bio": "Sarah is the operational backbone of Powerstar, ensuring seamless logistics and branch efficiency. Her relentless focus on process optimization guarantees that freshness reaches your shelf on time, every time.",
+            "quote": "Operational excellence is not just a goal; it is the respect we pay to our customers' time and money."
+        },
+        {
+            "name": "David Njoroge",
+            "title": "Head of Finance",
+            "image": "assets/team/finance.jpg",
+            "bio": "David brings robust financial stewardship to the group, overseeing sustainable growth strategies and fiscal compliance. He ensures that our value promise to customers is backed by a resilient financial foundation.",
+            "quote": "Profitability is the natural result of serving our community with integrity and consistency."
+        }
+    ]
+}

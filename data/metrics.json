@@ -1,0 +1,27 @@
+[
+    {
+        "label": "Branches Nationwide",
+        "value": 15,
+        "suffix": "+"
+    },
+    {
+        "label": "Daily Customers",
+        "value": 50000,
+        "suffix": "+"
+    },
+    {
+        "label": "Kenyan Owned",
+        "value": 100,
+        "suffix": "%"
+    },
+    {
+        "label": "Employees",
+        "value": 850,
+        "suffix": "+"
+    },
+    {
+        "label": "Local Suppliers",
+        "value": 300,
+        "suffix": "+"
+    }
+]

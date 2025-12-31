@@ -19,6 +19,10 @@
 
     <!-- Defer loading of non-critical JS -->
     <script src="js/main.js" defer></script>
+    <script src="js/content-loader.js" defer></script>
+    <link rel="stylesheet" href="css/lightbox.css">
+    <link rel="stylesheet" href="css/about-expansion.css">
+    <script src="js/lightbox.js" defer></script>
 </head>
 
 <body>
@@ -94,26 +98,7 @@
         <!-- 2. JOURNEY TIMELINE (New) -->
         <!-- SAFE TO EDIT: Milestones -->
         <!-- 2. IMPACT STATS (New) -->
-        <section class="impact-stats reveal">
-            <div class="stat-item">
-                <span class="counter" data-target="10" data-suffix="+">0</span>
-                <span class="stat-label">Branches</span>
-            </div>
-
-            <div class="stat-item">
-                <span class="counter" data-target="100" data-suffix="%">0</span>
-                <span class="stat-label">Kenyan Owned</span>
-            </div>
-
-            <div class="stat-item">
-                <span class="counter" data-target="500" data-suffix="+">0</span>
-                <span class="stat-label">Employees</span>
-            </div>
-
-            <div class="stat-item">
-                <span class="counter" data-target="50000" data-suffix="+">0</span>
-                <span class="stat-label">Daily Customers</span>
-            </div>
+        <!-- Populated securely via JS -->
         </section>
 
         <!-- 4. STRATEGIC COMPASS -->
@@ -127,19 +112,25 @@
                 <!-- SAFE TO EDIT: Mission -->
                 <article class="value-card">
                     <div class="icon-circle icon-green"><i class="fas fa-bullseye"></i></div>
-                    <h3>Our Mission</h3>
-                    <p>To be an independent, innovative, honest, and sustainable outlet. We offer the most inviting
-                        buying environment while saving customers time and money everyday.</p>
+                    <h3 id="mission-title">Our Mission</h3>
+                    <p id="mission-content">Loading...</p>
                 </article>
 
                 <!-- SAFE TO EDIT: Vision -->
                 <article class="value-card">
                     <div class="icon-circle icon-gold"><i class="fas fa-eye"></i></div>
-                    <h3>Our Vision</h3>
-                    <p>To deliver exceptional shopping experiences by offering the best service, value, quality, and
-                        freshest products while being good stewards of our environment.</p>
+                    <h3 id="vision-title">Our Vision</h3>
+                    <p id="vision-content">Loading...</p>
+                </article>
+
+                <!-- SAFE TO EDIT: Quality Policy (New) -->
+                <article class="value-card quality-card">
+                    <div class="icon-circle icon-red"><i class="fas fa-certificate"></i></div>
+                    <h3 id="quality-title">Quality Policy</h3>
+                    <p id="quality-desc">Loading...</p>
                 </article>
             </div>
+
 
             <!-- 5. CORE VALUES -->
             <div class="reveal">
@@ -256,6 +247,61 @@
                             <span style="font-size: 0.8rem; color: var(--text-muted);">Zimmerman Branch</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. TEAM GALLERY (New) -->
+        <section class="team-gallery-section section-spacing reveal">
+            <div class="container">
+                <div class="section-header-center">
+                    <span class="section-subtitle">Our People</span>
+                    <h2>Meet The Team</h2>
+                </div>
+                <!-- Images loaded via JS -->
+                <div class="gallery-grid" id="team-gallery-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. GROWTH & VISION NARRATIVE (New) -->
+        <section class="growth-vision-section reveal" style="background: white; padding: 80px 0;">
+            <div class="container">
+                <div class="vision-wrapper" style="display: flex; align-items: center; gap: 50px;">
+                    <div class="vision-content" style="flex: 1;">
+                        <span class="section-subtitle">Future Outlook</span>
+                        <h2 id="vision-title">Growth & Vision</h2>
+                        <p id="vision-content">Loading narrative...</p>
+                    </div>
+                    <div class="vision-image" style="flex: 1;">
+                        <img id="vision-image" src="assets/bg-pattern.png" alt="Future Vision" class="lightbox-trigger"
+                            style="width: 100%; border-radius: 20px; cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. EXECUTIVE COMMITTEE (New) -->
+        <section class="executives-section section-spacing reveal" style="background: var(--ps-grey-light);">
+            <div class="container">
+                <div class="section-header-center">
+                    <span class="section-subtitle">Leadership</span>
+                    <h2>Executive Committee</h2>
+                </div>
+                <div class="team-grid" id="executives-grid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. PARTNERS & BRANDS (New) -->
+        <section class="partners-section section-spacing reveal">
+            <div class="container text-center">
+                <h4 style="margin-bottom: 40px; color: var(--text-muted);">Trusted By Leading Brands</h4>
+                <div class="partners-grid" id="partners-grid"
+                    style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; align-items: center;">
+                    <!-- Populated by JS -->
                 </div>
             </div>
         </section>

@@ -1,0 +1,25 @@
+{
+    "team_intro": "Behind every Powerstar branch is a dedicated team of over 850 professionals committed to service, integrity, and community impact.",
+    "members": [
+        {
+            "name": "Executive Leadership",
+            "role": "Strategic Direction",
+            "image": "assets/team/team-1.jpg"
+        },
+        {
+            "name": "Customer Care",
+            "role": "Frontline Excellence",
+            "image": "assets/team/team-2.jpg"
+        },
+        {
+            "name": "Sourcing Team",
+            "role": "Quality Assurance",
+            "image": "assets/team/team-3.jpg"
+        },
+        {
+            "name": "Logistics Crew",
+            "role": "Supply Chain",
+            "image": "assets/team/team-4.jpg"
+        }
+    ]
+}

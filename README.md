@@ -1,163 +1,74 @@
-# Powerstar Supermarkets Website
+# Powerstar Supermarkets Website - Admin Guide
 
-A modern, responsive website for Powerstar Supermarkets, featuring a static frontend with a "headless" PHP/MySQL admin panel for content management.
+This website is built to be easily editable without touching code. All text and image settings are stored in the `data/` folder.
 
-## 🚀 Key Features
-- **Frontend**: HTML5, CSS3, JavaScript (Static, GitHub Pages compatible).
-- **Backend (Admin)**: PHP, MySQL (For dynamic content management).
-- **Integrations**:
-  - **WhatsApp Order Intelligence**: Smart ordering system with unique IDs and device tracking.
-  - **Google Analytics 4**: Advanced event tracking (Offers, Branch Engagement, Page Intent).
-  - **Leaflet Maps**: Branch locator without Google Maps API costs.
+## 📁 Content Management (JSON Files)
 
----
+Navigate to the `data/` folder to edit website content. You can open these files with any text editor (Notepad, VS Code, etc.).
 
-## 🛠️ Local Development (Admin Panel)
-To run the Admin Panel locally, you need a local server environment like XAMPP, WAMP, or MAMP.
+### 1. `site-content.json`
+**Controls:** Header, Footer, Hero Text, Contact Info.
+- **Key Fields:**
+    - `company_name`: Global brand name.
+    - `contact`: Updates phone/email across the site.
+    - `social_links`: URLs for Facebook/TikTok icons.
 
-### 1. Setup Environment available
-1. Install **XAMPP** (or similar).
-2. Start **Apache** and **MySQL**.
-3. Move the project folder to `htdocs` (e.g., `C:\xampp\htdocs\powerstar-website`).
+### 2. `slides.json` (Home Page Slider)
+**Controls:** The main promo slider on the homepage.
+- **To Add a Slide:** Copy an existing block `{...}` and paste it.
+- **Image Size:** Recommended `1920x800` pixels.
+- **Active:** Set `"active": false` to hide a slide without deleting it.
 
-### 2. Database Setup
-1. Open **phpMyAdmin** (`http://localhost/phpmyadmin`).
-2. Create a new database named `powerstar_db`.
-3. Import the schema script: `sql/schema.sql`.
-   - This creates tables: `admins`, `offers`, `sliders`, `careers`, `media`.
-   - Creates default admin: **User:** `admin`, **Pass:** `admin123`.
+### 3. `about.json` (About Page)
+**Controls:** Mission, Vision, Quality Policy, and Vision Narrative.
+- **Fields:**
+    - `strategic_compass`: Edit Mission/Vision text here.
+    - `growth_vision`: Update the "Future Outlook" text and image path.
 
-### 3. Connection Config
-Ensure `admin/config/db.php` matches your local settings:
-```php
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'powerstar_db');
-```
-
-### 4. Access Admin Panel
-- URL: `http://localhost/powerstar-website/admin/`
-- Login with default credentials.
-
----
-
-## 📦 Production Deployment
-### Static Hosting (GitHub Pages / Netlify)
-- The **frontend** (HTML/JS/CSS) works perfectly on static hosting.
-- **Limitation**: The Admin Panel and dynamic APIs (`/admin`, `/api`) **will not work**. The site will show hardcoded static content.
-
-### Dynamic Hosting (cPanel / VPS)
-To use the Admin Panel features:
-1. Upload all files to `public_html`.
-2. Create a MySQL Database and User in cPanel.
-3. Import `sql/schema.sql` via phpMyAdmin.
-4. Update `admin/config/db.php` with production DB credentials.
-5. The API endpoints (`/api/get-*.php`) will now return live JSON data.
-
----
-
-## 🔌 API Integration Guide
-The backend provides read-only JSON APIs. In the future, the frontend can be updated to fetch data from these endpoints instead of using hardcoded HTML.
-
-| Endpoint | Description |
-|----------|-------------|
-| `/api/get-sliders.php` | Active homepage sliders (Images, Text, Links). |
-| `/api/get-offers.php` | Active offers with valid dates. |
-| `/api/get-careers.php` | Open job listings. |
-| `/api/get-media.php` | Uploaded media files. |
-
-### Example Integration (Future JavaScript)
-```javascript
-// Example: Load Offers Dynamically
-async function loadOffers() {
-    try {
-        const response = await fetch('/api/get-offers.php');
-        const result = await response.json();
-        
-        if (result.status === 'success') {
-            const offers = result.data;
-            // Render offers to DOM...
-        }
-    } catch (e) {
-        console.warn('API unavailable, keeping static content.');
+### 4. `executives.json`
+**Controls:** Leadership Profiles on About Page.
+- **Structure:**
+    ```json
+    {
+      "name": "Jane Doe",
+      "title": "Operations Manager",
+      "image": "assets/team/jane.jpg",
+      "bio": "...",
+      "quote": "..."
     }
-}
-```
+    ```
+
+### 5. `partners.json`
+**Controls:** Partner Logo Grid.
+- **Images:** Place logos in `assets/partners/`. Ensure they are PNG or JPG (transparent background properly).
+
+### 6. `metrics.json`
+**Controls:** The animated counters (e.g., "12+ Branches").
 
 ---
 
-## 📁 Directory Structure
-- `/admin` - Protected Admin Panel (Login required).
-- `/api` - Public JSON endpoints.
-- `/sql` - Database schema scripts.
-- `/js` - Frontend logic (WhatsApp, GA4, Maps).
-- `/css` - Styles.
-- `/uploads` - (Created automatically) Stores admin-uploaded images.
+## 🖼️ Image Management
 
----
+All images should be uploaded to the `assets/` folder.
 
-# Powerstar Admin Update Workflow
+- **Product Images:** Use `assets/products/`. Recommend JPG, square or 4:3 ratio. White background preferred.
+- **Team Images:** Use `assets/team/`. Recommend square (1:1) aspect ratio.
+- **Slider Images:** Use `assets/hero/`. Wide format (16:9).
 
-This guide explains how to update the website content using the new JSON-based system.
+## ⚠️ Important Rules
 
-## 1. Folder Structure
-The website files are organized as follows:
-```
-/
-├── assets/             # Images
-│   ├── departments/    # Department images (Bakery, Butchery, etc.)
-│   ├── hero/           # Slider images
-│   ├── offers/         # Promotion images
-│   └── uploads/        # Admin uploaded files
-├── data/               # Content Data (JSON)
-│   ├── site-content.json   # Global text (Phone, Email, Hero Text)
-│   ├── slides.json         # Hero Slider data
-│   ├── departments.json    # Departments list
-│   └── offers.json         # Weekly offers
-├── admin/              # Backend
-│   ├── api/            # JSON endpoints for updates
-│   ├── config/         # Database config
-│   └── uploads/        # (Legacy/Future)
-└── index.html          # Main page
-```
+1. **Do NOT delete keys** (the left side of `"key": "value"`). Only edit the value on the right.
+2. **Watch your commas**: Every line in a list must allow a comma EXCEPT the last one.
+    - ✅ Good: `{"a": 1, "b": 2}`
+    - ❌ Bad: `{"a": 1, "b": 2,}`
+3. **Paths**: Always use relative paths like `assets/image.jpg`, not `C:/Users/...`.
 
-## 2. Updating Content (Text)
-Currently, updates are done by editing the JSON files in the `data/` directory.
+## 🚀 Deployment
 
-### Example: Updating the Hero Headline
-1. Open `data/site-content.json`.
-2. Locate the `"sections"` object.
-3. Change `"hero_headline": "Your New Headline"`.
-4. Save the file.
-5. The website will automatically reflect the change on the next refresh.
+The site is static HTML/JS. To deploy:
+1. Upload the entire folder structure to `public_html` on your cPanel.
+2. Ensure `index.html` is in the root directory.
 
-### Example: Adding a New Slide
-1. Open `data/slides.json`.
-2. Copy an existing slide object.
-3. Paste it into the array and update the values:
-   ```json
-   {
-       "id": 4,
-       "image": "assets/hero/new-image.jpg",
-       "title": "New Promotion",
-       "subtitle": "Great Savings",
-       "button_text": "Shop Now",
-       "button_link": "offers.html",
-       "active": true
-   }
-   ```
-4. Upload the image to `assets/hero/`.
+## 🆘 Support
 
-## 3. Updating Images
-1. **Best Practice**: Always place images in their specific folder (`assets/departments`, `assets/hero`).
-2. **Naming**: Use lowercase, hyphen-separated names (e.g., `fresh-bread.jpg`).
-3. **Reference**: Update the JSON file to point to the new image path.
-
-## 4. Developer Notes (Backend)
-- A PHP API is available at `admin/api/update-content.php` for programmatic updates.
-- Database Connection: `admin/config/db.php` (Edit credentials here).
-- Image Upload API: `admin/api/upload-image.php`.
-
-> [!WARNING]
-> Do NOT edit `index.html` text directly. It is now dynamically loaded from `data/site-content.json`. Editing HTML will break the dynamic loading or be overwritten.
+For script or layout changes, contact the technical lead.

@@ -1,0 +1,52 @@
+{
+    "strategic_compass": {
+        "mission": {
+            "title": "Our Mission",
+            "content": "To provide our customers with the highest quality products at the most affordable prices, ensuring a delightful shopping experience while continuously supporting and empowering our local communities."
+        },
+        "vision": {
+            "title": "Our Vision",
+            "content": "To be the leading and most trusted retailer in East Africa, recognized for our unwavering commitment to excellence, innovation, and sustainable growth."
+        },
+        "quality_policy": {
+            "title": "Quality Policy",
+            "content": "At Powerstar Supermarkets, quality is our non-negotiable promise. We are dedicated to maintaining the highest standards of food safety, hygiene, and product integrity. We rigorously vet all suppliers and continuously train our staff to ensure every product on our shelves meets global safety benchmarks."
+        }
+    },
+    "intro_narrative": {
+        "title": "More Than A Retailer",
+        "content": "Powerstar Supermarkets is a premier Kenyan retail brand deeply rooted in our community values. Since our inception, we have strived to bridge the gap between premium quality and affordability. With a rapidly growing network of branches, we serve thousands of families daily, providing fresh produce, household essentials, and a shopping environment that feels like home."
+    },
+    "growth_vision": {
+        "title": "Future Outlook",
+        "content": "Our roadmap is ambitious and customer-centric. As we expand into new neighborhoods, our focus remains on modernizing our infrastructure and enhancing our logistics to bring value closer to you. We are investing in sustainable technologies and empowering our workforce to lead the future of retail in the region.",
+        "image": "assets/bg-pattern.png"
+    },
+    "core_values": [
+        {
+            "title": "Integrity",
+            "icon": "fas fa-handshake",
+            "desc": "Building honest relationships with customers and suppliers."
+        },
+        {
+            "title": "Service Heart",
+            "icon": "fas fa-heart",
+            "desc": "Customer satisfaction is the heartbeat of our business."
+        },
+        {
+            "title": "Innovation",
+            "icon": "fas fa-lightbulb",
+            "desc": "Embracing new ways to serve you better every day."
+        },
+        {
+            "title": "Community",
+            "icon": "fas fa-users",
+            "desc": "Growing together with the neighborhoods we serve."
+        },
+        {
+            "title": "Excellence",
+            "icon": "fas fa-medal",
+            "desc": "Delivering our absolute best in everything we do."
+        }
+    ]
+}
