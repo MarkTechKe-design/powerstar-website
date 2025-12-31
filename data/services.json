@@ -1,0 +1,146 @@
+{
+    "hero": {
+        "welcome": "Premium Selection",
+        "headline": "Our Product Range",
+        "tagline": "Sourcing the finest quality brands for your home, business, and family."
+    },
+    "intro": {
+        "subtitle": "Browse Categories",
+        "title": "Explore Our Departments",
+        "text": "Everything you need under one roof, available at all 11+ branches."
+    },
+    "departments": [
+        {
+            "id": "bakery",
+            "title": "In-House Bakery",
+            "image": "assets/bakery.jpg",
+            "description": "Daily baked breads, custom cakes, and savory pastries. Hot and fresh every morning.",
+            "tags": [
+                "Fresh Daily",
+                "Cakes"
+            ],
+            "highlight_tag": "Fresh Daily"
+        },
+        {
+            "id": "produce",
+            "title": "Fresh Produce",
+            "image": "assets/produce.jpg",
+            "description": "Locally sourced fruits and vegetables, hand-picked and restocked every morning.",
+            "tags": [
+                "Farm Fresh",
+                "Organic"
+            ],
+            "highlight_tag": "Farm Fresh"
+        },
+        {
+            "id": "butchery",
+            "title": "Butchery & Deli",
+            "image": "assets/butchery.jpg",
+            "description": "Premium beef, poultry, and fish, plus ready-to-eat smokies and bites.",
+            "tags": [
+                "Halal",
+                "BBQ Cuts"
+            ],
+            "highlight_tag": "Halal"
+        },
+        {
+            "id": "pantry",
+            "title": "Pantry Staples",
+            "image": "assets/cereals.jpg",
+            "description": "Maize flour, rice, sugar, and cooking oils. Available in retail and bulk sizes.",
+            "tags": [
+                "Unga",
+                "Bulk"
+            ],
+            "highlight_tag": "Unga"
+        },
+        {
+            "id": "liquor",
+            "title": "Beverages & Liquor",
+            "image": "assets/liquor.jpg",
+            "description": "Soft drinks, juices, imported wines, and premium spirits for every occasion.",
+            "tags": [
+                "Chilled",
+                "18+ Only"
+            ],
+            "highlight_tag": "Chilled"
+        },
+        {
+            "id": "electronics",
+            "title": "Electronics",
+            "image": "assets/electronics.jpg",
+            "description": "TVs, audio systems, extension cables, and home entertainment essentials.",
+            "tags": [
+                "Warranty",
+                "Top Brands"
+            ],
+            "highlight_tag": "Warranty"
+        },
+        {
+            "id": "kitchen",
+            "title": "Kitchen & Dining",
+            "image": "assets/kitchen.jpg",
+            "description": "Cookware, cutlery, glassware, and small appliances like blenders and kettles.",
+            "tags": [
+                "Glassware",
+                "Utensils"
+            ],
+            "highlight_tag": "Glassware"
+        },
+        {
+            "id": "household",
+            "title": "Household Care",
+            "image": "assets/household.jpg",
+            "description": "Cleaning detergents, laundry essentials, tissues, and home organization items.",
+            "tags": [
+                "Detergents",
+                "Hygiene"
+            ],
+            "highlight_tag": "Detergents"
+        },
+        {
+            "id": "baby",
+            "title": "Baby Care",
+            "image": "assets/baby.jpg",
+            "description": "Diapers, wipes, baby food, and gentle skincare products for your little ones.",
+            "tags": [
+                "Diapers",
+                "Food"
+            ],
+            "highlight_tag": "Diapers"
+        },
+        {
+            "id": "beauty",
+            "title": "Beauty & Personal Care",
+            "image": "assets/beauty.jpg",
+            "description": "Skincare, haircare, deodorants, and cosmetics from trusted international brands.",
+            "tags": [
+                "Skincare",
+                "Hair"
+            ],
+            "highlight_tag": "Skincare"
+        },
+        {
+            "id": "clothing",
+            "title": "Clothing & Textiles",
+            "image": "assets/clothing.jpg",
+            "description": "Affordable fashion for men, women, and kids, plus bedsheets and towels.",
+            "tags": [
+                "Fashion",
+                "Home"
+            ],
+            "highlight_tag": "Fashion"
+        },
+        {
+            "id": "travel",
+            "title": "Travel & Luggage",
+            "image": "assets/travel.jpg",
+            "description": "Suitcases, travel bags, and accessories for your next journey.",
+            "tags": [
+                "Bags",
+                "Accessories"
+            ],
+            "highlight_tag": "Bags"
+        }
+    ]
+}

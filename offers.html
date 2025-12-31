@@ -45,9 +45,9 @@
 
     <div class="hero offers-hero">
         <div class="hero-glass-card reveal">
-            <span class="hero-welcome-text">Best Prices in Town</span>
-            <h1>Weekly Specials</h1>
-            <p>Grab these limited-time deals at your nearest branch or order online.</p>
+            <span class="hero-welcome-text" id="offers-hero-welcome">Best Prices in Town</span>
+            <h1 id="offers-hero-headline">Weekly Specials</h1>
+            <p id="offers-hero-text">Grab these limited-time deals at your nearest branch or order online.</p>
         </div>
     </div>
 
@@ -95,117 +95,16 @@
             </div>
         </section>
 
-        <div class="section-header-center reveal" id="offers-grid" style="margin-top: 20px;">
-            <span class="section-subtitle">Hurry, Limited Stock!</span>
-            <h2>Top 6 Deals</h2>
+        <div class="section-header-center reveal" style="margin-top: 20px;">
+            <span class="section-subtitle" id="offers-subtitle">Hurry, Limited Stock!</span>
+            <h2 id="offers-title">Top 6 Deals</h2>
         </div>
 
         <!-- SAFE TO EDIT: Offers Grid -->
         <!-- SAFE TO EDIT: Offers Grid -->
-        <div class="offers-grid reveal">
-
-            <!-- Card 1 -->
-            <div class="offer-card">
-                <div class="offer-image">
-                    <img src="assets/offers/offer-1.jpg" alt="Cooking Oil 5L" onerror="this.style.display='none'">
-                    <span class="discount-badge">-10%</span>
-                </div>
-                <div class="offer-details">
-                    <h3>Cooking Oil 5L</h3>
-                    <div class="price-row">
-                        <span class="old-price">Ksh 1,800</span>
-                        <span class="new-price">Ksh 1,620</span>
-                    </div>
-                    <small class="branch-label">Prices may vary by branch</small>
-                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
-                </div>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="offer-card">
-                <div class="offer-image">
-                    <img src="assets/offers/offer-2.jpg" alt="Sugar 2kg" onerror="this.style.display='none'">
-                    <span class="discount-badge">HOT</span>
-                </div>
-                <div class="offer-details">
-                    <h3>Sugar 2kg</h3>
-                    <div class="price-row">
-                        <span class="old-price">Ksh 450</span>
-                        <span class="new-price">Ksh 390</span>
-                    </div>
-                    <small class="branch-label">Prices may vary by branch</small>
-                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="offer-card">
-                <div class="offer-image">
-                    <img src="assets/offers/offer-3.jpg" alt="Wheat Flour 2kg" onerror="this.style.display='none'">
-                    <span class="discount-badge">-15%</span>
-                </div>
-                <div class="offer-details">
-                    <h3>Wheat Flour 2kg</h3>
-                    <div class="price-row">
-                        <span class="old-price">Ksh 220</span>
-                        <span class="new-price">Ksh 185</span>
-                    </div>
-                    <small class="branch-label">Prices may vary by branch</small>
-                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="offer-card">
-                <div class="offer-image">
-                    <img src="assets/offers/offer-4.jpg" alt="Bar Soap 1kg" onerror="this.style.display='none'">
-                    <span class="discount-badge">SALE</span>
-                </div>
-                <div class="offer-details">
-                    <h3>Bar Soap 1kg</h3>
-                    <div class="price-row">
-                        <span class="old-price">Ksh 180</span>
-                        <span class="new-price">Ksh 150</span>
-                    </div>
-                    <small class="branch-label">Prices may vary by branch</small>
-                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="offer-card">
-                <div class="offer-image">
-                    <img src="assets/offers/offer-5.jpg" alt="Rice 5kg" onerror="this.style.display='none'">
-                    <span class="discount-badge">-20%</span>
-                </div>
-                <div class="offer-details">
-                    <h3>Rice 5kg</h3>
-                    <div class="price-row">
-                        <span class="old-price">Ksh 1,200</span>
-                        <span class="new-price">Ksh 960</span>
-                    </div>
-                    <small class="branch-label">Prices may vary by branch</small>
-                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
-                </div>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="offer-card">
-                <div class="offer-image">
-                    <img src="assets/offers/offer-6.jpg" alt="Milk Long Life" onerror="this.style.display='none'">
-                    <span class="discount-badge">DEAL</span>
-                </div>
-                <div class="offer-details">
-                    <h3>Milk Long Life</h3>
-                    <div class="price-row">
-                        <span class="old-price">Ksh 100</span>
-                        <span class="new-price">Ksh 85</span>
-                    </div>
-                    <small class="branch-label">Prices may vary by branch</small>
-                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
-                </div>
-            </div>
-
+        <!-- SAFE TO EDIT: Offers Grid -->
+        <div class="offers-grid reveal" id="weekly-offers-grid">
+            <!-- Dynamic Offers Loaded Here -->
         </div>
 
         </div>

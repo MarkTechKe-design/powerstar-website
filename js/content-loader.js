@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // 3. Load Departments (if grid exists)
-    if (document.querySelector('.department-grid')) {
-        // await loadDepartments(); // Implementation pending
+    if (document.getElementById('departments-grid')) {
+        await loadDepartments();
     }
 
     // 4. Load About Page Modules (if on About page)
@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 5. Load Team Gallery (if container exists - New check)
     if (document.getElementById('team-gallery-grid')) {
         await loadTeamGallery();
+    }
+
+    // 6. Load Weekly Offers (if container exists)
+    if (document.getElementById('weekly-offers-grid')) {
+        await loadOffers();
     }
 
 });
@@ -182,16 +187,25 @@ async function loadAboutModules() {
         console.warn('Error loading executives.json', e);
     }
 
-    // D. Load Partners
+    // D. Load Partners (Brand Showcase)
     try {
         const response = await fetch('data/partners.json');
         if (response.ok) {
-            const partners = await response.json();
-            const container = document.getElementById('partners-grid');
-            if (container) {
-                container.innerHTML = partners.partners.map(p => `
-                    <div class="partner-logo" style="width: 120px; text-align: center;">
-                         <img src="${p.logo}" alt="${p.name}" style="max-width: 100%; opacity: 0.7; filter: grayscale(100%); transition: 0.3s;" onmouseover="this.style.filter='none'; this.style.opacity='1'" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.7'" onerror="this.style.display='none'">
+            const data = await response.json();
+
+            // 1. Text Content
+            if (data.headline) updateText('partners-headline', data.headline);
+            if (data.intro) updateText('partners-intro', data.intro);
+
+            // 2. Logo Track
+            const track = document.getElementById('partners-track');
+            if (track && data.partners) {
+                // We create the list twice to enable the "infinite loop" CSS animation effect (translateX -50%)
+                const logoList = [...data.partners, ...data.partners];
+
+                track.innerHTML = logoList.map(p => `
+                    <div class="partner-logo-item">
+                         <img src="${p.logo}" alt="${p.name} - Trusted Partner" loading="lazy" onerror="this.style.opacity='0.1'">
                     </div>
                 `).join('');
             }
@@ -221,5 +235,56 @@ async function loadTeamGallery() {
         }
     } catch (e) {
         console.warn('Error loading team.json', e);
+    }
+}
+async function loadOffers() {
+    try {
+        const response = await fetch('data/offers.json');
+        if (response.ok) {
+            const data = await response.json();
+
+            // Hero & Headers
+            if (data.hero) {
+                updateText('offers-hero-welcome', data.hero.welcome);
+                updateText('offers-hero-headline', data.hero.headline);
+                updateText('offers-hero-text', data.hero.subheadline);
+            }
+            if (data.header) {
+                updateText('offers-subtitle', data.header.subtitle);
+                updateText('offers-title', data.header.title);
+            }
+
+            // Grid
+            const container = document.getElementById('weekly-offers-grid');
+            if (container && data.offers) {
+                container.innerHTML = data.offers.map(offer => {
+                    if (!offer.active) return '';
+
+                    const branches = Array.isArray(offer.branches) ? offer.branches.join(', ') : offer.branches;
+
+                    return `
+                    <div class="offer-card">
+                        <div class="offer-image">
+                            <img src="${offer.image}" alt="${offer.product_name}" class="lightbox-trigger" onerror="this.src='https://placehold.co/600x600/eee/999?text=Offer'">
+                            ${offer.discount_label ? `<span class="discount-badge">${offer.discount_label}</span>` : ''}
+                        </div>
+                        <div class="offer-details">
+                            <h3>${offer.product_name}</h3>
+                            <div class="price-row">
+                                <span class="old-price">${offer.old_price}</span>
+                                <span class="new-price">${offer.new_price}</span>
+                            </div>
+                            <!-- Requirement: Bold Branch Note -->
+                            <small class="branch-label">Available at: <strong>${branches}</strong></small>
+                            <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+                        </div>
+                    </div>
+                `}).join('');
+
+                // Trigger global lightbox re-bind if needed (lightbox.js observes body so it should auto-handle)
+            }
+        }
+    } catch (e) {
+        console.warn('Error loading offers.json', e);
     }
 }

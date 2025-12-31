@@ -1,5 +1,6 @@
 {
-    "intro": "Our growth is powered by strong partnerships with leading global and local brands who share our commitment to quality.",
+    "headline": "WE GROW TOGETHER WITH TRUSTED BRANDS",
+    "intro": "Our growth is powered by long-term partnerships with leading manufacturers and local suppliers who share our commitment to quality, consistency, and value.",
     "partners": [
         {
             "name": "Kenya Canners Ltd",
@@ -24,6 +25,22 @@
         {
             "name": "Nairobi Bakeries",
             "logo": "assets/partners/brand6.png"
+        },
+        {
+            "name": "Kenya Canners Ltd",
+            "logo": "assets/partners/brand1.png"
+        },
+        {
+            "name": "Savanna Dairy",
+            "logo": "assets/partners/brand2.png"
+        },
+        {
+            "name": "Highland Millers",
+            "logo": "assets/partners/brand3.png"
+        },
+        {
+            "name": "Coastal Beverages",
+            "logo": "assets/partners/brand4.png"
         }
     ]
 }

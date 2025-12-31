@@ -1,9 +1,83 @@
-[
-    {
-        "id": 1,
-        "title": "Weekend Special",
-        "description": "Get 10% off all dairy products this weekend.",
-        "image": "assets/promotions/promo-1.jpg",
-        "valid_until": "2025-12-31"
-    }
-]
+{
+    "hero": {
+        "welcome": "Best Prices in Town",
+        "headline": "Weekly Specials",
+        "subheadline": "Grab these limited-time deals at your nearest branch or order online."
+    },
+    "header": {
+        "subtitle": "Hurry, Limited Stock!",
+        "title": "Top 6 Deals"
+    },
+    "offers": [
+        {
+            "product_name": "Cooking Oil 5L",
+            "image": "assets/offers/offer-1.jpg",
+            "old_price": "Ksh 1,800",
+            "new_price": "Ksh 1,620",
+            "discount_label": "-10%",
+            "branches": [
+                "Kasarani",
+                "Kikuyu"
+            ],
+            "active": true
+        },
+        {
+            "product_name": "Sugar 2kg",
+            "image": "assets/offers/offer-2.jpg",
+            "old_price": "Ksh 450",
+            "new_price": "Ksh 390",
+            "discount_label": "HOT",
+            "branches": [
+                "Zimmerman",
+                "Ruiru"
+            ],
+            "active": true
+        },
+        {
+            "product_name": "Wheat Flour 2kg",
+            "image": "assets/offers/offer-3.jpg",
+            "old_price": "Ksh 220",
+            "new_price": "Ksh 185",
+            "discount_label": "-15%",
+            "branches": [
+                "All Branches"
+            ],
+            "active": true
+        },
+        {
+            "product_name": "Bar Soap 1kg",
+            "image": "assets/offers/offer-4.jpg",
+            "old_price": "Ksh 180",
+            "new_price": "Ksh 150",
+            "discount_label": "SALE",
+            "branches": [
+                "Kasarani",
+                "Mwiki"
+            ],
+            "active": true
+        },
+        {
+            "product_name": "Rice 5kg",
+            "image": "assets/offers/offer-5.jpg",
+            "old_price": "Ksh 1,200",
+            "new_price": "Ksh 960",
+            "discount_label": "-20%",
+            "branches": [
+                "Kikuyu",
+                "Ruiru"
+            ],
+            "active": true
+        },
+        {
+            "product_name": "Milk Long Life",
+            "image": "assets/offers/offer-6.jpg",
+            "old_price": "Ksh 100",
+            "new_price": "Ksh 85",
+            "discount_label": "DEAL",
+            "branches": [
+                "All Branches"
+            ],
+            "active": true
+        }
+    ]
+}

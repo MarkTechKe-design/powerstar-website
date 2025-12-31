@@ -25,6 +25,9 @@
     <!-- Lightbox System -->
     <link rel="stylesheet" href="css/lightbox.css">
     <script src="js/lightbox.js" defer></script>
+
+    <!-- Performance Hints -->
+    <link rel="preload" as="image" href="assets/hero/hero-1.jpg">
 </head>
 
 <body>
@@ -88,7 +91,7 @@
 
                     <!-- Slide 1 -->
                     <div class="slide slide-1 active">
-                        <img src="assets/hero/hero-1.jpg" class="slide-bg" alt="Fresh Deals"
+                        <img src="assets/hero/hero-1.jpg" class="slide-bg" alt="Fresh Deals" fetchpriority="high"
                             onerror="this.src='https://placehold.co/1200x600/333/fff?text=Fresh+Deals'">
                         <div class="slide-content">
                             <span class="offer-tag">Market Day</span>
@@ -100,7 +103,7 @@
 
                     <!-- Slide 2 -->
                     <div class="slide slide-2">
-                        <img src="assets/hero/hero-2.jpg" class="slide-bg" alt="Back to School"
+                        <img src="assets/hero/hero-2.jpg" class="slide-bg" alt="Back to School" loading="lazy"
                             onerror="this.src='https://placehold.co/1200x600/0ea/fff?text=Back+to+School'">
                         <div class="slide-content">
                             <span class="offer-tag">Education</span>
@@ -112,7 +115,7 @@
 
                     <!-- Slide 3 -->
                     <div class="slide slide-3">
-                        <img src="assets/hero/hero-3.jpg" class="slide-bg" alt="Electronics"
+                        <img src="assets/hero/hero-3.jpg" class="slide-bg" alt="Electronics" loading="lazy"
                             onerror="this.src='https://placehold.co/1200x600/555/fff?text=Electronics'">
                         <div class="slide-content">
                             <span class="offer-tag">Upgrade Your Home</span>
@@ -124,7 +127,7 @@
 
                     <!-- Slide 4 -->
                     <div class="slide slide-4">
-                        <img src="assets/hero/hero-4.jpg" class="slide-bg" alt="Beverages"
+                        <img src="assets/hero/hero-4.jpg" class="slide-bg" alt="Beverages" loading="lazy"
                             onerror="this.src='https://placehold.co/1200x600/da291c/fff?text=Beverages'">
                         <div class="slide-content">
                             <span class="offer-tag">Refreshment</span>

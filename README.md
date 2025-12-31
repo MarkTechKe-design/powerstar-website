@@ -1,74 +1,131 @@
-# Powerstar Supermarkets Website - Admin Guide
+# 📘 Powerstar Website - Admin Content Guide
+**For Marketing & Content Teams**
 
-This website is built to be easily editable without touching code. All text and image settings are stored in the `data/` folder.
-
-## 📁 Content Management (JSON Files)
-
-Navigate to the `data/` folder to edit website content. You can open these files with any text editor (Notepad, VS Code, etc.).
-
-### 1. `site-content.json`
-**Controls:** Header, Footer, Hero Text, Contact Info.
-- **Key Fields:**
-    - `company_name`: Global brand name.
-    - `contact`: Updates phone/email across the site.
-    - `social_links`: URLs for Facebook/TikTok icons.
-
-### 2. `slides.json` (Home Page Slider)
-**Controls:** The main promo slider on the homepage.
-- **To Add a Slide:** Copy an existing block `{...}` and paste it.
-- **Image Size:** Recommended `1920x800` pixels.
-- **Active:** Set `"active": false` to hide a slide without deleting it.
-
-### 3. `about.json` (About Page)
-**Controls:** Mission, Vision, Quality Policy, and Vision Narrative.
-- **Fields:**
-    - `strategic_compass`: Edit Mission/Vision text here.
-    - `growth_vision`: Update the "Future Outlook" text and image path.
-
-### 4. `executives.json`
-**Controls:** Leadership Profiles on About Page.
-- **Structure:**
-    ```json
-    {
-      "name": "Jane Doe",
-      "title": "Operations Manager",
-      "image": "assets/team/jane.jpg",
-      "bio": "...",
-      "quote": "..."
-    }
-    ```
-
-### 5. `partners.json`
-**Controls:** Partner Logo Grid.
-- **Images:** Place logos in `assets/partners/`. Ensure they are PNG or JPG (transparent background properly).
-
-### 6. `metrics.json`
-**Controls:** The animated counters (e.g., "12+ Branches").
+This guide explains how to update the website content (Prices, Offers, Products, News) without needing a developer. All content is stored in the `data/` folder.
 
 ---
 
-## 🖼️ Image Management
+## 🚀 Quick Start
+**You will need:**
+1.  A text editor (we recommend [Notepad++](https://notepad-plus-plus.org/) or [VS Code](https://code.visualstudio.com/)).
+2.  Access to the website files folder.
 
-All images should be uploaded to the `assets/` folder.
+**The Golden Rule:**
+> Only edit text inside the quotes `" "`. Never delete the quotes themselves!
 
-- **Product Images:** Use `assets/products/`. Recommend JPG, square or 4:3 ratio. White background preferred.
-- **Team Images:** Use `assets/team/`. Recommend square (1:1) aspect ratio.
-- **Slider Images:** Use `assets/hero/`. Wide format (16:9).
+---
 
-## ⚠️ Important Rules
+## 🛒 Updating Weekly Offers
+*File:* `data/offers.json`
 
-1. **Do NOT delete keys** (the left side of `"key": "value"`). Only edit the value on the right.
-2. **Watch your commas**: Every line in a list must allow a comma EXCEPT the last one.
-    - ✅ Good: `{"a": 1, "b": 2}`
-    - ❌ Bad: `{"a": 1, "b": 2,}`
-3. **Paths**: Always use relative paths like `assets/image.jpg`, not `C:/Users/...`.
+This file controls the "Weekly Specials" on the Offers page.
 
-## 🚀 Deployment
+### 1. To Change a Price or Product
+Find the product block and edit the values:
+```json
+{
+    "product_name": "Cooking Oil 5L",       <-- Change Name
+    "image": "assets/offers/offer-1.jpg",   <-- Change Image Path
+    "old_price": "Ksh 1,900",               <-- Change Old Price
+    "new_price": "Ksh 1,650",               <-- Change New Deal Price
+    "discount_label": "-15%",               <-- Label (e.g., "HOT", "SALE")
+    "branches": ["Kasarani", "Ruiru"],      <-- List where available
+    "active": true                          <-- Set to false to hide it
+}
+```
 
-The site is static HTML/JS. To deploy:
-1. Upload the entire folder structure to `public_html` on your cPanel.
-2. Ensure `index.html` is in the root directory.
+### 2. To Add a New Offer
+1.  Copy one entire `{ ... },` block (from opening brace `{` to closing brace `},`).
+2.  Paste it **before** the last closing square bracket `]`.
+3.  Update the text and image.
 
-## 🆘 Support
+---
 
-For script or layout changes, contact the technical lead.
+## 📦 Updating Products (Departments)
+*File:* `data/services.json`
+
+This controls the "Our Product Range" grid on the Products page.
+
+### Example Block:
+```json
+{
+    "id": "bakery",
+    "title": "Fresh Bakery",                <-- Title on Card
+    "image": "assets/bakery.jpg",           <-- Image File
+    "description": "Cakes and bread...",    <-- Short Description
+    "tags": ["Fresh", "Sweet"],             <-- Small tags below text
+    "highlight_tag": "Fresh"                <-- Which tag should be Green?
+}
+```
+
+---
+
+## 📢 Updating Home Page Sliders
+*File:* `data/slides.json`
+
+This controls the big rotating banners on the Home page.
+
+- **`title`**: The big bold text (e.g., "Back to School").
+- **`subtitle`**: The smaller text above the title.
+- **`image`**: The background image filename (must be in `assets/hero/`).
+- **`button_text`**: What the button says (e.g., "Shop Now").
+- **`button_link`**: Where the button goes (e.g., `offers.html` or `contact.html`).
+
+---
+
+## 🤝 Adding Partner Logos
+*File:* `data/partners.json`
+
+1.  **Prepare Logo**: Save as PNG with transparent background. Name it simply (e.g., `coca-cola.png`).
+2.  **Upload**: Put it in `assets/partners/` folder.
+3.  **Edit JSON**:
+    ```json
+    {
+       "name": "Coca Cola",
+       "logo": "assets/partners/coca-cola.png"
+    }
+    ```
+
+---
+
+## 🏢 Updating Branch & Contact Info
+*File:* `data/site-content.json`
+
+Use this file to update:
+- Phone Numbers
+- Email Addresses
+- Social Media Links
+- Main Hero Welcome Text
+- Footer Copyright
+
+---
+
+## 🖼️ Image Best Practices (Read Carefully!)
+
+**Before you upload ANY image:**
+1.  **Compress It**: Go to [TinyPNG.com](https://tinypng.com/) and shrink the file size. Big images make the site slow.
+2.  **Name It Clearly**: `fresh-bread.jpg` is better than `IMG_2025_Final_v2.jpg`.
+3.  **Check Dimensions**:
+    - **Large Banners**: 1920px wide x 800px high
+    - **Product/Offer Images**: 800px x 800px (Square)
+    - **Logos**: Around 200px wide (PNG)
+
+---
+
+## ⚠️ Troubleshooting / Help
+
+### "I made a change and the site went blank!"
+You probably broke the JSON format.
+1.  Did you accidentally convert a `"` to a `”` (curly quote)? Always use straight quotes.
+2.  Did you delete a comma `,` between items?
+3.  Did you leave a trailing comma after the *last* item in a list? (JSON hates trailing commas).
+
+**Fix:** Undo your change (Ctrl+Z) and try again carefully.
+
+### "My image isn't showing up."
+1.  Is the filename correct? `Bread.jpg` is essentially different from `bread.jpg`. Exact case matters!
+2.  Is the extension correct? (`.jpg` vs `.png` vs `.jpeg`).
+3.  Is the file actually in the folder you pointed to?
+
+---
+*For technical support, contact the IT Department.*

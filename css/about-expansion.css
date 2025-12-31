@@ -90,6 +90,77 @@
     font-size: 0.9rem;
 }
 
+/* 4. Brand Showcase (Marquee) */
+.brand-showcase-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 30px 0;
+    /* Fade edges for infinite effect illusion */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.brand-track {
+    display: flex;
+    gap: 60px;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+}
+
+.brand-track:hover {
+    animation-play-state: paused;
+}
+
+.partner-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Ensure Logos have space */
+    min-width: 120px;
+}
+
+.partner-logo-item img {
+    height: 64px;
+    width: auto;
+    object-fit: contain;
+    /* Premium Look: Grayscale to Color or just consistent */
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    cursor: default;
+    /* Non-clickable */
+}
+
+/* No hover effect interaction as requested "Logos exist for visual trust only" 
+   But "Resume by mouse leave" implies pausing on hover, which we did.
+   We will keep visual consistency high. 
+*/
+.partner-logo-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+
+    /* Assumes track is duplicated once */
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .brand-track {
+        animation: none;
+        overflow-x: auto;
+    }
+}
+
 /* 4. Partner Grid */
 .partner-logo {
     transition: all 0.3s ease;
@@ -97,6 +168,40 @@
 
 .partner-logo:hover {
     transform: scale(1.1);
+}
+
+/* Responsive: Mobile & Tablet Rules */
+@media (max-width: 991px) {
+    .brand-showcase-container {
+        mask-image: none;
+        -webkit-mask-image: none;
+        overflow-x: auto;
+        /* Enable scroll snap */
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-left: 20px;
+        /* Padding for first item */
+    }
+
+    .brand-track {
+        animation: none;
+        /* Disable auto-scroll */
+        width: auto;
+        /* Let it flow */
+        gap: 30px;
+        padding-right: 20px;
+        /* Padding for last item */
+    }
+
+    .partner-logo-item {
+        scroll-snap-align: center;
+        min-width: 100px;
+    }
+
+    .partner-logo-item img {
+        height: 48px;
+        /* Smaller for mobile */
+    }
 }
 
 /* Responsive */
