@@ -44,7 +44,7 @@
             <nav class="nav-menu" id="nav-menu">
                 <a href="index.html" class="active">Home</a>
                 <a href="offers.html">Offers</a>
-                <a href="services.html">Products</a>
+                <a href="services.html">Departments</a>
                 <a href="order.html">Shop</a>
                 <a href="branches.html">Branches</a>
                 <a href="loyalty.html">Loyalty</a>
@@ -88,155 +88,38 @@
                 <button class="slider-arrow next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
 
                 <div class="slider-track" id="sliderTrack">
-
-                    <!-- Slide 1 -->
-                    <div class="slide slide-1 active">
-                        <img src="assets/hero/hero-1.jpg" class="slide-bg" alt="Fresh Deals" fetchpriority="high"
-                            onerror="this.src='https://placehold.co/1200x600/333/fff?text=Fresh+Deals'">
-                        <div class="slide-content">
-                            <span class="offer-tag">Market Day</span>
-                            <h2>Fresh Savings</h2>
-                            <p>Up to 20% OFF fruits and vegetables every Wednesday & Saturday.</p>
-                            <a href="branches.html" class="btn btn-primary">Visit Store</a>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="slide slide-2">
-                        <img src="assets/hero/hero-2.jpg" class="slide-bg" alt="Back to School" loading="lazy"
-                            onerror="this.src='https://placehold.co/1200x600/0ea/fff?text=Back+to+School'">
-                        <div class="slide-content">
-                            <span class="offer-tag">Education</span>
-                            <h2>School Essentials</h2>
-                            <p>Wholesale prices on stationery and snacks for the new term.</p>
-                            <a href="services.html" class="btn btn-primary">See Catalogue</a>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="slide slide-3">
-                        <img src="assets/hero/hero-3.jpg" class="slide-bg" alt="Electronics" loading="lazy"
-                            onerror="this.src='https://placehold.co/1200x600/555/fff?text=Electronics'">
-                        <div class="slide-content">
-                            <span class="offer-tag">Upgrade Your Home</span>
-                            <h2>Appliances Sale</h2>
-                            <p>Get the latest kitchenware and electronics at unbeatable prices.</p>
-                            <a href="services.html" class="btn btn-primary">Shop Electronics</a>
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="slide slide-4">
-                        <img src="assets/hero/hero-4.jpg" class="slide-bg" alt="Beverages" loading="lazy"
-                            onerror="this.src='https://placehold.co/1200x600/da291c/fff?text=Beverages'">
-                        <div class="slide-content">
-                            <span class="offer-tag">Refreshment</span>
-                            <h2>Bulk Drinks</h2>
-                            <p>Stock up on sodas, juices, and water for your events or business.</p>
-                            <a href="order.html" class="btn btn-primary">Order Bulk</a>
-                        </div>
-                    </div>
-
+                    <!-- Dynamic Slides Loaded Here -->
                 </div>
 
                 <!-- Indicators -->
                 <div class="slider-indicators">
-                    <span class="indicator active" onclick="currentSlide(1)"></span>
-                    <span class="indicator" onclick="currentSlide(2)"></span>
-                    <span class="indicator" onclick="currentSlide(3)"></span>
-                    <span class="indicator" onclick="currentSlide(4)"></span>
+                    <!-- Dynamic Indicators -->
                 </div>
 
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="slide slide-3">
-                <img src="assets/hero/hero-3.jpg" class="slide-bg" alt="Bulk Buying"
-                    onerror="this.src='https://placehold.co/1200x600/f50/fff?text=Bulk+Orders'">
-                <div class="slide-content">
-                    <span class="offer-tag">Business</span>
-                    <h2>Buy in Bulk</h2>
-                    <p>Special discounts for schools, hotels, and bulk shoppers.</p>
-                    <a href="order.html" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Inquire
-                        Now</a>
-                </div>
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="slide slide-4">
-                <img src="assets/hero/hero-4.jpg" class="slide-bg" alt="Community"
-                    onerror="this.src='https://placehold.co/1200x600/007/fff?text=Loyalty+Club'">
-                <div class="slide-content">
-                    <span class="offer-tag">Smart Card</span>
-                    <h2>Join & Earn</h2>
-                    <p>Get points on every purchase and redeem for instant shopping vouchers.</p>
-                    <a href="loyalty.html" class="btn btn-primary">Register Free</a>
-                </div>
-            </div>
-
-            </div>
-
-            <!-- Slider Controls -->
-            <div class="slider-arrow arrow-left"><i class="fas fa-chevron-left"></i></div>
-            <div class="slider-arrow arrow-right"><i class="fas fa-chevron-right"></i></div>
-
-            <div class="slider-dots" id="sliderDots">
-                <div class="dot active"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
-            </div>
             </div>
         </section>
 
-        <!-- 3. PRODUCTS (Featured Departments) -->
+        <!-- 3. DEPARTMENTS (Featured Departments) -->
         <section class="reveal" style="margin-bottom: 80px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Our Departments</span>
-                <h2>Everything You Need</h2>
+                <h2>Shop by Department</h2>
             </div>
 
-            <div class="quick-access-grid">
-                <!-- Card 1 -->
-                <a href="services.html" class="quick-card">
-                    <div class="quick-icon"><i class="fas fa-bread-slice"></i></div>
-                    <span class="quick-label">Bakery & Deli</span>
-                </a>
-                <!-- Card 2 -->
-                <a href="services.html" class="quick-card">
-                    <div class="quick-icon"><i class="fas fa-carrot"></i></div>
-                    <span class="quick-label">Fresh Produce</span>
-                </a>
-                <!-- Card 3 -->
-                <a href="services.html" class="quick-card">
-                    <div class="quick-icon"><i class="fas fa-drumstick-bite"></i></div>
-                    <span class="quick-label">Butchery</span>
-                </a>
-                <!-- Card 4 -->
-                <a href="services.html" class="quick-card">
-                    <div class="quick-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <span class="quick-label">Electronics</span>
-                </a>
-                <!-- Card 5 -->
-                <a href="services.html" class="quick-card">
-                    <div class="quick-icon"><i class="fas fa-wine-bottle"></i></div>
-                    <span class="quick-label">Liquor</span>
-                </a>
-                <!-- Card 6: WhatsApp -->
-                <a href="order.html" class="quick-card whatsapp-card">
-                    <div class="quick-icon"><i class="fab fa-whatsapp"></i></div>
-                    <span class="quick-label">Shop Online</span>
-                </a>
-                <!-- Card 7: Loyalty -->
-                <a href="loyalty.html" class="quick-card loyalty-card">
-                    <div class="quick-icon"><i class="fas fa-crown"></i></div>
-                    <span class="quick-label">Loyalty Club</span>
-                </a>
-                <!-- Card 8: View All -->
-                <a href="services.html" class="quick-card">
-                    <div class="quick-icon"><i class="fas fa-th-large"></i></div>
-                    <span class="quick-label">View All</span>
-                </a>
+            <div class="quick-access-grid" id="landing-departments-grid">
+                <!-- Dynamic Departments Loaded Here -->
+            </div>
+        </section>
+
+        <!-- 4. WHAT'S NEW (New Feature) -->
+        <section class="reveal" style="margin-bottom: 80px;">
+            <div class="section-header-center">
+                <span class="section-subtitle">Latest Updates</span>
+                <h2>What's New at Powerstar</h2>
+            </div>
+
+            <div class="department-grid" id="whats-new-grid">
+                <!-- Dynamic News Loaded Here -->
             </div>
         </section>
 
