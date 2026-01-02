@@ -1,23 +1,122 @@
 [
     {
+        "id": "foodstuffs",
+        "title": "Foodstuffs",
+        "image": "assets/cereals.jpg",
+        "description": "Daily essentials including flour, sugar, rice, and cooking oil.",
+        "icon": "fa-utensils",
+        "note": "Available in all branches",
+        "landing_display": true,
+        "visible": true
+    },
+    {
+        "id": "drinks",
+        "title": "Drinks & Beverages",
+        "image": "assets/liquor.jpg",
+        "description": "Soft drinks, juices, and water for events and daily refreshment.",
+        "icon": "fa-glass-cheers",
+        "note": "",
+        "landing_display": true,
+        "visible": true
+    },
+    {
+        "id": "liquor",
+        "title": "Liquor",
+        "image": "assets/liquor.jpg",
+        "description": "Premium wines, spirits, and beers.",
+        "icon": "fa-wine-bottle",
+        "note": "18+ Only. Selected branches.",
+        "landing_display": true,
+        "visible": true
+    },
+    {
+        "id": "stationery",
+        "title": "Stationery",
+        "image": "assets/hero/hero-2.jpg",
+        "description": "School and office supplies, from books to writing essentials.",
+        "icon": "fa-pen-ruler",
+        "note": "",
+        "landing_display": true,
+        "visible": true
+    },
+    {
+        "id": "kitchenware",
+        "title": "Kitchenware",
+        "image": "assets/kitchen.jpg",
+        "description": "Cookware, cutlery, and kitchen gadgets for every home chef.",
+        "icon": "fa-blender",
+        "note": "",
+        "landing_display": true,
+        "visible": true
+    },
+    {
+        "id": "electronics",
+        "title": "Electronics",
+        "image": "assets/electronics.jpg",
+        "description": "Home entertainment, audio systems, and appliances.",
+        "icon": "fa-tv",
+        "note": "",
+        "landing_display": true,
+        "visible": true
+    },
+    {
+        "id": "furniture",
+        "title": "Furniture",
+        "image": "assets/hero/hero-4.jpg",
+        "description": "Quality furniture pieces for your living room and office.",
+        "icon": "fa-couch",
+        "note": "Selected branches only",
+        "landing_display": false,
+        "visible": true
+    },
+    {
+        "id": "beddings",
+        "title": "Beddings",
+        "image": "assets/clothing.jpg",
+        "description": "Comfortable sheets, duvets, and pillows for a good night's sleep.",
+        "icon": "fa-bed",
+        "note": "",
+        "landing_display": false,
+        "visible": true
+    },
+    {
+        "id": "bicycles",
+        "title": "Bicycles",
+        "image": "assets/hero/hero-1.jpg",
+        "description": "Bicycles for kids and adults, plus accessories.",
+        "icon": "fa-bicycle",
+        "note": "Selected branches only",
+        "landing_display": false,
+        "visible": true
+    },
+    {
+        "id": "household",
+        "title": "Household Items",
+        "image": "assets/household.jpg",
+        "description": "Cleaning supplies, laundry care, and home organization.",
+        "icon": "fa-pump-soap",
+        "note": "",
+        "landing_display": false,
+        "visible": true
+    },
+    {
         "id": "bakery",
-        "name": "Fresh Bakery",
-        "description": "Oven-fresh bread, cakes, and pastries baked throughout the day.",
-        "image": "assets/departments/bakery.jpg",
-        "link": "services.html#bakery"
+        "title": "Bakery",
+        "image": "assets/bakery.jpg",
+        "description": "Freshly baked bread, cakes, and pastries daily.",
+        "icon": "fa-bread-slice",
+        "note": "Fresh Daily",
+        "landing_display": false,
+        "visible": true
     },
     {
-        "id": "butchery",
-        "name": "Premium Butchery",
-        "description": "High-quality cuts of beef, goat, chicken, and fish.",
-        "image": "assets/departments/butchery.jpg",
-        "link": "services.html#butchery"
-    },
-    {
-        "id": "groceries",
-        "name": "Fresh Groceries",
-        "description": "Hand-picked fruits and vegetables from local farms.",
-        "image": "assets/departments/produce.jpg",
-        "link": "services.html#groceries"
+        "id": "beauty",
+        "title": "Beauty & Personal Care",
+        "image": "assets/beauty.jpg",
+        "description": "Skincare, haircare, and cosmetics.",
+        "icon": "fa-spa",
+        "note": "",
+        "landing_display": false,
+        "visible": true
     }
 ]

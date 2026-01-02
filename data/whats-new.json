@@ -1,0 +1,29 @@
+[
+    {
+        "id": "new-1",
+        "title": "Back to School Deals",
+        "image": "assets/hero/hero-2.jpg",
+        "tag": "Seasonal",
+        "link": "offers.html",
+        "link_text": "View Offers",
+        "active": true
+    },
+    {
+        "id": "new-2",
+        "title": "New Electronics Arrival",
+        "image": "assets/electronics.jpg",
+        "tag": "New Stock",
+        "link": "services.html",
+        "link_text": "Shop Electronics",
+        "active": true
+    },
+    {
+        "id": "new-3",
+        "title": "Weekend Specials",
+        "image": "assets/produce.jpg",
+        "tag": "Limited Time",
+        "link": "offers.html",
+        "link_text": "See Specials",
+        "active": true
+    }
+]

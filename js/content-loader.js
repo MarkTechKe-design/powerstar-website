@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
  */
 async function loadSiteContent() {
     try {
-        const response = await fetch('data/site-content.json');
+        const response = await fetch('data/site-content.json?v=2025-01');
         if (!response.ok) throw new Error('Failed to load site content');
         const data = await response.json();
 
@@ -58,7 +58,7 @@ async function loadSiteContent() {
 
 async function loadSlides() {
     try {
-        const response = await fetch('data/slides.json');
+        const response = await fetch('data/slides.json?v=2025-01');
         if (!response.ok) throw new Error('Failed to load slides');
         const slides = await response.json();
 
@@ -104,7 +104,7 @@ async function loadAboutModules() {
 
     // A. Load About Content (Narrative, Quality, Vision)
     try {
-        const response = await fetch('data/about.json');
+        const response = await fetch('data/about.json?v=2025-01');
         if (response.ok) {
             const data = await response.json();
 
@@ -146,7 +146,7 @@ async function loadAboutModules() {
 
     // B. Load Metrics
     try {
-        const response = await fetch('data/metrics.json');
+        const response = await fetch('data/metrics.json?v=2025-01');
         if (response.ok) {
             const metrics = await response.json();
             const container = document.querySelector('.impact-stats');
@@ -167,7 +167,7 @@ async function loadAboutModules() {
 
     // C. Load Executives
     try {
-        const response = await fetch('data/executives.json');
+        const response = await fetch('data/executives.json?v=2025-01');
         if (response.ok) {
             const execs = await response.json();
             const container = document.getElementById('executives-grid');
@@ -189,7 +189,7 @@ async function loadAboutModules() {
 
     // D. Load Partners (Brand Showcase)
     try {
-        const response = await fetch('data/partners.json');
+        const response = await fetch('data/partners.json?v=2025-01');
         if (response.ok) {
             const data = await response.json();
 
@@ -217,7 +217,7 @@ async function loadAboutModules() {
 
 async function loadTeamGallery() {
     try {
-        const response = await fetch('data/team.json');
+        const response = await fetch('data/team.json?v=2025-01');
         if (response.ok) {
             const team = await response.json();
             const container = document.getElementById('team-gallery-grid');
@@ -237,9 +237,51 @@ async function loadTeamGallery() {
         console.warn('Error loading team.json', e);
     }
 }
+
+async function loadDepartments() {
+    try {
+        const response = await fetch('data/services.json?v=2025-01');
+        if (!response.ok) throw new Error('Failed to load data/services.json');
+        const data = await response.json();
+
+        // Updates
+        if (data.hero) {
+            updateText('services-hero-welcome', data.hero.welcome);
+            updateText('services-hero-headline', data.hero.headline);
+            updateText('services-hero-tagline', data.hero.tagline);
+        }
+        if (data.intro) {
+            updateText('services-subtitle', data.intro.subtitle);
+            updateText('services-title', data.intro.title);
+            updateText('services-text', data.intro.text);
+        }
+
+        const container = document.getElementById('departments-grid');
+        if (container && data.departments) {
+            container.innerHTML = data.departments.map(dept => `
+                <div class="dept-card reveal">
+                    <div class="dept-image-wrapper">
+                        <img src="${dept.image}" alt="${dept.title}" loading="lazy" class="lightbox-trigger"
+                            onerror="this.src='https://placehold.co/600x400/eee/999?text=${dept.title}'">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="dept-title">${dept.title}</h3>
+                        <p class="dept-desc">${dept.description}</p>
+                        <div style="margin-bottom: 20px;">
+                            ${dept.tags.map(tag => `<span class="product-tag ${tag === dept.highlight_tag ? 'highlight' : ''}">${tag}</span>`).join('')}
+                        </div>
+                        <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on WhatsApp</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+    } catch (e) {
+        console.warn('Error loading services.json', e);
+    }
+}
 async function loadOffers() {
     try {
-        const response = await fetch('data/offers.json');
+        const response = await fetch('data/offers.json?v=2025-01');
         if (response.ok) {
             const data = await response.json();
 
