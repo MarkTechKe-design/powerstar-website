@@ -2,7 +2,16 @@
  * Powerstar Content Loader
  * Fetches JSON content and updates the DOM.
  * Hardened for Production: Relative paths, error handling, UI fallbacks.
+ * Matches GitHub Pages and cPanel environments.
  */
+
+/* 1. GLOBAL PATH RESOLUTION */
+const BASE_PATH = window.location.hostname.includes("github.io")
+    ? "/powerstar-website"
+    : "";
+
+/* Global Image Error Handler */
+const PLACEHOLDER_IMG = "https://placehold.co/600x400?text=Powerstar+Supermarkets";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const path = window.location.pathname;
@@ -11,14 +20,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadSiteContent();
 
     // 2. Landing Page Specific Loading
-    if (path.includes('index.html') || path.endsWith('/')) {
+    // Checks for index.html or root path
+    if (path.includes('index.html') || path.endsWith('/powerstar-website/') || path === '/' || path.endsWith('/')) {
         await loadSlides();
         await loadDepartmentsHome();
         await loadWhatsNew();
 
         // Sometimes offers slider is on home too
         if (document.getElementById('weekly-offers-grid')) {
-            await loadOffers(); // If reused on home
+            await loadOffers();
         }
     }
 
@@ -52,7 +62,7 @@ document.addEventListener('DOMContentLoaded', async () => {
  */
 async function loadSiteContent() {
     try {
-        const response = await fetch('data/site-content.json?v=2025-01');
+        const response = await fetch(`${BASE_PATH}/data/site-content.json?v=2025-01`);
         if (!response.ok) throw new Error('Failed to load site content');
         const data = await response.json();
 
@@ -64,7 +74,6 @@ async function loadSiteContent() {
 
     } catch (error) {
         console.error('[Powerstar] Error loading site content:', error);
-        // No UI fallback needed for site-content usually, just logging.
     }
 }
 
@@ -73,7 +82,7 @@ async function loadSlides() {
     if (!track) return;
 
     try {
-        const response = await fetch('data/slides.json?v=2025-01');
+        const response = await fetch(`${BASE_PATH}/data/slides.json?v=2025-01`);
         if (!response.ok) throw new Error('HTTP error ' + response.status);
         const slides = await response.json();
 
@@ -87,7 +96,8 @@ async function loadSlides() {
             const slideEl = document.createElement('div');
             slideEl.className = `slide slide-${index + 1} ${index === 0 ? 'active' : ''}`;
             slideEl.innerHTML = `
-                <img src="${slide.image}" class="slide-bg lightbox-trigger" alt="${slide.title}">
+                <img src="${slide.image}" class="slide-bg lightbox-trigger" alt="${slide.title}"
+                     loading="lazy" onerror="this.src='${PLACEHOLDER_IMG}'">
                 <div class="slide-content">
                     <span class="slide-subtitle reveal">${slide.subtitle}</span>
                     <h2 class="reveal">${slide.title}</h2>
@@ -102,8 +112,6 @@ async function loadSlides() {
 
     } catch (error) {
         console.error('[Powerstar] Error loading slides:', error);
-        // Fallback: Keep static slides if JS fails (implicit as we only clear inside try)
-        // Or if we cleared and failed, show a static message
         if (track.children.length === 0) {
             track.innerHTML = '<div class="slide active"><div class="slide-content"><h2>Welcome to Powerstar</h2></div></div>';
         }
@@ -115,7 +123,7 @@ async function loadDepartmentsAll() {
     if (!container) return;
 
     try {
-        const response = await fetch('data/departments.json?v=2025-01');
+        const response = await fetch(`${BASE_PATH}/data/departments.json?v=2025-01`);
         if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         const departments = await response.json();
 
@@ -125,16 +133,19 @@ async function loadDepartmentsAll() {
             return;
         }
 
-        container.innerHTML = departments.filter(d => d.visible).map(dept => `
+        container.innerHTML = departments.filter(d => d.visible).map(dept => {
+            const iconHtml = dept.icon ? `<i class="fas ${dept.icon}" style="color:var(--ps-gold); font-size:1.2rem;"></i>` : `<i class="fas fa-store" style="color:var(--ps-gold); font-size:1.2rem;"></i>`;
+
+            return `
             <div class="dept-card reveal">
                 <div class="dept-image-wrapper">
                     <img src="${dept.image}" alt="${dept.title}" loading="lazy" class="lightbox-trigger"
-                        onerror="this.src='https://placehold.co/600x400/eee/999?text=${dept.title}'">
+                         onerror="this.src='${PLACEHOLDER_IMG}'">
                 </div>
                 <div class="card-content">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                         <h3 class="dept-title" style="margin:0;">${dept.title}</h3>
-                        <i class="fas ${dept.icon}" style="color:var(--ps-gold); font-size:1.2rem;"></i>
+                        ${iconHtml}
                     </div>
                     <p class="dept-desc">${dept.description}</p>
                     ${dept.note ? `<small style="display:block; color:var(--ps-red); margin-bottom:10px; font-weight:600;">${dept.note}</small>` : ''}
@@ -142,7 +153,7 @@ async function loadDepartmentsAll() {
                     <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on WhatsApp</a>
                 </div>
             </div>
-        `).join('');
+        `}).join('');
 
     } catch (e) {
         console.error('[Powerstar] Error loading departments.json', e);
@@ -155,23 +166,26 @@ async function loadDepartmentsHome() {
     if (!container) return;
 
     try {
-        const response = await fetch('data/departments.json?v=2025-01');
+        const response = await fetch(`${BASE_PATH}/data/departments.json?v=2025-01`);
         if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         const departments = await response.json();
 
-        const landingDepts = departments.filter(d => d.visible && d.landing_display);
+        // 6. LANDING PAGE DEPARTMENTS LOGIC: onLanding: true
+        const landingDepts = departments.filter(d => d.visible && d.onLanding).slice(0, 6); // Safety limit
 
         if (landingDepts.length === 0) {
-            renderFallback(container, "Featured departments coming soon.");
+            renderFallback(container, "No departments available at the moment. Please check back soon.");
             return;
         }
 
-        container.innerHTML = landingDepts.map(dept => `
+        container.innerHTML = landingDepts.map(dept => {
+            const iconClass = dept.icon ? dept.icon : 'fa-store';
+            return `
             <a href="services.html" class="quick-card">
-                <div class="quick-icon"><i class="fas ${dept.icon}"></i></div>
+                <div class="quick-icon"><i class="fas ${iconClass}"></i></div>
                 <span class="quick-label">${dept.title}</span>
             </a>
-        `).join('');
+        `}).join('');
 
     } catch (e) {
         console.error('[Powerstar] Error loading departments for landing page', e);
@@ -184,14 +198,14 @@ async function loadWhatsNew() {
     if (!container) return;
 
     try {
-        const response = await fetch('data/whats-new.json?v=2025-01');
+        const response = await fetch(`${BASE_PATH}/data/whats-new.json?v=2025-01`);
         if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         const newsItems = await response.json();
 
         const activeItems = newsItems.filter(item => item.active);
 
         if (activeItems.length === 0) {
-            renderFallback(container, "Stay tuned for the latest updates from Powerstar.");
+            renderFallback(container, "Updates coming soon. Stay connected with Powerstar.");
             console.warn('[Powerstar] No active news items found');
             return;
         }
@@ -200,7 +214,7 @@ async function loadWhatsNew() {
             <article class="news-card reveal">
                 <div class="news-image">
                     <img src="${item.image}" alt="${item.title}" loading="lazy"
-                            onerror="this.src='https://placehold.co/600x400/eee/999?text=${item.title}'">
+                         onerror="this.src='${PLACEHOLDER_IMG}'">
                     <span class="news-tag">${item.tag}</span>
                 </div>
                 <div class="news-content">
@@ -221,7 +235,7 @@ async function loadOffers() {
     if (!container) return;
 
     try {
-        const response = await fetch('data/offers.json?v=2025-01');
+        const response = await fetch(`${BASE_PATH}/data/offers.json?v=2025-01`);
         if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         const data = await response.json();
 
@@ -236,8 +250,9 @@ async function loadOffers() {
             updateText('offers-title', data.header.title);
         }
 
+        // 4. PLACEHOLDER UX
         if (!data.offers || data.offers.length === 0) {
-            renderFallback(container, "New deals coming soon. Check back shortly.");
+            renderFallback(container, "Weekly offers are being updated. Visit our stores for today’s deals.");
             return;
         }
 
@@ -248,7 +263,8 @@ async function loadOffers() {
             return `
             <div class="offer-card">
                 <div class="offer-image">
-                    <img src="${offer.image}" alt="${offer.product_name}" class="lightbox-trigger" onerror="this.src='https://placehold.co/600x600/eee/999?text=Offer'">
+                    <img src="${offer.image}" alt="${offer.product_name}" class="lightbox-trigger"
+                         onerror="this.src='${PLACEHOLDER_IMG}'">
                     ${offer.discount_label ? `<span class="discount-badge">${offer.discount_label}</span>` : ''}
                 </div>
                 <div class="offer-details">
@@ -274,7 +290,7 @@ async function loadAboutModules() {
 
     // A. Load About Content
     try {
-        const response = await fetch('data/about.json?v=2025-01');
+        const response = await fetch(`${BASE_PATH}/data/about.json?v=2025-01`);
         if (response.ok) {
             const data = await response.json();
             // Strategic Compass
@@ -295,7 +311,10 @@ async function loadAboutModules() {
             // Vision Image
             if (data.growth_vision && data.growth_vision.image) {
                 const img = document.getElementById('vision-image');
-                if (img) img.src = data.growth_vision.image;
+                if (img) {
+                    img.src = data.growth_vision.image;
+                    img.onerror = () => { img.src = PLACEHOLDER_IMG; };
+                }
             }
         }
     } catch (e) {
@@ -306,7 +325,7 @@ async function loadAboutModules() {
     const metricsContainer = document.querySelector('.impact-stats');
     if (metricsContainer) {
         try {
-            const response = await fetch('data/metrics.json?v=2025-01');
+            const response = await fetch(`${BASE_PATH}/data/metrics.json?v=2025-01`);
             if (response.ok) {
                 const metrics = await response.json();
                 metricsContainer.innerHTML = metrics.map(m => `
@@ -324,12 +343,13 @@ async function loadAboutModules() {
     const execContainer = document.getElementById('executives-grid');
     if (execContainer) {
         try {
-            const response = await fetch('data/executives.json?v=2025-01');
+            const response = await fetch(`${BASE_PATH}/data/executives.json?v=2025-01`);
             if (response.ok) {
                 const execs = await response.json();
                 execContainer.innerHTML = execs.executives.map(exec => `
                     <div class="team-card">
-                        <img src="${exec.image}" alt="${exec.name}" class="lightbox-trigger" onerror="this.src='https://placehold.co/300x300/eee/999?text=${exec.name}'">
+                        <img src="${exec.image}" alt="${exec.name}" class="lightbox-trigger"
+                             onerror="this.src='${PLACEHOLDER_IMG}'">
                         <h3>${exec.name}</h3>
                         <span class="role-badge">${exec.title}</span>
                         <p>${exec.bio}</p>
@@ -344,7 +364,7 @@ async function loadAboutModules() {
     const partnerTrack = document.getElementById('partners-track');
     if (partnerTrack) {
         try {
-            const response = await fetch('data/partners.json?v=2025-01');
+            const response = await fetch(`${BASE_PATH}/data/partners.json?v=2025-01`);
             if (response.ok) {
                 const data = await response.json();
                 if (data.headline) updateText('partners-headline', data.headline);
@@ -368,12 +388,13 @@ async function loadTeamGallery() {
     if (!container) return;
 
     try {
-        const response = await fetch('data/team.json?v=2025-01');
+        const response = await fetch(`${BASE_PATH}/data/team.json?v=2025-01`);
         if (response.ok) {
             const team = await response.json();
             container.innerHTML = team.members.map(member => `
                 <div class="gallery-item">
-                    <img src="${member.image}" alt="${member.name}" class="lightbox-trigger" onerror="this.src='https://placehold.co/600x800/333/fff?text=${member.role}'">
+                    <img src="${member.image}" alt="${member.name}" class="lightbox-trigger"
+                         onerror="this.src='${PLACEHOLDER_IMG}'">
                     <div class="gallery-overlay">
                         <h4>${member.name}</h4>
                         <span>${member.role}</span>
@@ -395,6 +416,7 @@ function updateText(id, text) {
     if (el && text) el.textContent = text;
 }
 
+// 5. HARD FAIL PROTECTION
 function renderFallback(container, message) {
     if (!container) return;
     container.innerHTML = `
