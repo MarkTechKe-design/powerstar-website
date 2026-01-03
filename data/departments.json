@@ -6,7 +6,7 @@
         "description": "Daily essentials including flour, sugar, rice, and cooking oil.",
         "icon": "fa-utensils",
         "note": "Available in all branches",
-        "landing_display": true,
+        "onLanding": true,
         "visible": true
     },
     {
@@ -16,7 +16,7 @@
         "description": "Soft drinks, juices, and water for events and daily refreshment.",
         "icon": "fa-glass-cheers",
         "note": "",
-        "landing_display": true,
+        "onLanding": true,
         "visible": true
     },
     {
@@ -26,7 +26,7 @@
         "description": "Premium wines, spirits, and beers.",
         "icon": "fa-wine-bottle",
         "note": "18+ Only. Selected branches.",
-        "landing_display": true,
+        "onLanding": true,
         "visible": true
     },
     {
@@ -36,7 +36,7 @@
         "description": "School and office supplies, from books to writing essentials.",
         "icon": "fa-pen-ruler",
         "note": "",
-        "landing_display": true,
+        "onLanding": true,
         "visible": true
     },
     {
@@ -46,7 +46,7 @@
         "description": "Cookware, cutlery, and kitchen gadgets for every home chef.",
         "icon": "fa-blender",
         "note": "",
-        "landing_display": true,
+        "onLanding": true,
         "visible": true
     },
     {
@@ -56,7 +56,7 @@
         "description": "Home entertainment, audio systems, and appliances.",
         "icon": "fa-tv",
         "note": "",
-        "landing_display": true,
+        "onLanding": true,
         "visible": true
     },
     {
@@ -66,7 +66,7 @@
         "description": "Quality furniture pieces for your living room and office.",
         "icon": "fa-couch",
         "note": "Selected branches only",
-        "landing_display": false,
+        "onLanding": false,
         "visible": true
     },
     {
@@ -76,7 +76,7 @@
         "description": "Comfortable sheets, duvets, and pillows for a good night's sleep.",
         "icon": "fa-bed",
         "note": "",
-        "landing_display": false,
+        "onLanding": false,
         "visible": true
     },
     {
@@ -86,7 +86,7 @@
         "description": "Bicycles for kids and adults, plus accessories.",
         "icon": "fa-bicycle",
         "note": "Selected branches only",
-        "landing_display": false,
+        "onLanding": false,
         "visible": true
     },
     {
@@ -96,7 +96,7 @@
         "description": "Cleaning supplies, laundry care, and home organization.",
         "icon": "fa-pump-soap",
         "note": "",
-        "landing_display": false,
+        "onLanding": false,
         "visible": true
     },
     {
@@ -106,7 +106,7 @@
         "description": "Freshly baked bread, cakes, and pastries daily.",
         "icon": "fa-bread-slice",
         "note": "Fresh Daily",
-        "landing_display": false,
+        "onLanding": false,
         "visible": true
     },
     {
@@ -116,7 +116,7 @@
         "description": "Skincare, haircare, and cosmetics.",
         "icon": "fa-spa",
         "note": "",
-        "landing_display": false,
+        "onLanding": false,
         "visible": true
     }
 ]
