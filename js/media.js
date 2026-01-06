@@ -23,7 +23,7 @@ async function loadMediaContent() {
     if (!grid) return;
 
     try {
-        const response = await fetch(`${BASE_PATH}/${MEDIA_JSON_PATH}?v=${new Date().getTime()}`);
+        const response = await fetch(`${MEDIA_JSON_PATH}?v=${new Date().getTime()}`);
         if (!response.ok) throw new Error('Failed to load media.json');
 
         const data = await response.json();

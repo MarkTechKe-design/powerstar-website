@@ -269,7 +269,7 @@ async function loadOffersSystem() {
     // Homepage Logic (Top 6)
     if (weeklyGrid) {
         try {
-            const response = await fetch(`${BASE_PATH}/data/offers.json?v=2025-01`);
+            const response = await fetch(`data/offers.json?v=${new Date().getTime()}`);
             if (!response.ok) throw new Error('Failed to load offers.json');
             const data = await response.json();
 
@@ -302,7 +302,7 @@ async function loadAllOffers(container) {
     try {
         // 1. Bypass cache with timestamp
         const ts = new Date().getTime();
-        const response = await fetch(`${BASE_PATH}/data/offers.json?v=${ts}`);
+        const response = await fetch(`data/offers.json?v=${ts}`);
         if (!response.ok) throw new Error('Failed to load offers.json');
 
         const data = await response.json();
@@ -322,8 +322,9 @@ async function loadAllOffers(container) {
             return;
         }
 
-        // 4. Render EXACT HTML Template (Shared with Homepage)
-        container.innerHTML = activeOffers.map(offer => createOfferCard(offer)).join('');
+        // 4. Render EXACT HTML Template (Shared with Homepage) - LIMIT TO 9
+        const displayedOffers = activeOffers.slice(0, 9);
+        container.innerHTML = displayedOffers.map(offer => createOfferCard(offer)).join('');
 
         // 5. Force Visibility (Anti-ScrollReveal Bug)
         setTimeout(() => {
