@@ -1,0 +1,61 @@
+{
+    "hero": {
+        "welcome": "Latest Updates",
+        "headline": "News & Moments",
+        "subheadline": "Celebrating our winners, community events, and latest offers."
+    },
+    "posts": [
+        {
+            "id": "post-1",
+            "title": "60 Seconds of Free Shopping",
+            "date": "Oct 15, 2024",
+            "location": "Joska Branch",
+            "category": "events",
+            "image": "assets/winner1.jpg",
+            "summary": "Witness the excitement as our lucky Loyalty Card winner raced through the aisles. In just one minute, she managed to grab household essentials worth over KSh 15,000 completely free!",
+            "active": true
+        },
+        {
+            "id": "post-2",
+            "title": "Grand Opening Celebration",
+            "date": "Nov 01, 2024",
+            "category": "store",
+            "image": "assets/store-interior.jpg",
+            "summary": "We are thrilled to announce the opening of our newest branch! Join us for exclusive deals and a tour of the state-of-the-art facility designed for your comfort.",
+            "external_link": "https://facebook.com/powerstarsupermarkets",
+            "platform": "Facebook",
+            "active": true
+        },
+        {
+            "id": "post-3",
+            "title": "CSR Excellence Award",
+            "date": "Dec 10, 2024",
+            "category": "events",
+            "image": "assets/winner2.jpg",
+            "summary": "Powerstar Supermarkets has been recognized for outstanding contribution to community education. We are proud to support local schools and student scholarships.",
+            "external_link": "https://linkedin.com/company/powerstar_supermarkets",
+            "platform": "LinkedIn",
+            "active": true
+        },
+        {
+            "id": "post-4",
+            "title": "The Big Christmas Savings Bonanza",
+            "date": "Dec 2024",
+            "category": "promos",
+            "image": "assets/promo1.jpg",
+            "summary": "The festive season brought incredible joy and massive discounts. Families across Kenya saved big on unga bundles, cooking oil, and holiday feasts.",
+            "active": true
+        },
+        {
+            "id": "post-5",
+            "title": "Our Farm-to-Fork Promise",
+            "date": "Daily",
+            "category": "store",
+            "image": "assets/fresh-veg.jpg",
+            "summary": "We partner with over 50 local farmers to bring you crisp vegetables and ripe fruits daily. By cutting out the middleman, we ensure farmers get paid fairly.",
+            "external_link": "https://instagram.com/powerstar_supermarket_limited",
+            "platform": "Instagram",
+            "active": true
+        }
+    ]
+}

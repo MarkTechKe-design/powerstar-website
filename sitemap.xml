@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Tier 1: Homepage -->
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/index.html</loc>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+
+  <!-- Tier 2: Revenue Generating Pages -->
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/offers.html</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/order.html</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Tier 3: Core Product Pages -->
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/services.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/branches.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Tier 4: Informational Pages -->
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/about.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/contact.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/careers.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/media.html</loc>
+    <priority>0.6</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Tier 5: Other Pages -->
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/loyalty.html</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/news.html</loc>
+    <priority>0.5</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.powerstarsupermarkets.co.ke/teams.html</loc>
+    <priority>0.5</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>

@@ -8,7 +8,7 @@
         {
             "id": 1,
             "product_name": "Cooking Oil 5L",
-            "image": "assets/promotions/promo-1.jpg",
+            "image": "assets/offers/offer-1.jpg",
             "old_price": "Ksh 1,800",
             "new_price": "Ksh 1,620",
             "discount_label": "-10%",
@@ -21,7 +21,7 @@
         {
             "id": 2,
             "product_name": "Sugar 2kg",
-            "image": "assets/promotions/promo-2.jpg",
+            "image": "assets/offers/offer-2.jpg",
             "old_price": "Ksh 450",
             "new_price": "Ksh 390",
             "discount_label": "HOT",
@@ -34,7 +34,7 @@
         {
             "id": 3,
             "product_name": "Wheat Flour 2kg",
-            "image": "assets/promotions/promo-3.jpg",
+            "image": "assets/offers/offer-3.jpg",
             "old_price": "Ksh 220",
             "new_price": "Ksh 185",
             "discount_label": "-15%",
@@ -46,7 +46,7 @@
         {
             "id": 4,
             "product_name": "Bar Soap 1kg",
-            "image": "assets/promotions/promo-1.jpg",
+            "image": "assets/offers/offer-4.jpg",
             "old_price": "Ksh 180",
             "new_price": "Ksh 150",
             "discount_label": "SALE",
@@ -59,7 +59,7 @@
         {
             "id": 5,
             "product_name": "Rice 5kg",
-            "image": "assets/promotions/promo-2.jpg",
+            "image": "assets/offers/offer-5.jpg",
             "old_price": "Ksh 1,200",
             "new_price": "Ksh 960",
             "discount_label": "-20%",
@@ -72,7 +72,7 @@
         {
             "id": 6,
             "product_name": "Milk Long Life",
-            "image": "assets/promotions/promo-3.jpg",
+            "image": "assets/offers/offer-6.jpg",
             "old_price": "Ksh 100",
             "new_price": "Ksh 85",
             "discount_label": "DEAL",

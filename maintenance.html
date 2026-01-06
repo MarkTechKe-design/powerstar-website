@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance | Powerstar Supermarkets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ps-red: #DA291C;
+            --ps-green: #2E8B57;
+            --ps-gold: #D4AF37;
+            --ps-dark: #1A1A1A;
+            --ps-light: #F8F9FA;
+            --text-main: #333333;
+            --text-muted: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--ps-light);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .maintenance-container {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            border-top: 5px solid var(--ps-red);
+            position: relative;
+        }
+
+        .logo-area {
+            margin-bottom: 2rem;
+        }
+
+        /* Pure CSS Logo Fallback if image fails */
+        .logo-text {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--ps-red);
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .logo-text span {
+            color: var(--ps-green);
+        }
+
+        h1 {
+            color: var(--ps-dark);
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .status-box {
+            background: #FFF8F8;
+            border: 1px solid #FFEBEB;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .status-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--ps-red);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        .status-time {
+            font-weight: 600;
+            color: var(--ps-dark);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            gap: 0.5rem;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--ps-green);
+            color: white;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #247547;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(46, 139, 87, 0.3);
+        }
+
+        .btn-phone {
+            background-color: #f0f0f0;
+            color: var(--ps-dark);
+        }
+
+        .btn-phone:hover {
+            background-color: #e0e0e0;
+        }
+
+        @media (min-width: 600px) {
+            .action-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="maintenance-container">
+        <div class="logo-area">
+            <!-- Uses text fallback to be safe, but tries to use corporate style -->
+            <div class="logo-text">Power<span>star</span></div>
+        </div>
+
+        <h1>We'll be right back.</h1>
+        <p id="maintenance-message">We are currently improving our digital experience to serve you better. Our stores
+            open as usual.</p>
+
+        <div class="status-box">
+            <span class="status-label">Estimated Return</span>
+            <span class="status-time" id="return-time">Soon</span>
+        </div>
+
+        <div class="action-buttons">
+            <a href="https://wa.me/254700000000" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> Order on WhatsApp
+            </a>
+            <a href="tel:+254700000000" class="btn btn-phone">
+                <i class="fas fa-phone"></i> Call HQ
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Simple inline script to fetch dynamic status if possible
+        // This is a "nice to have" on the static maintenance page
+        (async function () {
+            try {
+                const ts = new Date().getTime();
+                const response = await fetch('data/status.json?v=' + ts);
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.message) document.getElementById('maintenance-message').textContent = data.message;
+                    if (data.estimated_return) document.getElementById('return-time').textContent = data.estimated_return;
+
+                    // Auto-reload if maintenance is over (check every 30s)
+                    if (data.maintenance_mode === false) {
+                        window.location.href = 'index.html';
+                    }
+                }
+            } catch (e) {
+                console.log('Using default maintenance content');
+            }
+
+            // Poll for status recovery every 30 seconds
+            setInterval(async () => {
+                try {
+                    const ts = new Date().getTime();
+                    const response = await fetch('data/status.json?v=' + ts);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.maintenance_mode === false) {
+                            window.location.reload();
+                        }
+                    }
+                } catch (e) { }
+            }, 30000);
+        })();
+    </script>
+</body>
+
+</html>

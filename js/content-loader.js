@@ -13,6 +13,29 @@ const BASE_PATH = window.location.hostname.includes("github.io")
 /* Global Image Error Handler */
 const PLACEHOLDER_IMG = "https://placehold.co/600x400?text=Powerstar+Supermarkets";
 
+/* 2. MAINTENANCE MODE CHECK (Zero-Code Gatekeeper) */
+(function checkMaintenanceMode() {
+    // Skip check if we are already on the maintenance page
+    if (window.location.pathname.includes('maintenance.html')) return;
+
+    const ts = new Date().getTime(); // Cache buster
+    fetch(`${BASE_PATH}/data/status.json?v=${ts}`)
+        .then(response => {
+            if (!response.ok) return null;
+            return response.json();
+        })
+        .then(status => {
+            if (status && status.maintenance_mode === true) {
+                // Redirect immediately
+                window.location.href = `${BASE_PATH}/maintenance.html`;
+            }
+        })
+        .catch(err => {
+            // Fail silently (allow site to load if check fails)
+            console.warn('[Powerstar] Maintenance check skipped:', err);
+        });
+})();
+
 document.addEventListener('DOMContentLoaded', async () => {
     const path = window.location.pathname;
 
@@ -233,6 +256,9 @@ async function loadWhatsNew() {
 /* =========================================
    UNIFIED OFFERS SYSTEM (Single Source of Truth)
    ========================================= */
+/* =========================================
+   UNIFIED OFFERS SYSTEM (Single Source of Truth)
+   ========================================= */
 async function loadOffersSystem() {
     const weeklyGrid = document.getElementById('weekly-offers-grid'); // Homepage
     const allOffersGrid = document.getElementById('all-offers-grid'); // Offers Page
@@ -240,44 +266,75 @@ async function loadOffersSystem() {
     // If neither exists, do nothing
     if (!weeklyGrid && !allOffersGrid) return;
 
-    try {
-        const response = await fetch(`${BASE_PATH}/data/offers.json?v=2025-01`);
-        if (!response.ok) throw new Error('Failed to load offers.json');
-        const data = await response.json();
+    // Homepage Logic (Top 6)
+    if (weeklyGrid) {
+        try {
+            const response = await fetch(`${BASE_PATH}/data/offers.json?v=2025-01`);
+            if (!response.ok) throw new Error('Failed to load offers.json');
+            const data = await response.json();
 
-        // 1. Update Hero/Header Text on Offers Page
-        if (allOffersGrid && data.hero) {
-            updateText('offers-hero-welcome', data.hero.welcome);
-            updateText('offers-hero-headline', data.hero.headline);
-            updateText('offers-hero-text', data.hero.subheadline);
-        }
-
-        // 2. Filter Active Offers
-        const activeOffers = data.offers.filter(o => o.active);
-
-        // 3. Render Homepage (Top 6)
-        if (weeklyGrid) {
+            const activeOffers = data.offers.filter(o => o.active);
             const topOffers = activeOffers.slice(0, 6);
+
             if (topOffers.length === 0) {
                 renderFallback(weeklyGrid, "New deals coming soon.");
             } else {
                 weeklyGrid.innerHTML = topOffers.map(offer => createOfferCard(offer)).join('');
             }
+        } catch (error) {
+            console.error('[Powerstar] Error loading homepage offers:', error);
+            renderFallback(weeklyGrid, "Unable to load offers.");
+        }
+    }
+
+    // Offers Page Logic (All Offers - Unified Grid)
+    if (allOffersGrid) {
+        await loadAllOffers(allOffersGrid);
+    }
+}
+
+/**
+ * TASK 1: Robust Load Function for Offers Page
+ */
+async function loadAllOffers(container) {
+    try {
+        // Bypass cache with timestamp
+        const ts = new Date().getTime();
+        const response = await fetch(`${BASE_PATH}/data/offers.json?v=${ts}`);
+        if (!response.ok) throw new Error('Failed to load offers.json');
+
+        const data = await response.json();
+
+        // Update Hero Content
+        if (data.hero) {
+            updateText('offers-hero-welcome', data.hero.welcome);
+            updateText('offers-hero-headline', data.hero.headline);
+            updateText('offers-hero-text', data.hero.subheadline);
         }
 
-        // 4. Render Offers Page (All)
-        if (allOffersGrid) {
-            if (activeOffers.length === 0) {
-                renderFallback(allOffersGrid, "No active offers at the moment.");
-            } else {
-                allOffersGrid.innerHTML = activeOffers.map(offer => createOfferCard(offer)).join('');
-            }
+        // Filter Active Items
+        const activeOffers = data.offers.filter(o => o.active);
+
+        if (activeOffers.length === 0) {
+            renderFallback(container, "No active offers at the moment.");
+            return;
         }
+
+        // Render EXACT HTML Structure
+        container.innerHTML = activeOffers.map(offer => createOfferCard(offer)).join('');
+
+        // Force Visibility (Anti-Ghosting)
+        requestAnimationFrame(() => {
+            const cards = container.querySelectorAll('.offer-card');
+            cards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.visibility = 'visible';
+            });
+        });
 
     } catch (error) {
-        console.error('[Powerstar] Error loading offers system:', error);
-        if (weeklyGrid) renderFallback(weeklyGrid, "Unable to load offers.");
-        if (allOffersGrid) renderFallback(allOffersGrid, "Unable to load offers.");
+        console.error('[Powerstar] Error loading all offers:', error);
+        renderFallback(container, "Unable to load offers. Please try again later.");
     }
 }
 
@@ -391,10 +448,11 @@ async function loadAboutModules() {
                 if (data.intro) updateText('partners-intro', data.intro);
 
                 if (data.partners) {
+                    // Double the array for infinite loop effect
                     const logoList = [...data.partners, ...data.partners];
                     partnerTrack.innerHTML = logoList.map(p => `
                         <div class="partner-logo-item">
-                                <img src="${p.logo}" alt="${p.name} - Trusted Partner" loading="lazy" onerror="this.style.opacity='0.1'">
+                                <img src="${p.logo}" alt="${p.name} - Trusted Partner" loading="lazy">
                         </div>
                     `).join('');
                 }
