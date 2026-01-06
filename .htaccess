@@ -1,63 +1,47 @@
-# ----------------------------------------------------------------------
-# | HTTPS Enforcement                                                  |
-# ----------------------------------------------------------------------
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# Powerstar Supermarkets - .htaccess Configuration
+# Generated for cPanel/Apache deployment
 
-# ----------------------------------------------------------------------
-# | Custom Error Pages                                                 |
-# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # 1. Force HTTPS
+    # Redirects all http traffic to https
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # 2. Remove .html Extensions (Clean URLs)
+    # If the request is not a directory
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # If the request is not a file (it's a clean URL like /about)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # But a file with .html exists (like /about.html)
+    RewriteCond %{REQUEST_FILENAME}.html -f
+    # Internally rewrite to the .html file
+    RewriteRule ^([^\.]+)$ $1.html [NC,L]
+</IfModule>
+
+# 3. Custom 404 Error Page
 ErrorDocument 404 /404.html
 
-# ----------------------------------------------------------------------
-# | Browser Caching                                                    |
-# ----------------------------------------------------------------------
+# 4. Browser Caching (Speed Optimization)
 <IfModule mod_expires.c>
     ExpiresActive On
     
-    # Images (1 Year)
+    # Images
     ExpiresByType image/jpg "access plus 1 year"
     ExpiresByType image/jpeg "access plus 1 year"
     ExpiresByType image/gif "access plus 1 year"
     ExpiresByType image/png "access plus 1 year"
     ExpiresByType image/webp "access plus 1 year"
-    
-    # CSS & JS (1 Month - Cache Busting ?v=xxxx handles updates)
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+
+    # CSS & JavaScript
     ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
     ExpiresByType application/javascript "access plus 1 month"
-    
-    # HTML (0 Seconds - Always check for updates)
-    ExpiresByType text/html "access plus 0 seconds"
-</IfModule>
 
-# ----------------------------------------------------------------------
-# | JSON Data (Instant Updates)                                        |
-# ----------------------------------------------------------------------
-<FilesMatch "\.json$">
-    FileETag None
-    <IfModule mod_headers.c>
-        Header unset ETag
-        Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
-        Header set Pragma "no-cache"
-        Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
-    </IfModule>
-    </IfModule>
-</FilesMatch>
-
-# ----------------------------------------------------------------------
-# | Security Headers                                                   |
-# ----------------------------------------------------------------------
-<IfModule mod_headers.c>
-    # Prevent Clickjacking
-    Header always set X-Frame-Options "SAMEORIGIN"
-    
-    # Prevent MIME Sniffing
-    Header always set X-Content-Type-Options "nosniff"
-    
-    # Cross-Site Scripting (XSS) Filter
-    Header always set X-XSS-Protection "1; mode=block"
-    
-    # Referrer Policy
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # Default
+    ExpiresDefault "access plus 2 days"
 </IfModule>
