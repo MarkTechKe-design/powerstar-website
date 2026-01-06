@@ -294,47 +294,50 @@ async function loadOffersSystem() {
 }
 
 /**
- * TASK 1: Robust Load Function for Offers Page
+ * TASK 2: Robust Load Function for Offers Page (Unified Loader)
  */
 async function loadAllOffers(container) {
+    if (!container) return;
+
     try {
-        // Bypass cache with timestamp
+        // 1. Bypass cache with timestamp
         const ts = new Date().getTime();
         const response = await fetch(`${BASE_PATH}/data/offers.json?v=${ts}`);
         if (!response.ok) throw new Error('Failed to load offers.json');
 
         const data = await response.json();
 
-        // Update Hero Content
+        // 2. Update Hero Content (Safety Check)
         if (data.hero) {
             updateText('offers-hero-welcome', data.hero.welcome);
             updateText('offers-hero-headline', data.hero.headline);
             updateText('offers-hero-text', data.hero.subheadline);
         }
 
-        // Filter Active Items
+        // 3. Filter Active Items
         const activeOffers = data.offers.filter(o => o.active);
 
         if (activeOffers.length === 0) {
-            renderFallback(container, "No active offers at the moment.");
+            container.innerHTML = '<h3 style="text-align:center; grid-column: 1/-1; padding: 40px; color: #666;">New Offers Coming Soon</h3>';
             return;
         }
 
-        // Render EXACT HTML Structure
+        // 4. Render EXACT HTML Template (Shared with Homepage)
         container.innerHTML = activeOffers.map(offer => createOfferCard(offer)).join('');
 
-        // Force Visibility (Anti-Ghosting)
-        requestAnimationFrame(() => {
+        // 5. Force Visibility (Anti-ScrollReveal Bug)
+        setTimeout(() => {
             const cards = container.querySelectorAll('.offer-card');
             cards.forEach(card => {
                 card.style.opacity = '1';
                 card.style.visibility = 'visible';
+                card.style.transform = 'none';
             });
-        });
+        }, 100);
 
     } catch (error) {
         console.error('[Powerstar] Error loading all offers:', error);
-        renderFallback(container, "Unable to load offers. Please try again later.");
+        container.innerHTML = '<p style="text-align:center; color: red;">Unable to load offers. Please refresh.</p>';
     }
 }
 

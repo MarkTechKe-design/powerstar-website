@@ -3191,3 +3191,13 @@ img {
     background-color: var(--ps-red);
 }
 
+
+/* =========================================
+   TASK 5: FORCE VISIBILITY PATCH (Offers Page)
+   ========================================= */
+#all-offers-grid .offer-card {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
