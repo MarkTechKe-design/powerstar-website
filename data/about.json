@@ -1,52 +1,25 @@
 {
+    "intro": {
+        "title": "More Than A Retailer",
+        "content": "Powerstar Supermarkets is..."
+    },
     "strategic_compass": {
         "mission": {
             "title": "Our Mission",
-            "content": "To provide our customers with the highest quality products at the most affordable prices, ensuring a delightful shopping experience while continuously supporting and empowering our local communities."
+            "content": "To be an independent, innovative, honest, and sustainable outlet. We offer the most inviting buying environment while saving customers time and money everyday."
         },
         "vision": {
             "title": "Our Vision",
-            "content": "To be the leading and most trusted retailer in East Africa, recognized for our unwavering commitment to excellence, innovation, and sustainable growth."
+            "content": "To deliver exceptional shopping experiences by offering the best service, value, quality, and freshest products while being good stewards of our environment."
         },
         "quality_policy": {
-            "title": "Quality Policy",
-            "content": "At Powerstar Supermarkets, quality is not an option — it is our promise. We commit to sourcing trusted brands, maintaining strict hygiene standards, and ensuring every product on our shelves meets regulatory and customer expectations. Through continuous improvement, staff training, and supplier accountability, we guarantee consistent value, safety, and satisfaction for every customer."
+            "title": "Quality Policy Statement",
+            "content": "At Powerstar, quality is not just a promise; it's our daily practice. We are dedicated to ensuring that every product on our shelves meets rigorous safety and freshness standards. From farm to fork, we maintain strict quality control measures to guarantee satisfaction for every family we serve."
         }
-    },
-    "intro_narrative": {
-        "title": "More Than A Retailer",
-        "content": "Powerstar Supermarkets is a premier Kenyan retail brand deeply rooted in our community values. Since our inception, we have strived to bridge the gap between premium quality and affordability. With a rapidly growing network of branches, we serve thousands of families daily, providing fresh produce, household essentials, and a shopping environment that feels like home."
     },
     "growth_vision": {
-        "title": "Our Growth & Vision",
-        "content": "Our journey is defined by growth with purpose. From a single outlet to a growing national footprint, Powerstar Supermarkets continues to expand into communities where quality retail access matters most. By investing in people, systems, and partnerships, we are building a future-ready retail network that delivers value today while preparing for tomorrow.",
-        "image": "assets/bg-pattern.png"
-    },
-    "core_values": [
-        {
-            "title": "Integrity",
-            "icon": "fas fa-handshake",
-            "desc": "Building honest relationships with customers and suppliers."
-        },
-        {
-            "title": "Service Heart",
-            "icon": "fas fa-heart",
-            "desc": "Customer satisfaction is the heartbeat of our business."
-        },
-        {
-            "title": "Innovation",
-            "icon": "fas fa-lightbulb",
-            "desc": "Embracing new ways to serve you better every day."
-        },
-        {
-            "title": "Community",
-            "icon": "fas fa-users",
-            "desc": "Growing together with the neighborhoods we serve."
-        },
-        {
-            "title": "Excellence",
-            "icon": "fas fa-medal",
-            "desc": "Delivering our absolute best in everything we do."
-        }
-    ]
+        "title": "Growth & Future Vision",
+        "content": "Our journey is just beginning. With a strategic roadmap focused on regional expansion, we aim to bring the Powerstar experience to more towns across East Africa. We are investing in sustainable supply chains and digital innovation to serve the next generation of shoppers.",
+        "image": "assets/growth.jpg"
+    }
 }

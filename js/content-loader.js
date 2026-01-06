@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadDepartmentsHome();
         await loadWhatsNew();
 
-        // Load Top 6 Weekly Offers
+        // Load Unified Offers System (Handles both Homepage & Offers Page)
         if (document.getElementById('weekly-offers-grid')) {
-            await loadWeeklyOffers();
+            await loadOffersSystem();
         }
     }
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 4. Offers Page Specific Loading
     if (path.includes('offers.html')) {
-        await loadAllOffers();
+        await loadOffersSystem();
     }
 
     // 5. About Page Specific Loading
@@ -230,109 +230,79 @@ async function loadWhatsNew() {
     }
 }
 
-async function loadAllOffers() {
-    const container = document.getElementById('all-offers-grid');
-    if (!container) return;
+/* =========================================
+   UNIFIED OFFERS SYSTEM (Single Source of Truth)
+   ========================================= */
+async function loadOffersSystem() {
+    const weeklyGrid = document.getElementById('weekly-offers-grid'); // Homepage
+    const allOffersGrid = document.getElementById('all-offers-grid'); // Offers Page
+
+    // If neither exists, do nothing
+    if (!weeklyGrid && !allOffersGrid) return;
 
     try {
         const response = await fetch(`${BASE_PATH}/data/offers.json?v=2025-01`);
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        if (!response.ok) throw new Error('Failed to load offers.json');
         const data = await response.json();
 
-        // Optional: Update Headers if present
-        if (data.hero) {
+        // 1. Update Hero/Header Text on Offers Page
+        if (allOffersGrid && data.hero) {
             updateText('offers-hero-welcome', data.hero.welcome);
             updateText('offers-hero-headline', data.hero.headline);
             updateText('offers-hero-text', data.hero.subheadline);
         }
-        if (data.header) {
-            updateText('offers-subtitle', data.header.subtitle);
-            updateText('offers-title', data.header.title);
+
+        // 2. Filter Active Offers
+        const activeOffers = data.offers.filter(o => o.active);
+
+        // 3. Render Homepage (Top 6)
+        if (weeklyGrid) {
+            const topOffers = activeOffers.slice(0, 6);
+            if (topOffers.length === 0) {
+                renderFallback(weeklyGrid, "New deals coming soon.");
+            } else {
+                weeklyGrid.innerHTML = topOffers.map(offer => createOfferCard(offer)).join('');
+            }
         }
 
-        // 4. PLACEHOLDER UX
-        if (!data.offers || data.offers.length === 0) {
-            renderFallback(container, "Weekly offers are being updated. Visit our stores for today’s deals.");
-            return;
+        // 4. Render Offers Page (All)
+        if (allOffersGrid) {
+            if (activeOffers.length === 0) {
+                renderFallback(allOffersGrid, "No active offers at the moment.");
+            } else {
+                allOffersGrid.innerHTML = activeOffers.map(offer => createOfferCard(offer)).join('');
+            }
         }
 
-        container.innerHTML = data.offers.map(offer => {
-            if (!offer.active) return '';
-            const branches = Array.isArray(offer.branches) ? offer.branches.join(', ') : offer.branches;
-
-            return `
-            <div class="offer-card reveal">
-                <div class="offer-image">
-                    <img src="${offer.image}" alt="${offer.product_name}" class="lightbox-trigger"
-                         onerror="this.src='${PLACEHOLDER_IMG}'">
-                    ${offer.discount_label ? `<span class="discount-badge">${offer.discount_label}</span>` : ''}
-                </div>
-                <div class="offer-details">
-                    <h3>${offer.product_name}</h3>
-                    <div class="price-row">
-                        <span class="old-price">${offer.old_price}</span>
-                        <span class="new-price">${offer.new_price}</span>
-                    </div>
-                    <small class="branch-label">Available at: <strong>${branches}</strong></small>
-                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
-                </div>
-            </div>
-        `}).join('');
-
-    } catch (e) {
-        console.error('[Powerstar] Failed to load offers.json', e);
-        renderFallback(container, "Unable to load offers. Please verify connection.");
+    } catch (error) {
+        console.error('[Powerstar] Error loading offers system:', error);
+        if (weeklyGrid) renderFallback(weeklyGrid, "Unable to load offers.");
+        if (allOffersGrid) renderFallback(allOffersGrid, "Unable to load offers.");
     }
 }
 
-async function loadWeeklyOffers() {
-    const container = document.getElementById('weekly-offers-grid');
-    if (!container) return;
+function createOfferCard(offer) {
+    const branches = Array.isArray(offer.branches) ? offer.branches.join(', ') : offer.branches;
 
-    try {
-        const response = await fetch(`${BASE_PATH}/data/offers.json?v=2025-01`);
-        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-        const data = await response.json();
-
-        if (!data.offers || data.offers.length === 0) {
-            renderFallback(container, "New deals coming soon.");
-            return;
-        }
-
-        // Filter active and limit to 6
-        const weeklyDeals = data.offers.filter(o => o.active).slice(0, 6);
-
-        if (weeklyDeals.length === 0) {
-            renderFallback(container, "New deals coming soon.");
-            return;
-        }
-
-        container.innerHTML = weeklyDeals.map(offer => {
-            const branches = Array.isArray(offer.branches) ? offer.branches.join(', ') : offer.branches;
-
-            return `
-            <div class="offer-card" style="opacity: 1 !important; visibility: visible !important; transform: none !important;">
-                <div class="offer-image" style="background: #f4f4f4;">
-                    <img src="${offer.image}" alt="${offer.product_name}" class="lightbox-trigger"
-                         onerror="this.src='${PLACEHOLDER_IMG}'">
-                    ${offer.discount_label ? `<span class="discount-badge">${offer.discount_label}</span>` : ''}
-                </div>
-                <div class="offer-details">
-                    <h3>${offer.product_name}</h3>
-                    <div class="price-row">
-                        <span class="old-price">${offer.old_price}</span>
-                        <span class="new-price">${offer.new_price}</span>
-                    </div>
-                    <small class="branch-label">Available at: <strong>${branches}</strong></small>
-                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
-                </div>
+    // Force opacity: 1 !important via inline style to prevent invisible card bug
+    return `
+        <div class="offer-card" style="opacity: 1 !important; visibility: visible !important; transform: none !important;">
+            <div class="offer-image">
+                <img src="${offer.image}" alt="${offer.product_name}" class="lightbox-trigger"
+                     onerror="this.src='${PLACEHOLDER_IMG}'">
+                ${offer.discount_label ? `<span class="discount-badge">${offer.discount_label}</span>` : ''}
             </div>
-        `}).join('');
-
-    } catch (e) {
-        console.error('[Powerstar] Failed to load weekly offers', e);
-        renderFallback(container, "New deals coming soon.");
-    }
+            <div class="offer-details">
+                <h3>${offer.product_name}</h3>
+                <div class="price-row">
+                    <span class="old-price">${offer.old_price}</span>
+                    <span class="new-price">${offer.new_price}</span>
+                </div>
+                <small class="branch-label">Available at: <strong>${branches}</strong></small>
+                <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+            </div>
+        </div>
+    `;
 }
 
 async function loadAboutModules() {

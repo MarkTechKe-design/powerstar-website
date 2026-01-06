@@ -1,25 +1,30 @@
 {
+    "headline": "Executive Committee",
     "executives": [
         {
-            "name": "Mark Ochieng",
+            "name": "Jane Doe",
             "title": "Chief Executive Officer",
-            "image": "assets/team/ceo.jpg",
-            "bio": "A visionary leader with over two decades of experience in the East African retail sector. Mark has spearheaded Powerstar's expansion from a single outlet to a household name, driving strategic growth and operational integrity.",
-            "quote": "Our success is measured by the trust our customers place in us every single day."
+            "image": "assets/team/executive-1.jpg",
+            "bio": "Leading Powerstar with over 20 years of retail experience and a passion for community growth.",
+            "quote": "Leadership is service."
         },
         {
-            "name": "Sarah Kamau",
+            "name": "John Smith",
             "title": "Operations Director",
-            "image": "assets/team/ops-dir.jpg",
-            "bio": "Sarah is the operational backbone of Powerstar, ensuring seamless logistics and branch efficiency. Her relentless focus on process optimization guarantees that freshness reaches your shelf on time, every time.",
-            "quote": "Operational excellence is not just a goal; it is the respect we pay to our customers' time and money."
+            "image": "assets/team/executive-2.jpg",
+            "bio": "Ensuring operational excellence and efficiency across all our branches."
         },
         {
-            "name": "David Njoroge",
-            "title": "Head of Finance",
-            "image": "assets/team/finance.jpg",
-            "bio": "David brings robust financial stewardship to the group, overseeing sustainable growth strategies and fiscal compliance. He ensures that our value promise to customers is backed by a resilient financial foundation.",
-            "quote": "Profitability is the natural result of serving our community with integrity and consistency."
+            "name": "Sarah Connor",
+            "title": "Head of Procurement",
+            "image": "assets/team/executive-3.jpg",
+            "bio": "Sourcing the finest quality local and international products for our shelves."
+        },
+        {
+            "name": "Michael Ross",
+            "title": "Finance Manager",
+            "image": "assets/team/executive-4.jpg",
+            "bio": "Driving sustainable financial growth and strategic investment for the future."
         }
     ]
 }

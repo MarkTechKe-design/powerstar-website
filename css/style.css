@@ -979,7 +979,12 @@ footer {
     margin-top: 40px;
 }
 
-/* --- 11. GLOBAL RESPONSIVE INTERVENTIONS --- */
+/* Fallback for Offer Images to prevent invisible loading state */
+.offer-image {
+    background-color: #f4f4f4 !important;
+    min-height: 220px;
+}
+
 @media (max-width: 900px) {
     .quick-access-grid {
         grid-template-columns: repeat(2, 1fr);
