@@ -3011,3 +3011,18 @@ img {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
+
+/* ==========================================================================
+   WEEKLY OFFERS VISIBILITY SAFETY
+   ========================================================================== */
+#weekly-offers-grid,
+#all-offers-grid {
+    min-height: 300px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+.offer-image {
+    background: #f4f4f4;
+}

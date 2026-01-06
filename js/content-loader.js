@@ -26,9 +26,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadDepartmentsHome();
         await loadWhatsNew();
 
-        // Sometimes offers slider is on home too
+        // Load Top 6 Weekly Offers
         if (document.getElementById('weekly-offers-grid')) {
-            await loadOffers();
+            await loadWeeklyOffers();
         }
     }
 
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 4. Offers Page Specific Loading
     if (path.includes('offers.html')) {
-        await loadOffers();
+        await loadAllOffers();
     }
 
     // 5. About Page Specific Loading
@@ -230,8 +230,8 @@ async function loadWhatsNew() {
     }
 }
 
-async function loadOffers() {
-    const container = document.getElementById('weekly-offers-grid');
+async function loadAllOffers() {
+    const container = document.getElementById('all-offers-grid');
     if (!container) return;
 
     try {
@@ -261,7 +261,7 @@ async function loadOffers() {
             const branches = Array.isArray(offer.branches) ? offer.branches.join(', ') : offer.branches;
 
             return `
-            <div class="offer-card">
+            <div class="offer-card reveal">
                 <div class="offer-image">
                     <img src="${offer.image}" alt="${offer.product_name}" class="lightbox-trigger"
                          onerror="this.src='${PLACEHOLDER_IMG}'">
@@ -282,6 +282,56 @@ async function loadOffers() {
     } catch (e) {
         console.error('[Powerstar] Failed to load offers.json', e);
         renderFallback(container, "Unable to load offers. Please verify connection.");
+    }
+}
+
+async function loadWeeklyOffers() {
+    const container = document.getElementById('weekly-offers-grid');
+    if (!container) return;
+
+    try {
+        const response = await fetch(`${BASE_PATH}/data/offers.json?v=2025-01`);
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+        const data = await response.json();
+
+        if (!data.offers || data.offers.length === 0) {
+            renderFallback(container, "New deals coming soon.");
+            return;
+        }
+
+        // Filter active and limit to 6
+        const weeklyDeals = data.offers.filter(o => o.active).slice(0, 6);
+
+        if (weeklyDeals.length === 0) {
+            renderFallback(container, "New deals coming soon.");
+            return;
+        }
+
+        container.innerHTML = weeklyDeals.map(offer => {
+            const branches = Array.isArray(offer.branches) ? offer.branches.join(', ') : offer.branches;
+
+            return `
+            <div class="offer-card" style="opacity: 1 !important; visibility: visible !important; transform: none !important;">
+                <div class="offer-image" style="background: #f4f4f4;">
+                    <img src="${offer.image}" alt="${offer.product_name}" class="lightbox-trigger"
+                         onerror="this.src='${PLACEHOLDER_IMG}'">
+                    ${offer.discount_label ? `<span class="discount-badge">${offer.discount_label}</span>` : ''}
+                </div>
+                <div class="offer-details">
+                    <h3>${offer.product_name}</h3>
+                    <div class="price-row">
+                        <span class="old-price">${offer.old_price}</span>
+                        <span class="new-price">${offer.new_price}</span>
+                    </div>
+                    <small class="branch-label">Available at: <strong>${branches}</strong></small>
+                    <a href="order.html" class="btn btn-primary btn-block">Order Now</a>
+                </div>
+            </div>
+        `}).join('');
+
+    } catch (e) {
+        console.error('[Powerstar] Failed to load weekly offers', e);
+        renderFallback(container, "New deals coming soon.");
     }
 }
 
