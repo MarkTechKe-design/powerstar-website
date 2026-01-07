@@ -266,26 +266,26 @@ async function loadOffersSystem() {
     // If neither exists, do nothing
     if (!weeklyGrid && !allOffersGrid) return;
 
-    // Homepage Logic (Top 6)
-    if (weeklyGrid) {
-        try {
-            const response = await fetch(`data/offers.json?v=${new Date().getTime()}`);
-            if (!response.ok) throw new Error('Failed to load offers.json');
-            const data = await response.json();
+    // Homepage Logic (Top 8)
+if (weeklyGrid) {
+    try {
+        const response = await fetch(`data/offers.json?v=${new Date().getTime()}`);
+        if (!response.ok) throw new Error('Failed to load offers.json');
+        const data = await response.json();
 
-            const activeOffers = data.offers.filter(o => o.active);
-            const topOffers = activeOffers.slice(0, 6);
+        const activeOffers = data.offers.filter(o => o.active);
+        const topOffers = activeOffers.slice(0, 8);
 
-            if (topOffers.length === 0) {
-                renderFallback(weeklyGrid, "New deals coming soon.");
-            } else {
-                weeklyGrid.innerHTML = topOffers.map(offer => createOfferCard(offer)).join('');
-            }
-        } catch (error) {
-            console.error('[Powerstar] Error loading homepage offers:', error);
-            renderFallback(weeklyGrid, "Unable to load offers.");
+        if (topOffers.length === 0) {
+            renderFallback(weeklyGrid, "New deals coming soon.");
+        } else {
+            weeklyGrid.innerHTML = topOffers.map(offer => createOfferCard(offer)).join('');
         }
+    } catch (error) {
+        console.error('[Powerstar] Error loading homepage offers:', error);
+        renderFallback(weeklyGrid, "Unable to load offers.");
     }
+}
 
     // Offers Page Logic (All Offers - Unified Grid)
     if (allOffersGrid) {

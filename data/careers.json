@@ -1,0 +1,44 @@
+{
+  "hero": {
+    "welcome": "Join Our Team",
+    "headline": "Build Your Career",
+    "subheadline": "Grow with Kenya's fastest-growing retail family."
+  },
+  "general_applications": {
+    "description": "We are continuously building our talent pool for our branches.",
+    "roles": [
+      "Cashiers",
+      "Shelf Stackers",
+      "Customer Assistants",
+      "Cleaners"
+    ],
+    "application_email": "jobs@powerstarsupermarkets.co.ke",
+    "active": true
+  },
+  "professional_roles": [
+    {
+      "id": "pro-1",
+      "department": "Bakery Department",
+      "title": "Head Baker",
+      "description": "Experienced baker needed to lead production at our Ruiru branch. 3+ years experience required.",
+      "application_email": "careers@powerstarsupermarkets.co.ke",
+      "status": "open"
+    },
+    {
+      "id": "pro-2",
+      "department": "Management",
+      "title": "Branch Manager",
+      "description": "Oversee branch operations, staff performance, and customer experience.",
+      "application_email": "careers@powerstarsupermarkets.co.ke",
+      "status": "open"
+    },
+    {
+      "id": "pro-3",
+      "department": "Logistics",
+      "title": "Branch Inventory Manager",
+      "description": "Manage stock movement, replenishment, and inter-branch coordination.",
+      "application_email": "careers@powerstarsupermarkets.co.ke",
+      "status": "filled"
+    }
+  ]
+}

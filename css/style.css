@@ -3318,4 +3318,16 @@ img {
 .offer-card .btn:hover {
     text-decoration: underline;
 }
+/* Ultra-minimal corporate offer badges */
+.discount-badge {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    color: #b30000;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 3px 6px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
 
