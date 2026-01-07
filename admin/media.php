@@ -1,109 +1,184 @@
 <?php
 require_once 'includes/header.php';
 
-if (isset($_GET['delete'])) {
-    $id = (int) $_GET['delete'];
-    $stmt = $pdo->prepare("SELECT file_path FROM media WHERE id = ?");
-    $stmt->execute([$id]);
-    $file = $stmt->fetchColumn();
+$jsonFile = __DIR__ . '/../data/media.json';
 
-    $pdo->prepare("DELETE FROM media WHERE id = ?")->execute([$id]);
-    if ($file && file_exists("../" . $file))
-        unlink("../" . $file);
-    echo "<script>window.location.href='media.php';</script>";
+/* ---------- LOAD JSON ---------- */
+$data = file_exists($jsonFile)
+    ? json_decode(file_get_contents($jsonFile), true)
+    : ['hero' => [], 'posts' => []];
+
+$posts = $data['posts'] ?? [];
+
+/* ---------- SAVE JSON (ATOMIC) ---------- */
+function saveJson(array $data, string $jsonFile) {
+    $tmp = $jsonFile . '.tmp';
+    file_put_contents(
+        $tmp,
+        json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
+    );
+    rename($tmp, $jsonFile);
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $caption = $_POST['caption'];
-    $category = $_POST['category'];
-    $published = isset($_POST['published']) ? 1 : 0;
+/* ---------- DELETE ---------- */
+if (isset($_GET['delete'])) {
+    $id = (int) $_GET['delete'];
+    $data['posts'] = array_values(array_filter($posts, fn($p) => $p['id'] !== $id));
+    saveJson($data, $jsonFile);
+    header('Location: media.php');
+    exit;
+}
 
-    if (isset($_FILES['file']) && $_FILES['file']['error'] === 0) {
-        $allowed = ['jpg', 'jpeg', 'png', 'webp', 'pdf'];
-        $ext = strtolower(pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION));
+/* ---------- EDIT MODE ---------- */
+$editMode = false;
+$post = null;
 
-        if (in_array($ext, $allowed)) {
-            $newName = uniqid('media_') . '.' . $ext;
-            if (!is_dir('uploads/media'))
-                mkdir('uploads/media', 0777, true);
-
-            if (move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/media/' . $newName)) {
-                $filePath = 'admin/uploads/media/' . $newName;
-
-                $sql = "INSERT INTO media (file_path, caption, category, is_published) VALUES (?, ?, ?, ?)";
-                $pdo->prepare($sql)->execute([$filePath, $caption, $category, $published]);
-            }
+if (isset($_GET['edit'])) {
+    $editMode = true;
+    $id = (int) $_GET['edit'];
+    foreach ($posts as $p) {
+        if ($p['id'] === $id) {
+            $post = $p;
+            break;
         }
     }
-    echo "<script>window.location.href='media.php';</script>";
+}
+
+/* ---------- ADD / UPDATE ---------- */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $title = trim($_POST['title']);
+    $date = trim($_POST['date']);
+    $category = trim($_POST['category']);
+    $summary = trim($_POST['summary']);
+
+    $external_link = trim($_POST['external_link']);
+    $external_link = $external_link !== '' ? $external_link : null;
+
+    $platform = trim($_POST['platform']);
+    $platform = $platform !== '' ? $platform : null;
+
+    $featured = isset($_POST['featured']);
+    $active = isset($_POST['active']);
+
+    $imagePath = $editMode ? $post['image'] : null;
+
+    /* ---------- IMAGE UPLOAD ---------- */
+    if (!empty($_FILES['image']['name']) && $_FILES['image']['error'] === 0) {
+        $ext = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
+        $allowed = ['jpg', 'jpeg', 'png', 'webp'];
+
+        if (in_array($ext, $allowed)) {
+            $filename = uniqid('media_') . '.' . $ext;
+            $targetDir = __DIR__ . '/../assets/';
+            if (!is_dir($targetDir)) mkdir($targetDir, 0755, true);
+            move_uploaded_file($_FILES['image']['tmp_name'], $targetDir . $filename);
+            $imagePath = 'assets/' . $filename;
+        }
+    }
+
+    if ($editMode) {
+        foreach ($data['posts'] as &$p) {
+            if ($p['id'] === $post['id']) {
+                $p = [
+                    'id' => $p['id'],
+                    'title' => $title,
+                    'date' => $date,
+                    'category' => $category,
+                    'image' => $imagePath,
+                    'summary' => $summary,
+                    'external_link' => $external_link,
+                    'platform' => $platform,
+                    'featured' => $featured,
+                    'active' => $active
+                ];
+                break;
+            }
+        }
+    } else {
+        $newId = empty($posts) ? 1 : max(array_column($posts, 'id')) + 1;
+        $data['posts'][] = [
+            'id' => $newId,
+            'title' => $title,
+            'date' => $date,
+            'category' => $category,
+            'image' => $imagePath,
+            'summary' => $summary,
+            'external_link' => $external_link,
+            'platform' => $platform,
+            'featured' => $featured,
+            'active' => $active
+        ];
+    }
+
+    saveJson($data, $jsonFile);
+    header('Location: media.php');
+    exit;
 }
 ?>
 
 <div class="page-header">
-    <h1 class="page-title">Media Library</h1>
-    <a href="media.php?action=add" class="btn btn-primary"><i class="fas fa-upload"></i> Upload Media</a>
+    <h1 class="page-title">Media & News</h1>
+    <a href="media.php?action=add" class="btn btn-primary">Add Post</a>
 </div>
 
-<?php if (!isset($_GET['action'])): ?>
-    <div class="card">
-        <table>
-            <thead>
-                <tr>
-                    <th>Preview</th>
-                    <th>Caption</th>
-                    <th>Category</th>
-                    <th>Link (Copy)</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $stmt = $pdo->query("SELECT * FROM media ORDER BY id DESC");
-                while ($row = $stmt->fetch()):
-                    ?>
-                    <tr>
-                        <td>
-                            <a href="../<?php echo $row['file_path']; ?>" target="_blank">
-                                <img src="../<?php echo $row['file_path']; ?>" class="thumb">
-                            </a>
-                        </td>
-                        <td><?php echo htmlspecialchars($row['caption']); ?></td>
-                        <td><?php echo htmlspecialchars($row['category']); ?></td>
-                        <td><input type="text" value="<?php echo $row['file_path']; ?>" readonly
-                                style="width:150px; font-size:0.8rem; padding:2px;"></td>
-                        <td>
-                            <a href="media.php?delete=<?php echo $row['id']; ?>" onclick="return confirm('Delete file?')"
-                                class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
-    </div>
+<?php if (!isset($_GET['action']) && !$editMode): ?>
+<div class="card">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($posts as $p): ?>
+            <tr>
+                <td><?= htmlspecialchars($p['title']) ?></td>
+                <td><?= htmlspecialchars($p['category']) ?></td>
+                <td><?= htmlspecialchars($p['date']) ?></td>
+                <td><?= $p['active'] ? 'Active' : 'Inactive' ?></td>
+                <td>
+                    <a href="media.php?edit=<?= $p['id'] ?>" class="btn btn-secondary">Edit</a>
+                    <a href="media.php?delete=<?= $p['id'] ?>" class="btn btn-danger"
+                       onclick="return confirm('Delete this post?')">Delete</a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 <?php else: ?>
-    <div class="card" style="max-width: 600px;">
-        <h3>Upload New File</h3>
-        <form method="POST" enctype="multipart/form-data">
-            <div class="form-group">
-                <label class="form-label">File</label>
-                <input type="file" name="file" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Caption</label>
-                <input type="text" name="caption" class="form-control" placeholder="e.g. CSR Event 2025">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Category</label>
-                <input type="text" name="category" class="form-control" placeholder="e.g. Gallery">
-            </div>
-            <div class="form-group">
-                <label><input type="checkbox" name="published" checked> Published</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload</button>
-            <a href="media.php" class="btn btn-secondary">Cancel</a>
-        </form>
-    </div>
-<?php endif; ?>
-</body>
+<div class="card" style="max-width: 800px;">
+<form method="POST" enctype="multipart/form-data">
+    <label>Title</label>
+    <input name="title" value="<?= $editMode ? htmlspecialchars($post['title']) : '' ?>" required>
 
-</html>
+    <label>Date</label>
+    <input name="date" value="<?= $editMode ? htmlspecialchars($post['date']) : '' ?>" required>
+
+    <label>Category</label>
+    <input name="category" value="<?= $editMode ? htmlspecialchars($post['category']) : '' ?>" required>
+
+    <label>Summary</label>
+    <textarea name="summary"><?= $editMode ? htmlspecialchars($post['summary']) : '' ?></textarea>
+
+    <label>External Link</label>
+    <input name="external_link" value="<?= $editMode ? htmlspecialchars($post['external_link'] ?? '') : '' ?>">
+
+    <label>Platform</label>
+    <input name="platform" value="<?= $editMode ? htmlspecialchars($post['platform'] ?? '') : '' ?>">
+
+    <label>Image</label>
+    <input type="file" name="image">
+
+    <label><input type="checkbox" name="featured" <?= $editMode && $post['featured'] ? 'checked' : '' ?>> Featured</label>
+    <label><input type="checkbox" name="active" <?= !$editMode || $post['active'] ? 'checked' : '' ?>> Active</label>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="media.php" class="btn btn-secondary">Cancel</a>
+</form>
+</div>
+<?php endif; ?>
