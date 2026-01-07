@@ -10,11 +10,11 @@
     },
     {
         "id": 2,
-        "image": "assets/hero/offers-hero.jpg",
-        "title": "Back to School Deals",
-        "subtitle": "Wholesale prices on stationery and snacks for the new term.",
-        "button_text": "See Catalogue",
-        "button_link": "services.html",
+        "image": "assets/promotions/promo-1.jpg",
+        "title": "Weekly Essentials",
+        "subtitle": "Everyday savings on household favorites.",
+        "button_text": "Order via WhatsApp",
+        "button_link": "order.html",
         "active": true
     },
     {

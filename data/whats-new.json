@@ -1,11 +1,11 @@
 [
     {
         "id": "new-1",
-        "title": "Back to School Deals",
-        "image": "assets/hero/hero-2.jpg",
+        "title": "Weekly Essentials",
+        "image": "assets/promotions/promo-1.jpg",
         "tag": "Seasonal",
-        "link": "offers.html",
-        "link_text": "View Offers",
+        "link": "order.html",
+        "link_text": "Order via WhatsApp",
         "active": true
     },
     {
@@ -22,8 +22,8 @@
         "title": "Weekend Specials",
         "image": "assets/produce.jpg",
         "tag": "Limited Time",
-        "link": "offers.html",
-        "link_text": "See Specials",
+        "link": "order.html",
+        "link_text": "Shop Now on WhatsApp",
         "active": true
     }
 ]
