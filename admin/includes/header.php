@@ -1,7 +1,7 @@
 <?php
 require_once 'auth.php';
-require_once '../config/db.php';
 require_login();
+// JSON-based CMS — database disabled intentionally
 ?>
 <!DOCTYPE html>
 <html lang="en">
