@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Descriptive Title for SEO -->
+
     <title>Careers - Powerstar Supermarkets</title>
     <meta name="description"
         content="Build your career with Powerstar Supermarkets. Explore job openings in retail, management, and logistics. Join our growing family today.">
@@ -14,13 +14,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css?v=2025-01?v=deploy2026">
 
-    <!-- Inline styles specific to Careers Page Hero -->
-    <!-- Defer loading of non-critical JS -->
     <script src="js/main.js?v=2025-01?v=deploy2026" defer></script>
-
+    <script src="js/content-loader.js?v=deploy2026" defer></script>
 </head>
 
 <body>
@@ -104,12 +103,7 @@
 
                 <p>We are continuously building our talent pool for our 11+ branches.</p>
 
-                <div style="margin: 25px 0;">
-                    <span class="job-tag"><i class="fas fa-check"></i> Cashiers</span>
-                    <span class="job-tag"><i class="fas fa-check"></i> Shelf Stackers</span>
-                    <span class="job-tag"><i class="fas fa-check"></i> Customer Assistants</span>
-                    <span class="job-tag"><i class="fas fa-check"></i> Cleaners</span>
-                </div>
+                <div id="general-jobs" style="margin: 25px 0;"></div>
 
                 <div class="application-notice">
                     <i class="fas fa-exclamation-circle"></i>
@@ -135,9 +129,9 @@
             <p style="color: var(--text-muted);">Specialized roles in HQ, Bakery, Butchery, and Logistics.</p>
         </div>
 
-        <div class="department-grid">
+        <div class="department-grid" id="professional-jobs">
             <!-- Job Card 1 -->
-            <div class="dept-card reveal">
+        
                 <div>
                     <span class="dept-label">Bakery Department</span>
                     <h3>Head Baker</h3>
@@ -149,7 +143,7 @@
             </div>
 
             <!-- Job Card 2 -->
-            <div class="dept-card reveal">
+            
                 <div>
                     <span class="dept-label">Butchery Department</span>
                     <h3>Senior Butcher</h3>
@@ -160,7 +154,7 @@
             </div>
 
             <!-- Job Card 3 (FILLED) -->
-            <div class="dept-card filled reveal">
+            
                 <div>
                     <span class="dept-label" style="color: var(--ps-dark);">Logistics</span>
                     <h3>Fleet Manager</h3>
