@@ -3330,4 +3330,131 @@ img {
     letter-spacing: 0.02em;
     text-transform: uppercase;
 }
+/* ===============================
+   Corporate Departments Upgrade
+   =============================== */
+
+.departments-section {
+    padding: 60px 0 20px;
+}
+
+.departments-section .section-subtitle {
+    color: var(--ps-red);
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.departments-section h2 {
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 800;
+    margin: 10px 0 6px;
+}
+
+.departments-section p.section-intro {
+    color: var(--text-muted);
+    max-width: 720px;
+    margin: 0 auto 28px;
+}
+
+/* Grid parity with Offers */
+.departments-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+@media (max-width: 1024px) {
+    .departments-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .departments-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card */
+.dept-card {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.dept-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 40px rgba(0,0,0,.06);
+    border-color: #ececec;
+}
+
+/* Image zone */
+.dept-image-wrapper {
+    background: #f7f7f7;
+    padding: 18px;
+}
+
+.dept-image-wrapper img {
+    width: 100%;
+    height: 170px;
+    object-fit: contain;
+}
+
+/* Content */
+.dept-card .card-content {
+    padding: 22px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dept-card h3 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 0;
+    color: #111;
+}
+
+.dept-card p {
+    font-size: .9rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Note badge (subtle, corporate) */
+.dept-card .dept-note {
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #b30000;
+}
+
+/* CTA aligned to Offers tone */
+.dept-btn {
+    margin-top: auto;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 700;
+    border: 1px solid #e5e5e5;
+    background: transparent;
+    color: #1a7f5a;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all .2s ease;
+}
+
+.dept-btn:hover {
+    background: #1a7f5a;
+    color: #fff;
+    border-color: #1a7f5a;
+}
 

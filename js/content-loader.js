@@ -171,7 +171,7 @@ async function loadDepartmentsAll() {
                         ${iconHtml}
                     </div>
                     <p class="dept-desc">${dept.description}</p>
-                    ${dept.note ? `<small style="display:block; color:var(--ps-red); margin-bottom:10px; font-weight:600;">${dept.note}</small>` : ''}
+                   ${dept.note ? `<small class="dept-note">${dept.note}</small>` : ''}
                     
                     <a href="order.html" class="dept-btn btn-outline"><i class="fab fa-whatsapp"></i> Order on WhatsApp</a>
                 </div>
