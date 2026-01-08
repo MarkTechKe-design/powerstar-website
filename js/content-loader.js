@@ -74,6 +74,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (path.includes('media.html') || path.includes('team.html') || document.getElementById('team-gallery-grid')) {
         await loadTeamGallery();
     }
+     // 7. Careers Page Specific Loading
+    if (path.includes('careers.html')) {
+        await loadCareers();
 });
 
 /* =========================================
@@ -250,6 +253,54 @@ async function loadWhatsNew() {
     } catch (e) {
         console.error('[Powerstar] Error loading whats-new.json', e);
         renderFallback(container, "Updates currently unavailable.");
+    }
+}
+/* =========================================
+   CAREERS PAGE LOADER
+   ========================================= */
+async function loadCareers() {
+    const professionalGrid = document.querySelector('.department-grid');
+    if (!professionalGrid) return;
+
+    try {
+        const response = await fetch(`${BASE_PATH}/data/careers.json?v=${Date.now()}`);
+        if (!response.ok) throw new Error('Failed to load careers.json');
+        const data = await response.json();
+
+        // Clear static HTML cards
+        professionalGrid.innerHTML = '';
+
+        if (!data.professional || data.professional.length === 0) {
+            professionalGrid.innerHTML = `
+                <p style="grid-column:1/-1; text-align:center; color:#666;">
+                    No professional roles available at the moment.
+                </p>`;
+            return;
+        }
+
+        data.professional.forEach(role => {
+            const isFilled = role.status === 'filled';
+
+            professionalGrid.insertAdjacentHTML('beforeend', `
+                <div class="dept-card ${isFilled ? 'filled' : ''} reveal">
+                    <div>
+                        <span class="dept-label">${role.department}</span>
+                        <h3>${role.title}</h3>
+                        <p>${role.description}</p>
+                    </div>
+
+                    ${
+                        isFilled
+                        ? `<span class="btn-filled">Position Filled</span>`
+                        : `<a href="mailto:${role.email}?subject=${encodeURIComponent(role.title + ' Application')}"
+                             class="btn-job-apply">Apply Now</a>`
+                    }
+                </div>
+            `);
+        });
+
+    } catch (error) {
+        console.error('[Powerstar] Error loading careers:', error);
     }
 }
 
