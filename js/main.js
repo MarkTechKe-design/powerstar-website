@@ -1,7 +1,7 @@
 /**
  * Powerstar Supermarkets — Unified Main JS
- * Departments + Products Architecture
- * STABLE & ERROR-SAFE
+ * STABLE CORE (No WhatsApp ordering yet)
+ * Safe for GitHub Pages + cPanel
  */
 
 'use strict';
@@ -19,73 +19,78 @@ const PLACEHOLDER_IMG =
 /* ===============================
    DOM READY
 ================================ */
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initScrollReveal();
 
     const path = window.location.pathname;
 
+    if (path === '/' || path.endsWith('/') || path.endsWith('index.html')) {
+        loadOffersHome();
+    }
+
     if (path.includes('services.html')) {
-        await loadDepartmentsWithProducts();
+        loadDepartmentsWithProducts();
     }
 
     if (path.includes('careers.html')) {
-        await loadCareers();
+        loadCareers();
     }
 
     if (path.includes('about.html')) {
-        await loadAbout();
-    }
-
-    if (path.includes('index.html') || path === '/' || path.endsWith('/')) {
-        await loadOffersHome();
+        loadAbout();
     }
 });
 
 /* ===============================
-   DEPARTMENTS + PRODUCTS
+   SERVICES — DEPARTMENTS + PRODUCTS
 ================================ */
 async function loadDepartmentsWithProducts() {
-    const tabsContainer = document.getElementById('department-tabs');
-    const productsContainer = document.getElementById('products-grid');
+    const tabs = document.getElementById('department-tabs');
+    const grid = document.getElementById('products-grid');
 
-    if (!tabsContainer || !productsContainer) return;
+    if (!tabs || !grid) return;
 
     try {
         const res = await fetch(`${BASE_PATH}/data/products.json`);
+        if (!res.ok) throw new Error('products.json missing');
+
         const data = await res.json();
         const departments = data.departments || [];
 
         if (!departments.length) {
-            productsContainer.innerHTML = `<p>No products available.</p>`;
+            grid.innerHTML = `<p>No departments available.</p>`;
             return;
         }
 
-        tabsContainer.innerHTML = departments.map((d, i) => `
+        tabs.innerHTML = departments.map((d, i) => `
             <button class="dept-tab ${i === 0 ? 'active' : ''}" data-id="${d.id}">
                 ${d.title}
             </button>
         `).join('');
 
-        renderDepartmentProducts(departments[0], productsContainer);
+        renderDepartment(departments[0], grid);
 
-        tabsContainer.onclick = e => {
+        tabs.addEventListener('click', e => {
             if (!e.target.classList.contains('dept-tab')) return;
-            document.querySelectorAll('.dept-tab').forEach(b => b.classList.remove('active'));
+
+            document.querySelectorAll('.dept-tab')
+                .forEach(b => b.classList.remove('active'));
+
             e.target.classList.add('active');
 
             const dept = departments.find(d => d.id === e.target.dataset.id);
-            renderDepartmentProducts(dept, productsContainer);
-        };
+            renderDepartment(dept, grid);
+        });
 
     } catch (err) {
-        console.error(err);
-        productsContainer.innerHTML = `<p>Failed to load products.</p>`;
+        console.error('[Services]', err);
+        grid.innerHTML = `<p>Unable to load products.</p>`;
     }
 }
 
-function renderDepartmentProducts(dept, container) {
-    if (!dept || !dept.products?.length) {
+function renderDepartment(dept, container) {
+    if (!dept || !Array.isArray(dept.products) || !dept.products.length) {
         container.innerHTML = `<p>No products in this department.</p>`;
         return;
     }
@@ -95,19 +100,26 @@ function renderDepartmentProducts(dept, container) {
 
         return `
             <div class="product-card reveal">
-                <img src="${p.image}" alt="${p.name}"
+                <img src="${p.image}"
+                     alt="${p.name}"
                      onerror="this.src='${PLACEHOLDER_IMG}'">
 
                 <h3>${p.name}</h3>
 
                 <div class="price-row">
-                    ${p.offer_price ? `<span class="old-price">KES ${Number(p.price).toLocaleString()}</span>` : ''}
+                    ${
+                        p.offer_price
+                            ? `<span class="old-price">KES ${Number(p.price).toLocaleString()}</span>`
+                            : ''
+                    }
                     <span class="new-price">KES ${price.toLocaleString()}</span>
                 </div>
 
-                <small>${(p.branches || []).join(', ')}</small>
+                <small>${Array.isArray(p.branches) ? p.branches.join(', ') : ''}</small>
 
-                <button class="btn btn-primary">Add to Order</button>
+                <button class="btn btn-primary" disabled>
+                    Ordering Coming Soon
+                </button>
             </div>
         `;
     }).join('');
@@ -116,44 +128,58 @@ function renderDepartmentProducts(dept, container) {
 }
 
 /* ===============================
-   OFFERS — HOME ONLY
+   HOME — OFFERS ONLY
 ================================ */
 async function loadOffersHome() {
     const grid = document.getElementById('weekly-offers-grid');
     if (!grid) return;
 
     try {
-        const r = await fetch(`${BASE_PATH}/data/offers.json`);
-        const data = await r.json();
+        const res = await fetch(`${BASE_PATH}/data/offers.json`);
+        if (!res.ok) throw new Error('offers.json missing');
 
-        grid.innerHTML = (data.offers || [])
+        const data = await res.json();
+        const offers = data.offers || [];
+
+        grid.innerHTML = offers
             .filter(o => o.active)
             .slice(0, 6)
             .map(o => `
                 <div class="offer-card">
-                    <img src="${o.image}" alt="${o.product_name}"
+                    <img src="${o.image}"
+                         alt="${o.product_name}"
                          onerror="this.src='${PLACEHOLDER_IMG}'">
                     <h3>${o.product_name}</h3>
-                    <span class="new-price">KES ${Number(o.new_price).toLocaleString()}</span>
+                    <span class="new-price">
+                        KES ${Number(o.new_price).toLocaleString()}
+                    </span>
                 </div>
-            `)
-            .join('');
-    } catch (e) {
-        console.warn('Offers failed', e);
+            `).join('');
+
+    } catch (err) {
+        console.warn('[Offers]', err);
+        grid.innerHTML = `<p>Unable to load offers.</p>`;
     }
 }
 
 /* ===============================
-   CAREERS
+   CAREERS — PROFESSIONAL ROLES (CMS)
 ================================ */
 async function loadCareers() {
     const grid = document.querySelector('.department-grid');
     if (!grid) return;
 
     try {
-        const r = await fetch(`${BASE_PATH}/data/careers.json`);
-        const data = await r.json();
-        const roles = data.professional_roles || data.professional || [];
+        const res = await fetch(`${BASE_PATH}/data/careers.json`);
+        if (!res.ok) throw new Error('careers.json missing');
+
+        const data = await res.json();
+        const roles = data.professional_roles || [];
+
+        if (!roles.length) {
+            grid.innerHTML = `<p>No professional roles available.</p>`;
+            return;
+        }
 
         grid.innerHTML = roles.map(job => `
             <div class="dept-card ${job.status === 'filled' ? 'filled' : ''}">
@@ -162,23 +188,27 @@ async function loadCareers() {
                 <p>${job.description}</p>
                 ${
                     job.status === 'filled'
-                        ? '<span class="btn-filled">Filled</span>'
+                        ? `<span class="btn-filled">Filled</span>`
                         : `<a href="mailto:${job.application_email}" class="btn-job-apply">Apply</a>`
                 }
             </div>
         `).join('');
-    } catch (e) {
-        console.warn('Careers error', e);
+
+    } catch (err) {
+        console.warn('[Careers]', err);
+        grid.innerHTML = `<p>Unable to load roles.</p>`;
     }
 }
 
 /* ===============================
-   ABOUT
+   ABOUT — CMS CONTENT
 ================================ */
 async function loadAbout() {
     try {
-        const r = await fetch(`${BASE_PATH}/data/about.json`);
-        const d = await r.json();
+        const res = await fetch(`${BASE_PATH}/data/about.json`);
+        if (!res.ok) throw new Error('about.json missing');
+
+        const d = await res.json();
 
         setText('mission-title', d?.strategic_compass?.mission?.title);
         setText('mission-content', d?.strategic_compass?.mission?.content);
@@ -187,14 +217,14 @@ async function loadAbout() {
         setText('quality-title', d?.quality_policy?.title);
         setText('quality-desc', d?.quality_policy?.content);
 
-    } catch (e) {
-        console.warn('About error', e);
+    } catch (err) {
+        console.warn('[About]', err);
     }
 }
 
-function setText(id, text) {
+function setText(id, value) {
     const el = document.getElementById(id);
-    if (el && text) el.textContent = text;
+    if (el && value) el.textContent = value;
 }
 
 /* ===============================
@@ -204,12 +234,15 @@ function initMobileMenu() {
     const btn = document.getElementById('mobile-menu-btn');
     const nav = document.getElementById('nav-menu');
     if (!btn || !nav) return;
-    btn.onclick = () => nav.classList.toggle('active');
+
+    btn.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
 }
 
 function initScrollReveal() {
     document.querySelectorAll('.reveal').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+        if (el.getBoundingClientRect().top < window.innerHeight - 80) {
             el.classList.add('active');
         }
     });
