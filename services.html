@@ -3,44 +3,44 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Descriptive Title for SEO -->
-    <title>Our Departments - Powerstar Supermarkets</title>
-    <meta name="description"
-        content="Explore our wide range of products including fresh produce, bakery, butchery, electronics, and household essentials. Wholesale prices available.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Departments & Products | Powerstar Supermarkets</title>
+    <meta name="description"
+        content="Browse all Powerstar Supermarkets departments including groceries, electronics, bakery, household items and more. Order directly via WhatsApp.">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=2025-01?v=deploy2026">
 
-    <!-- Defer loading of non-critical JS -->
-    <!-- Defer loading of non-critical JS -->
-    <script src="js/main.js?v=2025-01?v=deploy2026" defer></script>
-    <script src="js/content-loader.js?v=2025-01?v=deploy2026" defer></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Lightbox System -->
-    <link rel="stylesheet" href="css/lightbox.css?v=2025-01?v=deploy2026">
-    <script src="js/lightbox.js?v=2025-01?v=deploy2026" defer></script>
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="css/style.css?v=deploy2026">
+
+    <!-- Unified JS -->
+    <script src="js/main.js" defer></script>
 </head>
 
 <body>
 
+    <!-- ================= HEADER ================= -->
     <header>
         <div class="header-inner">
-            <!-- SAFE TO EDIT: Logo -->
-            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Powerstar Supermarkets">
+            </a>
 
-            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
-                    class="fas fa-bars"></i></button>
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
 
-            <!-- SAFE TO EDIT: Navigation Links -->
             <nav class="nav-menu" id="nav-menu">
                 <a href="index.html">Home</a>
-
                 <a href="services.html" class="active">Departments</a>
                 <a href="order.html">Shop</a>
                 <a href="branches.html">Branches</a>
@@ -52,68 +52,77 @@
         </div>
     </header>
 
-    <!-- SAFE TO EDIT: Hero Section -->
-    <div class="hero services-hero">
+    <!-- ================= HERO ================= -->
+    <section class="hero services-hero">
         <div class="hero-glass-card reveal">
-            <!-- EDITABLE: Subtitle -->
-            <span class="hero-welcome-text">Premium Selection</span>
-            <!-- EDITABLE: Main Headline -->
+            <span class="hero-welcome-text">Shop by Category</span>
             <h1>Our Departments</h1>
-            <!-- EDITABLE: Tagline -->
-            <p>Sourcing the finest quality brands for your home, business, and family.</p>
+            <p>
+                Explore our full range of products across food, household,
+                electronics, bakery and more — available at select branches.
+            </p>
         </div>
-    </div>
+    </section>
 
+    <!-- ================= MAIN ================= -->
     <main class="container">
 
-        <!-- Value Props -->
-        <div class="values-grid" style="margin-top: -50px; position: relative; z-index: 10;">
+        <!-- VALUE PROPOSITION -->
+        <section class="values-grid">
             <div class="value-card reveal">
                 <div class="icon-circle"><i class="fas fa-leaf"></i></div>
-                <h3>Farm Fresh</h3>
-                <p>Sourced directly from local farmers to ensure maximum freshness on your table.</p>
+                <h3>Fresh & Trusted</h3>
+                <p>We work with reliable suppliers to guarantee quality.</p>
             </div>
+
             <div class="value-card reveal">
                 <div class="icon-circle"><i class="fas fa-tags"></i></div>
                 <h3>Fair Pricing</h3>
-                <p>Competitive prices on all household essentials and premium brands.</p>
+                <p>Retail and wholesale prices tailored for every customer.</p>
             </div>
+
             <div class="value-card reveal">
-                <div class="icon-circle"><i class="fas fa-check-circle"></i></div>
-                <h3>Quality Assured</h3>
-                <p>We strictly inspect all stock to meet our high safety standards.</p>
+                <div class="icon-circle"><i class="fas fa-store"></i></div>
+                <h3>Multiple Branches</h3>
+                <p>Availability varies by branch for better stock control.</p>
             </div>
+        </section>
+
+        <!-- SECTION INTRO -->
+        <div class="section-header-center reveal">
+            <span class="section-subtitle">Browse & Order</span>
+            <h2>Select a Department</h2>
+            <p class="section-intro">
+                Click a department below to view available products and prices.
+                Add items and place your order via WhatsApp.
+            </p>
         </div>
 
-        <!-- Intro Text -->
-        <div class="reveal section-header">
-            <span class="section-subtitle">Browse Categories</span>
-<h2>Our Departments</h2>
-<p class="section-intro">
-    A curated range of essentials, fresh produce, and lifestyle categories — available across all Powerstar branches.
-</p>
+        <!-- ================= DEPARTMENT TABS ================= -->
+        <div id="department-tabs" class="dept-tabs reveal">
+            <!-- Tabs injected by main.js -->
         </div>
 
-        <!-- SAFE TO EDIT: Department Grid -->
-        <div class="department-grid" id="departments-grid">
-            <!-- Dynamic Departments Loaded Here -->
+        <!-- ================= PRODUCTS GRID ================= -->
+        <div id="products-grid" class="products-grid reveal">
+            <!-- Products injected by main.js -->
         </div>
 
-        <!-- Bulk Order Promo -->
-        <!-- REFACTORED: Moved inline styles to class 'promo-banner' (Needs to be added to CSS) -->
-        <div class="reveal promo-banner">
+        <!-- ================= BULK / WHOLESALE CTA ================= -->
+        <section class="promo-banner reveal">
             <div class="promo-content-wrapper">
                 <div class="promo-text-col">
-                    <!-- EDITABLE: Promo Content -->
-                    <h3 class="promo-subtitle">For Business & Schools</h3>
+                    <h3 class="promo-subtitle">Wholesale & Institutions</h3>
                     <h2 class="promo-title">Bulk Orders Made Easy</h2>
                     <p class="promo-desc">
-                        Stocking up for your home, school, or hotel? Enjoy wholesale prices with priority handling and
-                        delivery support.
+                        Schools, hotels, resellers and organizations enjoy
+                        special pricing and priority service.
                     </p>
                     <div class="promo-actions">
-                        <a href="contact.html" class="btn-white">Contact Sales Team</a>
-                        <a href="order.html" class="btn-outline-white">Order on WhatsApp</a>
+                        <a href="contact.html" class="btn-white">Contact Sales</a>
+                        <a href="order.html" class="btn-outline-white">
+                            Order via WhatsApp
+                        </a>
                     </div>
                 </div>
 
@@ -121,31 +130,27 @@
                     <i class="fas fa-truck-loading"></i>
                 </div>
             </div>
-        </div>
+        </section>
 
     </main>
 
+    <!-- ================= FOOTER ================= -->
     <footer>
         <div class="footer-content">
             <div class="social-links">
                 <h4 class="social-title">Follow Us</h4>
                 <div class="icons-container">
-                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
-                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
-                            class="fab fa-tiktok"></i></a>
-                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
-                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+                <p>&copy; 2026 Powerstar Supermarkets. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
 </body>
-
 </html>

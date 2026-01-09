@@ -1,6 +1,6 @@
 /**
  * Powerstar Supermarkets — Unified Main JS
- * Single Source of Truth
+ * Departments + Products Architecture
  * Stable for VS Code + cPanel
  */
 
@@ -25,148 +25,103 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const path = window.location.pathname;
 
-    /* HOME PAGE */
-    if (
-        path === '/' ||
-        path.endsWith('index.html') ||
-        path.endsWith('/')
-    ) {
+    if (path === '/' || path.endsWith('index.html') || path.endsWith('/')) {
         await loadSlides();
         await loadDepartmentsHome();
         await loadWhatsNew();
         await loadOffersHome();
     }
 
-    /* DEPARTMENTS PAGE */
     if (path.includes('services.html')) {
-        await loadDepartmentsAll();
+        await loadDepartmentsWithProducts();
     }
 
-    /* OFFERS PAGE */
-    if (path.includes('offers.html')) {
-        await loadOffersAll();
-    }
-
-    /* CAREERS PAGE */
     if (path.includes('careers.html')) {
         await loadCareers();
     }
 
-    /* ABOUT PAGE */
     if (path.includes('about.html')) {
         await loadAbout();
     }
 });
 
 /* ===============================
-   SLIDER
+   DEPARTMENTS + PRODUCTS
 ================================ */
-async function loadSlides() {
-    const track = document.getElementById('sliderTrack');
-    if (!track) return;
+async function loadDepartmentsWithProducts() {
+    const tabsContainer = document.getElementById('department-tabs');
+    const productsContainer = document.getElementById('products-grid');
+
+    if (!tabsContainer || !productsContainer) return;
 
     try {
-        const r = await fetch(`${BASE_PATH}/data/slides.json?v=${Date.now()}`);
-        const slides = await r.json();
+        const [deptRes, prodRes] = await Promise.all([
+            fetch(`${BASE_PATH}/data/departments.json`),
+            fetch(`${BASE_PATH}/data/products.json`)
+        ]);
 
-        track.innerHTML = '';
+        const departments = await deptRes.json();
+        const productsData = await prodRes.json();
+        const products = productsData.products || [];
 
-        slides
-            .filter(s => s.active)
-            .forEach((slide, i) => {
-                track.insertAdjacentHTML(
-                    'beforeend',
-                    `
-                <div class="slide ${i === 0 ? 'active' : ''}">
-                    <img src="${slide.image}" alt="${slide.title}"
-                         onerror="this.src='${PLACEHOLDER_IMG}'">
-                    <div class="slide-content">
-                        <span>${slide.subtitle || ''}</span>
-                        <h2>${slide.title}</h2>
-                        <a href="${slide.button_link || '#'}"
-                           class="btn btn-primary">
-                           ${slide.button_text || 'Learn More'}
-                        </a>
-                    </div>
-                </div>
-                `
-                );
-            });
+        const visibleDepts = departments.filter(d => d.visible);
 
-        initPromoSlider();
+        /* Render department tabs */
+        tabsContainer.innerHTML = visibleDepts.map((d, i) => `
+            <button class="dept-tab ${i === 0 ? 'active' : ''}"
+                    data-dept="${d.title}">
+                ${d.title}
+            </button>
+        `).join('');
+
+        /* Render initial products */
+        renderProducts(visibleDepts[0].title, products, productsContainer);
+
+        /* Tab click handler */
+        tabsContainer.addEventListener('click', e => {
+            if (!e.target.classList.contains('dept-tab')) return;
+
+            document.querySelectorAll('.dept-tab')
+                .forEach(btn => btn.classList.remove('active'));
+
+            e.target.classList.add('active');
+            renderProducts(e.target.dataset.dept, products, productsContainer);
+        });
+
     } catch (e) {
-        console.warn('Slides failed:', e);
+        console.error('Departments/products load error:', e);
+        productsContainer.innerHTML =
+            '<p style="text-align:center;">Unable to load products.</p>';
     }
 }
 
-/* ===============================
-   DEPARTMENTS — HOME
-================================ */
-async function loadDepartmentsHome() {
-    const container = document.getElementById('landing-departments-grid');
-    if (!container) return;
+function renderProducts(department, products, container) {
+    const filtered = products.filter(p => p.department === department);
 
-    try {
-        const r = await fetch(`${BASE_PATH}/data/departments.json`);
-        const depts = await r.json();
-
-        const featured = depts.filter(
-            d => d.visible && d.onLanding
-        );
-
-        container.innerHTML = featured
-            .slice(0, 6)
-            .map(
-                d => `
-            <a href="services.html" class="quick-card">
-                <div class="quick-icon">
-                    <i class="fas ${d.icon || 'fa-store'}"></i>
-                </div>
-                <span>${d.title}</span>
-            </a>`
-            )
-            .join('');
-    } catch (e) {
-        console.warn('Home departments error:', e);
+    if (filtered.length === 0) {
+        container.innerHTML =
+            '<p style="text-align:center;">No products available.</p>';
+        return;
     }
+
+    container.innerHTML = filtered.map(p => `
+        <div class="product-card reveal">
+            <img src="${p.image}" alt="${p.name}"
+                 onerror="this.src='${PLACEHOLDER_IMG}'">
+            <h3>${p.name}</h3>
+            <p class="price">KSh ${p.price.toLocaleString()}</p>
+            <small>${(p.branches || []).join(', ')}</small>
+            <button class="btn btn-primary">
+                Add to Order
+            </button>
+        </div>
+    `).join('');
+
+    initScrollReveal();
 }
 
 /* ===============================
-   DEPARTMENTS — ALL
-================================ */
-async function loadDepartmentsAll() {
-    const container = document.getElementById('departments-grid');
-    if (!container) return;
-
-    try {
-        const r = await fetch(`${BASE_PATH}/data/departments.json`);
-        const depts = await r.json();
-
-        container.innerHTML = depts
-            .filter(d => d.visible)
-            .map(
-                d => `
-            <div class="dept-card reveal">
-                <img src="${d.image}" alt="${d.title}"
-                     onerror="this.src='${PLACEHOLDER_IMG}'">
-                <div class="card-content">
-                    <h3>${d.title}</h3>
-                    <p>${d.description}</p>
-                    ${d.note ? `<small>${d.note}</small>` : ''}
-                    <a href="order.html" class="dept-btn">
-                        Order on WhatsApp
-                    </a>
-                </div>
-            </div>`
-            )
-            .join('');
-    } catch (e) {
-        console.warn('Departments error:', e);
-    }
-}
-
-/* ===============================
-   OFFERS — HOME
+   OFFERS — HOME ONLY
 ================================ */
 async function loadOffersHome() {
     const grid = document.getElementById('weekly-offers-grid');
@@ -176,34 +131,13 @@ async function loadOffersHome() {
         const r = await fetch(`${BASE_PATH}/data/offers.json`);
         const data = await r.json();
 
-        const offers = data.offers.filter(o => o.active);
-
-        grid.innerHTML = offers
+        grid.innerHTML = data.offers
+            .filter(o => o.active)
             .slice(0, 8)
             .map(createOfferCard)
             .join('');
     } catch (e) {
-        console.warn('Home offers error:', e);
-    }
-}
-
-/* ===============================
-   OFFERS — ALL
-================================ */
-async function loadOffersAll() {
-    const grid = document.getElementById('all-offers-grid');
-    if (!grid) return;
-
-    try {
-        const r = await fetch(`${BASE_PATH}/data/offers.json`);
-        const data = await r.json();
-
-        grid.innerHTML = data.offers
-            .filter(o => o.active)
-            .map(createOfferCard)
-            .join('');
-    } catch (e) {
-        console.warn('Offers page error:', e);
+        console.warn('Offers error:', e);
     }
 }
 
@@ -218,10 +152,6 @@ function createOfferCard(o) {
             ${o.old_price ? `<span class="old-price">${o.old_price}</span>` : ''}
             <span class="new-price">${o.new_price}</span>
         </div>
-        <small>${o.branches}</small>
-        <a href="order.html" class="btn btn-primary btn-block">
-            Order Now
-        </a>
     </div>`;
 }
 
@@ -236,9 +166,7 @@ async function loadCareers() {
         const r = await fetch(`${BASE_PATH}/data/careers.json`);
         const data = await r.json();
 
-        grid.innerHTML = data.professional_roles
-            .map(
-                job => `
+        grid.innerHTML = data.professional_roles.map(job => `
             <div class="dept-card ${job.status === 'filled' ? 'filled' : ''}">
                 <span class="dept-label">${job.department}</span>
                 <h3>${job.title}</h3>
@@ -249,9 +177,8 @@ async function loadCareers() {
                         : `<a href="mailto:${job.application_email}"
                               class="btn-job-apply">Apply</a>`
                 }
-            </div>`
-            )
-            .join('');
+            </div>
+        `).join('');
     } catch (e) {
         console.warn('Careers error:', e);
     }
@@ -286,21 +213,16 @@ function initMobileMenu() {
     const btn = document.getElementById('mobile-menu-btn');
     const nav = document.getElementById('nav-menu');
     if (!btn || !nav) return;
-
     btn.onclick = () => nav.classList.toggle('active');
 }
 
 function initScrollReveal() {
     const els = document.querySelectorAll('.reveal');
-    const reveal = () =>
-        els.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-                el.classList.add('active');
-            }
-        });
-
-    window.addEventListener('scroll', reveal);
-    reveal();
+    els.forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+            el.classList.add('active');
+        }
+    });
 }
 
 function initPromoSlider() {
@@ -314,3 +236,4 @@ function initPromoSlider() {
         i = (i + 1) % slides.length;
     }, 5000);
 }
+
