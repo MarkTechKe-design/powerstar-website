@@ -39,6 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (path.includes('about.html')) {
         loadAbout();
     }
+    if (path === '/' || path.endsWith('index.html')) {
+    loadOffersHome();
+    initHeroSlider();
+}
+if (path === '/' || path.endsWith('/') || path.endsWith('index.html')) {
+    loadHomeSlider();
+    initHeroSlider();
+    loadOffersHome();
+}
+
 });
 
 /* ===============================
@@ -192,6 +202,63 @@ async function loadOffersHome() {
         grid.innerHTML = `<p>Unable to load offers.</p>`;
     }
 }
+/* ===============================
+   HOME HERO SLIDER (4 SLIDES)
+================================ */
+function loadHomeSlider() {
+    const track = document.getElementById('sliderTrack');
+    if (!track) return;
+
+    const slides = [
+        {
+            image: 'assets/hero/slide-1.jpg',
+            tag: 'Weekly Deal',
+            title: 'Fresh Groceries, Better Prices',
+            text: 'Quality essentials sourced daily for your family.'
+        },
+        {
+            image: 'assets/hero/slide-2.jpg',
+            tag: 'Hot Offer',
+            title: 'Unbeatable Household Deals',
+            text: 'Save more on everyday home essentials.'
+        },
+        {
+            image: 'assets/hero/slide-3.jpg',
+            tag: 'Limited Time',
+            title: 'Bakery & Fresh Produce',
+            text: 'Freshly baked and carefully selected produce.'
+        },
+        {
+            image: 'assets/hero/slide-4.jpg',
+            tag: 'Powerstar Value',
+            title: 'Smart Shopping Starts Here',
+            text: 'Trusted by families across our branches.'
+        }
+    ];
+
+    track.innerHTML = slides.map((s, i) => `
+        <div class="slide ${i === 0 ? 'active' : ''}">
+            <img class="slide-bg" src="${s.image}" alt="${s.title}">
+            <div class="slide-content">
+                <span class="offer-tag">${s.tag}</span>
+                <h2>${s.title}</h2>
+                <p>${s.text}</p>
+            </div>
+        </div>
+    `).join('');
+}
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length < 2) return;
+
+    let index = 0;
+
+    setInterval(() => {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+    }, 6000);
+}
 
 /* ===============================
    CAREERS — PROFESSIONAL ROLES (CMS)
@@ -269,4 +336,19 @@ function initMobileMenu() {
     btn.addEventListener('click', () => {
         nav.classList.toggle('active');
     });
+}
+/* ===============================
+   HERO SLIDER (LANDING PAGE)
+================================ */
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.slide');
+    if (slides.length < 2) return;
+
+    let index = 0;
+
+    setInterval(() => {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+    }, 6000);
 }
