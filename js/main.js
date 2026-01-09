@@ -327,3 +327,19 @@ function initMobileMenu() {
         nav.classList.toggle('active');
     });
 }
+/* ===============================
+   HERO SLIDER INTERACTION
+================================ */
+function enableHeroSliderClick() {
+    const track = document.getElementById('sliderTrack');
+    if (!track) return;
+
+    track.style.cursor = 'pointer';
+    track.addEventListener('click', () => {
+        window.location.href = 'offers.html';
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    enableHeroSliderClick();
+});

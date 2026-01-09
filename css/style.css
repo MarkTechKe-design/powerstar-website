@@ -3683,4 +3683,64 @@ img {
     user-select: none;
     -webkit-user-drag: none;
 }
+/* === HERO SLIDER MOBILE FIX === */
+.slider-container {
+    aspect-ratio: 16 / 9;
+    min-height: 320px;
+}
+
+@media (max-width: 768px) {
+    .slider-container {
+        aspect-ratio: 4 / 3;
+        min-height: 280px;
+    }
+
+    .slide-content {
+        background: rgba(0,0,0,0.65);
+        padding: 20px;
+        border-radius: 12px;
+    }
+}
+/* === HERO SLIDER MOBILE FIX === */
+.slider-container {
+    aspect-ratio: 16 / 9;
+    min-height: 320px;
+}
+
+@media (max-width: 768px) {
+    .slider-container {
+        aspect-ratio: 4 / 3;
+        min-height: 280px;
+    }
+
+    .slide-content {
+        background: rgba(0,0,0,0.65);
+        padding: 20px;
+        border-radius: 12px;
+    }
+}
+/* === DEPARTMENTS GRID STABILIZATION === */
+#products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+@media (max-width: 1024px) {
+    #products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    #products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    #products-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
