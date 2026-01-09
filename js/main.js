@@ -236,4 +236,159 @@ function initPromoSlider() {
         i = (i + 1) % slides.length;
     }, 5000);
 }
+/* =========================================================
+   PRODUCTS & DEPARTMENTS SYSTEM (CORE ENGINE)
+   ========================================================= */
+
+/**
+ * Loads all departments with products on services.html
+ */
+async function loadDepartmentProducts() {
+    const container = document.getElementById('departments-grid');
+    if (!container) return;
+
+    try {
+        const res = await fetch(`${BASE_PATH}/data/products.json?v=${Date.now()}`);
+        if (!res.ok) throw new Error('products.json not found');
+
+        const data = await res.json();
+        const departments = data.departments || [];
+
+        if (departments.length === 0) {
+            container.innerHTML = `<p>No departments available.</p>`;
+            return;
+        }
+
+        container.innerHTML = departments.map(renderDepartmentBlock).join('');
+
+        initCartButtons();
+
+    } catch (err) {
+        console.error('[Products]', err);
+        container.innerHTML = `<p>Unable to load products.</p>`;
+    }
+}
+
+/**
+ * Render one department section
+ */
+function renderDepartmentBlock(dept) {
+    return `
+        <section class="department-section reveal" data-dept="${dept.id}">
+            <h2 class="department-title">${dept.title}</h2>
+
+            <div class="products-grid">
+                ${
+                    dept.products && dept.products.length
+                        ? dept.products.map(renderProductCard).join('')
+                        : `<p class="muted">No products listed.</p>`
+                }
+            </div>
+        </section>
+    `;
+}
+
+/**
+ * Render individual product card
+ */
+function renderProductCard(p) {
+    const price = p.offer_price ?? p.price;
+    const hasOffer = p.offer_price !== null;
+
+    return `
+        <div class="product-card" data-id="${p.id}">
+            ${p.tag ? `<span class="product-tag ${p.tag.toLowerCase()}">${p.tag}</span>` : ''}
+
+            <img src="${p.image}" alt="${p.name}"
+                 onerror="this.src='${PLACEHOLDER_IMG}'">
+
+            <h3>${p.name}</h3>
+
+            <div class="price-row">
+                ${hasOffer ? `<span class="old-price">KES ${p.price}</span>` : ''}
+                <span class="new-price">KES ${price}</span>
+            </div>
+
+            <small class="branch-note">
+                Available: ${Array.isArray(p.branches) ? p.branches.join(', ') : p.branches}
+            </small>
+
+            <div class="qty-row">
+                <button class="qty-btn minus">−</button>
+                <input type="number" value="1" min="1" max="${p.max_qty || 99}">
+                <button class="qty-btn plus">+</button>
+            </div>
+
+            <button class="btn btn-primary add-to-cart"
+                data-name="${p.name}"
+                data-price="${price}">
+                Add to Order
+            </button>
+        </div>
+    `;
+}
+/* =========================================================
+   CART & WHATSAPP ORDER SYSTEM
+   ========================================================= */
+
+let cart = [];
+
+function initCartButtons() {
+    document.querySelectorAll('.product-card').forEach(card => {
+        const minus = card.querySelector('.minus');
+        const plus = card.querySelector('.plus');
+        const input = card.querySelector('input');
+        const btn = card.querySelector('.add-to-cart');
+
+        minus.onclick = () => input.value = Math.max(1, input.value - 1);
+        plus.onclick = () => input.value = +input.value + 1;
+
+        btn.onclick = () => {
+            addToCart(
+                btn.dataset.name,
+                +btn.dataset.price,
+                +input.value
+            );
+        };
+    });
+}
+
+function addToCart(name, price, qty) {
+    const existing = cart.find(i => i.name === name);
+
+    if (existing) {
+        existing.qty += qty;
+    } else {
+        cart.push({ name, price, qty });
+    }
+
+    alert(`${name} added to order`);
+}
+
+/**
+ * Generates WhatsApp message
+ */
+function generateWhatsAppMessage(branch) {
+    let total = 0;
+
+    const items = cart.map(item => {
+        const sub = item.qty * item.price;
+        total += sub;
+        return `• ${item.name} × ${item.qty} @ KES ${item.price} = KES ${sub}`;
+    }).join('\n');
+
+    return `
+NEW ORDER – Powerstar Supermarkets
+--------------------------------
+Branch: ${branch}
+
+Items:
+${items}
+
+TOTAL: KES ${total}
+
+Source: Website
+--------------------------------
+    `;
+}
 
