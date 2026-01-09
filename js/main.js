@@ -1,7 +1,7 @@
 /**
  * Powerstar Supermarkets — Unified Main JS
  * STABLE CORE (No WhatsApp ordering yet)
- * Safe for GitHub Pages + cPanel
+ * Enterprise-safe | GitHub Pages + cPanel
  */
 
 'use strict';
@@ -21,7 +21,6 @@ const PLACEHOLDER_IMG =
 ================================ */
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
-    initScrollReveal();
 
     const path = window.location.pathname;
 
@@ -41,6 +40,19 @@ document.addEventListener('DOMContentLoaded', () => {
         loadAbout();
     }
 });
+
+/* ===============================
+   UTILITIES
+================================ */
+function parseKES(value) {
+    if (!value) return '';
+    if (typeof value === 'number') {
+        return value.toLocaleString();
+    }
+    // Remove non-numeric characters safely
+    const num = Number(value.replace(/[^\d]/g, ''));
+    return isNaN(num) ? value : num.toLocaleString();
+}
 
 /* ===============================
    SERVICES — DEPARTMENTS + PRODUCTS
@@ -74,7 +86,7 @@ async function loadDepartmentsWithProducts() {
         tabs.addEventListener('click', e => {
             if (!e.target.classList.contains('dept-tab')) return;
 
-            document.querySelectorAll('.dept-tab')
+            tabs.querySelectorAll('.dept-tab')
                 .forEach(b => b.classList.remove('active'));
 
             e.target.classList.add('active');
@@ -96,10 +108,10 @@ function renderDepartment(dept, container) {
     }
 
     container.innerHTML = dept.products.map(p => {
-        const price = Number(p.offer_price ?? p.price);
+        const price = parseKES(p.offer_price ?? p.price);
 
         return `
-            <div class="product-card reveal">
+            <div class="product-card">
                 <img src="${p.image}"
                      alt="${p.name}"
                      onerror="this.src='${PLACEHOLDER_IMG}'">
@@ -109,10 +121,10 @@ function renderDepartment(dept, container) {
                 <div class="price-row">
                     ${
                         p.offer_price
-                            ? `<span class="old-price">KES ${Number(p.price).toLocaleString()}</span>`
+                            ? `<span class="old-price">KES ${parseKES(p.price)}</span>`
                             : ''
                     }
-                    <span class="new-price">KES ${price.toLocaleString()}</span>
+                    <span class="new-price">KES ${price}</span>
                 </div>
 
                 <small>${Array.isArray(p.branches) ? p.branches.join(', ') : ''}</small>
@@ -123,12 +135,10 @@ function renderDepartment(dept, container) {
             </div>
         `;
     }).join('');
-
-    initScrollReveal();
 }
 
 /* ===============================
-   HOME — OFFERS ONLY
+   HOME — OFFERS (EXECUTIVE GRID)
 ================================ */
 async function loadOffersHome() {
     const grid = document.getElementById('weekly-offers-grid');
@@ -139,22 +149,43 @@ async function loadOffersHome() {
         if (!res.ok) throw new Error('offers.json missing');
 
         const data = await res.json();
-        const offers = data.offers || [];
+        const offers = (data.offers || []).filter(o => o.active);
 
-        grid.innerHTML = offers
-            .filter(o => o.active)
-            .slice(0, 6)
-            .map(o => `
-                <div class="offer-card">
+        grid.innerHTML = offers.slice(0, 6).map(o => `
+            <div class="offer-card">
+                <div class="offer-image">
+                    ${
+                        o.discount_label
+                            ? `<span class="discount-badge">${o.discount_label}</span>`
+                            : ''
+                    }
                     <img src="${o.image}"
                          alt="${o.product_name}"
                          onerror="this.src='${PLACEHOLDER_IMG}'">
-                    <h3>${o.product_name}</h3>
-                    <span class="new-price">
-                        KES ${Number(o.new_price).toLocaleString()}
-                    </span>
                 </div>
-            `).join('');
+
+                <div class="offer-details">
+                    <h3>${o.product_name}</h3>
+
+                    <div class="price-row">
+                        ${
+                            o.old_price
+                                ? `<span class="old-price">KES ${parseKES(o.old_price)}</span>`
+                                : ''
+                        }
+                        <span class="new-price">KES ${parseKES(o.new_price)}</span>
+                    </div>
+
+                    <span class="branch-label">
+                        ${Array.isArray(o.branches) ? o.branches.join(', ') : ''}
+                    </span>
+
+                    <button class="btn" disabled>
+                        Order Coming Soon
+                    </button>
+                </div>
+            </div>
+        `).join('');
 
     } catch (err) {
         console.warn('[Offers]', err);
@@ -237,13 +268,5 @@ function initMobileMenu() {
 
     btn.addEventListener('click', () => {
         nav.classList.toggle('active');
-    });
-}
-
-function initScrollReveal() {
-    document.querySelectorAll('.reveal').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-            el.classList.add('active');
-        }
     });
 }
