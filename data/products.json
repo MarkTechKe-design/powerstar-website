@@ -1,32 +1,35 @@
 {
   "departments": [
     {
-  "id": "unga-2kg",
-  "name": "Unga 2kg",
-  "image": "assets/products/unga.jpg",
-  "price": 220,
-  "offer_price": 199,
-  "currency": "KES",
-  "tag": "SALE",
-  "branches": ["All"],
-  "featured": true,
-  "max_qty": 20
-}
-
+      "id": "electronics",
+      "title": "Electronics",
+      "products": [
+        {
+          "id": "tv-43",
+          "name": "43\" Smart TV",
+          "image": "assets/products/tv.jpg",
+          "price": 32999,
+          "offer_price": null,
+          "tag": "HOT",
+          "branches": ["Kasarani HQ", "Naivasha"],
+          "featured": false
+        }
       ]
     },
     {
-  "id": "tv-43",
-  "name": "43\" Smart TV",
-  "image": "assets/products/tv.jpg",
-  "price": 32999,
-  "offer_price": null,
-  "currency": "KES",
-  "tag": "HOT",
-  "branches": ["Kasarani HQ", "Naivasha"],
-  "featured": false,
-  "max_qty": 5
-}
+      "id": "grocery",
+      "title": "Foodstuffs",
+      "products": [
+        {
+          "id": "unga-2kg",
+          "name": "Unga 2kg",
+          "image": "assets/products/unga.jpg",
+          "price": 220,
+          "offer_price": 199,
+          "tag": "SALE",
+          "branches": ["All"],
+          "featured": true
+        }
       ]
     }
   ]
