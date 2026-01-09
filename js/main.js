@@ -259,6 +259,54 @@ function initHeroSlider() {
         slides[index].classList.add('active');
     }, 6000);
 }
+function enableSliderClick(slidesData) {
+    const track = document.getElementById('sliderTrack');
+    if (!track) return;
+
+    track.addEventListener('click', () => {
+        // Placeholder action (safe)
+        window.location.href = 'offers.html';
+    });
+}
+function enableSliderSwipe(slidesCount, setActiveSlide) {
+    const container = document.querySelector('.slider-container');
+    if (!container) return;
+
+    let startX = 0;
+    let endX = 0;
+
+    container.addEventListener('touchstart', e => {
+        startX = e.touches[0].clientX;
+    });
+
+    container.addEventListener('touchend', e => {
+        endX = e.changedTouches[0].clientX;
+
+        if (Math.abs(startX - endX) < 50) return;
+
+        if (startX > endX) {
+            setActiveSlide('next');
+        } else {
+            setActiveSlide('prev');
+        }
+    });
+}
+let currentSlide = 0;
+
+function showSlide(index) {
+    slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+    });
+}
+
+function setActiveSlide(direction) {
+    if (direction === 'next') {
+        currentSlide = (currentSlide + 1) % slides.length;
+    } else {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    }
+    showSlide(currentSlide);
+}
 
 /* ===============================
    CAREERS — PROFESSIONAL ROLES (CMS)
