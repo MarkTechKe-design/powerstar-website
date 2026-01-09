@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Descriptive Title for SEO -->
+
     <title>Powerstar Supermarkets - Your Trusted Neighborhood Store</title>
     <meta name="description"
         content="Welcome to Powerstar Supermarkets. Fresh produce, appliances, household essentials, and wholesale deals. Shop in-store or via WhatsApp at our 10+ branches.">
 
-    <!-- Social Media Optimization (Open Graph) -->
+    <!-- Open Graph -->
     <meta property="og:title" content="Powerstar Supermarkets - Save Everyday!!!">
     <meta property="og:description"
         content="Order groceries via WhatsApp or visit our branches. Best prices on fresh produce, household essentials, and electronics.">
@@ -18,48 +18,43 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Powerstar Supermarkets">
 
-    <!-- Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Powerstar Supermarkets - Save Everyday!!!">
-    <meta name="twitter:description"
-        content="Order groceries via WhatsApp or visit our branches. Best prices on fresh produce, household essentials, and electronics.">
-    <meta name="twitter:image" content="https://www.powerstarsupermarkets.co.ke/assets/social-preview.jpg">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=2025-01?v=deploy2026">
-    <!-- Defer loading of non-critical JS -->
-    <script src="js/main.js?v=2025-01?v=deploy2026" defer></script>
-    <script src="js/whatsapp-orders.js?v=2025-01?v=deploy2026" defer></script>
-    <script src="js/ga4-events.js?v=2025-01?v=deploy2026" defer></script>
-    <script src="js/content-loader.js?v=2025-01?v=deploy2026" defer></script>
 
-    <!-- Lightbox System -->
-    <link rel="stylesheet" href="css/lightbox.css?v=2025-01?v=deploy2026">
-    <script src="js/lightbox.js?v=2025-01?v=deploy2026" defer></script>
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="css/style.css?v=deploy2026">
 
-    <!-- Performance Hints -->
+    <!-- Unified JS ONLY -->
+    <script src="js/main.js" defer></script>
+
     <link rel="preload" as="image" href="assets/hero/hero-1.jpg">
 </head>
 
 <body>
 
+    <!-- ================= HEADER ================= -->
     <header>
         <div class="header-inner">
-            <!-- SAFE TO EDIT: Logo Image -->
-            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Powerstar Supermarkets Logo">
+            </a>
 
-            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
-                    class="fas fa-bars"></i></button>
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
 
-            <!-- SAFE TO EDIT: Navigation Links -->
             <nav class="nav-menu" id="nav-menu">
                 <a href="index.html" class="active">Home</a>
-
                 <a href="services.html">Departments</a>
                 <a href="order.html">Shop</a>
                 <a href="branches.html">Branches</a>
@@ -71,65 +66,53 @@
         </div>
     </header>
 
-    <!-- 1. HERO SECTION -->
-    <div class="hero home-hero">
+    <!-- ================= HERO ================= -->
+    <section class="hero home-hero">
         <div class="hero-glass-card reveal">
-            <!-- EDITABLE: Welcome Text -->
-            <span class="hero-welcome-text" id="hero-welcome">Established 2001</span>
-            <!-- EDITABLE: Main Headline -->
-            <h1 id="hero-headline">Your Neighborhood Partner</h1>
-            <!-- EDITABLE: Subheadline -->
-            <p id="hero-subheadline">Freshness You Trust, Savings You Love. Serving the community for over 20 years.</p>
+            <span class="hero-welcome-text">Established 2001</span>
+            <h1>Your Neighborhood Partner</h1>
+            <p>Freshness You Trust, Savings You Love. Serving the community for over 20 years.</p>
             <div style="margin-top: 30px;">
                 <a href="branches.html" class="btn btn-white">Find Nearest Branch</a>
                 <a href="order.html" class="btn btn-primary" style="margin-left: 10px;">Order via WhatsApp</a>
             </div>
         </div>
-    </div>
+    </section>
 
+    <!-- ================= MAIN ================= -->
     <main class="container">
 
-        <!-- 2. OFFERS SLIDER (Promotions) -->
+        <!-- SLIDER -->
         <section class="reveal" style="margin-top: 60px; margin-bottom: 80px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Weekly Specials</span>
                 <h2>Unbeatable Deals</h2>
             </div>
 
-            <!-- DO NOT EDIT: Slider Structure (Contact Dev for Logic Changes) -->
-            <div class="slider-container" id="promoSlider">
-
-                <!-- Navigation Arrows -->
-                <button class="slider-arrow prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-arrow next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
-
+            <div class="slider-container">
                 <div class="slider-track" id="sliderTrack">
-                    <!-- Dynamic Slides Loaded Here -->
+                    <!-- Slides injected by main.js -->
                 </div>
-
-                <!-- Indicators -->
-                <div class="slider-indicators">
-                    <!-- Dynamic Indicators -->
-                </div>
-
             </div>
         </section>
 
-        <!-- 2a. WEEKLY OFFERS (Top 6 Deals) -->
+        <!-- WEEKLY OFFERS -->
         <section class="reveal" style="margin-bottom: 80px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Weekly Offers</span>
-                <h2>Top 6 Deals</h2>
+                <h2>Top Deals</h2>
             </div>
+
             <div class="offers-grid" id="weekly-offers-grid">
-                <!-- Dynamic Weekly Offers Loaded Here -->
+                <!-- Injected by main.js -->
             </div>
+
             <div style="text-align: center; margin-top: 40px;">
                 <a href="order.html" class="btn btn-primary">Order via WhatsApp</a>
             </div>
         </section>
 
-        <!-- 3. DEPARTMENTS (Featured Departments) -->
+        <!-- DEPARTMENTS -->
         <section class="reveal" style="margin-bottom: 80px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Our Departments</span>
@@ -137,11 +120,11 @@
             </div>
 
             <div class="quick-access-grid" id="landing-departments-grid">
-                <!-- Dynamic Departments Loaded Here -->
+                <!-- Injected by main.js -->
             </div>
         </section>
 
-        <!-- 4. WHAT'S NEW (New Feature) -->
+        <!-- WHAT'S NEW -->
         <section class="reveal" style="margin-bottom: 80px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Latest Updates</span>
@@ -149,104 +132,29 @@
             </div>
 
             <div class="department-grid" id="whats-new-grid">
-                <!-- Dynamic News Loaded Here -->
-            </div>
-        </section>
-
-        <!-- 4. ABOUT (Values + How It Works) -->
-        <section class="values-grid reveal" style="margin-bottom: 80px;">
-            <article class="value-card">
-                <div class="icon-circle icon-green"><i class="fas fa-leaf"></i></div>
-                <h3>Farm Fresh</h3>
-                <p>Sourced directly from local farmers to ensure maximum freshness on your table every single day.</p>
-            </article>
-
-            <article class="value-card">
-                <div class="icon-circle icon-red"><i class="fas fa-tags"></i></div>
-                <h3>Unbeatable Value</h3>
-                <p>Committed to helping you save everyday with competitive pricing on all household essentials.</p>
-            </article>
-
-            <article class="value-card">
-                <div class="icon-circle icon-gold"><i class="fas fa-users"></i></div>
-                <h3>Community First</h3>
-                <p>With 10+ branches, we are proud to create jobs and support the neighborhoods we call home.</p>
-            </article>
-        </section>
-
-        <!-- 5. MEDIA PREVIEW -->
-        <section class="reveal"
-            style="text-align: center; margin-bottom: 80px; padding: 60px 0; background: var(--ps-grey-light); border-radius: 20px;">
-            <div class="section-header-center">
-                <span class="section-subtitle">Latest Updates</span>
-                <h2>News & Media</h2>
-                <p style="margin: 0 auto 30px; max-width: 600px; color: var(--text-muted);">Catch up on our latest
-                    community events, branch openings, and special announcements.</p>
-                <a href="media.html" class="btn btn-primary"><i class="fas fa-newspaper"></i> Visit Media Center</a>
-            </div>
-        </section>
-
-        <!-- 6. TESTIMONIALS -->
-        <section class="reveal" style="margin-bottom: 80px;">
-            <div class="section-header-center">
-                <span class="section-subtitle">Customer Love</span>
-                <h2>What They Say</h2>
-            </div>
-            <div class="department-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-
-                <div class="dept-card" style="padding: 30px; border-bottom: 4px solid var(--ps-gold);">
-                    <div style="color: var(--ps-gold); margin-bottom: 15px;">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"Powerstar has completely changed
-                        my shopping experience. The fresh produce is unmatched!"</p>
-                    <strong style="color: var(--ps-dark);">Sarah K.</strong>
-                    <span style="font-size: 0.8rem; color: var(--text-muted);">Kasarani Resident</span>
-                </div>
-
-                <div class="dept-card" style="padding: 30px; border-bottom: 4px solid var(--ps-gold);">
-                    <div style="color: var(--ps-gold); margin-bottom: 15px;">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"I love the loyalty program.
-                        Redeeming points is so easy and helps with the monthly budget."</p>
-                    <strong style="color: var(--ps-dark);">James M.</strong>
-                    <span style="font-size: 0.8rem; color: var(--text-muted);">Ruiru Branch</span>
-                </div>
-
-                <div class="dept-card" style="padding: 30px; border-bottom: 4px solid var(--ps-gold);">
-                    <div style="color: var(--ps-gold); margin-bottom: 15px;">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"Great wholesale prices for my
-                        small hotel business. The staff is always ready to help load."</p>
-                    <strong style="color: var(--ps-dark);">Beatrice O.</strong>
-                    <span style="font-size: 0.8rem; color: var(--text-muted);">Business Owner</span>
-                </div>
-
+                <!-- Injected by main.js -->
             </div>
         </section>
 
     </main>
 
+    <!-- ================= FOOTER ================= -->
     <footer>
         <div class="footer-content">
             <div class="social-links">
                 <h4 class="social-title">Follow Us</h4>
                 <div class="icons-container">
-                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
-                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i
                             class="fab fa-tiktok"></i></a>
-                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
-                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i
+                            class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+
             <div class="copyright">
                 <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
             </div>
@@ -254,5 +162,4 @@
     </footer>
 
 </body>
-
 </html>

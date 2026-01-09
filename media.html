@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Descriptive Title for SEO -->
+
     <title>News & Gallery - Powerstar Supermarkets</title>
     <meta name="description"
         content="Latest news, events, and promotions from Powerstar Supermarkets. Explore our gallery of winners, store openings, and community initiatives.">
@@ -14,97 +14,111 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css?v=2025-01?v=deploy2026">
 
-    <!-- Inline styles specific to Media Hero -->
-    <!-- Defer loading of non-critical JS -->
+    <!-- Core UI / Navigation / Reveal -->
     <script src="js/main.js" defer></script>
 
+    <!-- Media-specific loader (gallery, filters, lightbox logic) -->
     <script src="js/media.js?v=2025-01?v=deploy2026" defer></script>
 </head>
 
 <body>
 
-    <header>
-        <div class="header-inner">
-            <!-- SAFE TO EDIT: Logo -->
-            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+<header>
+    <div class="header-inner">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="Powerstar Supermarkets Logo">
+        </a>
 
-            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
-                    class="fas fa-bars"></i></button>
+        <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
 
-            <!-- SAFE TO EDIT: Navigation Links -->
-            <nav class="nav-menu" id="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="about.html">About Us</a>
-                <a href="services.html">Departments</a>
-                <a href="branches.html">Branches</a>
-                <a href="order.html">Shop on WhatsApp</a>
-                <a href="loyalty.html">Loyalty</a>
-                <a href="careers.html">Careers</a>
-                <a href="contact.html">Contact</a>
-                <a href="media.html" class="active">Media</a>
-            </nav>
-        </div>
-    </header>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="services.html">Departments</a>
+            <a href="branches.html">Branches</a>
+            <a href="order.html">Shop on WhatsApp</a>
+            <a href="loyalty.html">Loyalty</a>
+            <a href="careers.html">Careers</a>
+            <a href="contact.html">Contact</a>
+            <a href="media.html" class="active">Media</a>
+        </nav>
+    </div>
+</header>
 
-    <!-- SAFE TO EDIT: Hero Section -->
-    <div class="hero media-hero">
-        <div class="hero-glass-card reveal">
-            <!-- EDITABLE: Subtitle -->
-            <span class="hero-welcome-text">Latest Updates</span>
-            <!-- EDITABLE: Main Headline -->
-            <h1>News & Moments</h1>
-            <!-- EDITABLE: Tagline -->
-            <p>Celebrating our winners, community events, and latest offers.</p>
+<!-- HERO -->
+<div class="hero media-hero">
+    <div class="hero-glass-card reveal">
+        <span class="hero-welcome-text">Latest Updates</span>
+        <h1>News & Moments</h1>
+        <p>Celebrating our winners, community events, and latest offers.</p>
+    </div>
+</div>
+
+<main class="container">
+
+    <!-- FILTERS -->
+    <div class="filter-container reveal">
+        <button class="filter-btn active" onclick="filterGallery('all', this)">All Stories</button>
+        <button class="filter-btn" onclick="filterGallery('events', this)">Events</button>
+        <button class="filter-btn" onclick="filterGallery('store', this)">Inside Powerstar</button>
+        <button class="filter-btn" onclick="filterGallery('promos', this)">Promotions</button>
+    </div>
+
+    <!-- CMS CONTROLLED GALLERY -->
+    <div class="gallery-grid"
+         id="media-grid"
+         data-source="media-json"
+         data-managed-by="admin">
+
+        <!-- Safe loading state before media.js injects content -->
+        <div class="loading-placeholder reveal"
+             style="grid-column:1/-1; text-align:center; padding:60px;">
+            <i class="fas fa-image" style="font-size:2rem; color:#ccc;"></i>
+            <p style="margin-top:15px; color:var(--text-muted);">
+                Loading latest stories...
+            </p>
         </div>
     </div>
 
-    <main class="container">
+</main>
 
-        <!-- Gallery Filters -->
-        <div class="filter-container reveal">
-            <button class="filter-btn active" onclick="filterGallery('all', this)">All Stories</button>
-            <button class="filter-btn" onclick="filterGallery('events', this)">Events</button>
-            <button class="filter-btn" onclick="filterGallery('store', this)">Inside Powerstar</button>
-            <button class="filter-btn" onclick="filterGallery('promos', this)">Promotions</button>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Full Screen">
+</div>
+
+<footer>
+    <div class="footer-content">
+        <div class="social-links">
+            <h4 class="social-title">Follow Us</h4>
+            <div class="icons-container">
+                <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
         </div>
 
-        <!-- SAFE TO EDIT: Gallery Grid -->
-        <div class="gallery-grid" id="media-grid">
-            <!-- Dynamic Content Loaded Here -->
+        <div class="copyright">
+            <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
         </div>
-
-    </main>
-
-    <!-- Lightbox Modal -->
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <img id="lightbox-img" src="" alt="Full Screen">
     </div>
-
-    <footer>
-        <div class="footer-content">
-            <div class="social-links">
-                <h4 class="social-title">Follow Us</h4>
-                <div class="icons-container">
-                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
-                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
-                            class="fab fa-tiktok"></i></a>
-                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
-                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
+</footer>
 
 </body>
-
 </html>

@@ -4,43 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Descriptive Title for SEO -->
+
     <title>Our Story - Powerstar Supermarkets</title>
     <meta name="description"
         content="Discover the Powerstar story. Established in 2001, we are your trusted neighborhood partner committed to integrity, innovation, and community support.">
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=2025-01?v=deploy2026">
 
-    <!-- Defer loading of non-critical JS -->
-    <script src="js/main.js?v=2025-01?v=deploy2026" defer></script>
-    <script src="js/content-loader.js?v=2025-01?v=deploy2026" defer></script>
-    <link rel="stylesheet" href="css/lightbox.css?v=2025-01?v=deploy2026">
-    <link rel="stylesheet" href="css/about-expansion.css?v=2025-01?v=deploy2026">
-    <script src="js/lightbox.js?v=2025-01?v=deploy2026" defer></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Core Styles -->
+    <link rel="stylesheet" href="css/style.css?v=deploy2026">
+
+    <!-- Unified JS -->
+    <script src="js/main.js" defer></script>
 </head>
 
 <body>
 
-    <!-- SAFE TO EDIT: Header -->
+    <!-- ================= HEADER ================= -->
     <header>
         <div class="header-inner">
-            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Powerstar Supermarkets Logo">
+            </a>
 
-            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
-                    class="fas fa-bars"></i></button>
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
 
             <nav class="nav-menu" id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="about.html" class="active">About Us</a>
                 <a href="services.html">Departments</a>
                 <a href="branches.html">Branches</a>
-                <a href="order.html">Shop on WhatsApp</a>
+                <a href="order.html">Shop</a>
                 <a href="loyalty.html">Loyalty</a>
                 <a href="media.html">Media</a>
                 <a href="careers.html">Careers</a>
@@ -49,319 +53,120 @@
         </div>
     </header>
 
-    <!-- SAFE TO EDIT: Hero Section -->
-    <div class="hero about-hero">
+    <!-- ================= HERO ================= -->
+    <section class="hero about-hero">
         <div class="hero-glass-card reveal">
-            <!-- EDITABLE: Subtitle -->
             <span class="hero-welcome-text">Established 2001</span>
-            <!-- EDITABLE: Main Headline -->
             <h1>The Powerstar Story</h1>
-            <!-- EDITABLE: Tagline -->
             <p>Integrity. Innovation. Community.</p>
         </div>
-    </div>
+    </section>
 
+    <!-- ================= MAIN ================= -->
     <main class="container">
 
-        <!-- 1. INTRO NARRATIVE (Existing) -->
-        <div class="b2b-wrapper light-mode reveal" style="margin-top: 80px; margin-bottom: 60px;">
-            <div class="b2b-grid"
-                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px; align-items: start;">
+        <!-- INTRO -->
+        <section class="reveal" style="margin-top: 80px; margin-bottom: 80px;">
+            <span class="section-subtitle">Who We Are</span>
+            <h2>More Than a Retailer</h2>
+            <p style="max-width: 800px; color: var(--text-muted);">
+                Powerstar Supermarkets is a long-term community partner committed to improving everyday living.
+                We deliver quality products at fair prices while creating dignified shopping experiences.
+            </p>
+        </section>
 
-                <!-- Narrative Text -->
-                <div class="story-content">
-                    <span class="section-subtitle">Who We Are</span>
-                    <h2 style="margin-bottom: 25px;">More Than A Retailer</h2>
-                    <p><strong>Powerstar Supermarkets</strong> is a long-term community partner committed to improving
-                        everyday living within the neighborhoods we serve. Established with a clear objective to provide
-                        consistently high-quality products at fair prices, Powerstar has evolved into a trusted
-                        household brand across Kenya.</p>
-                    <p>Our operations are guided by the belief that shopping should be dignified, convenient, and
-                        accessible to all. This philosophy informs our "Save Everyday" commitment—ensuring value is
-                        delivered consistently, sustainably, and at scale.</p>
-                    <div
-                        style="font-family: 'Montserrat', sans-serif; font-weight: 700; color: var(--ps-green); margin-top: 25px; font-size: 1.1rem; border-top: 1px solid var(--border-color); padding-top: 20px;">
-                        Independent. Innovative. Honest.
-                    </div>
+        <!-- MISSION & VISION -->
+        <section class="values-grid reveal">
+            <article class="value-card">
+                <div class="icon-circle icon-green">
+                    <i class="fas fa-bullseye"></i>
                 </div>
+                <h3 id="mission-title">Our Mission</h3>
+                <p id="mission-content">
+                    Loading mission...
+                </p>
+            </article>
 
-                <!-- Strategic Compass (Mission & Vision) MOVED UP -->
-                <div class="values-grid compass-grid" style="grid-template-columns: 1fr; gap: 30px;">
-                    <!-- Mission -->
-                    <article class="value-card" style="padding: 30px;">
-                        <div class="icon-circle icon-green" style="width: 50px; height: 50px; font-size: 1.5rem;"><i
-                                class="fas fa-bullseye"></i></div>
-                        <h3>Our Mission</h3>
-                        <p>To be an independent, innovative, honest, and sustainable outlet. We offer the most inviting
-                            buying environment while saving customers time and money everyday.</p>
-                    </article>
-
-                    <!-- Vision -->
-                    <article class="value-card" style="padding: 30px;">
-                        <div class="icon-circle icon-gold" style="width: 50px; height: 50px; font-size: 1.5rem;"><i
-                                class="fas fa-eye"></i></div>
-                        <h3>Our Vision</h3>
-                        <p>To deliver exceptional shopping experiences by offering the best service, value, quality, and
-                            freshest products while being good stewards of our environment.</p>
-                    </article>
+            <article class="value-card">
+                <div class="icon-circle icon-gold">
+                    <i class="fas fa-eye"></i>
                 </div>
-            </div>
-        </div>
+                <h3 id="vision-title">Our Vision</h3>
+                <p id="vision-content">
+                    Loading vision...
+                </p>
+            </article>
+        </section>
 
-        <!-- 2. QUALITY POLICY STATEMENT (NEW) -->
+        <!-- QUALITY POLICY -->
         <section class="reveal"
-            style="margin-bottom: 80px; background: #f9f9f9; padding: 60px 40px; border-radius: var(--radius-md);">
+            style="margin: 80px 0; background: var(--ps-grey-light); padding: 60px; border-radius: 20px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Our Promise</span>
-                <h2 id="quality-title">Quality Policy Statement</h2>
-                <div
-                    style="max-width: 800px; margin: 0 auto; display: flex; gap: 20px; text-align: left; align-items: center; justify-content: center;">
-                    <div style="font-size: 3rem; color: var(--ps-green); opacity: 0.2;"><i
-                            class="fas fa-quote-left"></i></div>
-                    <p id="quality-desc" style="font-size: 1.1rem; color: var(--text-dark); line-height: 1.8;">
-                        At Powerstar, quality is not just a promise; it's our daily practice. We are dedicated to
-                        ensuring that every product... <!-- JSON Placeholder -->
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. TEAM GALLERY SECTION (NEW) -->
-        <section class="reveal" style="margin-bottom: 80px;">
-            <div class="section-header-center">
-                <span class="section-subtitle">Our People</span>
-                <h2>The Powerstar Family</h2>
-            </div>
-            <!-- Grid of images -->
-            <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                <!-- Hardcoded structure but images could be dynamic or static assets -->
-                <img src="assets/team/team-1.jpg" class="lightbox-trigger" alt="Store Team"
-                    style="border-radius: 8px; height: 200px; object-fit: cover; width: 100%;"
-                    onerror="this.src='https://placehold.co/400x400?text=Team+1'">
-                <img src="assets/team/team-2.jpg" class="lightbox-trigger" alt="Bakery Staff"
-                    style="border-radius: 8px; height: 200px; object-fit: cover; width: 100%;"
-                    onerror="this.src='https://placehold.co/400x400?text=Team+2'">
-                <img src="assets/team/team-3.jpg" class="lightbox-trigger" alt="Customer Service"
-                    style="border-radius: 8px; height: 200px; object-fit: cover; width: 100%;"
-                    onerror="this.src='https://placehold.co/400x400?text=Team+3'">
-                <img src="assets/team/team-4.jpg" class="lightbox-trigger" alt="Management"
-                    style="border-radius: 8px; height: 200px; object-fit: cover; width: 100%;"
-                    onerror="this.src='https://placehold.co/400x400?text=Team+4'">
-            </div>
-        </section>
-
-        <!-- 4. GROWTH & FUTURE VISION (NEW) -->
-        <section class="reveal"
-            style="margin-bottom: 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center;">
-            <div>
-                <img src="assets/growth.jpg" alt="Future Vision" class="lightbox-trigger"
-                    style="border-radius: var(--radius-md); box-shadow: var(--shadow-card);"
-                    onerror="this.src='https://placehold.co/600x400?text=Growth+Map'">
-            </div>
-            <div>
-                <span class="section-subtitle">Looking Ahead</span>
-                <h2 id="vision-title">Growth & Future Vision</h2>
-                <p id="vision-content" style="color: var(--text-muted); line-height: 1.8;">
-                    Our journey is just beginning. With a strategic roadmap focused on regional expansion...
-                    <!-- JSON Placeholder -->
+                <h2 id="quality-title">Quality Policy</h2>
+                <p id="quality-desc" style="max-width: 800px; margin: 0 auto;">
+                    Loading quality policy...
                 </p>
-                <a href="branches.html" class="btn btn-primary" style="margin-top: 20px;">See Our Footprint</a>
             </div>
         </section>
 
-        <!-- 5. EXECUTIVE COMMITTEE (NEW) -->
+        <!-- EXECUTIVE TEAM -->
         <section class="reveal" style="margin-bottom: 80px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Leadership</span>
                 <h2>Executive Committee</h2>
             </div>
-            <!-- JSON Loading Container -->
+
             <div class="team-grid" id="executives-grid">
-                <!-- Stubs for visual layout before JS loads -->
-                <div class="team-card placeholder-block" style="height: 300px;"></div>
-                <div class="team-card placeholder-block" style="height: 300px;"></div>
-                <div class="team-card placeholder-block" style="height: 300px;"></div>
-                <div class="team-card placeholder-block" style="height: 300px;"></div>
+                <!-- Loaded by JS -->
             </div>
         </section>
 
-        <!-- 6. IMPACT METRICS (Moved & Enhanced) -->
-        <section class="impact-stats reveal" style="margin-bottom: 80px;">
-            <!-- Content loaded via JS from metrics.json -->
-            <div class="stat-item"><span class="counter">...</span></div>
-            <div class="stat-item"><span class="counter">...</span></div>
-            <div class="stat-item"><span class="counter">...</span></div>
-        </section>
-
-
-
-        <!-- CORE VALUES (Maintained at bottom as foundation) -->
-        <div class="reveal">
-            <div class="section-header-center">
-                <span class="section-subtitle">Our DNA</span>
-                <h2>Core Values</h2>
-            </div>
-            <div class="department-grid"
-                style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
-                <div class="dept-card"
-                    style="padding: 20px; text-align: center; border-bottom: 3px solid var(--ps-red);">
-                    <div style="margin-bottom: 15px; color: var(--ps-red); font-size: 1.8rem;"><i
-                            class="fas fa-users"></i></div>
-                    <h3 style="font-size: 1.1rem;">Teamwork</h3>
-                </div>
-                <div class="dept-card"
-                    style="padding: 20px; text-align: center; border-bottom: 3px solid var(--ps-red);">
-                    <div style="margin-bottom: 15px; color: var(--ps-red); font-size: 1.8rem;"><i
-                            class="fas fa-handshake"></i></div>
-                    <h3 style="font-size: 1.1rem;">Respect</h3>
-                </div>
-                <div class="dept-card"
-                    style="padding: 20px; text-align: center; border-bottom: 3px solid var(--ps-red);">
-                    <div style="margin-bottom: 15px; color: var(--ps-red); font-size: 1.8rem;"><i
-                            class="fas fa-medal"></i></div>
-                    <h3 style="font-size: 1.1rem;">Excellence</h3>
-                </div>
-                <!-- ... other values simplified/kept ... -->
-                <div class="dept-card"
-                    style="padding: 20px; text-align: center; border-bottom: 3px solid var(--ps-red);">
-                    <div style="margin-bottom: 15px; color: var(--ps-red); font-size: 1.8rem;"><i
-                            class="fas fa-check-circle"></i></div>
-                    <h3 style="font-size: 1.1rem;">Accountability</h3>
-                </div>
-                <div class="dept-card"
-                    style="padding: 20px; text-align: center; border-bottom: 3px solid var(--ps-red);">
-                    <div style="margin-bottom: 15px; color: var(--ps-red); font-size: 1.8rem;"><i
-                            class="fas fa-heart"></i></div>
-                    <h3 style="font-size: 1.1rem;">Passion</h3>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- SAFE TO EDIT: Testimonials Section -->
-    <section class="reveal" style="background: var(--ps-grey-light); padding: 80px 0;">
-        <div class="container">
-            <div class="section-header-center">
-                <span class="section-subtitle">Voice of the Customer</span>
-                <h2>Trust Earned Daily</h2>
-            </div>
-
-            <div class="department-grid">
-                <!-- Review 1 -->
-                <div class="dept-card" style="padding: 30px;">
-                    <div style="color: var(--ps-gold); margin-bottom: 15px;">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"Good customer services and
-                        offers are on top. I always find what I need."</p>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 15px;">
-                        <strong style="color: var(--ps-dark);">Joanne Nash</strong><br>
-                        <span style="font-size: 0.8rem; color: var(--text-muted);">Loyal Customer</span>
-                    </div>
-                </div>
-
-                <!-- Review 2 -->
-                <div class="dept-card" style="padding: 30px;">
-                    <div style="color: var(--ps-gold); margin-bottom: 15px;">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"Very affordable supermarket.
-                        Kikuyu Powerstar is the best in the area for daily shopping."</p>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 15px;">
-                        <strong style="color: var(--ps-dark);">Lennah K Munyoki</strong><br>
-                        <span style="font-size: 0.8rem; color: var(--text-muted);">Kikuyu Resident</span>
-                    </div>
-                </div>
-
-                <!-- Review 3 -->
-                <div class="dept-card" style="padding: 30px;">
-                    <div style="color: var(--ps-gold); margin-bottom: 15px;">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                    <p style="font-style: italic; margin-bottom: 20px; flex-grow: 1;">"I was served by Monica
-                        Kagendo at Zimmerman. She was helpful and understanding."</p>
-                    <div style="border-top: 1px solid var(--border-color); padding-top: 15px;">
-                        <strong style="color: var(--ps-dark);">Fra Lex</strong><br>
-                        <span style="font-size: 0.8rem; color: var(--text-muted);">Zimmerman Branch</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. TEAM GALLERY (New) -->
-    <section class="team-gallery-section section-spacing reveal">
-        <div class="container">
+        <!-- TEAM GALLERY -->
+        <section class="reveal" style="margin-bottom: 80px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Our People</span>
-                <h2>Meet The Team</h2>
+                <h2>The Powerstar Family</h2>
             </div>
-            <!-- Images loaded via JS -->
+
             <div class="gallery-grid" id="team-gallery-grid">
-                <!-- Populated by JS -->
+                <!-- Loaded by JS -->
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 7. GROWTH & VISION NARRATIVE (New) -->
-    <section class="growth-vision-section reveal" style="background: white; padding: 80px 0;">
-        <div class="container">
-            <div class="vision-wrapper" style="display: flex; align-items: center; gap: 50px;">
-                <div class="vision-content" style="flex: 1;">
-                    <span class="section-subtitle">Future Outlook</span>
-                    <h2 id="vision-title">Growth & Vision</h2>
-                    <p id="vision-content">Loading narrative...</p>
-                </div>
-                <div class="vision-image" style="flex: 1;">
-                    <img id="vision-image" src="assets/bg-pattern.png" alt="Future Vision" class="lightbox-trigger"
-                        loading="lazy" style="width: 100%; border-radius: 20px; cursor: pointer;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. PARTNERS & BRANDS (Infinite Marquee) -->
-    <section class="partners-section reveal" style="padding: 80px 0; background: white; overflow: hidden;">
-        <div class="container text-center">
+        <!-- PARTNERS -->
+        <section class="partners-section reveal" style="margin-bottom: 80px;">
             <div class="section-header-center">
                 <span class="section-subtitle">Our Network</span>
                 <h2>Trusted Partners</h2>
-                <p style="max-width: 800px; margin: 0 auto; color: var(--text-muted);">
-                    We collaborate with industry-leading suppliers and local distributors to ensure every product on
-                    our shelves meets the highest standards of quality and freshness. Our network is built on trust,
-                    reliability, and a shared commitment to serving our community.
-                </p>
             </div>
 
             <div class="marquee-wrapper">
                 <div class="marquee-track" id="partners-track">
-                    <!-- Populated by JS (Doubled for infinite loop) -->
+                    <!-- Loaded by JS -->
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     </main>
 
+    <!-- ================= FOOTER ================= -->
     <footer>
         <div class="footer-content">
             <div class="social-links">
                 <h4 class="social-title">Follow Us</h4>
                 <div class="icons-container">
-                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
-                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i
                             class="fab fa-tiktok"></i></a>
-                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
-                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i
+                            class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+
             <div class="copyright">
                 <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
             </div>
@@ -369,5 +174,4 @@
     </footer>
 
 </body>
-
 </html>
