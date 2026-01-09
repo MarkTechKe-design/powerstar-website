@@ -3457,4 +3457,170 @@ img {
     color: #fff;
     border-color: #1a7f5a;
 }
+/* ======================================================
+   STABILITY PATCH — PREVENT WHITE / EMPTY PAGES
+   ====================================================== */
+
+/* Never hide dynamic content due to reveal timing */
+.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* Ensure JSON-driven grids are visible immediately */
+#weekly-offers-grid,
+#all-offers-grid,
+.department-grid,
+.departments-grid {
+    min-height: 200px;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Prevent invisible images on first paint */
+.offer-image,
+.dept-image-wrapper {
+    background: #f4f4f4;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offer-image img,
+.dept-image-wrapper img {
+    display: block;
+    opacity: 1 !important;
+}
+/* ======================================================
+   EXECUTIVE OFFERS GRID (HOME + OFFERS PAGE)
+   ====================================================== */
+
+#weekly-offers-grid,
+#all-offers-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    #weekly-offers-grid,
+    #all-offers-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    #weekly-offers-grid,
+    #all-offers-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+/* Offer Card */
+.offer-card {
+    background: #ffffff;
+    border: 1px solid #ededed;
+    border-radius: 12px;
+    padding: 16px;
+    transition: border-color 0.2s ease;
+}
+
+.offer-card:hover {
+    border-color: #dcdcdc;
+}
+
+/* Image */
+.offer-image {
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.offer-image img {
+    max-height: 120px;
+    object-fit: contain;
+}
+
+/* Text */
+.offer-details h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 6px;
+}
+
+.price-row {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.new-price {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.old-price {
+    font-size: 0.85rem;
+    color: #999;
+    text-decoration: line-through;
+}
+
+/* Discount badge — subtle */
+.discount-badge {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    color: #b30000;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 3px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+/* ======================================================
+   DEPARTMENTS GRID — CORPORATE PARITY WITH OFFERS
+   ====================================================== */
+
+.departments-grid,
+.department-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .departments-grid,
+    .department-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .departments-grid,
+    .department-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Department Card */
+.dept-card {
+    background: #fff;
+    border: 1px solid #f0f0f0;
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.dept-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 40px rgba(0,0,0,.06);
+}
 
