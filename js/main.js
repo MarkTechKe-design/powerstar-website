@@ -24,7 +24,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const path = window.location.pathname;
 
-    if (path === '/' || path.endsWith('/') || path.endsWith('index.html')) {
+    const isHome =
+        path === '/' ||
+        path.endsWith('/') ||
+        path.endsWith('index.html');
+
+    if (isHome) {
+        loadHomeSlider();
+        initHeroSlider();
         loadOffersHome();
     }
 
@@ -39,16 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (path.includes('about.html')) {
         loadAbout();
     }
-    if (path === '/' || path.endsWith('index.html')) {
-    loadOffersHome();
-    initHeroSlider();
-}
-if (path === '/' || path.endsWith('/') || path.endsWith('index.html')) {
-    loadHomeSlider();
-    initHeroSlider();
-    loadOffersHome();
-}
-
 });
 
 /* ===============================
@@ -56,12 +53,10 @@ if (path === '/' || path.endsWith('/') || path.endsWith('index.html')) {
 ================================ */
 function parseKES(value) {
     if (!value) return '';
-    if (typeof value === 'number') {
-        return value.toLocaleString();
-    }
-    // Remove non-numeric characters safely
-    const num = Number(value.replace(/[^\d]/g, ''));
-    return isNaN(num) ? value : num.toLocaleString();
+    if (typeof value === 'number') return value.toLocaleString();
+
+    const num = Number(String(value).replace(/[^\d]/g, ''));
+    return isNaN(num) ? '' : num.toLocaleString();
 }
 
 /* ===============================
@@ -70,7 +65,6 @@ function parseKES(value) {
 async function loadDepartmentsWithProducts() {
     const tabs = document.getElementById('department-tabs');
     const grid = document.getElementById('products-grid');
-
     if (!tabs || !grid) return;
 
     try {
@@ -117,38 +111,34 @@ function renderDepartment(dept, container) {
         return;
     }
 
-    container.innerHTML = dept.products.map(p => {
-        const price = parseKES(p.offer_price ?? p.price);
+    container.innerHTML = dept.products.map(p => `
+        <div class="product-card">
+            <img src="${p.image}"
+                 alt="${p.name}"
+                 onerror="this.src='${PLACEHOLDER_IMG}'">
 
-        return `
-            <div class="product-card">
-                <img src="${p.image}"
-                     alt="${p.name}"
-                     onerror="this.src='${PLACEHOLDER_IMG}'">
+            <h3>${p.name}</h3>
 
-                <h3>${p.name}</h3>
-
-                <div class="price-row">
-                    ${
-                        p.offer_price
-                            ? `<span class="old-price">KES ${parseKES(p.price)}</span>`
-                            : ''
-                    }
-                    <span class="new-price">KES ${price}</span>
-                </div>
-
-                <small>${Array.isArray(p.branches) ? p.branches.join(', ') : ''}</small>
-
-                <button class="btn btn-primary" disabled>
-                    Ordering Coming Soon
-                </button>
+            <div class="price-row">
+                ${
+                    p.offer_price
+                        ? `<span class="old-price">KES ${parseKES(p.price)}</span>`
+                        : ''
+                }
+                <span class="new-price">KES ${parseKES(p.offer_price ?? p.price)}</span>
             </div>
-        `;
-    }).join('');
+
+            <small>${Array.isArray(p.branches) ? p.branches.join(', ') : ''}</small>
+
+            <button class="btn btn-primary" disabled>
+                Ordering Coming Soon
+            </button>
+        </div>
+    `).join('');
 }
 
 /* ===============================
-   HOME — OFFERS (EXECUTIVE GRID)
+   HOME — OFFERS GRID
 ================================ */
 async function loadOffersHome() {
     const grid = document.getElementById('weekly-offers-grid');
@@ -159,9 +149,9 @@ async function loadOffersHome() {
         if (!res.ok) throw new Error('offers.json missing');
 
         const data = await res.json();
-        const offers = (data.offers || []).filter(o => o.active);
+        const offers = (data.offers || []).filter(o => o.active).slice(0, 6);
 
-        grid.innerHTML = offers.slice(0, 6).map(o => `
+        grid.innerHTML = offers.map(o => `
             <div class="offer-card">
                 <div class="offer-image">
                     ${
@@ -190,9 +180,7 @@ async function loadOffersHome() {
                         ${Array.isArray(o.branches) ? o.branches.join(', ') : ''}
                     </span>
 
-                    <button class="btn" disabled>
-                        Order Coming Soon
-                    </button>
+                    <button class="btn" disabled>Order Coming Soon</button>
                 </div>
             </div>
         `).join('');
@@ -202,8 +190,9 @@ async function loadOffersHome() {
         grid.innerHTML = `<p>Unable to load offers.</p>`;
     }
 }
+
 /* ===============================
-   HOME HERO SLIDER (4 SLIDES)
+   HOME HERO SLIDER (STATIC DATA)
 ================================ */
 function loadHomeSlider() {
     const track = document.getElementById('sliderTrack');
@@ -247,6 +236,7 @@ function loadHomeSlider() {
         </div>
     `).join('');
 }
+
 function initHeroSlider() {
     const slides = document.querySelectorAll('.slide');
     if (slides.length < 2) return;
@@ -259,57 +249,9 @@ function initHeroSlider() {
         slides[index].classList.add('active');
     }, 6000);
 }
-function enableSliderClick(slidesData) {
-    const track = document.getElementById('sliderTrack');
-    if (!track) return;
-
-    track.addEventListener('click', () => {
-        // Placeholder action (safe)
-        window.location.href = 'offers.html';
-    });
-}
-function enableSliderSwipe(slidesCount, setActiveSlide) {
-    const container = document.querySelector('.slider-container');
-    if (!container) return;
-
-    let startX = 0;
-    let endX = 0;
-
-    container.addEventListener('touchstart', e => {
-        startX = e.touches[0].clientX;
-    });
-
-    container.addEventListener('touchend', e => {
-        endX = e.changedTouches[0].clientX;
-
-        if (Math.abs(startX - endX) < 50) return;
-
-        if (startX > endX) {
-            setActiveSlide('next');
-        } else {
-            setActiveSlide('prev');
-        }
-    });
-}
-let currentSlide = 0;
-
-function showSlide(index) {
-    slides.forEach((s, i) => {
-        s.classList.toggle('active', i === index);
-    });
-}
-
-function setActiveSlide(direction) {
-    if (direction === 'next') {
-        currentSlide = (currentSlide + 1) % slides.length;
-    } else {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    }
-    showSlide(currentSlide);
-}
 
 /* ===============================
-   CAREERS — PROFESSIONAL ROLES (CMS)
+   CAREERS — CMS ROLES
 ================================ */
 async function loadCareers() {
     const grid = document.querySelector('.department-grid');
@@ -384,19 +326,4 @@ function initMobileMenu() {
     btn.addEventListener('click', () => {
         nav.classList.toggle('active');
     });
-}
-/* ===============================
-   HERO SLIDER (LANDING PAGE)
-================================ */
-function initHeroSlider() {
-    const slides = document.querySelectorAll('.slide');
-    if (slides.length < 2) return;
-
-    let index = 0;
-
-    setInterval(() => {
-        slides[index].classList.remove('active');
-        index = (index + 1) % slides.length;
-        slides[index].classList.add('active');
-    }, 6000);
 }
