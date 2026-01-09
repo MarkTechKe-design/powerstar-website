@@ -1,368 +1,316 @@
 /**
- * Powerstar Supermarkets - Homepage Core Logic
- * 
- * RESPONSIBILITIES:
- * 1. Mobile Menu Toggle
- * 2. Scroll Reveal Animations (Throttled)
- * 3. Hero Promo Slider (Touch-enabled)
- * 
- * AUTHOR: Senior Frontend Engineer
+ * Powerstar Supermarkets — Unified Main JS
+ * Single Source of Truth
+ * Stable for VS Code + cPanel
  */
 
 'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
+/* ===============================
+   GLOBAL CONFIG
+================================ */
+const BASE_PATH = window.location.hostname.includes('github.io')
+    ? '/powerstar-website'
+    : '';
+
+const PLACEHOLDER_IMG =
+    'https://placehold.co/600x400?text=Powerstar+Supermarkets';
+
+/* ===============================
+   DOM READY
+================================ */
+document.addEventListener('DOMContentLoaded', async () => {
     initMobileMenu();
     initScrollReveal();
-    // initPromoSlider(); // Moved to be called by content-loader after data load, or if element exists static
-    if (document.getElementById('sliderTrack') && document.querySelectorAll('.slide').length > 0) {
-        initPromoSlider();
+
+    const path = window.location.pathname;
+
+    /* HOME PAGE */
+    if (
+        path === '/' ||
+        path.endsWith('index.html') ||
+        path.endsWith('/')
+    ) {
+        await loadSlides();
+        await loadDepartmentsHome();
+        await loadWhatsNew();
+        await loadOffersHome();
     }
-    initOffersSystem();
-    // initLightbox(); // Handled by js/lightbox.js
-    initStatsCounter();
+
+    /* DEPARTMENTS PAGE */
+    if (path.includes('services.html')) {
+        await loadDepartmentsAll();
+    }
+
+    /* OFFERS PAGE */
+    if (path.includes('offers.html')) {
+        await loadOffersAll();
+    }
+
+    /* CAREERS PAGE */
+    if (path.includes('careers.html')) {
+        await loadCareers();
+    }
+
+    /* ABOUT PAGE */
+    if (path.includes('about.html')) {
+        await loadAbout();
+    }
 });
 
-// ===========================================
-// 4. OFFERS SYSTEM (ASSET-DRIVEN)
-// ===========================================
-function initOffersSystem() {
-    const offerImages = document.querySelectorAll('.offer-image[data-image]');
-
-    if (offerImages.length === 0) return;
-
-    offerImages.forEach(container => {
-        const imageUrl = container.getAttribute('data-image');
-
-        // Create Image Object to test loading
-        const img = new Image();
-        img.src = imageUrl;
-        img.alt = "Special Offer"; // ideally we grab this from a data-alt if available, or generic
-
-        img.onload = () => {
-            // Image exists, append it
-            container.appendChild(img);
-            // Remove initial placeholder bg if needed, but styling handles z-index or coverage
-        };
-
-        img.onerror = () => {
-            // Image failed, show fallback
-            container.classList.add('missing-img');
-            // Ensure no broken image icon shows
-            img.remove();
-        };
-    });
-}
-
-// ===========================================
-// LIGHTBOX MODULE
-// ===========================================
-// ===========================================
-// LIGHTBOX MODULE
-// ===========================================
-// Note: Lightbox logic has been moved to js/lightbox.js for strict modularity.
-// This block is intentionally left empty/commented to prevent conflicts.
-
-// ===========================================
-// 1. MOBILE MENU MODULE
-// ===========================================
-function initMobileMenu() {
-    const menuBtn = document.getElementById('mobile-menu-btn');
-    const navMenu = document.getElementById('nav-menu');
-
-    // Defensive check
-    if (!menuBtn || !navMenu) return;
-
-    menuBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        // Toggle Active State
-        const isActive = navMenu.classList.toggle('active');
-
-        // Update Icon (Hamburger <-> Times)
-        const icon = menuBtn.querySelector('i');
-        if (icon) {
-            icon.setAttribute('class', isActive ? 'fas fa-times' : 'fas fa-bars');
-        }
-
-        // Accessibility
-        menuBtn.setAttribute('aria-expanded', isActive);
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !menuBtn.contains(e.target) && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            const icon = menuBtn.querySelector('i');
-            if (icon) icon.setAttribute('class', 'fas fa-bars');
-        }
-    });
-}
-
-// ===========================================
-// 2. SCROLL REVEAL MODULE (PERFORMANCE OPTIMIZED)
-// ===========================================
-function initScrollReveal() {
-    // Select all elements to animate
-    const reveals = document.querySelectorAll(".reveal");
-    if (reveals.length === 0) return;
-
-    // Cache window height to avoid layout thrashing in loop
-    let windowHeight = window.innerHeight;
-
-    // Update window height on resize
-    window.addEventListener('resize', () => {
-        windowHeight = window.innerHeight;
-    }, { passive: true });
-
-    const checkReveal = () => {
-        const elementVisible = 100; // Trigger when 100px into view
-
-        for (let i = 0; i < reveals.length; i++) {
-            const reveal = reveals[i];
-
-            // Skip already active elements to save calc time
-            if (reveal.classList.contains('active')) continue;
-
-            const elementTop = reveal.getBoundingClientRect().top;
-            if (elementTop < windowHeight - elementVisible) {
-                reveal.classList.add("active");
-            }
-        }
-    };
-
-    // RAF Throttle pattern
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                checkReveal();
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }, { passive: true }); // Passive listener for scroll performance
-
-    // Initial check on load
-    checkReveal();
-}
-
-// ===========================================
-// 3. PROMO SLIDER MODULE
-// ===========================================
-// ===========================================
-// 3. HERO PROMO SLIDER (TRUE CAROUSEL)
-// ===========================================
-// ===========================================
-// 3. HERO PROMO SLIDER (TRUE CAROUSEL)
-// ===========================================
-window.initPromoSlider = function () {
-    const sliderContainer = document.getElementById('promoSlider');
-    if (!sliderContainer) return;
-
+/* ===============================
+   SLIDER
+================================ */
+async function loadSlides() {
     const track = document.getElementById('sliderTrack');
-    const slides = Array.from(track.getElementsByClassName('slide'));
-    const indicators = document.querySelectorAll('.indicator');
-    const totalSlides = slides.length;
-    let currentSlideIndex = 0;
-    const AUTOPLAY_DELAY = 5000;
+    if (!track) return;
 
-    // Cleanup previous instance
-    if (window.promoSliderInterval) {
-        clearInterval(window.promoSliderInterval);
-    }
-    if (sliderContainer._stopFn) {
-        sliderContainer.removeEventListener('mouseenter', sliderContainer._stopFn);
-    }
-    if (sliderContainer._startFn) {
-        sliderContainer.removeEventListener('mouseleave', sliderContainer._startFn);
-    }
-    // Note: Touch events are harder to remove if anonymous, but the interval is the main issue.
-    // We will use named handlers for touch too.
+    try {
+        const r = await fetch(`${BASE_PATH}/data/slides.json?v=${Date.now()}`);
+        const slides = await r.json();
 
+        track.innerHTML = '';
 
-    // Helper: Update Active Classes
-    const showSlide = (index) => {
-        // Wrap around
-        if (index >= totalSlides) index = 0;
-        if (index < 0) index = totalSlides - 1;
-
-        currentSlideIndex = index;
-
-        // Update Slides
-        slides.forEach((slide, i) => {
-            slide.classList.toggle('active', i === currentSlideIndex);
-        });
-
-        // Update Indicators
-        if (indicators.length > 0) {
-            indicators.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentSlideIndex);
+        slides
+            .filter(s => s.active)
+            .forEach((slide, i) => {
+                track.insertAdjacentHTML(
+                    'beforeend',
+                    `
+                <div class="slide ${i === 0 ? 'active' : ''}">
+                    <img src="${slide.image}" alt="${slide.title}"
+                         onerror="this.src='${PLACEHOLDER_IMG}'">
+                    <div class="slide-content">
+                        <span>${slide.subtitle || ''}</span>
+                        <h2>${slide.title}</h2>
+                        <a href="${slide.button_link || '#'}"
+                           class="btn btn-primary">
+                           ${slide.button_text || 'Learn More'}
+                        </a>
+                    </div>
+                </div>
+                `
+                );
             });
-        }
-    };
 
-    // Public Controls
-    window.moveSlide = (n) => {
-        stopAutoScroll();
-        showSlide(currentSlideIndex + n);
-        startAutoScroll();
-    };
-
-    window.currentSlide = (n) => {
-        stopAutoScroll();
-        showSlide(n - 1); // 1-based to 0-based
-        startAutoScroll();
-    };
-
-    // --- Autoplay ---
-    const startAutoScroll = () => {
-        if (window.promoSliderInterval) clearInterval(window.promoSliderInterval);
-        window.promoSliderInterval = setInterval(() => {
-            showSlide(currentSlideIndex + 1);
-        }, AUTOPLAY_DELAY);
-    };
-
-    const stopAutoScroll = () => {
-        if (window.promoSliderInterval) clearInterval(window.promoSliderInterval);
-    };
-
-    // Store references for cleanup
-    sliderContainer._startFn = startAutoScroll;
-    sliderContainer._stopFn = stopAutoScroll;
-
-    // Start
-    startAutoScroll();
-    showSlide(0); // Ensure init state
-
-    // Pause on Hover
-    sliderContainer.addEventListener('mouseenter', stopAutoScroll);
-    sliderContainer.addEventListener('mouseleave', startAutoScroll);
-
-    // --- Touch Swipe Support ---
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    const onTouchStart = (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        stopAutoScroll();
-    };
-
-    const onTouchEnd = (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-        startAutoScroll();
-    };
-
-    // Remove old touch listeners if present
-    if (sliderContainer._touchStartFn) sliderContainer.removeEventListener('touchstart', sliderContainer._touchStartFn);
-    if (sliderContainer._touchEndFn) sliderContainer.removeEventListener('touchend', sliderContainer._touchEndFn);
-
-    sliderContainer.addEventListener('touchstart', onTouchStart, { passive: true });
-    sliderContainer.addEventListener('touchend', onTouchEnd, { passive: true });
-
-    // Store new references
-    sliderContainer._touchStartFn = onTouchStart;
-    sliderContainer._touchEndFn = onTouchEnd;
-
-    const handleSwipe = () => {
-        const SWIPE_THRESHOLD = 50;
-        if (touchStartX - touchEndX > SWIPE_THRESHOLD) showSlide(currentSlideIndex + 1);
-        if (touchEndX - touchStartX > SWIPE_THRESHOLD) showSlide(currentSlideIndex - 1);
-    };
+        initPromoSlider();
+    } catch (e) {
+        console.warn('Slides failed:', e);
+    }
 }
 
-// ===========================================
-// 4. OFFERS PAGE SLIDER (Simple Fade)
-// ===========================================
-function initOffersSlider() {
-    const slides = document.querySelectorAll('.promo-slide');
-    const indicators = document.querySelectorAll('.indicator');
+/* ===============================
+   DEPARTMENTS — HOME
+================================ */
+async function loadDepartmentsHome() {
+    const container = document.getElementById('landing-departments-grid');
+    if (!container) return;
 
-    if (slides.length === 0) return;
+    try {
+        const r = await fetch(`${BASE_PATH}/data/departments.json`);
+        const depts = await r.json();
 
-    let index = 0;
-    const INTERVAL = 5000;
+        const featured = depts.filter(
+            d => d.visible && d.onLanding
+        );
 
-    const showSlide = (n) => {
-        slides.forEach(s => s.classList.remove('active'));
-        indicators.forEach(i => i.classList.remove('active'));
-
-        // Wrap
-        if (n >= slides.length) index = 0;
-        else if (n < 0) index = slides.length - 1;
-        else index = n;
-
-        slides[index].classList.add('active');
-        if (indicators[index]) indicators[index].classList.add('active');
-    };
-
-    const nextSlide = () => showSlide(index + 1);
-
-    // Autoplay
-    let timer = setInterval(nextSlide, INTERVAL);
-
-    // Manual Indicators
-    indicators.forEach((ind, i) => {
-        ind.addEventListener('click', () => {
-            clearInterval(timer);
-            showSlide(i);
-            timer = setInterval(nextSlide, INTERVAL);
-        });
-    });
+        container.innerHTML = featured
+            .slice(0, 6)
+            .map(
+                d => `
+            <a href="services.html" class="quick-card">
+                <div class="quick-icon">
+                    <i class="fas ${d.icon || 'fa-store'}"></i>
+                </div>
+                <span>${d.title}</span>
+            </a>`
+            )
+            .join('');
+    } catch (e) {
+        console.warn('Home departments error:', e);
+    }
 }
-// Add to init list
 
+/* ===============================
+   DEPARTMENTS — ALL
+================================ */
+async function loadDepartmentsAll() {
+    const container = document.getElementById('departments-grid');
+    if (!container) return;
 
-/* ===========================================
-   6. IMPACT STATS ANIMATION (FINAL)
-   =========================================== */
-function initStatsCounter() {
-    const counters = document.querySelectorAll(".counter");
-    if (!counters.length) return;
+    try {
+        const r = await fetch(`${BASE_PATH}/data/departments.json`);
+        const depts = await r.json();
 
-    let animated = false;
+        container.innerHTML = depts
+            .filter(d => d.visible)
+            .map(
+                d => `
+            <div class="dept-card reveal">
+                <img src="${d.image}" alt="${d.title}"
+                     onerror="this.src='${PLACEHOLDER_IMG}'">
+                <div class="card-content">
+                    <h3>${d.title}</h3>
+                    <p>${d.description}</p>
+                    ${d.note ? `<small>${d.note}</small>` : ''}
+                    <a href="order.html" class="dept-btn">
+                        Order on WhatsApp
+                    </a>
+                </div>
+            </div>`
+            )
+            .join('');
+    } catch (e) {
+        console.warn('Departments error:', e);
+    }
+}
 
-    const animateCounters = () => {
-        if (animated) return;
+/* ===============================
+   OFFERS — HOME
+================================ */
+async function loadOffersHome() {
+    const grid = document.getElementById('weekly-offers-grid');
+    if (!grid) return;
 
-        counters.forEach(counter => {
-            const target = parseInt(counter.dataset.target, 10);
-            const suffix = counter.dataset.suffix || "";
-            if (isNaN(target)) return;
+    try {
+        const r = await fetch(`${BASE_PATH}/data/offers.json`);
+        const data = await r.json();
 
-            let current = 0;
-            // Determine step size based on target magnitude for consistent duration
-            const step = Math.ceil(target / 60); // approx 1 second animation @ 60fps
+        const offers = data.offers.filter(o => o.active);
 
-            const update = () => {
-                current += step;
-                if (current < target) {
-                    counter.textContent = current.toLocaleString() + suffix;
-                    requestAnimationFrame(update);
-                } else {
-                    counter.textContent = target.toLocaleString() + suffix;
+        grid.innerHTML = offers
+            .slice(0, 8)
+            .map(createOfferCard)
+            .join('');
+    } catch (e) {
+        console.warn('Home offers error:', e);
+    }
+}
+
+/* ===============================
+   OFFERS — ALL
+================================ */
+async function loadOffersAll() {
+    const grid = document.getElementById('all-offers-grid');
+    if (!grid) return;
+
+    try {
+        const r = await fetch(`${BASE_PATH}/data/offers.json`);
+        const data = await r.json();
+
+        grid.innerHTML = data.offers
+            .filter(o => o.active)
+            .map(createOfferCard)
+            .join('');
+    } catch (e) {
+        console.warn('Offers page error:', e);
+    }
+}
+
+function createOfferCard(o) {
+    return `
+    <div class="offer-card">
+        <img src="${o.image}" alt="${o.product_name}"
+             onerror="this.src='${PLACEHOLDER_IMG}'">
+        ${o.discount_label ? `<span class="discount-badge">${o.discount_label}</span>` : ''}
+        <h3>${o.product_name}</h3>
+        <div class="price-row">
+            ${o.old_price ? `<span class="old-price">${o.old_price}</span>` : ''}
+            <span class="new-price">${o.new_price}</span>
+        </div>
+        <small>${o.branches}</small>
+        <a href="order.html" class="btn btn-primary btn-block">
+            Order Now
+        </a>
+    </div>`;
+}
+
+/* ===============================
+   CAREERS
+================================ */
+async function loadCareers() {
+    const grid = document.querySelector('.department-grid');
+    if (!grid) return;
+
+    try {
+        const r = await fetch(`${BASE_PATH}/data/careers.json`);
+        const data = await r.json();
+
+        grid.innerHTML = data.professional_roles
+            .map(
+                job => `
+            <div class="dept-card ${job.status === 'filled' ? 'filled' : ''}">
+                <span class="dept-label">${job.department}</span>
+                <h3>${job.title}</h3>
+                <p>${job.description}</p>
+                ${
+                    job.status === 'filled'
+                        ? '<span class="btn-filled">Filled</span>'
+                        : `<a href="mailto:${job.application_email}"
+                              class="btn-job-apply">Apply</a>`
                 }
-            };
+            </div>`
+            )
+            .join('');
+    } catch (e) {
+        console.warn('Careers error:', e);
+    }
+}
 
-            update();
-        });
+/* ===============================
+   ABOUT
+================================ */
+async function loadAbout() {
+    try {
+        const r = await fetch(`${BASE_PATH}/data/about.json`);
+        const d = await r.json();
 
-        animated = true;
-    };
+        setText('mission-title', d.strategic_compass.mission.title);
+        setText('mission-content', d.strategic_compass.mission.content);
+        setText('vision-title', d.strategic_compass.vision.title);
+        setText('vision-content', d.strategic_compass.vision.content);
+    } catch (e) {
+        console.warn('About error:', e);
+    }
+}
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                observer.disconnect();
+function setText(id, txt) {
+    const el = document.getElementById(id);
+    if (el && txt) el.textContent = txt;
+}
+
+/* ===============================
+   UI HELPERS
+================================ */
+function initMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('nav-menu');
+    if (!btn || !nav) return;
+
+    btn.onclick = () => nav.classList.toggle('active');
+}
+
+function initScrollReveal() {
+    const els = document.querySelectorAll('.reveal');
+    const reveal = () =>
+        els.forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                el.classList.add('active');
             }
         });
-    }, { threshold: 0.2 });
 
-    const statsSection = document.querySelector(".impact-stats");
-    if (statsSection) observer.observe(statsSection);
+    window.addEventListener('scroll', reveal);
+    reveal();
 }
 
-// Ensure it runs
+function initPromoSlider() {
+    const slides = document.querySelectorAll('.slide');
+    if (!slides.length) return;
 
+    let i = 0;
+    setInterval(() => {
+        slides.forEach(s => s.classList.remove('active'));
+        slides[i].classList.add('active');
+        i = (i + 1) % slides.length;
+    }, 5000);
+}
