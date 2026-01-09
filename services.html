@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Departments & Products | Powerstar Supermarkets</title>
+    <title>Our Departments - Powerstar Supermarkets</title>
     <meta name="description"
-        content="Browse all Powerstar Supermarkets departments including groceries, electronics, bakery, household items and more. Order directly via WhatsApp.">
+        content="Explore all Powerstar Supermarkets departments including groceries, electronics, bakery, household items and more. Order directly via WhatsApp.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
     <!-- Icons -->
@@ -32,7 +32,7 @@
     <header>
         <div class="header-inner">
             <a href="index.html" class="logo">
-                <img src="assets/logo.png" alt="Powerstar Supermarkets">
+                <img src="assets/logo.png" alt="Powerstar Supermarkets Logo">
             </a>
 
             <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Menu">
@@ -58,8 +58,7 @@
             <span class="hero-welcome-text">Shop by Category</span>
             <h1>Our Departments</h1>
             <p>
-                Explore our full range of products across food, household,
-                electronics, bakery and more — available at select branches.
+                Browse products by department and place your order instantly via WhatsApp.
             </p>
         </div>
     </section>
@@ -72,19 +71,19 @@
             <div class="value-card reveal">
                 <div class="icon-circle"><i class="fas fa-leaf"></i></div>
                 <h3>Fresh & Trusted</h3>
-                <p>We work with reliable suppliers to guarantee quality.</p>
+                <p>Quality products sourced from reliable suppliers.</p>
             </div>
 
             <div class="value-card reveal">
                 <div class="icon-circle"><i class="fas fa-tags"></i></div>
                 <h3>Fair Pricing</h3>
-                <p>Retail and wholesale prices tailored for every customer.</p>
+                <p>Retail and wholesale pricing for every customer.</p>
             </div>
 
             <div class="value-card reveal">
                 <div class="icon-circle"><i class="fas fa-store"></i></div>
-                <h3>Multiple Branches</h3>
-                <p>Availability varies by branch for better stock control.</p>
+                <h3>Branch Availability</h3>
+                <p>Products vary by branch for better stock control.</p>
             </div>
         </section>
 
@@ -93,55 +92,30 @@
             <span class="section-subtitle">Browse & Order</span>
             <h2>Select a Department</h2>
             <p class="section-intro">
-                Click a department below to view available products and prices.
-                Add items and place your order via WhatsApp.
+                Choose a department below to view available products and prices.
             </p>
         </div>
 
-        <!-- ================= DEPARTMENTS ================= -->
-<section class="departments-section">
+        <!-- ================= DEPARTMENT TABS ================= -->
+        <!-- REQUIRED BY main.js -->
+        <div id="department-tabs" class="dept-tabs reveal">
+            <!-- Injected by JS -->
+        </div>
 
-    <div class="section-header-center reveal">
-        <span class="section-subtitle">Shop by Category</span>
-        <h2>Select a Department</h2>
-        <p class="section-intro">
-            Choose a department to view available products, prices, and branch availability.
-        </p>
-    </div>
+        <!-- ================= PRODUCTS GRID ================= -->
+        <!-- REQUIRED BY main.js -->
+        <div id="products-grid" class="products-grid reveal">
+            <!-- Injected by JS -->
+        </div>
 
-    <!-- Department Tabs -->
-    <div id="department-tabs" class="dept-tabs reveal">
-        <!-- Injected by main.js -->
-    </div>
-
-</section>
-
-<!-- ================= PRODUCTS ================= -->
-<section class="products-section">
-
-    <div class="section-header reveal">
-        <h2 id="products-title">Products</h2>
-        <p id="products-subtitle">
-            Add items to your order. Total will be calculated automatically.
-        </p>
-    </div>
-
-    <div id="products-grid" class="products-grid reveal">
-        <!-- Injected by main.js -->
-    </div>
-
-</section>
-
-
-        <!-- ================= BULK / WHOLESALE CTA ================= -->
+        <!-- ================= BULK CTA ================= -->
         <section class="promo-banner reveal">
             <div class="promo-content-wrapper">
                 <div class="promo-text-col">
                     <h3 class="promo-subtitle">Wholesale & Institutions</h3>
                     <h2 class="promo-title">Bulk Orders Made Easy</h2>
                     <p class="promo-desc">
-                        Schools, hotels, resellers and organizations enjoy
-                        special pricing and priority service.
+                        Schools, hotels and businesses enjoy special pricing and priority service.
                     </p>
                     <div class="promo-actions">
                         <a href="contact.html" class="btn-white">Contact Sales</a>
@@ -165,10 +139,20 @@
             <div class="social-links">
                 <h4 class="social-title">Follow Us</h4>
                 <div class="icons-container">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
+                        aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
+                        aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
             <div class="copyright">
