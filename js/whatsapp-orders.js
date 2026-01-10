@@ -174,3 +174,30 @@ document.addEventListener("click", function (e) {
 
 /* ---------- INIT ---------- */
 document.addEventListener("DOMContentLoaded", renderOrderSummary);
+/* ===============================
+   VIEW ORDER BADGE
+================================ */
+function updateViewOrderButton() {
+    const btn = document.getElementById("view-order-btn");
+    const countEl = document.getElementById("order-count");
+    if (!btn || !countEl) return;
+
+    const order = getOrder();
+    const itemCount = order.items.reduce((sum, i) => sum + i.qty, 0);
+
+    if (itemCount > 0) {
+        btn.style.display = "flex";
+        countEl.textContent = itemCount;
+    } else {
+        btn.style.display = "none";
+    }
+}
+
+/* Hook into existing flows */
+const _addToOrder = window.addToOrder;
+window.addToOrder = function (...args) {
+    _addToOrder(...args);
+    updateViewOrderButton();
+};
+
+document.addEventListener("DOMContentLoaded", updateViewOrderButton);
