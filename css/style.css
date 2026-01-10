@@ -3492,6 +3492,36 @@ img {
     display: block;
     opacity: 1 !important;
 }
+/* =========================================
+   INLINE QUANTITY CONTROLS (DEPARTMENTS)
+   ========================================= */
+
+.qty-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0;
+}
+
+.qty-inline button {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.qty-inline button:hover {
+    border-color: #da291c;
+}
+
+.qty-inline span {
+    min-width: 20px;
+    text-align: center;
+    font-weight: 600;
+}
 /* ======================================================
    EXECUTIVE OFFERS GRID (HOME + OFFERS PAGE)
    ====================================================== */
