@@ -1,83 +1,130 @@
-/**
- * WhatsApp Order Intelligence v2
- * centralized handling for all "Order on WhatsApp" buttons.
- * Generates Order ID, captures device info, and formats professional messages.
- * Optional integration with GA4 (if present).
- */
+/* ======================================================
+   POWERSTAR WHATSAPP ORDERING – v1 (STABLE)
+   ====================================================== */
 
-'use strict';
+const ORDER_KEY = "powerstar_order";
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all buttons with the specific class
-    const whatsappButtons = document.querySelectorAll('.whatsapp-order');
+/* ---------- UTILITIES ---------- */
+function getOrder() {
+    return JSON.parse(localStorage.getItem(ORDER_KEY)) || {
+        customer: "",
+        source: "Website",
+        items: []
+    };
+}
 
-    whatsappButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
+function saveOrder(order) {
+    localStorage.setItem(ORDER_KEY, JSON.stringify(order));
+}
 
-            // 1. Capture Base Data from Attributes
-            const branch = button.dataset.branch || 'Unknown Branch';
-            const phone = button.dataset.phone;
-            // Use data-page if set, otherwise fallback to document title, then 'Website'
-            const page = button.dataset.page || document.title || 'Website';
-            const offer = button.dataset.offer || null;
+function formatKES(amount) {
+    return "KES " + amount.toLocaleString();
+}
 
-            if (!phone) {
-                console.error('WhatsApp phone number missing on element:', button);
-                return; // Graceful exit
-            }
+/* ---------- ADD ITEM (USED BY OTHER PAGES LATER) ---------- */
+window.addToOrder = function (name, price, qty = 1) {
+    const order = getOrder();
+    const existing = order.items.find(i => i.name === name);
 
-            // 2. Generate Intelligence Data
-            const orderId = 'PS-ORD-' + Math.floor(10000 + Math.random() * 90000); // 5-digit random ID
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const deviceType = isMobile ? 'Mobile' : 'Desktop';
-            const timestamp = new Date().toLocaleString('en-KE', {
-                day: 'numeric', month: 'short', year: 'numeric',
-                hour: '2-digit', minute: '2-digit', hour12: true
-            });
+    if (existing) {
+        existing.qty += qty;
+    } else {
+        order.items.push({ name, price, qty });
+    }
 
-            // 3. Construct Professional WhatsApp Message
-            // Using *Bold* wrapper for WhatsApp formatting
-            let message = `*NEW ORDER INQUIRY* %0A`;
-            message += `--------------------------------%0A`;
-            message += `*Branch:* ${branch}%0A`;
-            message += `*Order Ref:* ${orderId}%0A`;
-            message += `*Time:* ${timestamp}%0A`;
-            message += `*Source:* Website (${deviceType})%0A`;
-            if (offer) {
-                message += `*Offer:* ${offer}%0A`;
-            }
-            message += `--------------------------------%0A%0A`;
-            message += `Hello, I would like to place an order.`;
+    saveOrder(order);
+};
 
-            // 4. Build Final URL
-            const whatsappURL = `https://wa.me/${phone}?text=${message}`;
+/* ---------- RENDER RECEIPT ON order.html ---------- */
+function renderOrderSummary() {
+    const container = document.getElementById("order-summary");
+    if (!container) return;
 
-            // 5. Analytics (Optional / Safe)
-            // Works even if GA4 is blocked or missing
-            if (typeof gtag === 'function') {
-                const isDebug = localStorage.getItem('debug_mode') === 'true';
+    const order = getOrder();
 
-                const eventParams = {
-                    branch_name: branch,
-                    page_name: page,
-                    offer_name: offer || 'none',
-                    order_id: orderId,
-                    device_type: deviceType,
-                    transport_type: 'beacon'
-                };
+    if (!order.items.length) {
+        container.innerHTML = `
+            <p style="color:#666;text-align:center;">
+                No items selected yet. Please add products before ordering.
+            </p>
+        `;
+        return;
+    }
 
-                // Inject debug scope if needed
-                if (isDebug) {
-                    eventParams.debug_mode = true;
-                    console.log('[GA4 Debug] whatsapp_order_click:', eventParams);
-                }
+    let total = 0;
 
-                gtag('event', 'whatsapp_order_click', eventParams);
-            }
+    const rows = order.items.map(item => {
+        const lineTotal = item.price * item.qty;
+        total += lineTotal;
 
-            // 6. Execute Redirect
-            window.open(whatsappURL, '_blank');
-        });
+        return `
+            <li>
+                ${item.name} × ${item.qty} @ ${formatKES(item.price)}
+                <strong style="float:right;">${formatKES(lineTotal)}</strong>
+            </li>
+        `;
+    }).join("");
+
+    container.innerHTML = `
+        <div class="receipt-box">
+            <h3>Your Order</h3>
+            <ul>${rows}</ul>
+            <hr>
+            <p><strong>TOTAL:</strong> ${formatKES(total)}</p>
+
+            <label style="display:block;margin-top:10px;">
+                Your Name
+                <input type="text" id="customer-name"
+                       placeholder="Enter your name"
+                       style="width:100%;padding:10px;margin-top:5px;">
+            </label>
+        </div>
+    `;
+}
+
+/* ---------- WHATSAPP HANDOFF ---------- */
+document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".whatsapp-order");
+    if (!btn) return;
+
+    e.preventDefault();
+
+    const branch = btn.dataset.branch;
+    const phone = btn.dataset.phone;
+
+    const order = getOrder();
+    const nameInput = document.getElementById("customer-name");
+
+    if (nameInput && nameInput.value.trim()) {
+        order.customer = nameInput.value.trim();
+        saveOrder(order);
+    }
+
+    if (!order.items.length) {
+        alert("Please add items to your order first.");
+        return;
+    }
+
+    let total = 0;
+    let message = `NEW ORDER – Powerstar Supermarkets\n`;
+    message += `--------------------------------\n`;
+    message += `Branch: ${branch}\n\n`;
+    message += `Items:\n`;
+
+    order.items.forEach(item => {
+        const lineTotal = item.price * item.qty;
+        total += lineTotal;
+        message += `• ${item.name} × ${item.qty} @ KES ${item.price} = KES ${lineTotal}\n`;
     });
+
+    message += `\nTOTAL: KES ${total.toLocaleString()}\n\n`;
+    message += `Customer: ${order.customer || "Not provided"}\n`;
+    message += `Source: ${order.source}\n`;
+    message += `--------------------------------`;
+
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
 });
+
+/* ---------- INIT ---------- */
+document.addEventListener("DOMContentLoaded", renderOrderSummary);
