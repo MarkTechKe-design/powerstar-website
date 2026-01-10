@@ -111,7 +111,7 @@ function renderDepartment(dept, container) {
         return;
     }
 
-    container.innerHTML = dept.products.map(p => `
+    container.innerHTML = dept.products.map((p, index) => `
         <div class="product-card">
             <img src="${p.image}"
                  alt="${p.name}"
@@ -125,22 +125,49 @@ function renderDepartment(dept, container) {
                         ? `<span class="old-price">KES ${parseKES(p.price)}</span>`
                         : ''
                 }
-                <span class="new-price">KES ${parseKES(p.offer_price ?? p.price)}</span>
+                <span class="new-price">
+                    KES ${parseKES(p.offer_price ?? p.price)}
+                </span>
             </div>
 
             <small>${Array.isArray(p.branches) ? p.branches.join(', ') : ''}</small>
 
-            <button class="btn btn-primary add-to-order"
-    data-id="${p.id}"
-    data-name="${p.name}"
-    data-price="${p.offer_price ?? p.price}">
-    ADD TO ORDER
-</button>
+            <!-- INLINE QTY CONTROLS -->
+            <div class="qty-inline">
+                <button onclick="changeQty(${index}, -1)">−</button>
+                <span id="qty-${index}">1</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+            </div>
 
+            <button class="btn btn-primary"
+                onclick="addProductFromDept('${p.name}', ${p.offer_price ?? p.price}, ${index})">
+                Add to Order
+            </button>
         </div>
     `).join('');
 }
+/* ===============================
+   INLINE QTY HANDLERS (DEPARTMENTS)
+================================ */
 
+const deptQtyState = {};
+
+function changeQty(index, delta) {
+    deptQtyState[index] = Math.max(1, (deptQtyState[index] || 1) + delta);
+    document.getElementById(`qty-${index}`).textContent = deptQtyState[index];
+}
+
+function addProductFromDept(name, price, index) {
+    const qty = deptQtyState[index] || 1;
+    window.addToOrder(name, price, qty);
+
+    // Reset qty after add
+    deptQtyState[index] = 1;
+    document.getElementById(`qty-${index}`).textContent = 1;
+
+    // Optional feedback (safe UX)
+    alert(`${name} added to order (${qty})`);
+}
 /* ===============================
    HOME — OFFERS GRID
 ================================ */
