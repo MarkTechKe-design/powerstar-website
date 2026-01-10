@@ -3836,3 +3836,16 @@ img {
     border-radius: 12px;
     font-size: 0.75rem;
 }
+.view-order-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #e1251b;
+    color: #fff;
+    padding: 14px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+    z-index: 999;
+}

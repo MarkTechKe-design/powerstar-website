@@ -207,3 +207,21 @@ document.addEventListener("DOMContentLoaded", updateViewOrderButton);
     <span class="cart-text">View Order</span>
     <span class="cart-count" id="order-count">0</span>
 </a>
+/* ---------- VIEW ORDER BUTTON ---------- */
+function updateViewOrderButton() {
+    const btn = document.getElementById("view-order-btn");
+    if (!btn) return;
+
+    const order = getOrder();
+    btn.style.display = order.items.length ? "block" : "none";
+}
+
+// Update on load
+document.addEventListener("DOMContentLoaded", updateViewOrderButton);
+
+// Update after adding items
+const originalAddToOrder = window.addToOrder;
+window.addToOrder = function (...args) {
+    originalAddToOrder(...args);
+    updateViewOrderButton();
+};
