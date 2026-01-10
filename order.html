@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <!-- Descriptive Title for SEO -->
     <title>Order Online - Powerstar Supermarkets</title>
     <meta name="description"
-        content="Shop online with Powerstar Personal Shopper service. Send your list via WhatsApp and get fresh groceries delivered to your door.">
+        content="Shop online with Powerstar Personal Shopper service. Select products, send your order via WhatsApp, and get groceries delivered or ready for pickup.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,25 +14,26 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css?v=2025-01?v=deploy2026">
+    <link rel="stylesheet" href="css/style.css?v=deploy2026">
 
-    <!-- Defer loading of non-critical JS -->
     <script src="js/main.js" defer></script>
-    <script src="js/whatsapp-orders.js?v=2025-01?v=deploy2026" defer></script>
-    <script src="js/ga4-events.js?v=2025-01?v=deploy2026" defer></script>
+    <script src="js/whatsapp-orders.js?v=deploy2026" defer></script>
+    <script src="js/ga4-events.js?v=deploy2026" defer></script>
 </head>
 
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="header-inner">
-            <!-- SAFE TO EDIT: Logo -->
-            <a href="index.html" class="logo"><img src="assets/logo.png" alt="Powerstar Supermarkets Logo"></a>
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Powerstar Supermarkets Logo">
+            </a>
 
-            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu"><i
-                    class="fas fa-bars"></i></button>
+            <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+                <i class="fas fa-bars"></i>
+            </button>
 
-            <!-- SAFE TO EDIT: Navigation Links -->
             <nav class="nav-menu" id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
@@ -48,199 +48,180 @@
         </div>
     </header>
 
-    <!-- SAFE TO EDIT: Hero Section -->
+    <!-- HERO -->
     <div class="hero order-hero">
         <div class="reveal">
-            <!-- EDITABLE: Main Headline -->
             <h1>Personal Shopper Service</h1>
-            <!-- EDITABLE: Tagline -->
-            <p>Skip the queue. We pick, pack, and deliver to your doorstep.</p>
+            <p>Order anytime. We prepare and confirm your shopping list for pickup or delivery.</p>
         </div>
     </div>
 
     <main class="container">
 
-        <!-- Process Steps -->
+        <!-- STEPS -->
         <div class="steps-container">
-            <!-- Step 1 -->
             <div class="step-card reveal">
                 <div class="step-num">1</div>
-                <div class="step-icon"><i class="fas fa-list-ul"></i></div>
-                <h3>Write Your List</h3>
-                <p>Jot down your shopping list on paper or your phone notes. Be specific about brands if you prefer!</p>
+                <div class="step-icon"><i class="fas fa-cart-plus"></i></div>
+                <h3>Select Your Products</h3>
+                <p>Add products from our website and review your order before checkout.</p>
             </div>
-            <!-- Step 2 -->
+
             <div class="step-card reveal">
                 <div class="step-num">2</div>
                 <div class="step-icon"><i class="fab fa-whatsapp" style="color:#25D366;"></i></div>
-                <h3>Send via WhatsApp</h3>
-                <p>Select your nearest branch below. Click to open a chat and send a photo or text of your list.</p>
+                <h3>Send Order via WhatsApp</h3>
+                <p>Your order is sent as a receipt directly to your selected branch.</p>
             </div>
-            <!-- Step 3 -->
+
             <div class="step-card reveal">
                 <div class="step-num">3</div>
-                <div class="step-icon"><i class="fas fa-motorcycle"></i></div>
-                <h3>Delivery & Pay</h3>
-                <p>We'll confirm the total. Pay via M-Pesa Till upon delivery or before dispatch.</p>
+                <div class="step-icon"><i class="fas fa-truck"></i></div>
+                <h3>Confirm, Pay & Receive</h3>
+                <p>Our team confirms availability, total cost, and delivery or pickup options.</p>
             </div>
         </div>
 
-        <!-- Section Header -->
-        <div class="section-header reveal" style="text-align: center; margin-bottom: 40px;">
-            <span class="section-subtitle">Start Shopping</span>
-            <h2>Select Your Branch</h2>
-            <p style="color:var(--text-muted);">
-                Select the branch closest to you and place your order within the time indicated for that branch to
-                ensure timely delivery.
-            </p>
+        <!-- ORDER SUMMARY -->
+        <div id="order-summary" style="max-width:700px;margin:60px auto;"></div>
 
+        <!-- SECTION HEADER -->
+        <div class="section-header reveal" style="text-align:center;margin-bottom:40px;">
+            <span class="section-subtitle">Choose a Branch</span>
+            <h2>Complete Your Order</h2>
+            <p style="color:var(--text-muted);max-width:720px;margin:0 auto;">
+                Orders can be placed at any time. If submitted after hours, they will be processed first thing in the
+                morning.
+            </p>
         </div>
 
-        <!-- SAFE TO EDIT: Branch/Ordering Grid -->
+        <!-- BRANCH GRID -->
         <div class="ordering-grid">
 
-            <!-- Branch 1 -->
+            <!-- EACH BRANCH -->
+            <!-- DO NOT CHANGE DATA ATTRIBUTES -->
+
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Kasarani HQ</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Kasarani HQ" data-phone="254790680038"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Kasarani HQ</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Kasarani HQ"
+                   data-phone="254790680038"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 2 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Joska Branch</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Joska" data-phone="254791047850"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Joska Branch</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Joska"
+                   data-phone="254791047850"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 3 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Kangari Branch</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Kangari" data-phone="254710976254"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Kangari Branch</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Kangari"
+                   data-phone="254710976254"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 4 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Naivasha Branch</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Naivasha" data-phone="254768016429"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Naivasha Branch</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Naivasha"
+                   data-phone="254768016429"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 5 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Kitengela Branch</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Kitengela" data-phone="254704121122"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Kitengela Branch</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Kitengela"
+                   data-phone="254704121122"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 6 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Kikuyu Branch</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Kikuyu" data-phone="254741251973"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Kikuyu Branch</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Kikuyu"
+                   data-phone="254741251973"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 7 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Kinoo Branch</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Kinoo" data-phone="254795459026"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Kinoo Branch</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Kinoo"
+                   data-phone="254795459026"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 8 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Ruiru Mini</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Ruiru Mini" data-phone="254724588900"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Ruiru Mini</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Ruiru Mini"
+                   data-phone="254724588900"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 9 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Ruiru Jambo</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Ruiru Jambo" data-phone="254728020018"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Ruiru Jambo</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Ruiru Jambo"
+                   data-phone="254728020018"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 10 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Zimmerman Base</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Zimmerman Base" data-phone="254707881200"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Zimmerman Base</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Zimmerman Base"
+                   data-phone="254707881200"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
-            <!-- Branch 11 -->
             <div class="order-branch-card reveal">
-                <div class="ob-info">
-                    <h4>Zimmerman Express</h4>
-                    <span><i class="fas fa-clock"></i> 8am - 8pm</span>
-                </div>
-                <a href="#" class="btn-chat-sm whatsapp-order" data-branch="Zimmerman Express" data-phone="254701231370"
-                    data-page="Order Page">
-                    <i class="fab fa-whatsapp"></i> Order Here
+                <div class="ob-info"><h4>Zimmerman Express</h4></div>
+                <a href="#" class="btn-chat-sm whatsapp-order"
+                   data-branch="Zimmerman Express"
+                   data-phone="254701231370"
+                   data-page="Order Page">
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </a>
             </div>
 
         </div>
 
-        <!-- Trust Strip -->
+        <!-- PAYMENT TRUST -->
         <div class="payment-trust reveal">
-            <h3>Secure & Convenient Payments</h3>
-            <p>We accept mobile payments upon delivery for your peace of mind.</p>
+            <h3>Payments Made Simple</h3>
+            <p>Payment is confirmed after order verification.</p>
+
             <div class="payment-icons">
                 <div class="pay-badge">
-                    <img src="assets/mpesa.png" alt="M-Pesa">
-                    M-Pesa Till
+                    <img src="assets/mpesa.png" alt="M-Pesa" onerror="this.style.display='none'">
+                    <i class="fas fa-mobile-alt"></i> M-Pesa
                 </div>
                 <div class="pay-badge">
                     <i class="fas fa-university"></i> Bank Transfer
@@ -253,21 +234,19 @@
 
     </main>
 
+    <!-- FOOTER -->
     <footer>
         <div class="footer-content">
             <div class="social-links">
                 <h4 class="social-title">Follow Us</h4>
                 <div class="icons-container">
-                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
-                        aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok"><i
-                            class="fab fa-tiktok"></i></a>
-                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
-                        aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
+
             <div class="copyright">
                 <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
             </div>
@@ -275,5 +254,4 @@
     </footer>
 
 </body>
-
 </html>
