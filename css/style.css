@@ -421,7 +421,41 @@ header {
     outline: none;
     background: white;
 }
+.view-order-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    background: #006838;
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+.view-order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.3);
+}
+
+.cart-count {
+    background: #DA291C;
+    color: #fff;
+    min-width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+}
 /* --- 7. CARDS & GRIDS (GLOBAL) --- */
 .department-grid,
 .values-grid,
