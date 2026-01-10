@@ -3808,3 +3808,31 @@ img {
     }
 }
 
+.cart-indicator {
+    position: relative;
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ps-green);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.cart-link i {
+    font-size: 1rem;
+}
+
+#cartCount {
+    background: #fff;
+    color: var(--ps-green);
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+}
