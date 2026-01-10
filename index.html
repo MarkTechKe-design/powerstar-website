@@ -40,13 +40,23 @@
 
 
     <link rel="preload" as="image" href="assets/hero/hero-1.jpg">
-</head>
+    <!-- CART / VIEW ORDER -->
+<div class="cart-indicator" id="cartIndicator" style="display:none;">
+    <a href="order.html" class="cart-link">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="cartCount">0</span>
+        <span class="cart-text">View Order</span>
+    </a>
+</div>
 <!-- VIEW ORDER FLOATING BUTTON -->
 <a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
     <span class="cart-icon">🛒</span>
     <span class="cart-text">View Order</span>
     <span class="cart-count" id="order-count">0</span>
 </a>
+
+</head>
+
 <body>
 
     <!-- ================= HEADER ================= -->

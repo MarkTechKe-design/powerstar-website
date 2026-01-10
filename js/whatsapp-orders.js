@@ -201,3 +201,9 @@ window.addToOrder = function (...args) {
 };
 
 document.addEventListener("DOMContentLoaded", updateViewOrderButton);
+<!-- VIEW ORDER FLOATING BUTTON -->
+<a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
+    <span class="cart-icon">🛒</span>
+    <span class="cart-text">View Order</span>
+    <span class="cart-count" id="order-count">0</span>
+</a>
