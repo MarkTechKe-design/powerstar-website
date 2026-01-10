@@ -130,9 +130,13 @@ function renderDepartment(dept, container) {
 
             <small>${Array.isArray(p.branches) ? p.branches.join(', ') : ''}</small>
 
-            <button class="btn btn-primary" disabled>
-                Ordering Coming Soon
-            </button>
+            <button class="btn btn-primary add-to-order"
+    data-id="${p.id}"
+    data-name="${p.name}"
+    data-price="${p.offer_price ?? p.price}">
+    ADD TO ORDER
+</button>
+
         </div>
     `).join('');
 }

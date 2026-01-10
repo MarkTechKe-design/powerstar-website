@@ -1,10 +1,15 @@
 /* ======================================================
-   POWERSTAR WHATSAPP ORDERING – v1 (STABLE)
+   POWERSTAR WHATSAPP ORDERING – v1.1 (STABLE)
+   Receipt-based WhatsApp Ordering
    ====================================================== */
+
+'use strict';
 
 const ORDER_KEY = "powerstar_order";
 
-/* ---------- UTILITIES ---------- */
+/* ===============================
+   STORAGE UTILITIES
+================================ */
 function getOrder() {
     return JSON.parse(localStorage.getItem(ORDER_KEY)) || {
         customer: "",
@@ -18,10 +23,12 @@ function saveOrder(order) {
 }
 
 function formatKES(amount) {
-    return "KES " + amount.toLocaleString();
+    return "KES " + Number(amount).toLocaleString();
 }
 
-/* ---------- ADD ITEM (USED BY OTHER PAGES LATER) ---------- */
+/* ===============================
+   ADD ITEM (CALLED FROM PRODUCT PAGES)
+================================ */
 window.addToOrder = function (name, price, qty = 1) {
     const order = getOrder();
     const existing = order.items.find(i => i.name === name);
@@ -29,13 +36,19 @@ window.addToOrder = function (name, price, qty = 1) {
     if (existing) {
         existing.qty += qty;
     } else {
-        order.items.push({ name, price, qty });
+        order.items.push({
+            name,
+            price: Number(price),
+            qty: Number(qty)
+        });
     }
 
     saveOrder(order);
 };
 
-/* ---------- RENDER RECEIPT ON order.html ---------- */
+/* ===============================
+   RENDER ORDER SUMMARY (order.html)
+================================ */
 function renderOrderSummary() {
     const container = document.getElementById("order-summary");
     if (!container) return;
@@ -44,7 +57,7 @@ function renderOrderSummary() {
 
     if (!order.items.length) {
         container.innerHTML = `
-            <p style="color:#666;text-align:center;">
+            <p style="text-align:center;color:#666;">
                 No items selected yet. Please add products before ordering.
             </p>
         `;
@@ -68,21 +81,62 @@ function renderOrderSummary() {
     container.innerHTML = `
         <div class="receipt-box">
             <h3>Your Order</h3>
-            <ul>${rows}</ul>
-            <hr>
-            <p><strong>TOTAL:</strong> ${formatKES(total)}</p>
 
-            <label style="display:block;margin-top:10px;">
+            <ul class="receipt-items">
+                ${rows}
+            </ul>
+
+            <hr>
+
+            <p class="receipt-total">
+                <strong>TOTAL:</strong> ${formatKES(total)}
+            </p>
+
+            <label class="receipt-customer">
                 Your Name
-                <input type="text" id="customer-name"
-                       placeholder="Enter your name"
-                       style="width:100%;padding:10px;margin-top:5px;">
+                <input
+                    type="text"
+                    id="customer-name"
+                    placeholder="Enter your name"
+                    value="${order.customer || ""}"
+                >
             </label>
         </div>
     `;
 }
 
-/* ---------- WHATSAPP HANDOFF ---------- */
+/* ===============================
+   BUILD WHATSAPP RECEIPT MESSAGE
+================================ */
+function buildWhatsAppMessage(branch) {
+    const order = getOrder();
+    let total = 0;
+
+    const itemsText = order.items.map(item => {
+        const lineTotal = item.price * item.qty;
+        total += lineTotal;
+        return `• ${item.name} × ${item.qty} @ KES ${item.price.toLocaleString()} = KES ${lineTotal.toLocaleString()}`;
+    }).join('\n');
+
+    return `
+NEW ORDER – Powerstar Supermarkets
+--------------------------------
+Branch: ${branch}
+
+Items:
+${itemsText}
+
+TOTAL: KES ${total.toLocaleString()}
+
+Customer: ${order.customer || "Not provided"}
+Source: ${order.source}
+--------------------------------
+`.trim();
+}
+
+/* ===============================
+   WHATSAPP HANDOFF (BRANCH CLICK)
+================================ */
 document.addEventListener("click", function (e) {
     const btn = e.target.closest(".whatsapp-order");
     if (!btn) return;
@@ -105,26 +159,13 @@ document.addEventListener("click", function (e) {
         return;
     }
 
-    let total = 0;
-    let message = `NEW ORDER – Powerstar Supermarkets\n`;
-    message += `--------------------------------\n`;
-    message += `Branch: ${branch}\n\n`;
-    message += `Items:\n`;
-
-    order.items.forEach(item => {
-        const lineTotal = item.price * item.qty;
-        total += lineTotal;
-        message += `• ${item.name} × ${item.qty} @ KES ${item.price} = KES ${lineTotal}\n`;
-    });
-
-    message += `\nTOTAL: KES ${total.toLocaleString()}\n\n`;
-    message += `Customer: ${order.customer || "Not provided"}\n`;
-    message += `Source: ${order.source}\n`;
-    message += `--------------------------------`;
-
+    const message = buildWhatsAppMessage(branch);
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
     window.open(url, "_blank");
 });
 
-/* ---------- INIT ---------- */
+/* ===============================
+   INIT
+================================ */
 document.addEventListener("DOMContentLoaded", renderOrderSummary);
