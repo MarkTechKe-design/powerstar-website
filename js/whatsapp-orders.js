@@ -51,6 +51,25 @@ function updateQty(name, delta) {
     saveOrder(order);
     renderOrderSummary();
 }
+/* ---------- INLINE QUANTITY STATE ---------- */
+window.productQty = {};
+
+window.changeQty = function (productName, delta) {
+    if (!window.productQty[productName]) {
+        window.productQty[productName] = 1;
+    }
+
+    window.productQty[productName] += delta;
+
+    if (window.productQty[productName] < 1) {
+        window.productQty[productName] = 1;
+    }
+
+    const display = document.getElementById(`qty-${productName}`);
+    if (display) {
+        display.textContent = window.productQty[productName];
+    }
+};
 
 /* ---------- RENDER ORDER ---------- */
 function renderOrderSummary() {
