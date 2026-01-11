@@ -620,3 +620,37 @@ footer {
     .quick-access-grid, .values-grid, .features-grid, .benefits-grid, .impact-stats { grid-template-columns: 1fr; }
     .payment-icons { flex-direction: column; width: 100%; }
 }
+/* ==============================================
+   EMERGENCY FIX: FORCE CONTENT VISIBILITY
+   ============================================== */
+
+/* 1. Disable "Start Hidden" for all pages */
+.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+/* 2. Force Hero Sections to Show (Fixes White Header) */
+.hero, 
+.hero.about-hero, 
+.hero.loyalty-hero, 
+.hero.contact-hero, 
+.hero.careers-hero {
+    min-height: 50vh !important;
+    opacity: 1 !important;
+    display: flex !important;
+    background-color: #006838; /* Fallback Green if image fails */
+}
+
+/* 3. Ensure Images aren't white-on-white */
+img {
+    opacity: 1 !important;
+    display: block !important;
+}
+
+/* 4. Fix specific Page Backgrounds */
+.hero.about-hero { background-image: linear-gradient(rgba(0, 60, 30, 0.8), rgba(0, 40, 20, 0.9)), url('../assets/team.jpg'); }
+.hero.contact-hero { background-image: linear-gradient(rgba(0, 104, 56, 0.85), rgba(0, 50, 20, 0.9)), url('../assets/contact-hero.jpg'); }
+.hero.loyalty-hero { background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('../assets/loyalty-hero.jpg'); }
+.hero.careers-hero { background-image: linear-gradient(rgba(0, 104, 56, 0.8), rgba(0, 50, 20, 0.9)), url('../assets/team-happy.jpg'); }
