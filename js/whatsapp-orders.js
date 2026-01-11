@@ -1,10 +1,12 @@
 /* ======================================================
-   POWERSTAR WHATSAPP ORDERING – v2 (QUANTITY ENABLED)
+   POWERSTAR WHATSAPP ORDER ENGINE — v3 (PRODUCTION)
    ====================================================== */
 
 const ORDER_KEY = "powerstar_order";
 
-/* ---------- STORAGE ---------- */
+/* ===============================
+   STORAGE
+================================ */
 function getOrder() {
     return JSON.parse(localStorage.getItem(ORDER_KEY)) || {
         customer: "",
@@ -17,27 +19,38 @@ function saveOrder(order) {
     localStorage.setItem(ORDER_KEY, JSON.stringify(order));
 }
 
-/* ---------- FORMAT ---------- */
+/* ===============================
+   FORMATTERS
+================================ */
 function formatKES(amount) {
-    return "KES " + amount.toLocaleString();
+    return "KES " + Number(amount).toLocaleString();
 }
 
-/* ---------- ADD ITEM (from departments later) ---------- */
+/* ===============================
+   ADD TO ORDER (FROM DEPARTMENTS)
+================================ */
 window.addToOrder = function (name, price, qty = 1) {
     const order = getOrder();
-    const item = order.items.find(i => i.name === name);
+    const existing = order.items.find(i => i.name === name);
 
-    if (item) {
-        item.qty += qty;
+    if (existing) {
+        existing.qty += qty;
     } else {
-        order.items.push({ name, price, qty });
+        order.items.push({
+            name,
+            price,
+            qty
+        });
     }
 
     saveOrder(order);
+    updateOrderBadge();
 };
 
-/* ---------- UPDATE QTY ---------- */
-function updateQty(name, delta) {
+/* ===============================
+   UPDATE QUANTITY (ORDER PAGE)
+================================ */
+window.updateQty = function (name, delta) {
     const order = getOrder();
     const item = order.items.find(i => i.name === name);
     if (!item) return;
@@ -50,28 +63,12 @@ function updateQty(name, delta) {
 
     saveOrder(order);
     renderOrderSummary();
-}
-/* ---------- INLINE QUANTITY STATE ---------- */
-window.productQty = {};
-
-window.changeQty = function (productName, delta) {
-    if (!window.productQty[productName]) {
-        window.productQty[productName] = 1;
-    }
-
-    window.productQty[productName] += delta;
-
-    if (window.productQty[productName] < 1) {
-        window.productQty[productName] = 1;
-    }
-
-    const display = document.getElementById(`qty-${productName}`);
-    if (display) {
-        display.textContent = window.productQty[productName];
-    }
+    updateOrderBadge();
 };
 
-/* ---------- RENDER ORDER ---------- */
+/* ===============================
+   RENDER ORDER (order.html)
+================================ */
 function renderOrderSummary() {
     const container = document.getElementById("order-summary");
     if (!container) return;
@@ -116,19 +113,32 @@ function renderOrderSummary() {
     container.innerHTML = `
         <div class="receipt-box">
             <h3>Your Order</h3>
-            <ul class="order-list">${rows}</ul>
+
+            <ul class="order-list">
+                ${rows}
+            </ul>
+
             <hr>
-            <p class="order-total"><strong>TOTAL:</strong> ${formatKES(total)}</p>
+
+            <p class="order-total">
+                <strong>TOTAL:</strong> ${formatKES(total)}
+            </p>
 
             <label>
                 Your Name
-                <input id="customer-name" placeholder="Enter your name" />
+                <input
+                    id="customer-name"
+                    placeholder="Enter your name"
+                    value="${order.customer || ''}"
+                />
             </label>
         </div>
     `;
 }
 
-/* ---------- WHATSAPP SEND ---------- */
+/* ===============================
+   WHATSAPP HANDOFF (BRANCH CLICK)
+================================ */
 document.addEventListener("click", function (e) {
     const btn = e.target.closest(".whatsapp-order");
     if (!btn) return;
@@ -137,10 +147,11 @@ document.addEventListener("click", function (e) {
 
     const branch = btn.dataset.branch;
     const phone = btn.dataset.phone;
-    const order = getOrder();
 
+    const order = getOrder();
     const nameInput = document.getElementById("customer-name");
-    if (nameInput?.value.trim()) {
+
+    if (nameInput && nameInput.value.trim()) {
         order.customer = nameInput.value.trim();
         saveOrder(order);
     }
@@ -151,9 +162,11 @@ document.addEventListener("click", function (e) {
     }
 
     let total = 0;
+
     let message = `NEW ORDER – Powerstar Supermarkets\n`;
     message += `--------------------------------\n`;
-    message += `Branch: ${branch}\n\nItems:\n`;
+    message += `Branch: ${branch}\n\n`;
+    message += `Items:\n`;
 
     order.items.forEach(item => {
         const lineTotal = item.price * item.qty;
@@ -166,62 +179,34 @@ document.addEventListener("click", function (e) {
     message += `Source: ${order.source}\n`;
     message += `--------------------------------`;
 
-    window.open(
-        `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-        "_blank"
-    );
+    const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
 });
 
-/* ---------- INIT ---------- */
-document.addEventListener("DOMContentLoaded", renderOrderSummary);
 /* ===============================
-   VIEW ORDER BADGE
+   VIEW ORDER BADGE (OPTIONAL)
 ================================ */
-function updateViewOrderButton() {
-    const btn = document.getElementById("view-order-btn");
-    const countEl = document.getElementById("order-count");
-    if (!btn || !countEl) return;
-
+function updateOrderBadge() {
     const order = getOrder();
-    const itemCount = order.items.reduce((sum, i) => sum + i.qty, 0);
+    const count = order.items.reduce((sum, i) => sum + i.qty, 0);
 
-    if (itemCount > 0) {
+    const badge = document.getElementById("order-count");
+    const btn = document.getElementById("view-order-btn");
+
+    if (!badge || !btn) return;
+
+    if (count > 0) {
+        badge.textContent = count;
         btn.style.display = "flex";
-        countEl.textContent = itemCount;
     } else {
         btn.style.display = "none";
     }
 }
 
-/* Hook into existing flows */
-const _addToOrder = window.addToOrder;
-window.addToOrder = function (...args) {
-    _addToOrder(...args);
-    updateViewOrderButton();
-};
-
-document.addEventListener("DOMContentLoaded", updateViewOrderButton);
-<!-- VIEW ORDER FLOATING BUTTON -->
-<a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
-    <span class="cart-icon">🛒</span>
-    <span class="cart-text">View Order</span>
-    <span class="cart-count" id="order-count">0</span>
-</a>
-/* ---------- VIEW ORDER BUTTON ---------- */
-function updateViewOrderButton() {
-    const btn = document.getElementById("view-order-btn");
-    if (!btn) return;
-
-    const order = getOrder();
-    btn.style.display = order.items.length ? "block" : "none";
-}
-
-// Update on load
-document.addEventListener("DOMContentLoaded", updateViewOrderButton);
-
-// Update after adding items
-const originalAddToOrder = window.addToOrder;
-window.addToOrder = function (...args) {
-    originalAddToOrder(...args);
-    updateViewOrderButton();
-};
+/* ===============================
+   INIT
+================================ */
+document.addEventListener("DOMContentLoaded", () => {
+    renderOrderSummary();
+    updateOrderBadge();
+});
