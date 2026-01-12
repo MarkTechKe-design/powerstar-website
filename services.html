@@ -22,31 +22,11 @@
     <!-- Core Styles -->
     <link rel="stylesheet" href="css/style.css?v=deploy2026">
 
-    <!-- Unified JS -->
+    <!-- JS -->
     <script src="js/main.js" defer></script>
     <script src="js/order-engine.js" defer></script>
-    
-
-    <!-- CART / VIEW ORDER -->
-<div class="cart-indicator" id="cartIndicator" style="display:none;">
-    <a href="order.html" class="cart-link">
-        <i class="fas fa-shopping-cart"></i>
-        <span id="cartCount">0</span>
-        <span class="cart-text">View Order</span>
-    </a>
-    <a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
-    View Order
-</a>
-</div>
-
-
 </head>
-<!-- VIEW ORDER FLOATING BUTTON -->
-<a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
-    <span class="cart-icon">🛒</span>
-    <span class="cart-text">View Order</span>
-    <span class="cart-count" id="order-count">0</span>
-</a>
+
 <body>
 
     <!-- ================= HEADER ================= -->
@@ -78,9 +58,7 @@
         <div class="hero-glass-card reveal">
             <span class="hero-welcome-text">Shop by Category</span>
             <h1>Our Departments</h1>
-            <p>
-                Browse products by department and place your order instantly via WhatsApp.
-            </p>
+            <p>Browse products by department and place your order instantly via WhatsApp.</p>
         </div>
     </section>
 
@@ -117,19 +95,13 @@
             </p>
         </div>
 
-        <!-- ================= DEPARTMENT TABS ================= -->
-        <!-- REQUIRED BY main.js -->
-        <div id="department-tabs" class="dept-tabs reveal">
-            <!-- Injected by JS -->
-        </div>
+        <!-- DEPARTMENT TABS -->
+        <div id="department-tabs" class="dept-tabs reveal"></div>
 
-        <!-- ================= PRODUCTS GRID ================= -->
-        <!-- REQUIRED BY main.js -->
-        <div id="products-grid" class="products-grid reveal">
-            <!-- Injected by JS -->
-        </div>
+        <!-- PRODUCTS GRID -->
+        <div id="products-grid" class="products-grid reveal"></div>
 
-        <!-- ================= BULK CTA ================= -->
+        <!-- BULK CTA -->
         <section class="promo-banner reveal">
             <div class="promo-content-wrapper">
                 <div class="promo-text-col">
@@ -140,9 +112,7 @@
                     </p>
                     <div class="promo-actions">
                         <a href="contact.html" class="btn-white">Contact Sales</a>
-                        <a href="order.html" class="btn-outline-white">
-                            Order via WhatsApp
-                        </a>
+                        <a href="order.html" class="btn-outline-white">Order via WhatsApp</a>
                     </div>
                 </div>
 
@@ -160,20 +130,10 @@
             <div class="social-links">
                 <h4 class="social-title">Follow Us</h4>
                 <div class="icons-container">
-                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank" aria-label="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"
-                        aria-label="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank" aria-label="TikTok">
-                        <i class="fab fa-tiktok"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"
-                        aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div class="copyright">
@@ -181,6 +141,13 @@
             </div>
         </div>
     </footer>
+
+    <!-- FLOATING VIEW ORDER BUTTON -->
+    <a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-text">View Order</span>
+        <span class="cart-count" id="order-count">0</span>
+    </a>
 
 </body>
 </html>

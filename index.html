@@ -5,21 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Powerstar Supermarkets - Your Trusted Neighborhood Store</title>
+    <title>Our Departments - Powerstar Supermarkets</title>
     <meta name="description"
-        content="Welcome to Powerstar Supermarkets. Fresh produce, appliances, household essentials, and wholesale deals. Shop in-store or via WhatsApp at our 10+ branches.">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Powerstar Supermarkets - Save Everyday!!!">
-    <meta property="og:description"
-        content="Order groceries via WhatsApp or visit our branches. Best prices on fresh produce, household essentials, and electronics.">
-    <meta property="og:url" content="https://www.powerstarsupermarkets.co.ke/">
-    <meta property="og:image" content="https://www.powerstarsupermarkets.co.ke/assets/social-preview.jpg">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Powerstar Supermarkets">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
+        content="Explore all Powerstar Supermarkets departments including groceries, electronics, bakery, household items and more. Order directly via WhatsApp.">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,35 +17,14 @@
         rel="stylesheet">
 
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <!-- Core Styles -->
     <link rel="stylesheet" href="css/style.css?v=deploy2026">
 
-    <!-- Unified JS ONLY -->
+    <!-- JS -->
     <script src="js/main.js" defer></script>
     <script src="js/order-engine.js" defer></script>
-
-
-    <link rel="preload" as="image" href="assets/hero/hero-1.jpg">
-    <!-- CART / VIEW ORDER -->
-<div class="cart-indicator" id="cartIndicator" style="display:none;">
-    <a href="order.html" class="cart-link">
-        <i class="fas fa-shopping-cart"></i>
-        <span id="cartCount">0</span>
-        <span class="cart-text">View Order</span>
-    </a>
-    <a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
-    View Order
-</a>
-</div>
-<!-- VIEW ORDER FLOATING BUTTON -->
-<a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
-    <span class="cart-icon">🛒</span>
-    <span class="cart-text">View Order</span>
-    <span class="cart-count" id="order-count">0</span>
-</a>
-
 </head>
 
 <body>
@@ -74,8 +41,8 @@
             </button>
 
             <nav class="nav-menu" id="nav-menu">
-                <a href="index.html" class="active">Home</a>
-                <a href="services.html">Departments</a>
+                <a href="index.html">Home</a>
+                <a href="services.html" class="active">Departments</a>
                 <a href="order.html">Shop</a>
                 <a href="branches.html">Branches</a>
                 <a href="loyalty.html">Loyalty</a>
@@ -87,72 +54,71 @@
     </header>
 
     <!-- ================= HERO ================= -->
-    <section class="hero home-hero">
+    <section class="hero services-hero">
         <div class="hero-glass-card reveal">
-            <span class="hero-welcome-text">Established 2001</span>
-            <h1>Your Neighborhood Partner</h1>
-            <p>Freshness You Trust, Savings You Love. Serving the community for over 20 years.</p>
-            <div style="margin-top: 30px;">
-                <a href="branches.html" class="btn btn-white">Find Nearest Branch</a>
-                <a href="order.html" class="btn btn-primary" style="margin-left: 10px;">Order via WhatsApp</a>
-            </div>
+            <span class="hero-welcome-text">Shop by Category</span>
+            <h1>Our Departments</h1>
+            <p>Browse products by department and place your order instantly via WhatsApp.</p>
         </div>
     </section>
 
     <!-- ================= MAIN ================= -->
     <main class="container">
 
-        <!-- SLIDER -->
-        <section class="reveal" style="margin-top: 60px; margin-bottom: 80px;">
-            <div class="section-header-center">
-                <span class="section-subtitle">Weekly Specials</span>
-                <h2>Unbeatable Deals</h2>
+        <!-- VALUE PROPOSITION -->
+        <section class="values-grid">
+            <div class="value-card reveal">
+                <div class="icon-circle"><i class="fas fa-leaf"></i></div>
+                <h3>Fresh & Trusted</h3>
+                <p>Quality products sourced from reliable suppliers.</p>
             </div>
 
-            <div class="slider-container">
-                <div class="slider-track" id="sliderTrack">
-                    <!-- Slides injected by main.js -->
+            <div class="value-card reveal">
+                <div class="icon-circle"><i class="fas fa-tags"></i></div>
+                <h3>Fair Pricing</h3>
+                <p>Retail and wholesale pricing for every customer.</p>
+            </div>
+
+            <div class="value-card reveal">
+                <div class="icon-circle"><i class="fas fa-store"></i></div>
+                <h3>Branch Availability</h3>
+                <p>Products vary by branch for better stock control.</p>
+            </div>
+        </section>
+
+        <!-- SECTION INTRO -->
+        <div class="section-header-center reveal">
+            <span class="section-subtitle">Browse & Order</span>
+            <h2>Select a Department</h2>
+            <p class="section-intro">
+                Choose a department below to view available products and prices.
+            </p>
+        </div>
+
+        <!-- DEPARTMENT TABS -->
+        <div id="department-tabs" class="dept-tabs reveal"></div>
+
+        <!-- PRODUCTS GRID -->
+        <div id="products-grid" class="products-grid reveal"></div>
+
+        <!-- BULK CTA -->
+        <section class="promo-banner reveal">
+            <div class="promo-content-wrapper">
+                <div class="promo-text-col">
+                    <h3 class="promo-subtitle">Wholesale & Institutions</h3>
+                    <h2 class="promo-title">Bulk Orders Made Easy</h2>
+                    <p class="promo-desc">
+                        Schools, hotels and businesses enjoy special pricing and priority service.
+                    </p>
+                    <div class="promo-actions">
+                        <a href="contact.html" class="btn-white">Contact Sales</a>
+                        <a href="order.html" class="btn-outline-white">Order via WhatsApp</a>
+                    </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- WEEKLY OFFERS -->
-        <section class="reveal" style="margin-bottom: 80px;">
-            <div class="section-header-center">
-                <span class="section-subtitle">Weekly Offers</span>
-                <h2>Top Deals</h2>
-            </div>
-
-            <div class="offers-grid" id="weekly-offers-grid">
-                <!-- Injected by main.js -->
-            </div>
-
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="order.html" class="btn btn-primary">Order via WhatsApp</a>
-            </div>
-        </section>
-
-        <!-- DEPARTMENTS -->
-        <section class="reveal" style="margin-bottom: 80px;">
-            <div class="section-header-center">
-                <span class="section-subtitle">Our Departments</span>
-                <h2>Shop by Department</h2>
-            </div>
-
-            <div class="quick-access-grid" id="landing-departments-grid">
-                <!-- Injected by main.js -->
-            </div>
-        </section>
-
-        <!-- WHAT'S NEW -->
-        <section class="reveal" style="margin-bottom: 80px;">
-            <div class="section-header-center">
-                <span class="section-subtitle">Latest Updates</span>
-                <h2>What's New at Powerstar</h2>
-            </div>
-
-            <div class="department-grid" id="whats-new-grid">
-                <!-- Injected by main.js -->
+                <div class="promo-icon-bg">
+                    <i class="fas fa-truck-loading"></i>
+                </div>
             </div>
         </section>
 
@@ -164,22 +130,24 @@
             <div class="social-links">
                 <h4 class="social-title">Follow Us</h4>
                 <div class="icons-container">
-                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i
-                            class="fab fa-tiktok"></i></a>
-                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i
-                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.facebook.com/PowerstarSupermarkets" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/powerstar_supermarket_limited" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@powerstar_supermarkets" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.linkedin.com/company/powerstar_supermarkets" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-
             <div class="copyright">
-                <p>&copy; 2025 Powerstar Supermarkets. All Rights Reserved.</p>
+                <p>&copy; 2026 Powerstar Supermarkets. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- FLOATING VIEW ORDER BUTTON -->
+    <a href="order.html" id="view-order-btn" class="view-order-btn" style="display:none;">
+        <span class="cart-icon">🛒</span>
+        <span class="cart-text">View Order</span>
+        <span class="cart-count" id="order-count">0</span>
+    </a>
 
 </body>
 </html>
